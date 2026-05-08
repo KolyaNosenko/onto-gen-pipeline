@@ -1,0 +1,148 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:City a owl:Class .
+:State a owl:Class .
+:County a owl:Class .
+:Person a owl:Class .
+:GovernmentOfficeHolder a owl:Class ; rdfs:subClassOf :Person .
+:VicePresident a owl:Class ; rdfs:subClassOf :GovernmentOfficeHolder .
+:SecretaryOfState a owl:Class ; rdfs:subClassOf :GovernmentOfficeHolder .
+:Place a owl:Class .
+:GeographicArea a owl:Class ; rdfs:subClassOf :Place .
+:RiverBank a owl:Class ; rdfs:subClassOf :GeographicArea .
+:CapitalCity a owl:Class ; rdfs:subClassOf :City .
+:Country a owl:Class .
+:Republic a owl:Class ; rdfs:subClassOf :Country .
+:NamedName a owl:Class .
+:Event a owl:Class .
+:Visit a owl:Class ; rdfs:subClassOf :Event .
+:Expedition a owl:Class ; rdfs:subClassOf :Event .
+:RelocationProposal a owl:Class ; rdfs:subClassOf :Event .
+:OfficialSelection a owl:Class ; rdfs:subClassOf :Event .
+:Incorporation a owl:Class ; rdfs:subClassOf :Event .
+:Renaming a owl:Class ; rdfs:subClassOf :Event .
+:TimeInterval a owl:Class .
+:DatedPointInTime a owl:Class .
+:River a owl:Class .
+:Bridge a owl:Class ; rdfs:subClassOf :Place .
+:Landmark a owl:Class ; rdfs:subClassOf :Place .
+:Title a owl:Class .
+
+:originalNameOf a owl:ObjectProperty .
+:locatedInCounty a owl:ObjectProperty .
+:locatedInPartOfState a owl:ObjectProperty .
+:visitedBy a owl:ObjectProperty .
+:duringEvent a owl:ObjectProperty .
+:proposedBy a owl:ObjectProperty .
+:proposedRelocationFrom a owl:ObjectProperty .
+:proposedRelocationTo a owl:ObjectProperty .
+:proposedRelocationNear a owl:ObjectProperty .
+:officiallyChoseAsLocation a owl:ObjectProperty .
+:chosenAsCapitalLocationFor a owl:ObjectProperty .
+:incorporatedUnderName a owl:ObjectProperty .
+:renamedInHonorOf a owl:ObjectProperty .
+:namedAfter a owl:ObjectProperty .
+:knownByTitle a owl:ObjectProperty .
+:heldPosition a owl:ObjectProperty .
+:capitalLocationOf a owl:ObjectProperty .
+:partOf a owl:ObjectProperty ; a owl:TransitiveProperty .
+:near a owl:ObjectProperty .
+
+:Waterloo a :City , owl:NamedIndividual ;
+    rdfs:label "Waterloo"^^xsd:string ;
+    :originalNameOf :Austin .
+
+:Austin a :City , owl:NamedIndividual ;
+    rdfs:label "Austin"^^xsd:string ;
+    :locatedInCounty :TravisCounty ;
+    :locatedInPartOfState :CentralPartOfTexas ;
+    :incorporatedUnderName :Waterloo ;
+    :renamedInHonorOf :StephenFAustin ;
+    :capitalLocationOf :RepublicOfTexas .
+
+:Texas a :State , owl:NamedIndividual ;
+    rdfs:label "Texas"^^xsd:string .
+
+:TravisCounty a :County , owl:NamedIndividual ;
+    rdfs:label "Travis County"^^xsd:string .
+
+:CentralPartOfTexas a :GeographicArea , owl:NamedIndividual ;
+    rdfs:label "the central part of the state"^^xsd:string ;
+    :partOf :Texas .
+
+:RepublicOfTexas a :Republic , owl:NamedIndividual ;
+    rdfs:label "Republic of Texas"^^xsd:string .
+
+:MirabeauBLamar a :VicePresident , owl:NamedIndividual ;
+    rdfs:label "Mirabeau B. Lamar"^^xsd:string ;
+    :visitedBy :MirabeauBLamar ;
+    :proposedBy :MirabeauBLamar ;
+    :heldPosition :VicePresidentOfTheRepublicOfTexas .
+
+:VicePresidentOfTheRepublicOfTexas a :VicePresident , owl:NamedIndividual ;
+    rdfs:label "Republic of Texas Vice President"^^xsd:string ;
+    :heldPosition :RepublicOfTexas .
+
+:Houston a :City , owl:NamedIndividual ;
+    rdfs:label "Houston"^^xsd:string .
+
+:ColoradoRiver a :River , owl:NamedIndividual ;
+    rdfs:label "Colorado River"^^xsd:string .
+
+:AnnWRichardsCongressAvenueBridge a :Bridge , :Landmark , owl:NamedIndividual ;
+    rdfs:label "Ann W. Richards Congress Avenue Bridge"^^xsd:string .
+
+:NorthBankOfTheColoradoRiver a :RiverBank , owl:NamedIndividual ;
+    rdfs:label "north bank of the Colorado River"^^xsd:string ;
+    :partOf :ColoradoRiver .
+
+:AreaProposedForCapital a :GeographicArea , owl:NamedIndividual ;
+    rdfs:label "an area situated on the north bank of the Colorado River near the present-day Ann W. Richards Congress Avenue Bridge"^^xsd:string ;
+    :partOf :NorthBankOfTheColoradoRiver ;
+    :near :AnnWRichardsCongressAvenueBridge .
+
+:BuffaloHuntingExpedition a :Expedition , owl:NamedIndividual ;
+    rdfs:label "a buffalo-hunting expedition"^^xsd:string ;
+    :duringEvent :VisitAndProposal .
+
+:VisitAndProposal a :Visit , :RelocationProposal , owl:NamedIndividual ;
+    rdfs:label "visited the area during a buffalo-hunting expedition between 1837 and 1838"^^xsd:string ;
+    :proposedRelocationFrom :Houston ;
+    :proposedRelocationTo :AreaProposedForCapital ;
+    :proposedRelocationNear :AnnWRichardsCongressAvenueBridge ;
+    :visitedBy :MirabeauBLamar .
+
+:Between1837And1838 a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "between 1837 and 1838"^^xsd:string .
+
+:Year1839 a :DatedPointInTime , owl:NamedIndividual ;
+    rdfs:label "1839"^^xsd:string .
+
+:OfficialCapitalSelection a :OfficialSelection , owl:NamedIndividual ;
+    rdfs:label "the site was officially chosen as the seventh and final location for the capital of the Republic of Texas"^^xsd:string ;
+    :officiallyChoseAsLocation :AreaProposedForCapital ;
+    :chosenAsCapitalLocationFor :RepublicOfTexas .
+
+:WaterlooIncorporation a :Incorporation , owl:NamedIndividual ;
+    rdfs:label "It was incorporated under the name \"Waterloo\""^^xsd:string ;
+    :incorporatedUnderName :Waterloo .
+
+:AustinRenaming a :Renaming , owl:NamedIndividual ;
+    rdfs:label "the name was changed to Austin in honor of Stephen F. Austin"^^xsd:string ;
+    :renamedInHonorOf :StephenFAustin .
+
+:StephenFAustin a :SecretaryOfState , owl:NamedIndividual ;
+    rdfs:label "Stephen F. Austin"^^xsd:string ;
+    :knownByTitle :FatherOfTexas ;
+    :heldPosition :FirstSecretaryOfStateOfTheRepublicOfTexas .
+
+:FatherOfTexas a :Title , owl:NamedIndividual ;
+    rdfs:label "Father of Texas"^^xsd:string .
+
+:FirstSecretaryOfStateOfTheRepublicOfTexas a :SecretaryOfState , owl:NamedIndividual ;
+    rdfs:label "the republic's first secretary of state"^^xsd:string ;
+    :heldPosition :RepublicOfTexas .

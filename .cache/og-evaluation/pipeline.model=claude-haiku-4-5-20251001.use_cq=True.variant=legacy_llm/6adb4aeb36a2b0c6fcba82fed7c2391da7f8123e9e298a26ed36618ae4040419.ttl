@@ -1,0 +1,270 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:TelevisionSeries a owl:Class .
+:RealityCompetitionSeries a owl:Class ;
+    rdfs:subClassOf :TelevisionSeries .
+:Television a owl:Class .
+:Person a owl:Class .
+:RealEstateDeveloper a owl:Class ;
+    rdfs:subClassOf :Person .
+:Actor a owl:Class ;
+    rdfs:subClassOf :Person .
+:Celebrity a owl:Class ;
+    rdfs:subClassOf :Person .
+:PoliticalFigure a owl:Class ;
+    rdfs:subClassOf :Person .
+:Governor a owl:Class ;
+    rdfs:subClassOf :PoliticalFigure .
+:President a owl:Class ;
+    rdfs:subClassOf :PoliticalFigure .
+:ExecutiveOfficer a owl:Class ;
+    rdfs:subClassOf :Person .
+:EntertainmentExecutive a owl:Class ;
+    rdfs:subClassOf :ExecutiveOfficer .
+:Song a owl:Class .
+:Artist a owl:Class ;
+    rdfs:subClassOf :Person .
+:Band a owl:Class .
+:CharitableOrganization a owl:Class .
+:Industry a owl:Class .
+:Media a owl:Class ;
+    rdfs:subClassOf :Industry .
+:Sitcom a owl:Class .
+:ProfessionalSports a owl:Class ;
+    rdfs:subClassOf :Industry .
+:MusicIndustry a owl:Class ;
+    rdfs:subClassOf :Industry .
+:RealityTelevision a owl:Class ;
+    rdfs:subClassOf :Industry .
+:Radio a owl:Class ;
+    rdfs:subClassOf :Industry .
+:Season a owl:Class .
+:TimePoint a owl:Class .
+:DateRange a owl:Class .
+:Variation a owl:Class .
+:ApprenticeFormat a owl:Class .
+:Competition a owl:Class .
+:Country a owl:Class .
+:State a owl:Class .
+:Organization a owl:Class .
+
+# Object Properties
+:isVariationOf a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :TelevisionSeries ;
+    a owl:AsymmetricProperty .
+:hostedBy a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Person .
+:hasHost a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Person ;
+    owl:inverseOf :hostedTelevisionSeries .
+:hostedTelevisionSeries a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :TelevisionSeries ;
+    owl:inverseOf :hasHost .
+:hasOpeningThemeSong a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Song .
+:performedBy a owl:ObjectProperty ;
+    rdfs:domain :Song ;
+    rdfs:range :Artist .
+:hasCompetitor a owl:ObjectProperty ;
+    rdfs:domain :Competition ;
+    rdfs:range :Person .
+:competesIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Competition ;
+    owl:inverseOf :hasCompetitor .
+:competesFor a owl:ObjectProperty ;
+    rdfs:domain :Celebrity ;
+    rdfs:range :CharitableOrganization .
+:comesFromIndustry a owl:ObjectProperty ;
+    rdfs:domain :Celebrity ;
+    rdfs:range :Industry .
+:canceledOn a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :TimePoint .
+:canceledBy a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Person .
+:hasSeason a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Season .
+:linkedToSeasons a owl:ObjectProperty ;
+    rdfs:domain :Season ;
+    rdfs:range :Season ;
+    a owl:SymmetricProperty .
+:occupesPoliticalPosition a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :PoliticalFigure .
+:governorOf a owl:ObjectProperty ;
+    rdfs:domain :Governor ;
+    rdfs:range :State .
+:presidentOf a owl:ObjectProperty ;
+    rdfs:domain :President ;
+    rdfs:range :Country .
+:occupiedFrom a owl:ObjectProperty ;
+    rdfs:domain :PoliticalFigure ;
+    rdfs:range :DateRange .
+
+# Data Properties
+:startYear a owl:DatatypeProperty ;
+    rdfs:domain :DateRange ;
+    rdfs:range xsd:integer .
+:endYear a owl:DatatypeProperty ;
+    rdfs:domain :DateRange ;
+    rdfs:range xsd:integer .
+:seasonNumber a owl:DatatypeProperty ;
+    rdfs:domain :Season ;
+    rdfs:range xsd:integer .
+
+# Named Individuals
+
+:TheCelebrityApprentice a :RealityCompetitionSeries , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice"^^xsd:string ;
+    :isVariationOf :TheApprentice ;
+    :hasOpeningThemeSong :ForTheLoveOfMoney ;
+    :canceledOn :August3_2017 ;
+    :canceledBy :BobGreenblatt ;
+    :hasSeason :CelebrityApprenticeSeasonSeven ;
+    :hasSeason :CelebrityApprenticeSeasonEight ;
+    :hasSeason :CelebrityApprenticeSeasonNine ;
+    :hasSeason :CelebrityApprenticeSeasonEleven ;
+    :hasSeason :CelebrityApprenticeSeasonTwelve ;
+    :hasSeason :CelebrityApprenticeSeasonThirteen ;
+    :hasSeason :CelebrityApprenticeSeasonFourteen ;
+    :hasSeason :CelebrityApprenticeSeasonFifteen .
+
+:TheApprentice a :RealityCompetitionSeries , owl:NamedIndividual ;
+    rdfs:label "The Apprentice"^^xsd:string ;
+    :hasOpeningThemeSong :ForTheLoveOfMoney ;
+    :hasSeason :ApprenticeSeasonOne ;
+    :hasSeason :ApprenticeSeasonTwo ;
+    :hasSeason :ApprenticeSeasonThree ;
+    :hasSeason :ApprenticeSeasonFour ;
+    :hasSeason :ApprenticeSeasonFive ;
+    :hasSeason :ApprenticeSeasonSix ;
+    :hasSeason :ApprenticeSeasonTen .
+
+:DonaldTrump a :RealEstateDeveloper , :President , owl:NamedIndividual ;
+    rdfs:label "Donald Trump"^^xsd:string ;
+    :hostedTelevisionSeries :TheCelebrityApprentice ;
+    :occupesPoliticalPosition :DonaldTrumpPresidency ;
+    :presidentOf :UnitedStates .
+
+:DonaldTrumpPresidency a :President , owl:NamedIndividual ;
+    rdfs:label "Donald Trump's U.S. Presidency"^^xsd:string ;
+    :occupiedFrom :DonaldTrumpPresidencyPeriod .
+
+:DonaldTrumpPresidencyPeriod a :DateRange , owl:NamedIndividual ;
+    rdfs:label "Donald Trump U.S. President period"^^xsd:string ;
+    :startYear 2016 ;
+    :endYear 2020 .
+
+:DonaldTrumpHostingPeriod a :DateRange , owl:NamedIndividual ;
+    rdfs:label "2008 to 2015"^^xsd:string ;
+    :startYear 2008 ;
+    :endYear 2015 .
+
+:ArnoldSchwarzenegger a :Actor , :Governor , owl:NamedIndividual ;
+    rdfs:label "Arnold Schwarzenegger"^^xsd:string ;
+    :hostedTelevisionSeries :TheCelebrityApprentice ;
+    :governorOf :California .
+
+:ArnoldSchwarzeneggerHostingPeriod a :DateRange , owl:NamedIndividual ;
+    rdfs:label "January 2017"^^xsd:string ;
+    :startYear 2017 .
+
+:BobGreenblatt a :EntertainmentExecutive , owl:NamedIndividual ;
+    rdfs:label "Bob Greenblatt"^^xsd:string .
+
+:August3_2017 a :TimePoint , owl:NamedIndividual ;
+    rdfs:label "August 3, 2017"^^xsd:string .
+
+:ForTheLoveOfMoney a :Song , owl:NamedIndividual ;
+    rdfs:label "For the Love of Money"^^xsd:string ;
+    :performedBy :TheOJays .
+
+:TheOJays a :Band , owl:NamedIndividual ;
+    rdfs:label "The O'Jays"^^xsd:string .
+
+:NBC a :Organization , owl:NamedIndividual ;
+    rdfs:label "NBC"^^xsd:string .
+
+:NBCEntertainment a :EntertainmentExecutive , owl:NamedIndividual ;
+    rdfs:label "NBC Entertainment"^^xsd:string .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:California a :State , owl:NamedIndividual ;
+    rdfs:label "California"^^xsd:string .
+
+:CelebrityApprenticeSeasonSeven a :Season , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice Season 7"^^xsd:string ;
+    :seasonNumber 7 ;
+    :linkedToSeasons :ApprenticeSeasonOne .
+
+:CelebrityApprenticeSeasonEight a :Season , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice Season 8"^^xsd:string ;
+    :seasonNumber 8 .
+
+:CelebrityApprenticeSeasonNine a :Season , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice Season 9"^^xsd:string ;
+    :seasonNumber 9 .
+
+:CelebrityApprenticeSeasonEleven a :Season , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice Season 11"^^xsd:string ;
+    :seasonNumber 11 ;
+    :linkedToSeasons :ApprenticeSeasonTen .
+
+:CelebrityApprenticeSeasonTwelve a :Season , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice Season 12"^^xsd:string ;
+    :seasonNumber 12 .
+
+:CelebrityApprenticeSeasonThirteen a :Season , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice Season 13"^^xsd:string ;
+    :seasonNumber 13 .
+
+:CelebrityApprenticeSeasonFourteen a :Season , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice Season 14"^^xsd:string ;
+    :seasonNumber 14 .
+
+:CelebrityApprenticeSeasonFifteen a :Season , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice Season 15"^^xsd:string ;
+    :seasonNumber 15 .
+
+:ApprenticeSeasonOne a :Season , owl:NamedIndividual ;
+    rdfs:label "The Apprentice Season 1"^^xsd:string ;
+    :seasonNumber 1 .
+
+:ApprenticeSeasonTwo a :Season , owl:NamedIndividual ;
+    rdfs:label "The Apprentice Season 2"^^xsd:string ;
+    :seasonNumber 2 .
+
+:ApprenticeSeasonThree a :Season , owl:NamedIndividual ;
+    rdfs:label "The Apprentice Season 3"^^xsd:string ;
+    :seasonNumber 3 .
+
+:ApprenticeSeasonFour a :Season , owl:NamedIndividual ;
+    rdfs:label "The Apprentice Season 4"^^xsd:string ;
+    :seasonNumber 4 .
+
+:ApprenticeSeasonFive a :Season , owl:NamedIndividual ;
+    rdfs:label "The Apprentice Season 5"^^xsd:string ;
+    :seasonNumber 5 .
+
+:ApprenticeSeasonSix a :Season , owl:NamedIndividual ;
+    rdfs:label "The Apprentice Season 6"^^xsd:string ;
+    :seasonNumber 6 .
+
+:ApprenticeSeasonTen a :Season , owl:NamedIndividual ;
+    rdfs:label "The Apprentice Season 10"^^xsd:string ;
+    :seasonNumber 10 .

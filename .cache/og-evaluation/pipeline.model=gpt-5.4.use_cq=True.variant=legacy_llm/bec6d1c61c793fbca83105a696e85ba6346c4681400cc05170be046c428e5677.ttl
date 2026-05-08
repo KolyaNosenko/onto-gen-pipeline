@@ -1,0 +1,289 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Entity a owl:Class .
+
+:Organization a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:GovernmentOrganization a owl:Class ;
+    rdfs:subClassOf :Organization .
+
+:Government a owl:Class ;
+    rdfs:subClassOf :Organization .
+
+:Person a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:Office a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:GovernmentOffice a owl:Class ;
+    rdfs:subClassOf :Office .
+
+:LegalRole a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:Provision a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:ConstitutionalProvision a owl:Class ;
+    rdfs:subClassOf :Provision .
+
+:LegalDocument a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:Constitution a owl:Class ;
+    rdfs:subClassOf :LegalDocument .
+
+:LawBody a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:CommonLaw a owl:Class ;
+    rdfs:subClassOf :LawBody .
+
+:LegalAffair a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:LegalMatter a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:Penalty a owl:Class ;
+    rdfs:subClassOf :LegalMatter .
+
+:DeathPenalty a owl:Class ;
+    rdfs:subClassOf :Penalty .
+
+:ReasonForImpeachment a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:Action a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:Nomination a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:Appointment a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:Impeachment a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:Removal a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:SeekingPenalty a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:AdviceAndConsent a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:JudicialDecision a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:SupremeCourtDecision a owl:Class ;
+    rdfs:subClassOf :JudicialDecision .
+
+:Official a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:CivilOfficerOfTheUnitedStates a owl:Class ;
+    rdfs:subClassOf :Official .
+
+:ExecutiveBranchOfficial a owl:Class ;
+    rdfs:subClassOf :Official .
+
+:OfficialEngagedInPurelyExecutiveFunctions a owl:Class ;
+    rdfs:subClassOf :Official .
+
+:OfficialWhoseDutiesImmediatelyAffectPresidentialConstitutionalResponsibilities a owl:Class ;
+    rdfs:subClassOf :Official .
+
+:AttorneyGeneralOffice a owl:Class ;
+    rdfs:subClassOf :GovernmentOffice ,
+        :CivilOfficerOfTheUnitedStates ,
+        [ a owl:Restriction ;
+            owl:onProperty :headOf ;
+            owl:someValuesFrom :GovernmentOrganization
+        ] ,
+        [ a owl:Restriction ;
+            owl:onProperty :concernedWith ;
+            owl:someValuesFrom :LegalAffair
+        ] ,
+        [ a owl:Restriction ;
+            owl:onProperty :chiefLawyerOf ;
+            owl:someValuesFrom :Government
+        ] ,
+        [ a owl:Restriction ;
+            owl:onProperty :nominatedBy ;
+            owl:someValuesFrom :Person
+        ] ,
+        [ a owl:Restriction ;
+            owl:onProperty :appointedWithAdviceAndConsentOf ;
+            owl:someValuesFrom :Organization
+        ] ,
+        [ a owl:Restriction ;
+            owl:onProperty :governedByProvision ;
+            owl:someValuesFrom :ConstitutionalProvision
+        ] ,
+        [ a owl:Restriction ;
+            owl:onProperty :mayBeImpeachedBy ;
+            owl:someValuesFrom :Organization
+        ] ,
+        [ a owl:Restriction ;
+            owl:onProperty :mayBeRemovedBy ;
+            owl:someValuesFrom :Person
+        ] .
+
+:headOf a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :Organization .
+
+:concernedWith a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :LegalAffair .
+
+:chiefLawyerOf a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :Government .
+
+:hasPowerToSeek a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :Penalty .
+
+:nominatedBy a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :Person .
+
+:appointedWithAdviceAndConsentOf a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :Organization .
+
+:governedByProvision a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :ConstitutionalProvision .
+
+:mayBeImpeachedBy a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :Organization .
+
+:mayBeImpeachedFor a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :ReasonForImpeachment .
+
+:mayBeRemovedBy a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :Person .
+
+:removedUnderDecision a owl:ObjectProperty ;
+    rdfs:domain :Office ;
+    rdfs:range :JudicialDecision .
+
+:includesOffice a owl:ObjectProperty ;
+    rdfs:domain :Provision ;
+    rdfs:range :Office .
+
+:mayRemoveWithoutConsentOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Organization .
+
+:foundThatMayRemove a owl:ObjectProperty ;
+    rdfs:domain :JudicialDecision ;
+    rdfs:range :Official .
+
+:supportedByCase a owl:ObjectProperty ;
+    rdfs:domain :Removal ;
+    rdfs:range :JudicialDecision .
+
+:suggestsPowerToRemove a owl:ObjectProperty ;
+    rdfs:domain :LawBody ;
+    rdfs:range :Official .
+
+:officeAbbreviation a owl:DatatypeProperty ;
+    rdfs:domain :Office ;
+    rdfs:range xsd:string .
+
+:UnitedStatesAttorneyGeneral a :AttorneyGeneralOffice , owl:NamedIndividual ;
+    rdfs:label "United States Attorney General"^^xsd:string ;
+    :officeAbbreviation "A.G."^^xsd:string ;
+    :headOf :UnitedStatesDepartmentOfJustice ;
+    :concernedWith :AllLegalAffairs ;
+    :chiefLawyerOf :UnitedStatesGovernment ;
+    :hasPowerToSeek :FederalDeathPenalty ;
+    :nominatedBy :President ;
+    :appointedWithAdviceAndConsentOf :Senate ;
+    :governedByProvision :AppointmentsClause ;
+    :mayBeImpeachedBy :Congress ;
+    :mayBeImpeachedFor :Treason , :Bribery , :HighCrimesAndMisdemeanors ;
+    :mayBeRemovedBy :President ;
+    :removedUnderDecision :MyersVUnitedStates .
+
+:AG a :AttorneyGeneralOffice , owl:NamedIndividual ;
+    rdfs:label "A.G."^^xsd:string .
+
+:UnitedStatesDepartmentOfJustice a :GovernmentOrganization , owl:NamedIndividual ;
+    rdfs:label "United States Department of Justice"^^xsd:string .
+
+:UnitedStatesGovernment a :Government , owl:NamedIndividual ;
+    rdfs:label "United States government"^^xsd:string .
+
+:FederalDeathPenalty a :DeathPenalty , owl:NamedIndividual ;
+    rdfs:label "federal death penalty"^^xsd:string .
+
+:AppointmentsClause a :ConstitutionalProvision , owl:NamedIndividual ;
+    rdfs:label "Appointments Clause"^^xsd:string .
+
+:Constitution a :Constitution , owl:NamedIndividual ;
+    rdfs:label "Constitution"^^xsd:string ;
+    :includesOffice :UnitedStatesAttorneyGeneral .
+
+:President a :Person , owl:NamedIndividual ;
+    rdfs:label "President"^^xsd:string ;
+    :mayRemoveWithoutConsentOf :Senate .
+
+:Senate a :Organization , owl:NamedIndividual ;
+    rdfs:label "Senate"^^xsd:string .
+
+:Congress a :Organization , owl:NamedIndividual ;
+    rdfs:label "Congress"^^xsd:string .
+
+:Treason a :ReasonForImpeachment , owl:NamedIndividual ;
+    rdfs:label "treason"^^xsd:string .
+
+:Bribery a :ReasonForImpeachment , owl:NamedIndividual ;
+    rdfs:label "bribery"^^xsd:string .
+
+:HighCrimesAndMisdemeanors a :ReasonForImpeachment , owl:NamedIndividual ;
+    rdfs:label "high crimes and misdemeanors"^^xsd:string .
+
+:MyersVUnitedStates a :SupremeCourtDecision , owl:NamedIndividual ;
+    rdfs:label "Myers v. United States"^^xsd:string ;
+    :foundThatMayRemove :ExecutiveBranchOfficials .
+
+:BowsherVSynar a :JudicialDecision , owl:NamedIndividual ;
+    rdfs:label "Bowsher v. Synar"^^xsd:string .
+
+:1986 a owl:NamedIndividual ;
+    rdfs:label "1986"^^xsd:string .
+
+:CommonLaw a :CommonLaw , owl:NamedIndividual ;
+    rdfs:label "common law"^^xsd:string ;
+    :suggestsPowerToRemove :OfficialEngagedInPurelyExecutiveFunctionsInstance ,
+        :OfficialWhoseDutiesImmediatelyAffectPresidentsAbilityToFulfillHisConstitutionalResponsibilitiesInstance .
+
+:AllLegalAffairs a :LegalAffair , owl:NamedIndividual ;
+    rdfs:label "all legal affairs"^^xsd:string .
+
+:ExecutiveBranchOfficials a :ExecutiveBranchOfficial , owl:NamedIndividual ;
+    rdfs:label "executive branch officials"^^xsd:string .
+
+:OfficialEngagedInPurelyExecutiveFunctionsInstance a :OfficialEngagedInPurelyExecutiveFunctions , owl:NamedIndividual ;
+    rdfs:label "an official engaged in purely executive functions"^^xsd:string .
+
+:OfficialWhoseDutiesImmediatelyAffectPresidentsAbilityToFulfillHisConstitutionalResponsibilitiesInstance a :OfficialWhoseDutiesImmediatelyAffectPresidentialConstitutionalResponsibilities , owl:NamedIndividual ;
+    rdfs:label "an official whose duties immediately affect the President's ability to fulfill his constitutional responsibilities"^^xsd:string .

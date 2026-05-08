@@ -1,0 +1,421 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+: a owl:Ontology .
+
+:Thing a owl:Class .
+
+:TelevisionProgram a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:TelevisionSeries a owl:Class ;
+    rdfs:subClassOf :TelevisionProgram .
+
+:RealityCompetitionSeries a owl:Class ;
+    rdfs:subClassOf :TelevisionSeries .
+
+:AmericanTelevisionRealityCompetitionSeries a owl:Class ;
+    rdfs:subClassOf :RealityCompetitionSeries .
+
+:Series a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:TelevisionShow a owl:Class ;
+    rdfs:subClassOf :TelevisionProgram .
+
+:Season a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Person a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Host a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:RealEstateDeveloper a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:President a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:Governor a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:Actor a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:Organization a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Company a owl:Class ;
+    rdfs:subClassOf :Organization .
+
+:MusicGroup a owl:Class ;
+    rdfs:subClassOf :Organization .
+
+:Role a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Song a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:ThemeSong a owl:Class ;
+    rdfs:subClassOf :Song .
+
+:ContestantGroup a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:CelebrityContestantGroup a owl:Class ;
+    rdfs:subClassOf :ContestantGroup .
+
+:UnknownContestantGroup a owl:Class ;
+    rdfs:subClassOf :ContestantGroup .
+
+:CharitableOrganization a owl:Class ;
+    rdfs:subClassOf :Organization .
+
+:Field a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:MediaField a owl:Class ;
+    rdfs:subClassOf :Field .
+
+:Statement a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:CancellationStatement a owl:Class ;
+    rdfs:subClassOf :Statement .
+
+:TimeInterval a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Date a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:MonthYear a owl:Class ;
+    rdfs:subClassOf :Date .
+
+:Characteristic a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:ContestantVisibilityCharacteristic a owl:Class ;
+    rdfs:subClassOf :Characteristic .
+
+:CurrentCelebrityStatus a owl:Class ;
+    rdfs:subClassOf :ContestantVisibilityCharacteristic .
+
+:OutOfPublicEyeStatus a owl:Class ;
+    rdfs:subClassOf :ContestantVisibilityCharacteristic .
+
+:Nationality a owl:Class ;
+    rdfs:subClassOf :Characteristic .
+
+:CompetitionPurpose a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:HostPeriod a owl:Class ;
+    rdfs:subClassOf :Thing ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :hasHost ;
+        owl:someValuesFrom :Person
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :forProgram ;
+        owl:someValuesFrom :TelevisionProgram
+    ] .
+
+:hasVariationOf a owl:ObjectProperty ;
+    rdfs:domain :TelevisionProgram ;
+    rdfs:range :Series .
+
+:hasPrecursor a owl:ObjectProperty ;
+    rdfs:domain :TelevisionProgram ;
+    rdfs:range :TelevisionProgram .
+
+:linkedInSeasonsTo a owl:ObjectProperty ;
+    rdfs:domain :TelevisionProgram ;
+    rdfs:range :TelevisionProgram .
+
+:hasSeason a owl:ObjectProperty ;
+    rdfs:domain :TelevisionProgram ;
+    rdfs:range :Season .
+
+:hostedBy a owl:ObjectProperty ;
+    rdfs:domain :TelevisionProgram ;
+    rdfs:range :Person .
+
+:hasHostPeriod a owl:ObjectProperty ;
+    rdfs:domain :TelevisionProgram ;
+    rdfs:range :HostPeriod .
+
+:hasHost a owl:ObjectProperty ;
+    rdfs:domain :HostPeriod ;
+    rdfs:range :Person .
+
+:forProgram a owl:ObjectProperty ;
+    rdfs:domain :HostPeriod ;
+    rdfs:range :TelevisionProgram .
+
+:fromTimeInterval a owl:ObjectProperty ;
+    rdfs:domain :HostPeriod ;
+    rdfs:range :TimeInterval .
+
+:startingAt a owl:ObjectProperty ;
+    rdfs:domain :HostPeriod ;
+    rdfs:range :Date .
+
+:hasChairman a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Person .
+
+:saidStatement a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Statement .
+
+:aboutProgram a owl:ObjectProperty ;
+    rdfs:domain :Statement ;
+    rdfs:range :TelevisionProgram .
+
+:statedBy a owl:ObjectProperty ;
+    rdfs:domain :Statement ;
+    rdfs:range :Person .
+
+:statedOn a owl:ObjectProperty ;
+    rdfs:domain :Statement ;
+    rdfs:range :Date .
+
+:hasOpeningThemeSong a owl:ObjectProperty ;
+    rdfs:domain :TelevisionProgram ;
+    rdfs:range :Song .
+
+:performedBy a owl:ObjectProperty ;
+    rdfs:domain :Song ;
+    rdfs:range :Organization .
+
+:sharesOpeningThemeSongWith a owl:ObjectProperty ;
+    rdfs:domain :TelevisionProgram ;
+    rdfs:range :TelevisionProgram .
+
+:hasContestantGroup a owl:ObjectProperty ;
+    rdfs:domain :TelevisionProgram ;
+    rdfs:range :ContestantGroup .
+
+:competesToWinFor a owl:ObjectProperty ;
+    rdfs:domain :ContestantGroup ;
+    rdfs:range :CompetitionPurpose .
+
+:onBehalfOfOrganizationType a owl:ObjectProperty ;
+    rdfs:domain :CompetitionPurpose ;
+    rdfs:range :Organization .
+
+:organizationChoiceBelongsToContestants a owl:DatatypeProperty ;
+    rdfs:domain :CompetitionPurpose ;
+    rdfs:range xsd:boolean .
+
+:hasContestantSourceField a owl:ObjectProperty ;
+    rdfs:domain :ContestantGroup ;
+    rdfs:range :Field .
+
+:hasContestantVisibilityCharacteristic a owl:ObjectProperty ;
+    rdfs:domain :ContestantGroup ;
+    rdfs:range :ContestantVisibilityCharacteristic .
+
+:hasStatusDescription a owl:DatatypeProperty ;
+    rdfs:domain :Statement ;
+    rdfs:range xsd:string .
+
+:hasCancellationStatusDescription a owl:DatatypeProperty ;
+    rdfs:domain :CancellationStatement ;
+    rdfs:range xsd:string .
+
+:hasOrdinalNumber a owl:DatatypeProperty ;
+    rdfs:domain :Season ;
+    rdfs:range xsd:integer .
+
+:hasStartYear a owl:DatatypeProperty ;
+    rdfs:domain :TimeInterval ;
+    rdfs:range xsd:gYear .
+
+:hasEndYear a owl:DatatypeProperty ;
+    rdfs:domain :TimeInterval ;
+    rdfs:range xsd:gYear .
+
+:isAmerican a owl:DatatypeProperty ;
+    rdfs:domain :TelevisionProgram ;
+    rdfs:range xsd:boolean .
+
+:TheCelebrityApprentice a :AmericanTelevisionRealityCompetitionSeries , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice"^^xsd:string ;
+    :isAmerican true ;
+    :hasVariationOf :TheApprenticeSeries ;
+    :hasPrecursor :TheApprentice ;
+    :linkedInSeasonsTo :TheApprentice ;
+    :hostedBy :DonaldTrump , :ArnoldSchwarzenegger ;
+    :hasHostPeriod :DonaldTrumpHostPeriod , :ArnoldSchwarzeneggerHostPeriod ;
+    :hasOpeningThemeSong :ForTheLoveOfMoney ;
+    :sharesOpeningThemeSongWith :TheApprentice ;
+    :hasContestantGroup :CelebrityContestantsOfTheCelebrityApprentice ;
+    :hasSeason :Season7 , :Season8 , :Season9 , :Season11 , :Season12 , :Season13 , :Season14 , :Season15 .
+
+:TheApprenticeSeries a :Series , owl:NamedIndividual ;
+    rdfs:label "The Apprentice series"^^xsd:string .
+
+:TheApprentice a :TelevisionShow , owl:NamedIndividual ;
+    rdfs:label "The Apprentice"^^xsd:string ;
+    :hasOpeningThemeSong :ForTheLoveOfMoney ;
+    :hasContestantGroup :UnknownContestantsOfTheApprentice ;
+    :hasSeason :Season1 , :Season2 , :Season3 , :Season4 , :Season5 , :Season6 , :Season10 .
+
+:DonaldTrump a :RealEstateDeveloper , :President , :Host , owl:NamedIndividual ;
+    rdfs:label "Donald Trump"^^xsd:string .
+
+:ArnoldSchwarzenegger a :Actor , :Governor , :Host , owl:NamedIndividual ;
+    rdfs:label "Arnold Schwarzenegger"^^xsd:string .
+
+:BobGreenblatt a :Person , owl:NamedIndividual ;
+    rdfs:label "Bob Greenblatt"^^xsd:string ;
+    :saidStatement :CelebrityApprenticeCancellationStatement .
+
+:NBCEntertainment a :Company , owl:NamedIndividual ;
+    rdfs:label "NBC Entertainment"^^xsd:string ;
+    :hasChairman :BobGreenblatt .
+
+:ForTheLoveOfMoney a :ThemeSong , owl:NamedIndividual ;
+    rdfs:label "For the Love of Money"^^xsd:string ;
+    :performedBy :TheOJays .
+
+:TheOJays a :MusicGroup , owl:NamedIndividual ;
+    rdfs:label "The O'Jays"^^xsd:string .
+
+:August32017 a :Date , owl:NamedIndividual ;
+    rdfs:label "August 3 , 2017"^^xsd:string .
+
+:January2017 a :MonthYear , owl:NamedIndividual ;
+    rdfs:label "January 2017"^^xsd:string .
+
+:From2008To2015 a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "from 2008 to 2015"^^xsd:string ;
+    :hasStartYear "2008"^^xsd:gYear ;
+    :hasEndYear "2015"^^xsd:gYear .
+
+:CelebrityApprenticeCancellationStatement a :CancellationStatement , owl:NamedIndividual ;
+    rdfs:label "the show has effectively been canceled"^^xsd:string ;
+    :aboutProgram :TheCelebrityApprentice ;
+    :statedBy :BobGreenblatt ;
+    :statedOn :August32017 ;
+    :hasCancellationStatusDescription "has effectively been canceled"^^xsd:string .
+
+:DonaldTrumpHostPeriod a :HostPeriod , owl:NamedIndividual ;
+    rdfs:label "Donald Trump from 2008 to 2015"^^xsd:string ;
+    :hasHost :DonaldTrump ;
+    :forProgram :TheCelebrityApprentice ;
+    :fromTimeInterval :From2008To2015 .
+
+:ArnoldSchwarzeneggerHostPeriod a :HostPeriod , owl:NamedIndividual ;
+    rdfs:label "Arnold Schwarzenegger from January 2017"^^xsd:string ;
+    :hasHost :ArnoldSchwarzenegger ;
+    :forProgram :TheCelebrityApprentice ;
+    :startingAt :January2017 .
+
+:CelebrityContestantsOfTheCelebrityApprentice a :CelebrityContestantGroup , owl:NamedIndividual ;
+    rdfs:label "celebrities as competing apprentices"^^xsd:string ;
+    :competesToWinFor :WinningMoneyForCharitableOrganizationOfTheirChoice ;
+    :hasContestantSourceField :Sitcoms , :ProfessionalSports , :MusicIndustry , :RealityTelevision , :Radio ;
+    :hasContestantVisibilityCharacteristic :RelativelyCurrent , :OutOfThePublicEyeForSomeTime .
+
+:UnknownContestantsOfTheApprentice a :UnknownContestantGroup , owl:NamedIndividual ;
+    rdfs:label "unknowns"^^xsd:string .
+
+:WinningMoneyForCharitableOrganizationOfTheirChoice a :CompetitionPurpose , owl:NamedIndividual ;
+    rdfs:label "win money for a charitable organization of their choice"^^xsd:string ;
+    :onBehalfOfOrganizationType :CharitableOrganization ;
+    :organizationChoiceBelongsToContestants true .
+
+:CharitableOrganization a :CharitableOrganization , owl:NamedIndividual ;
+    rdfs:label "charitable organization"^^xsd:string .
+
+:Sitcoms a :MediaField , owl:NamedIndividual ;
+    rdfs:label "sitcoms"^^xsd:string .
+
+:ProfessionalSports a :MediaField , owl:NamedIndividual ;
+    rdfs:label "professional sports"^^xsd:string .
+
+:MusicIndustry a :MediaField , owl:NamedIndividual ;
+    rdfs:label "music industry"^^xsd:string .
+
+:RealityTelevision a :MediaField , owl:NamedIndividual ;
+    rdfs:label "reality television"^^xsd:string .
+
+:Radio a :MediaField , owl:NamedIndividual ;
+    rdfs:label "radio"^^xsd:string .
+
+:RelativelyCurrent a :CurrentCelebrityStatus , owl:NamedIndividual ;
+    rdfs:label "relatively current"^^xsd:string .
+
+:OutOfThePublicEyeForSomeTime a :OutOfPublicEyeStatus , owl:NamedIndividual ;
+    rdfs:label "out of the public eye for some time"^^xsd:string .
+
+:Season1 a :Season , owl:NamedIndividual ;
+    rdfs:label "season one"^^xsd:string ;
+    :hasOrdinalNumber 1 .
+
+:Season2 a :Season , owl:NamedIndividual ;
+    rdfs:label "season two"^^xsd:string ;
+    :hasOrdinalNumber 2 .
+
+:Season3 a :Season , owl:NamedIndividual ;
+    rdfs:label "season three"^^xsd:string ;
+    :hasOrdinalNumber 3 .
+
+:Season4 a :Season , owl:NamedIndividual ;
+    rdfs:label "season four"^^xsd:string ;
+    :hasOrdinalNumber 4 .
+
+:Season5 a :Season , owl:NamedIndividual ;
+    rdfs:label "season five"^^xsd:string ;
+    :hasOrdinalNumber 5 .
+
+:Season6 a :Season , owl:NamedIndividual ;
+    rdfs:label "season six"^^xsd:string ;
+    :hasOrdinalNumber 6 .
+
+:Season7 a :Season , owl:NamedIndividual ;
+    rdfs:label "season seven"^^xsd:string ;
+    :hasOrdinalNumber 7 .
+
+:Season8 a :Season , owl:NamedIndividual ;
+    rdfs:label "season eight"^^xsd:string ;
+    :hasOrdinalNumber 8 .
+
+:Season9 a :Season , owl:NamedIndividual ;
+    rdfs:label "season nine"^^xsd:string ;
+    :hasOrdinalNumber 9 .
+
+:Season10 a :Season , owl:NamedIndividual ;
+    rdfs:label "season ten"^^xsd:string ;
+    :hasOrdinalNumber 10 .
+
+:Season11 a :Season , owl:NamedIndividual ;
+    rdfs:label "season eleven"^^xsd:string ;
+    :hasOrdinalNumber 11 .
+
+:Season12 a :Season , owl:NamedIndividual ;
+    rdfs:label "season twelve"^^xsd:string ;
+    :hasOrdinalNumber 12 .
+
+:Season13 a :Season , owl:NamedIndividual ;
+    rdfs:label "season thirteen"^^xsd:string ;
+    :hasOrdinalNumber 13 .
+
+:Season14 a :Season , owl:NamedIndividual ;
+    rdfs:label "season fourteen"^^xsd:string ;
+    :hasOrdinalNumber 14 .
+
+:Season15 a :Season , owl:NamedIndividual ;
+    rdfs:label "season fifteen"^^xsd:string ;
+    :hasOrdinalNumber 15 .

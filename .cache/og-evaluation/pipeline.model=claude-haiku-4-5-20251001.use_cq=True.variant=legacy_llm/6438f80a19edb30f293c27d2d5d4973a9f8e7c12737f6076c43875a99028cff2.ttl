@@ -1,0 +1,205 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:Person a owl:Class .
+:Sociologist a owl:Class ;
+    rdfs:subClassOf :Person .
+:Nationality a owl:Class .
+:Date a owl:Class .
+:ResearchInterest a owl:Class .
+:ScientificField a owl:Class .
+:Book a owl:Class .
+:Publication a owl:Class .
+:GovernmentalPosition a owl:Class .
+:TimeInterval a owl:Class .
+:Academic a owl:Class ;
+    rdfs:subClassOf :Person .
+:AcademicAffiliation a owl:Class .
+:University a owl:Class .
+:Award a owl:Class .
+:AwardingInstitution a owl:Class .
+:Discipline a owl:Class .
+:TheoreticalConcept a owl:Class .
+
+# Object Properties
+:hasBirthDate a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Date ;
+    a owl:FunctionalProperty .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Nationality ;
+    a owl:FunctionalProperty .
+
+:hasResearchInterest a owl:ObjectProperty ;
+    rdfs:domain :Sociologist ;
+    rdfs:range :ResearchInterest .
+
+:hasPublishedField a owl:ObjectProperty ;
+    rdfs:domain :Sociologist ;
+    rdfs:range :ScientificField .
+
+:hasBook a owl:ObjectProperty ;
+    rdfs:domain :Sociologist ;
+    rdfs:range :Book .
+
+:heldPosition a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :GovernmentalPosition .
+
+:positionDuringPeriod a owl:ObjectProperty ;
+    rdfs:domain :GovernmentalPosition ;
+    rdfs:range :TimeInterval .
+
+:hasAcademicAffiliation a owl:ObjectProperty ;
+    rdfs:domain :Academic ;
+    rdfs:range :AcademicAffiliation ;
+    a owl:FunctionalProperty .
+
+:receivedAward a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Award .
+
+:awardConferredBy a owl:ObjectProperty ;
+    rdfs:domain :Award ;
+    rdfs:range :AwardingInstitution ;
+    a owl:FunctionalProperty .
+
+:awardConferredDate a owl:ObjectProperty ;
+    rdfs:domain :Award ;
+    rdfs:range :Date ;
+    a owl:FunctionalProperty .
+
+:bookAddresses a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :ResearchInterest .
+
+:characterizesScience a owl:ObjectProperty ;
+    rdfs:domain :Sociologist ;
+    rdfs:range :Discipline .
+
+:theoreticalBasisOf a owl:ObjectProperty ;
+    rdfs:domain :TheoreticalConcept ;
+    rdfs:range :Discipline .
+
+:affiliatedWith a owl:ObjectProperty ;
+    rdfs:domain :University ;
+    rdfs:range :Person ;
+    owl:inverseOf :hasAcademicAffiliation .
+
+:positionTitle a owl:DataProperty ;
+    rdfs:domain :GovernmentalPosition ;
+    rdfs:range xsd:string .
+
+# Data Properties
+:birthDate a owl:DataProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:date ;
+    a owl:FunctionalProperty .
+
+:academicStatus a owl:DataProperty ;
+    rdfs:domain :Academic ;
+    rdfs:range xsd:string ;
+    a owl:FunctionalProperty .
+
+# Named Individuals - Person
+:GeorgyFotev a :Sociologist , owl:NamedIndividual ;
+    rdfs:label "Georgy Fotev"^^xsd:string ;
+    :birthDate "1941-08-24"^^xsd:date ;
+    :hasNationality :Bulgarian ;
+    :hasResearchInterest :TheoryOfSociology ;
+    :hasResearchInterest :HistoryOfSociology ;
+    :hasResearchInterest :MultipleParadigmScience ;
+    :hasResearchInterest :Dialogue ;
+    :hasPublishedField :HistoricalSociology ;
+    :hasPublishedField :SociologyOfPolitics ;
+    :hasPublishedField :Ethnosociology ;
+    :hasPublishedField :CrisisOfLegitimacy ;
+    :hasPublishedField :SociologyOfValues ;
+    :hasBook :TheLongNightOfCommunismInBulgaria ;
+    :hasBook :BulgarianMelancholy ;
+    :heldPosition :MinisterOfEducationAndScience ;
+    :hasAcademicAffiliation :NewBulgarianUniversity ;
+    :academicStatus "professor emeritus"^^xsd:string ;
+    :receivedAward :DistinguishedServiceAward ;
+    :characterizesScience :Sociology .
+
+# Nationality
+:Bulgarian a :Nationality , owl:NamedIndividual ;
+    rdfs:label "Bulgarian"^^xsd:string .
+
+# Research Interests
+:TheoryOfSociology a :ResearchInterest , owl:NamedIndividual ;
+    rdfs:label "theory of sociology"^^xsd:string .
+
+:HistoryOfSociology a :ResearchInterest , owl:NamedIndividual ;
+    rdfs:label "history of sociology"^^xsd:string .
+
+:MultipleParadigmScience a :ResearchInterest , owl:NamedIndividual ;
+    rdfs:label "multiple paradigm science"^^xsd:string .
+
+:Dialogue a :TheoreticalConcept , owl:NamedIndividual ;
+    rdfs:label "dialogue"^^xsd:string ;
+    :theoreticalBasisOf :Sociology .
+
+# Scientific Fields
+:HistoricalSociology a :ScientificField , owl:NamedIndividual ;
+    rdfs:label "historical sociology"^^xsd:string .
+
+:SociologyOfPolitics a :ScientificField , owl:NamedIndividual ;
+    rdfs:label "sociology of politics"^^xsd:string .
+
+:Ethnosociology a :ScientificField , owl:NamedIndividual ;
+    rdfs:label "ethnosociology"^^xsd:string .
+
+:CrisisOfLegitimacy a :ScientificField , owl:NamedIndividual ;
+    rdfs:label "crisis of legitimacy"^^xsd:string .
+
+:SociologyOfValues a :ScientificField , owl:NamedIndividual ;
+    rdfs:label "sociology of values"^^xsd:string .
+
+# Books
+:TheLongNightOfCommunismInBulgaria a :Book , owl:NamedIndividual ;
+    rdfs:label "The long night of communism in Bulgaria"^^xsd:string ;
+    :bookAddresses :BulgarianNationalSociety .
+
+:BulgarianMelancholy a :Book , owl:NamedIndividual ;
+    rdfs:label "Bulgarian melancholy"^^xsd:string ;
+    :bookAddresses :BulgarianNationalSociety .
+
+:BulgarianNationalSociety a :ResearchInterest , owl:NamedIndividual ;
+    rdfs:label "Bulgarian national society"^^xsd:string .
+
+# Governmental Position
+:MinisterOfEducationAndScience a :GovernmentalPosition , owl:NamedIndividual ;
+    rdfs:label "Minister of Education and Science"^^xsd:string ;
+    :positionTitle "Minister of Education and Science"^^xsd:string ;
+    :positionDuringPeriod :Period19911992 .
+
+:Period19911992 a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "1991 - 1992"^^xsd:string .
+
+# Academic Affiliation
+:NewBulgarianUniversity a :University , owl:NamedIndividual ;
+    rdfs:label "New Bulgarian University"^^xsd:string .
+
+# Awards
+:DistinguishedServiceAward a :Award , owl:NamedIndividual ;
+    rdfs:label "Distinguished Service Award"^^xsd:string ;
+    :awardConferredBy :AmericanUniversityInBulgaria ;
+    :awardConferredDate :Year2003 .
+
+:AmericanUniversityInBulgaria a :AwardingInstitution , owl:NamedIndividual ;
+    rdfs:label "American University in Bulgaria"^^xsd:string .
+
+:Year2003 a :Date , owl:NamedIndividual ;
+    rdfs:label "2003"^^xsd:string .
+
+# Discipline
+:Sociology a :Discipline , owl:NamedIndividual ;
+    rdfs:label "sociology"^^xsd:string .

@@ -1,0 +1,224 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:ExperimentalElectrode a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:implantedIn ;
+            owl:someValuesFrom ns1:DorsomedialEntorhinalCortex ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:recordsFrom ;
+            owl:someValuesFrom ns1:GridCell ],
+        ns1:Electrode .
+
+ns1:GridCellConcept a owl:NamedIndividual,
+        ns1:GridCell ;
+    rdfs:label "grid cells"^^xsd:string ;
+    ns1:discoveredBy ns1:EdvardMoser,
+        ns1:MarianneFyhn,
+        ns1:MayBrittMoser,
+        ns1:SturlaMolden,
+        ns1:TorkelHafting ;
+    ns1:discoveredInYear 2005 ;
+    ns1:discoveryLocation ns1:CentreForBiologyOfMemory ;
+    ns1:hasSpatialPattern ns1:TriangularPattern .
+
+ns1:JohnOKeefe a owl:NamedIndividual,
+        ns1:Scientist ;
+    rdfs:label "John O'Keefe"^^xsd:string ;
+    ns1:receivedPrize ns1:NobelPrizePhysiologyMedicine .
+
+ns1:PlaceCell a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:locatedIn ;
+            owl:someValuesFrom ns1:Hippocampus ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasFiringFields ;
+            owl:someValuesFrom ns1:PlaceField ],
+        ns1:Neuron .
+
+ns1:awardedInYear a owl:DatatypeProperty ;
+    rdfs:domain ns1:Prize ;
+    rdfs:range xsd:integer .
+
+ns1:centreLocatedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:ResearchCentre ;
+    rdfs:range ns1:Country .
+
+ns1:discoveredBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:Scientist .
+
+ns1:discoveredInYear a owl:DatatypeProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range xsd:integer .
+
+ns1:discoveryLocation a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:ResearchCentre .
+
+ns1:hasSpatialPattern a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:SpatialFiringPattern .
+
+ns1:patternGeometry a owl:ObjectProperty ;
+    rdfs:domain ns1:SpatialFiringPattern ;
+    rdfs:range ns1:Grid .
+
+ns1:receivedPrize a owl:ObjectProperty ;
+    rdfs:domain ns1:Scientist ;
+    rdfs:range ns1:Prize .
+
+ns1:CentreForBiologyOfMemory a owl:NamedIndividual,
+        ns1:ResearchCentre ;
+    rdfs:label "Centre for the Biology of Memory"^^xsd:string ;
+    ns1:centreLocatedIn ns1:Norway .
+
+ns1:CerebralCortex a owl:Class ;
+    rdfs:subClassOf ns1:BrainRegion .
+
+ns1:EdvardMoser a owl:NamedIndividual,
+        ns1:Scientist ;
+    rdfs:label "Edvard Moser"^^xsd:string ;
+    ns1:receivedPrize ns1:NobelPrizePhysiologyMedicine .
+
+ns1:EquilateralTriangleGrid a owl:Class ;
+    rdfs:subClassOf ns1:Grid .
+
+ns1:EquilateralTriangleGridInstance a owl:NamedIndividual,
+        ns1:EquilateralTriangleGrid .
+
+ns1:EuclideanSpace a owl:Class ;
+    rdfs:subClassOf ns1:CognitiveRepresentation .
+
+ns1:Hippocampus a owl:Class ;
+    rdfs:subClassOf ns1:BrainRegion .
+
+ns1:MarianneFyhn a owl:NamedIndividual,
+        ns1:Scientist ;
+    rdfs:label "Marianne Fyhn"^^xsd:string ;
+    ns1:receivedPrize ns1:NobelPrizePhysiologyMedicine .
+
+ns1:MayBrittMoser a owl:NamedIndividual,
+        ns1:Scientist ;
+    rdfs:label "May - Britt Moser"^^xsd:string ;
+    ns1:receivedPrize ns1:NobelPrizePhysiologyMedicine .
+
+ns1:NobelPrize a owl:Class ;
+    rdfs:subClassOf ns1:Prize .
+
+ns1:Norway a owl:NamedIndividual,
+        ns1:Country .
+
+ns1:Rat a owl:Class ;
+    rdfs:subClassOf ns1:Species .
+
+ns1:SturlaMolden a owl:NamedIndividual,
+        ns1:Scientist ;
+    rdfs:label "Sturla Molden"^^xsd:string ;
+    ns1:receivedPrize ns1:NobelPrizePhysiologyMedicine .
+
+ns1:TorkelHafting a owl:NamedIndividual,
+        ns1:Scientist ;
+    rdfs:label "Torkel Hafting"^^xsd:string ;
+    ns1:receivedPrize ns1:NobelPrizePhysiologyMedicine .
+
+ns1:TriangularPattern a owl:NamedIndividual,
+        ns1:SpatialFiringPattern ;
+    rdfs:label "equilateral triangle firing pattern"^^xsd:string ;
+    ns1:patternGeometry ns1:EquilateralTriangleGridInstance .
+
+ns1:constitutesPositioningSystem a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:PositioningSystem .
+
+ns1:encodes a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:CognitiveRepresentation .
+
+ns1:foundInSpecies a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:Species .
+
+ns1:hasFiringFields a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:PlaceField .
+
+ns1:implantedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Electrode ;
+    rdfs:range ns1:BrainRegion .
+
+ns1:recordsFrom a owl:ObjectProperty ;
+    rdfs:domain ns1:Electrode ;
+    rdfs:range ns1:Neuron .
+
+ns1:CognitiveRepresentation a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:DorsomedialEntorhinalCortex a owl:Class ;
+    rdfs:subClassOf ns1:CerebralCortex .
+
+ns1:Grid a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:GridCell a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:locatedIn ;
+            owl:someValuesFrom ns1:DorsomedialEntorhinalCortex ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:encodes ;
+            owl:someValuesFrom ns1:EuclideanSpace ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:foundInSpecies ;
+            owl:someValuesFrom ns1:Rat ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:constitutesPositioningSystem ;
+            owl:someValuesFrom ns1:PositioningSystem ],
+        ns1:Neuron .
+
+ns1:PlaceField a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PositioningSystem a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Species a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:BrainRegion .
+
+ns1:Electrode a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Prize a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ResearchCentre a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SpatialFiringPattern a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:BrainRegion a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:NobelPrizePhysiologyMedicine a owl:NamedIndividual,
+        ns1:NobelPrize ;
+    rdfs:label "Nobel Prize in Physiology or Medicine"^^xsd:string ;
+    ns1:awardedInYear 2014 .
+
+ns1:Scientist a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Neuron a owl:Class ;
+    rdfs:subClassOf owl:Thing .

@@ -1,0 +1,328 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:MilitaryReform a owl:Class ;
+    rdfs:label "Military Reform"@en ;
+    rdfs:comment "A reform or restructuring of military systems and organization" .
+
+:MilitaryEstablishment a owl:Class ;
+    rdfs:label "Military Establishment"@en ;
+    rdfs:comment "An organized military institution or system" .
+
+:CitizenArmy a owl:Class ;
+    rdfs:subClassOf :MilitaryEstablishment ;
+    rdfs:label "Citizen Army"@en ;
+    rdfs:comment "An army composed of citizens rather than professional soldiers" .
+
+:Army a owl:Class ;
+    rdfs:label "Army"@en ;
+    rdfs:comment "A military force organized for warfare" .
+
+:Politician a owl:Class ;
+    rdfs:label "Politician"@en ;
+    rdfs:comment "A person engaged in politics" .
+
+:PoliticalTheorist a owl:Class ;
+    rdfs:label "Political Theorist"@en ;
+    rdfs:comment "A person who develops theories about politics" .
+
+:Person a owl:Class ;
+    rdfs:label "Person"@en ;
+    rdfs:comment "A human individual" .
+
+:Politician rdfs:subClassOf :Person .
+:PoliticalTheorist rdfs:subClassOf :Person .
+
+:Priest a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Priest"@en ;
+    rdfs:comment "A person who holds religious office" .
+
+:PoliticalEntity a owl:Class ;
+    rdfs:label "Political Entity"@en ;
+    rdfs:comment "An organized political unit or state" .
+
+:Republic a owl:Class ;
+    rdfs:subClassOf :PoliticalEntity ;
+    rdfs:label "Republic"@en ;
+    rdfs:comment "A state governed by elected representatives" .
+
+:Region a owl:Class ;
+    rdfs:label "Region"@en ;
+    rdfs:comment "A geographical area" .
+
+:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"@en ;
+    rdfs:comment "A period of time with a start and end" .
+
+:Year a owl:Class ;
+    rdfs:subClassOf :TimeInterval ;
+    rdfs:label "Year"@en ;
+    rdfs:comment "A period of one year" .
+
+:HistoricalPeriod a owl:Class ;
+    rdfs:subClassOf :TimeInterval ;
+    rdfs:label "Historical Period"@en ;
+    rdfs:comment "A named period in history" .
+
+:MilitaryModel a owl:Class ;
+    rdfs:label "Military Model"@en ;
+    rdfs:comment "A historical or contemporary military system used as a reference" .
+
+:RomanLegion a owl:Class ;
+    rdfs:subClassOf :Army ;
+    rdfs:label "Roman Legion"@en ;
+    rdfs:comment "A military unit of ancient Rome" .
+
+:MilitaryThreat a owl:Class ;
+    rdfs:label "Military Threat"@en ;
+    rdfs:comment "A potential or actual military danger" .
+
+:Condottieri a owl:Class ;
+    rdfs:label "Condottieri"@en ;
+    rdfs:comment "Italian mercenary military leaders" .
+
+:ForeignInvasion a owl:Class ;
+    rdfs:subClassOf :MilitaryThreat ;
+    rdfs:label "Foreign Invasion"@en ;
+    rdfs:comment "An invasion by a foreign military force" .
+
+:ReadinessSystem a owl:Class ;
+    rdfs:label "Readiness System"@en ;
+    rdfs:comment "A system designed to maintain military readiness" .
+
+:Discipline a owl:Class ;
+    rdfs:label "Discipline"@en ;
+    rdfs:comment "A characteristic or quality of military organization" .
+
+:Infantry a owl:Class ;
+    rdfs:subClassOf :Army ;
+    rdfs:label "Infantry"@en ;
+    rdfs:comment "Soldiers who fight on foot" .
+
+:CitizenInfantry a owl:Class ;
+    rdfs:subClassOf :Infantry ;
+    rdfs:subClassOf :CitizenArmy ;
+    rdfs:label "Citizen Infantry"@en ;
+    rdfs:comment "Infantry composed of citizen soldiers" .
+
+:Objective a owl:Class ;
+    rdfs:label "Objective"@en ;
+    rdfs:comment "A goal or aim" .
+
+:RepublicanSpirit a owl:Class ;
+    rdfs:label "Republican Spirit"@en ;
+    rdfs:comment "The political ideology or ethos of republicanism" .
+
+:Quantity a owl:Class ;
+    rdfs:label "Quantity"@en ;
+    rdfs:comment "A measurable amount" .
+
+# Object Properties
+:initiatedBy a owl:ObjectProperty ;
+    rdfs:label "initiated by"@en ;
+    rdfs:domain :MilitaryReform ;
+    rdfs:range :Person ;
+    rdfs:comment "Relates a reform to the person who initiated it" .
+
+:occurredDuring a owl:ObjectProperty ;
+    rdfs:label "occurred during"@en ;
+    rdfs:domain :MilitaryReform ;
+    rdfs:range :TimeInterval ;
+    rdfs:comment "Relates an event to the time period when it occurred" .
+
+:conductedDuring a owl:ObjectProperty ;
+    rdfs:label "conducted during"@en ;
+    rdfs:domain :MilitaryReform ;
+    rdfs:range :HistoricalPeriod ;
+    rdfs:comment "Relates an action to the historical period in which it was conducted" .
+
+:politicalContextOf a owl:ObjectProperty ;
+    rdfs:label "political context of"@en ;
+    rdfs:domain :PoliticalEntity ;
+    rdfs:range :MilitaryReform ;
+    rdfs:comment "Relates a political entity to a reform conducted within it" .
+
+:seekToEmulate a owl:ObjectProperty ;
+    rdfs:label "seek to emulate"@en ;
+    rdfs:domain :Person ;
+    rdfs:range :MilitaryModel ;
+    rdfs:comment "Relates a person to a military model they seek to copy" .
+
+:hasObjective a owl:ObjectProperty ;
+    rdfs:label "has objective"@en ;
+    rdfs:domain :MilitaryReform ;
+    rdfs:range :Objective ;
+    rdfs:comment "Relates a reform to its objectives" .
+
+:motivatedBy a owl:ObjectProperty ;
+    rdfs:label "motivated by"@en ;
+    rdfs:domain :MilitaryReform ;
+    rdfs:range :MilitaryThreat ;
+    rdfs:comment "Relates a reform to the threats that motivated it" .
+
+:instituted a owl:ObjectProperty ;
+    rdfs:label "instituted"@en ;
+    rdfs:domain :Person ;
+    rdfs:range :MilitaryReform ;
+    rdfs:comment "Relates a person to a reform they instituted" .
+
+:institutedInYear a owl:ObjectProperty ;
+    rdfs:label "instituted in year"@en ;
+    rdfs:domain :MilitaryReform ;
+    rdfs:range :Year ;
+    rdfs:comment "Relates a reform to the year it was instituted" .
+
+:createdMilitaryForce a owl:ObjectProperty ;
+    rdfs:label "created military force"@en ;
+    rdfs:domain :MilitaryReform ;
+    rdfs:range :MilitaryEstablishment ;
+    rdfs:comment "Relates a reform to the military force it created" .
+
+:soldierCount a owl:ObjectProperty ;
+    rdfs:label "soldier count"@en ;
+    rdfs:domain :Army ;
+    rdfs:range :Quantity ;
+    rdfs:comment "Relates an army to the quantity of soldiers it contains" .
+
+:leaderOf a owl:ObjectProperty ;
+    rdfs:label "leader of"@en ;
+    rdfs:domain :Person ;
+    rdfs:range :PoliticalEntity ;
+    rdfs:comment "Relates a person to the political entity they lead" .
+
+:aimedToIncorporate a owl:ObjectProperty ;
+    rdfs:label "aimed to incorporate"@en ;
+    rdfs:domain :MilitaryReform ;
+    rdfs:range :Discipline ;
+    rdfs:comment "Relates a reform to characteristics it aimed to incorporate" .
+
+:establishedToMaintain a owl:ObjectProperty ;
+    rdfs:label "established to maintain"@en ;
+    rdfs:domain :ReadinessSystem ;
+    rdfs:range :CitizenArmy ;
+    rdfs:comment "Relates a system to the military force it maintains readiness for" .
+
+:typeOfForce a owl:ObjectProperty ;
+    rdfs:label "type of force"@en ;
+    rdfs:domain :MilitaryReform ;
+    rdfs:range :MilitaryEstablishment ;
+    rdfs:comment "Relates a reform to the type of military force it sought to establish" .
+
+:pervadesRegion a owl:ObjectProperty ;
+    rdfs:label "pervades region"@en ;
+    rdfs:domain :RepublicanSpirit ;
+    rdfs:range :Region ;
+    rdfs:comment "Relates a spirit to the region it pervades" .
+
+:occurredIn a owl:ObjectProperty ;
+    rdfs:label "occurred in"@en ;
+    rdfs:domain :MilitaryThreat ;
+    rdfs:range :Region ;
+    rdfs:comment "Relates a threat to the region where it occurred" .
+
+:lastedFrom a owl:ObjectProperty ;
+    rdfs:label "lasted from"@en ;
+    rdfs:domain :PoliticalEntity ;
+    rdfs:range :Year ;
+    rdfs:comment "Relates a political entity to the year when its period started" .
+
+:lastedUntil a owl:ObjectProperty ;
+    rdfs:label "lasted until"@en ;
+    rdfs:domain :PoliticalEntity ;
+    rdfs:range :Year ;
+    rdfs:comment "Relates a political entity to the year when its period ended" .
+
+# Data Properties
+:numericValue a owl:DatatypeProperty ;
+    rdfs:label "numeric value"@en ;
+    rdfs:domain :Quantity ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The numeric value of a quantity" .
+
+# Individuals
+
+:NiccoloMachiavelli a :Politician , :PoliticalTheorist , owl:NamedIndividual ;
+    rdfs:label "Niccolò Machiavelli"@en .
+
+:FlorentineRepublic a :Republic , owl:NamedIndividual ;
+    rdfs:label "Florentine Republic"@en .
+
+:GirolamoSavonarola a :Priest , owl:NamedIndividual ;
+    rdfs:label "Girolamo Savonarola"@en .
+
+:RepublicOfFlorence a :Republic , owl:NamedIndividual ;
+    rdfs:label "Republic of Florence"@en .
+
+:AncientRome a :MilitaryModel , owl:NamedIndividual ;
+    rdfs:label "ancient Rome"@en .
+
+:RomanLegionModel a :RomanLegion , owl:NamedIndividual ;
+    rdfs:label "Roman legions"@en .
+
+:FlorentineMilitaryReforms a :MilitaryReform , owl:NamedIndividual ;
+    rdfs:label "military reforms of the Florentine Republic"@en ;
+    :initiatedBy :NiccoloMachiavelli ;
+    :conductedDuring :RepublicOfFlorence ;
+    :seekToEmulate :AncientRome ;
+    :createdMilitaryForce :CitizenArmyEst ;
+    :aimedToIncorporate :RomanDiscipline ;
+    :motivatedBy :CondottierThreat ;
+    :motivatedBy :ForeignInvasionThreat ;
+    :institutedInYear :Year1506 ;
+    :typeOfForce :CitizenInfantryEst .
+
+:CitizenArmyEst a :CitizenArmy , owl:NamedIndividual ;
+    rdfs:label "citizen army"@en ;
+    :soldierCount :TwentyThousandSoldiers .
+
+:RomanDiscipline a :Discipline , owl:NamedIndividual ;
+    rdfs:label "discipline of the Roman legions"@en .
+
+:CondottierThreat a :MilitaryThreat , owl:NamedIndividual ;
+    rdfs:label "Italian Condottieri"@en ;
+    :occurredIn :Italy .
+
+:ForeignInvasionThreat a :ForeignInvasion , owl:NamedIndividual ;
+    rdfs:label "chronic foreign invasions"@en ;
+    :occurredIn :Italy .
+
+:CitizenInfantryEst a :CitizenInfantry , owl:NamedIndividual ;
+    rdfs:label "citizen-infantry"@en .
+
+:ReadinessSystemEst a :ReadinessSystem , owl:NamedIndividual ;
+    rdfs:label "system that would keep this citizen army in a state of readiness"@en ;
+    :establishedToMaintain :CitizenArmyEst .
+
+:TwentyThousandSoldiers a :Quantity , owl:NamedIndividual ;
+    rdfs:label "20,000 men"@en ;
+    :numericValue 20000 .
+
+:Year1498 a :Year , owl:NamedIndividual ;
+    rdfs:label "1498"@en .
+
+:Year1506 a :Year , owl:NamedIndividual ;
+    rdfs:label "1506"@en .
+
+:Year1512 a :Year , owl:NamedIndividual ;
+    rdfs:label "1512"@en .
+
+:RepublicOfFlorence :lastedFrom :Year1498 ;
+    :lastedUntil :Year1512 ;
+    :leaderOf :GirolamoSavonarola .
+
+:GirolamoSavonarola :leaderOf :RepublicOfFlorence .
+
+:Florence a :Region , owl:NamedIndividual ;
+    rdfs:label "Florence"@en .
+
+:Italy a :Region , owl:NamedIndividual ;
+    rdfs:label "Italy"@en .
+
+:RepublicanSpiritFlorence a :RepublicanSpirit , owl:NamedIndividual ;
+    rdfs:label "republican spirit which pervaded Florence at the time"@en ;
+    :pervadesRegion :Florence .

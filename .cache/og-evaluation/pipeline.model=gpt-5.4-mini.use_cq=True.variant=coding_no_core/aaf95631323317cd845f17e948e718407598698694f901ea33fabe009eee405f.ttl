@@ -1,0 +1,281 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:BovetFleurierSA a [ a owl:Restriction ;
+            owl:onProperty ns1:knownFor ;
+            owl:someValuesFrom ns1:SecondHand ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:knownFor ;
+            owl:someValuesFrom ns1:SevenDayTourbillon ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:employs ;
+            owl:someValuesFrom ns1:WomanArtisan ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:produces ;
+            owl:someValuesFrom ns1:ArtisticWatch ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:mostNotedFor ;
+            owl:someValuesFrom ns1:PocketWatch ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:knownFor ;
+            owl:someValuesFrom ns1:SkeletonizedView ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:knownFor ;
+            owl:someValuesFrom ns1:Engraving ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:knownFor ;
+            owl:someValuesFrom ns1:Dial ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:knownFor ;
+            owl:someValuesFrom ns1:DecorativeMovement ],
+        owl:NamedIndividual,
+        ns1:Company,
+        ns1:WatchmakingCompany ;
+    rdfs:label "Bovet Fleurier SA"^^xsd:string ;
+    ns1:basedInCountryName "Switzerland"^^xsd:string ;
+    ns1:charteredIn ns1:London ;
+    ns1:charteredOn ns1:May11822 ;
+    ns1:currentOwner ns1:PascalRaffy ;
+    ns1:foundedBy ns1:EdouardBovet ;
+    ns1:hasDialExample ns1:FleurierMiniaturePaintingModels ;
+    ns1:priceRange ns1:PriceRangeUsd18000To25Million .
+
+ns1:Europe a owl:NamedIndividual,
+        ns1:Continent ;
+    rdfs:label "Europe"^^xsd:string .
+
+ns1:NineteenthCenturyPeriod a owl:NamedIndividual,
+        ns1:NineteenthCentury ;
+    rdfs:label "19th century"^^xsd:string .
+
+ns1:Style a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SwissBrand a owl:Class ;
+    rdfs:subClassOf ns1:LuxuryWatchmakingBrand .
+
+ns1:TraditionalWatchmakingCompany a owl:Class ;
+    rdfs:subClassOf ns1:WatchmakingCompany .
+
+ns1:basedInCountryName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range xsd:string .
+
+ns1:charteredIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:City .
+
+ns1:charteredOn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:DatePoint .
+
+ns1:currentOwner a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:Person .
+
+ns1:foundedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:Person .
+
+ns1:hasDialExample a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:DialModel .
+
+ns1:locatedInCountry a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:City ;
+    rdfs:range ns1:Country .
+
+ns1:priceRange a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:PriceRange .
+
+ns1:Artisan a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Brand a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:ChineseMarket a owl:Class ;
+    rdfs:subClassOf ns1:Market .
+
+ns1:Continent a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:DecorativeMovement a owl:Class ;
+    rdfs:subClassOf ns1:Feature .
+
+ns1:EdouardBovet a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Édouard Bovet"^^xsd:string .
+
+ns1:Engraving a owl:Class ;
+    rdfs:subClassOf ns1:Feature .
+
+ns1:FleurierMiniaturePaintingModels a owl:NamedIndividual,
+        ns1:DialModel ;
+    rdfs:label "Fleurier Miniature Painting models"^^xsd:string .
+
+ns1:Hand a owl:Class ;
+    rdfs:subClassOf ns1:Artifact .
+
+ns1:London a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "London"^^xsd:string ;
+    ns1:locatedInCountry ns1:UK .
+
+ns1:LuxuryWatchmakingBrand a owl:Class ;
+    rdfs:subClassOf ns1:Brand .
+
+ns1:May11822 a owl:NamedIndividual,
+        ns1:DatePoint ;
+    rdfs:label "May 1 , 1822"^^xsd:string .
+
+ns1:MonetaryQuantity a owl:Class ;
+    rdfs:subClassOf ns1:Quantity .
+
+ns1:Movement a owl:Class ;
+    rdfs:subClassOf ns1:Artifact .
+
+ns1:PascalRaffy a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Pascal Raffy"^^xsd:string .
+
+ns1:PriceRangeUsd18000To25Million a owl:NamedIndividual,
+        ns1:PriceRange ;
+    rdfs:label "priced between US$ 18,000 and $ 2.5 million"^^xsd:string .
+
+ns1:Quantity a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SecondHand a owl:Class ;
+    rdfs:subClassOf ns1:Hand .
+
+ns1:SevenDayTourbillon a owl:Class ;
+    rdfs:subClassOf ns1:Tourbillon .
+
+ns1:SkeletonizedView a owl:Class ;
+    rdfs:subClassOf ns1:Feature .
+
+ns1:Tourbillon a owl:Class ;
+    rdfs:subClassOf ns1:Movement .
+
+ns1:UK a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "U.K."^^xsd:string .
+
+ns1:employs a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:WomanArtisan .
+
+ns1:manufacturedDuring a owl:ObjectProperty ;
+    rdfs:domain ns1:PocketWatch ;
+    rdfs:range ns1:Century .
+
+ns1:manufacturedForMarket a owl:ObjectProperty ;
+    rdfs:domain ns1:PocketWatch ;
+    rdfs:range ns1:Market .
+
+ns1:mostNotedFor a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:PocketWatch .
+
+ns1:produces a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:Watch .
+
+ns1:styleReferencesHistory a owl:ObjectProperty ;
+    rdfs:domain ns1:ArtisticWatch ;
+    rdfs:range ns1:History .
+
+ns1:ArtisticWatch a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:styleReferencesHistory ;
+            owl:someValuesFrom ns1:History ],
+        ns1:Watch .
+
+ns1:Century a owl:Class ;
+    rdfs:subClassOf ns1:TimePoint .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:DatePoint a owl:Class ;
+    rdfs:subClassOf ns1:TimePoint .
+
+ns1:Dial a owl:Class ;
+    rdfs:subClassOf ns1:Artifact .
+
+ns1:DialModel a owl:Class ;
+    rdfs:subClassOf ns1:Dial .
+
+ns1:History a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Market a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:NineteenthCentury a owl:Class ;
+    rdfs:subClassOf ns1:Century .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PriceRange a owl:Class ;
+    rdfs:subClassOf ns1:MonetaryQuantity .
+
+ns1:TimePoint a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:WatchmakingCompany a owl:Class ;
+    rdfs:subClassOf ns1:Company .
+
+ns1:WomanArtisan a owl:Class ;
+    rdfs:subClassOf ns1:Artisan .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Feature a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Watch a owl:Class ;
+    rdfs:subClassOf ns1:Artifact .
+
+ns1:Artifact a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PocketWatch a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:manufacturedForMarket ;
+            owl:someValuesFrom ns1:ChineseMarket ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:manufacturedDuring ;
+            owl:someValuesFrom ns1:NineteenthCentury ],
+        ns1:Watch .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:knownFor a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range owl:Thing .
+
+ns1:Company a owl:Class ;
+    rdfs:subClassOf ns1:Organization .

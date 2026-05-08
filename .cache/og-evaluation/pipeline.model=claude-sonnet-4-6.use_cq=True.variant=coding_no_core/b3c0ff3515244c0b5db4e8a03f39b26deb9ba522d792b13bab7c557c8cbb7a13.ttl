@@ -1,0 +1,224 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:Milton_town a owl:NamedIndividual,
+        ns1:Town ;
+    rdfs:label "Milton"^^xsd:string ;
+    ns1:becameSignificantDuring ns1:19th_Century ;
+    ns1:foundedIn 1860 ;
+    ns1:hasHousingDevelopment ns1:Housing_Estates ;
+    ns1:hasNewBusinessType ns1:Bed_and_Breakfast,
+        ns1:Boutique_Stores,
+        ns1:Cafes ;
+    ns1:hasPopulation 1663 ;
+    ns1:historicalRole "important regional centre"^^xsd:string ;
+    ns1:influencedBy ns1:Tourism_industry ;
+    ns1:isCommercialCentreOf ns1:Milton_Ulladulla_district ;
+    ns1:locatedIn ns1:South_Coast_region ;
+    ns1:namedAfter ns1:George_Knight_property ;
+    ns1:traversedBy ns1:Princes_Highway ;
+    ns1:withinLocalGovernmentArea ns1:City_of_Shoalhaven_lga .
+
+ns1:Ulladulla_town a owl:NamedIndividual,
+        ns1:Town ;
+    rdfs:label "Ulladulla"^^xsd:string ;
+    ns1:isCommercialCentreOf ns1:Milton_Ulladulla_district .
+
+ns1:becameSignificantDuring a owl:ObjectProperty ;
+    rdfs:domain ns1:Town ;
+    rdfs:range ns1:TimePeriod .
+
+ns1:experiencedPhenomenon a owl:ObjectProperty ;
+    rdfs:domain ns1:District ;
+    rdfs:range ns1:SocialPhenomenon .
+
+ns1:foundedIn a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Settlement ;
+    rdfs:range xsd:integer .
+
+ns1:hasHousingDevelopment a owl:ObjectProperty ;
+    rdfs:domain ns1:Settlement ;
+    rdfs:range ns1:HousingEstate .
+
+ns1:hasNewBusinessType a owl:ObjectProperty ;
+    rdfs:domain ns1:Settlement ;
+    rdfs:range ns1:BusinessEstablishment .
+
+ns1:hasOccupation a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:string .
+
+ns1:hasPopulation a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Settlement ;
+    rdfs:range xsd:integer .
+
+ns1:historicalRole a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Settlement ;
+    rdfs:range xsd:string .
+
+ns1:influencedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Settlement ;
+    rdfs:range ns1:Industry .
+
+ns1:isCommercialCentreOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Settlement ;
+    rdfs:range ns1:District .
+
+ns1:locatedIn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Place .
+
+ns1:namedAfter a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Town ;
+    rdfs:range ns1:LandProperty .
+
+ns1:ownedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:LandProperty ;
+    rdfs:range ns1:Person .
+
+ns1:traversedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Settlement ;
+    rdfs:range ns1:Highway .
+
+ns1:withinLocalGovernmentArea a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Settlement ;
+    rdfs:range ns1:LocalGovernmentArea .
+
+ns1:19th_Century a owl:NamedIndividual,
+        ns1:TimePeriod ;
+    rdfs:label "19th Century"^^xsd:string .
+
+ns1:Australia_country a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Australia"^^xsd:string .
+
+ns1:BedAndBreakfast a owl:Class ;
+    rdfs:subClassOf ns1:BusinessEstablishment .
+
+ns1:Bed_and_Breakfast a owl:NamedIndividual,
+        ns1:BedAndBreakfast ;
+    rdfs:label "bed and breakfast"^^xsd:string .
+
+ns1:BoutiqueStore a owl:Class ;
+    rdfs:subClassOf ns1:BusinessEstablishment .
+
+ns1:Boutique_Stores a owl:NamedIndividual,
+        ns1:BoutiqueStore ;
+    rdfs:label "boutique stores"^^xsd:string .
+
+ns1:Cafe a owl:Class ;
+    rdfs:subClassOf ns1:BusinessEstablishment .
+
+ns1:Cafes a owl:NamedIndividual,
+        ns1:Cafe ;
+    rdfs:label "cafes"^^xsd:string .
+
+ns1:City_of_Shoalhaven_lga a owl:NamedIndividual,
+        ns1:LocalGovernmentArea ;
+    rdfs:label "City of Shoalhaven"^^xsd:string .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:George_Knight_person a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "George Knight"^^xsd:string ;
+    ns1:hasOccupation "post master"^^xsd:string .
+
+ns1:George_Knight_property a owl:NamedIndividual,
+        ns1:LandProperty ;
+    rdfs:label "George Knight's property"^^xsd:string ;
+    ns1:ownedBy ns1:George_Knight_person .
+
+ns1:Housing_Estates a owl:NamedIndividual,
+        ns1:HousingEstate ;
+    rdfs:label "housing estates"^^xsd:string .
+
+ns1:New_South_Wales_state a owl:NamedIndividual,
+        ns1:State ;
+    rdfs:label "New South Wales"^^xsd:string ;
+    ns1:locatedIn ns1:Australia_country .
+
+ns1:Princes_Highway a owl:NamedIndividual,
+        ns1:Highway ;
+    rdfs:label "Princes Highway"^^xsd:string .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Seachange a owl:NamedIndividual,
+        ns1:SocialPhenomenon ;
+    rdfs:label "seachange"^^xsd:string .
+
+ns1:South_Coast_region a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "South Coast"^^xsd:string ;
+    ns1:locatedIn ns1:New_South_Wales_state .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Tourism_industry a owl:NamedIndividual,
+        ns1:Industry ;
+    rdfs:label "tourism industry"^^xsd:string .
+
+ns1:TransportRoute a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Highway a owl:Class ;
+    rdfs:subClassOf ns1:TransportRoute .
+
+ns1:HousingEstate a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Industry a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:LocalGovernmentArea a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Milton_Ulladulla_district a owl:NamedIndividual,
+        ns1:District ;
+    rdfs:label "Milton-Ulladulla district"^^xsd:string ;
+    ns1:experiencedPhenomenon ns1:Seachange .
+
+ns1:SocialPhenomenon a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TimePeriod a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:District a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:LandProperty a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:BusinessEstablishment a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Town a owl:Class ;
+    rdfs:subClassOf ns1:Settlement .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Settlement a owl:Class ;
+    rdfs:subClassOf ns1:Place .

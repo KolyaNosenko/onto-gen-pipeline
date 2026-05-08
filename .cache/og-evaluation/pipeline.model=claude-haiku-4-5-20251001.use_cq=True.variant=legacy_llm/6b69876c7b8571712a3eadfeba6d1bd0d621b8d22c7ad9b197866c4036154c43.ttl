@@ -1,0 +1,277 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:Character a owl:Class ;
+    rdfs:label "Character"^^xsd:string .
+
+:FictionalCharacter a owl:Class ;
+    rdfs:subClassOf :Character ;
+    rdfs:label "Fictional Character"^^xsd:string .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:Actor a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Actor"^^xsd:string .
+
+:Scientist a owl:Class ;
+    rdfs:subClassOf :FictionalCharacter ;
+    rdfs:label "Scientist"^^xsd:string .
+
+:TelevisionSeries a owl:Class ;
+    rdfs:label "Television Series"^^xsd:string .
+
+:Genre a owl:Class ;
+    rdfs:label "Genre"^^xsd:string .
+
+:ProductionCompany a owl:Class ;
+    rdfs:label "Production Company"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string .
+
+:Spaceship a owl:Class ;
+    rdfs:label "Spaceship"^^xsd:string .
+
+:AncientSpaceship a owl:Class ;
+    rdfs:subClassOf :Spaceship ;
+    rdfs:label "Ancient Spaceship"^^xsd:string .
+
+:Stargate a owl:Class ;
+    rdfs:label "Stargate"^^xsd:string .
+
+:StargatePart a owl:Class ;
+    rdfs:label "Stargate Part"^^xsd:string .
+
+:Chevron a owl:Class ;
+    rdfs:subClassOf :StargatePart ;
+    rdfs:label "Chevron"^^xsd:string .
+
+:Base a owl:Class ;
+    rdfs:label "Base"^^xsd:string .
+
+:ExplorationTeam a owl:Class ;
+    rdfs:label "Exploration Team"^^xsd:string .
+
+:Episode a owl:Class ;
+    rdfs:label "Episode"^^xsd:string .
+
+:PilotEpisode a owl:Class ;
+    rdfs:subClassOf :Episode ;
+    rdfs:label "Pilot Episode"^^xsd:string .
+
+:Broadcast a owl:Class ;
+    rdfs:label "Broadcast"^^xsd:string .
+
+:TimePoint a owl:Class ;
+    rdfs:label "Time Point"^^xsd:string .
+
+:Year a owl:Class ;
+    rdfs:subClassOf :TimePoint ;
+    rdfs:label "Year"^^xsd:string .
+
+:Region a owl:Class ;
+    rdfs:label "Region"^^xsd:string .
+
+:Galaxy a owl:Class ;
+    rdfs:label "Galaxy"^^xsd:string .
+
+:Nationality a owl:Class ;
+    rdfs:label "Nationality"^^xsd:string .
+
+:Personality a owl:Class ;
+    rdfs:label "Personality"^^xsd:string .
+
+:Evacuation a owl:Class ;
+    rdfs:label "Evacuation"^^xsd:string .
+
+# Properties
+:portrays a owl:ObjectProperty ;
+    rdfs:domain :Actor ;
+    rdfs:range :Character ;
+    rdfs:label "portrays"^^xsd:string .
+
+:portrayedBy a owl:ObjectProperty ;
+    rdfs:domain :Character ;
+    rdfs:range :Actor ;
+    owl:inverseOf :portrays ;
+    rdfs:label "portrayed by"^^xsd:string .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Nationality ;
+    rdfs:label "has nationality"^^xsd:string .
+
+:appearsIn a owl:ObjectProperty ;
+    rdfs:domain :Character ;
+    rdfs:range :TelevisionSeries ;
+    rdfs:label "appears in"^^xsd:string .
+
+:producedBy a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :ProductionCompany ;
+    rdfs:label "produced by"^^xsd:string .
+
+:hasGenre a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Genre ;
+    rdfs:label "has genre"^^xsd:string .
+
+:focusesOn a owl:ObjectProperty ;
+    rdfs:domain :Scientist ;
+    rdfs:range :StargatePart ;
+    rdfs:label "focuses on"^^xsd:string .
+
+:evacuatesTo a owl:ObjectProperty ;
+    rdfs:domain :ExplorationTeam ;
+    rdfs:range :Spaceship ;
+    rdfs:label "evacuates to"^^xsd:string .
+
+:evacuatesFrom a owl:ObjectProperty ;
+    rdfs:domain :ExplorationTeam ;
+    rdfs:range :Base ;
+    rdfs:label "evacuates from"^^xsd:string .
+
+:passesThrough a owl:ObjectProperty ;
+    rdfs:domain :ExplorationTeam ;
+    rdfs:range :Stargate ;
+    rdfs:label "passes through"^^xsd:string .
+
+:firstAppearsIn a owl:ObjectProperty ;
+    rdfs:domain :Character ;
+    rdfs:range :Episode ;
+    rdfs:label "first appears in"^^xsd:string .
+
+:broadcastYear a owl:ObjectProperty ;
+    rdfs:domain :Broadcast ;
+    rdfs:range :Year ;
+    rdfs:label "broadcast year"^^xsd:string .
+
+:broadcastLocation a owl:ObjectProperty ;
+    rdfs:domain :Broadcast ;
+    rdfs:range :Country ;
+    rdfs:label "broadcast location"^^xsd:string .
+
+:relatedToEpisode a owl:ObjectProperty ;
+    rdfs:domain :Broadcast ;
+    rdfs:range :Episode ;
+    rdfs:label "related to episode"^^xsd:string .
+
+:travelingIn a owl:ObjectProperty ;
+    rdfs:domain :Spaceship ;
+    rdfs:range :Region ;
+    rdfs:label "traveling in"^^xsd:string .
+
+:leadsSeries a owl:ObjectProperty ;
+    rdfs:domain :Character ;
+    rdfs:range :TelevisionSeries ;
+    rdfs:label "leads series"^^xsd:string .
+
+:hasPersonality a owl:ObjectProperty ;
+    rdfs:domain :Character ;
+    rdfs:range :Personality ;
+    rdfs:label "has personality"^^xsd:string .
+
+:interestedIn a owl:ObjectProperty ;
+    rdfs:domain :Actor ;
+    rdfs:range :Character ;
+    rdfs:label "interested in"^^xsd:string .
+
+:describedAs a owl:DataProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "described as"^^xsd:string .
+
+:episodeName a owl:DataProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "episode name"^^xsd:string .
+
+# Individuals
+:DrNicholasRush a :Scientist , owl:NamedIndividual ;
+    rdfs:label "Dr. Nicholas Rush"^^xsd:string ;
+    :portrayedBy :RobertCarlyle ;
+    :appearsIn :StargateUniverse ;
+    :focusesOn :NinthChevron ;
+    :firstAppearsIn :AirEpisode ;
+    :hasPersonality :Machiavellian ;
+    :describedAs "very interesting"^^xsd:string .
+
+:RobertCarlyle a :Actor , owl:NamedIndividual ;
+    rdfs:label "Robert Carlyle"^^xsd:string ;
+    :portrays :DrNicholasRush ;
+    :hasNationality :Scottish ;
+    :interestedIn :DrNicholasRush .
+
+:StargateUniverse a :TelevisionSeries , owl:NamedIndividual ;
+    rdfs:label "Stargate Universe"^^xsd:string ;
+    :producedBy :MetroGoldwynMayer ;
+    :producedBy :Syfy ;
+    :hasGenre :MilitarySciFi ;
+    :hasGenre :SerialDrama .
+
+:MetroGoldwynMayer a :ProductionCompany , owl:NamedIndividual ;
+    rdfs:label "Metro-Goldwyn-Mayer"^^xsd:string .
+
+:Syfy a :ProductionCompany , owl:NamedIndividual ;
+    rdfs:label "Syfy"^^xsd:string .
+
+:CanadianAmerican a :ProductionCompany , owl:NamedIndividual ;
+    rdfs:label "Canadian-American"^^xsd:string .
+
+:MilitarySciFi a :Genre , owl:NamedIndividual ;
+    rdfs:label "military science fiction"^^xsd:string .
+
+:SerialDrama a :Genre , owl:NamedIndividual ;
+    rdfs:label "serial drama"^^xsd:string .
+
+:Scottish a :Nationality , owl:NamedIndividual ;
+    rdfs:label "Scottish"^^xsd:string .
+
+:NinthChevron a :Chevron , owl:NamedIndividual ;
+    rdfs:label "ninth chevron"^^xsd:string .
+
+:Stargate a :Stargate , owl:NamedIndividual ;
+    rdfs:label "Stargate"^^xsd:string .
+
+:Destiny a :AncientSpaceship , owl:NamedIndividual ;
+    rdfs:label "Destiny"^^xsd:string ;
+    :travelingIn :DistantCornerOfUniverse .
+
+:DistantCornerOfUniverse a :Region , owl:NamedIndividual ;
+    rdfs:label "distant corner of the universe"^^xsd:string .
+
+:IcarusBase a :Base , owl:NamedIndividual ;
+    rdfs:label "Icarus Base"^^xsd:string .
+
+:ExplorationTeamDestiny a :ExplorationTeam , owl:NamedIndividual ;
+    rdfs:label "exploration team"^^xsd:string ;
+    :evacuatesFrom :IcarusBase ;
+    :evacuatesTo :Destiny ;
+    :passesThrough :Stargate .
+
+:AirEpisode a :PilotEpisode , owl:NamedIndividual ;
+    rdfs:label "Air"^^xsd:string ;
+    :episodeName "Air"^^xsd:string .
+
+:AirBroadcast a :Broadcast , owl:NamedIndividual ;
+    rdfs:label "Air broadcast"^^xsd:string ;
+    :relatedToEpisode :AirEpisode ;
+    :broadcastYear :Year2009 ;
+    :broadcastLocation :UnitedStates ;
+    :broadcastLocation :Canada .
+
+:Year2009 a :Year , owl:NamedIndividual ;
+    rdfs:label "2009"^^xsd:string .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:Canada a :Country , owl:NamedIndividual ;
+    rdfs:label "Canada"^^xsd:string .
+
+:Machiavellian a :Personality , owl:NamedIndividual ;
+    rdfs:label "machiavellian"^^xsd:string .

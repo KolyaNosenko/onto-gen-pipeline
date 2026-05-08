@@ -1,0 +1,242 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:SemiAridRegion a owl:Class ;
+    rdfs:subClassOf ns1:Region .
+
+ns1:becameNationalParkYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range xsd:integer .
+
+ns1:birdSpeciesCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range xsd:integer .
+
+ns1:conservesForestType a owl:ObjectProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range ns1:ForestType .
+
+ns1:containsGilgai a owl:ObjectProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range ns1:Gilgai .
+
+ns1:directionFromBrisbane a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range xsd:string .
+
+ns1:distanceFromBrisbaneKm a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range xsd:integer .
+
+ns1:exploredBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Explorer .
+
+ns1:formationProcess a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Gilgai ;
+    rdfs:range xsd:string .
+
+ns1:formerName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range xsd:string .
+
+ns1:hasPlantSpecies a owl:ObjectProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range ns1:PlantSpecies .
+
+ns1:hasWildlife a owl:ObjectProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range ns1:WildlifeSpecies .
+
+ns1:locatedIn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Place .
+
+ns1:locatedInRegion a owl:ObjectProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range ns1:Region .
+
+ns1:nearCity a owl:ObjectProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range ns1:City .
+
+ns1:nearInlandRangeLimit a owl:ObjectProperty ;
+    rdfs:domain ns1:BirdSpecies ;
+    rdfs:range ns1:NationalPark .
+
+ns1:traditionalLandOf a owl:ObjectProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range ns1:IndigenousPeople .
+
+ns1:AllanCunningham a owl:NamedIndividual,
+        ns1:Explorer ;
+    rdfs:label "Allan Cunningham"^^xsd:string .
+
+ns1:Australia a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Australia"^^xsd:string .
+
+ns1:BigambulPeople a owl:NamedIndividual,
+        ns1:IndigenousPeople ;
+    rdfs:label "Bigambul people"^^xsd:string .
+
+ns1:BrigalowBelahForest a owl:NamedIndividual,
+        ns1:ForestType ;
+    rdfs:label "Brigalow-belah forest"^^xsd:string .
+
+ns1:Brisbane a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Brisbane"^^xsd:string ;
+    ns1:locatedIn ns1:Queensland .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:AdministrativeDivision .
+
+ns1:CypressPine a owl:NamedIndividual,
+        ns1:PlantSpecies ;
+    rdfs:label "Cypress pine"^^xsd:string .
+
+ns1:DarlingDowns a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "western Darling Downs"^^xsd:string ;
+    ns1:locatedIn ns1:Queensland .
+
+ns1:FalseSandalwood a owl:NamedIndividual,
+        ns1:PlantSpecies ;
+    rdfs:label "False sandalwood"^^xsd:string .
+
+ns1:GeologicalFeature a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:HeavyClaySoilInd a owl:NamedIndividual,
+        ns1:HeavyClaySoil ;
+    rdfs:label "heavy clay soils"^^xsd:string .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PoplarBox a owl:NamedIndividual,
+        ns1:PlantSpecies ;
+    rdfs:label "Poplar box"^^xsd:string .
+
+ns1:Southwood a owl:NamedIndividual,
+        ns1:NationalPark ;
+    rdfs:label "Southwood"^^xsd:string ;
+    ns1:becameNationalParkYear 1970 ;
+    ns1:birdSpeciesCount 92 ;
+    ns1:conservesForestType ns1:BrigalowBelahForest ;
+    ns1:containsGilgai ns1:SouthwoodGilgais ;
+    ns1:directionFromBrisbane "west"^^xsd:string ;
+    ns1:distanceFromBrisbaneKm 288 ;
+    ns1:exploredBy ns1:AllanCunningham,
+        ns1:ThomasMitchell ;
+    ns1:formerName "Wild Horse Paradise"^^xsd:string ;
+    ns1:hasPlantSpecies ns1:CypressPine,
+        ns1:FalseSandalwood,
+        ns1:PoplarBox,
+        ns1:WesternTeatree,
+        ns1:WilgaBush ;
+    ns1:hasWildlife ns1:WongaPigeon ;
+    ns1:locatedIn ns1:Queensland ;
+    ns1:locatedInRegion ns1:DarlingDowns ;
+    ns1:nearCity ns1:Brisbane ;
+    ns1:traditionalLandOf ns1:BigambulPeople .
+
+ns1:SouthwoodGilgais a owl:NamedIndividual,
+        ns1:Gilgai ;
+    rdfs:label "gilgais"^^xsd:string ;
+    ns1:formationProcess "constant wetting and drying of heavy clay soils"^^xsd:string ;
+    ns1:formedInSoilType ns1:HeavyClaySoilInd .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf ns1:AdministrativeDivision .
+
+ns1:ThomasMitchell a owl:NamedIndividual,
+        ns1:Explorer ;
+    rdfs:label "Thomas Mitchell"^^xsd:string .
+
+ns1:VegetationType a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:WesternTeatree a owl:NamedIndividual,
+        ns1:PlantSpecies ;
+    rdfs:label "Western teatree"^^xsd:string .
+
+ns1:WilgaBush a owl:NamedIndividual,
+        ns1:PlantSpecies ;
+    rdfs:label "Wilga bush"^^xsd:string .
+
+ns1:WongaPigeon a owl:NamedIndividual,
+        ns1:BirdSpecies ;
+    rdfs:label "Wonga pigeon"^^xsd:string ;
+    ns1:nearInlandRangeLimit ns1:Southwood .
+
+ns1:formedInSoilType a owl:ObjectProperty ;
+    rdfs:domain ns1:Gilgai ;
+    rdfs:range ns1:SoilType .
+
+ns1:AdministrativeDivision a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:BirdSpecies a owl:Class ;
+    rdfs:subClassOf ns1:WildlifeSpecies .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:ForestType a owl:Class ;
+    rdfs:subClassOf ns1:VegetationType .
+
+ns1:HeavyClaySoil a owl:Class ;
+    rdfs:subClassOf ns1:SoilType .
+
+ns1:IndigenousPeople a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SoilType a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Species a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:WildlifeSpecies a owl:Class ;
+    rdfs:subClassOf ns1:Species .
+
+ns1:Explorer a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Queensland a owl:NamedIndividual,
+        ns1:State ;
+    rdfs:label "Queensland"^^xsd:string ;
+    ns1:locatedIn ns1:Australia .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Gilgai a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:formedInSoilType ;
+            owl:someValuesFrom ns1:HeavyClaySoil ],
+        ns1:GeologicalFeature .
+
+ns1:PlantSpecies a owl:Class ;
+    rdfs:subClassOf ns1:Species .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:NationalPark a owl:Class ;
+    rdfs:subClassOf ns1:Place .

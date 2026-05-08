@@ -1,0 +1,308 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+###############################################################################
+# Classes
+###############################################################################
+
+:Building a owl:Class ;
+    rdfs:label "Building"^^xsd:string .
+
+:Skyscraper a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "Skyscraper"^^xsd:string .
+
+:MixedUseComplex a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "Mixed-Use Complex"^^xsd:string .
+
+:Hotel a owl:Class ;
+    rdfs:label "Hotel"^^xsd:string .
+
+:HotelBrand a owl:Class ;
+    rdfs:label "Hotel Brand"^^xsd:string .
+
+:RetailSpace a owl:Class ;
+    rdfs:label "Retail Space"^^xsd:string .
+
+:OfficeSpace a owl:Class ;
+    rdfs:label "Office Space"^^xsd:string .
+
+:ClassAOfficeSpace a owl:Class ;
+    rdfs:subClassOf :OfficeSpace ;
+    rdfs:label "Class A Office Space"^^xsd:string .
+
+:ObservationDeck a owl:Class ;
+    rdfs:label "Observation Deck"^^xsd:string .
+
+:ShoppingMall a owl:Class ;
+    rdfs:label "Shopping Mall"^^xsd:string .
+
+:Facility a owl:Class ;
+    rdfs:label "Facility"^^xsd:string .
+
+:Room a owl:Class ;
+    rdfs:label "Room"^^xsd:string .
+
+:Suite a owl:Class ;
+    rdfs:subClassOf :Room ;
+    rdfs:label "Suite"^^xsd:string .
+
+:HotelRoom a owl:Class ;
+    rdfs:subClassOf :Room ;
+    rdfs:label "Hotel Room"^^xsd:string .
+
+:Neighborhood a owl:Class ;
+    rdfs:label "Neighborhood"^^xsd:string .
+
+:District a owl:Class ;
+    rdfs:label "District"^^xsd:string .
+
+:FinancialDistrict a owl:Class ;
+    rdfs:subClassOf :District ;
+    rdfs:label "Financial District"^^xsd:string .
+
+:City a owl:Class ;
+    rdfs:label "City"^^xsd:string .
+
+:State a owl:Class ;
+    rdfs:label "State"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string .
+
+:GeographicRegion a owl:Class ;
+    rdfs:label "Geographic Region"^^xsd:string .
+
+:River a owl:Class ;
+    rdfs:label "River"^^xsd:string .
+
+:MonetaryAmount a owl:Class ;
+    rdfs:label "Monetary Amount"^^xsd:string .
+
+:Rank a owl:Class ;
+    rdfs:label "Rank"^^xsd:string .
+
+###############################################################################
+# Object Properties
+###############################################################################
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:label "locatedIn"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :GeographicRegion .
+
+:locatedInDistrict a owl:ObjectProperty ;
+    rdfs:subPropertyOf :locatedIn ;
+    rdfs:label "locatedInDistrict"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :District .
+
+:locatedInCity a owl:ObjectProperty ;
+    rdfs:subPropertyOf :locatedIn ;
+    rdfs:label "locatedInCity"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :City .
+
+:locatedInState a owl:ObjectProperty ;
+    rdfs:subPropertyOf :locatedIn ;
+    rdfs:label "locatedInState"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :State .
+
+:tallestBuildingIn a owl:ObjectProperty ;
+    rdfs:label "tallestBuildingIn"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :GeographicRegion .
+
+:tallestBuildingWestOf a owl:ObjectProperty ;
+    rdfs:label "tallestBuildingWestOf"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :River .
+
+:tallestOutsideOf a owl:ObjectProperty ;
+    rdfs:label "tallestOutsideOf"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :City .
+
+:rankAmong a owl:ObjectProperty ;
+    rdfs:label "rankAmong"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :Country .
+
+:surpassesHeightOf a owl:ObjectProperty ;
+    rdfs:label "surpassesHeightOf"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :Building .
+
+:includesFacility a owl:ObjectProperty ;
+    rdfs:label "includesFacility"^^xsd:string ;
+    rdfs:domain :MixedUseComplex ;
+    rdfs:range :Facility .
+
+:hasHotelComponent a owl:ObjectProperty ;
+    rdfs:label "hasHotelComponent"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :Hotel .
+
+:operatedBy a owl:ObjectProperty ;
+    rdfs:label "operatedBy"^^xsd:string ;
+    rdfs:domain :Hotel ;
+    rdfs:range :HotelBrand .
+
+:hasEstimatedCost a owl:ObjectProperty ;
+    rdfs:label "hasEstimatedCost"^^xsd:string ;
+    rdfs:domain :MixedUseComplex ;
+    rdfs:range :MonetaryAmount .
+
+:hasTallnessRank a owl:ObjectProperty ;
+    rdfs:label "hasTallnessRank"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range :Rank .
+
+:partOf a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:label "partOf"^^xsd:string .
+
+:cityIn a owl:ObjectProperty ;
+    rdfs:label "cityIn"^^xsd:string ;
+    rdfs:domain :City ;
+    rdfs:range :State .
+
+:districtIn a owl:ObjectProperty ;
+    rdfs:label "districtIn"^^xsd:string ;
+    rdfs:domain :District ;
+    rdfs:range :City .
+
+###############################################################################
+# Data Properties
+###############################################################################
+
+:rankValue a owl:DatatypeProperty ;
+    rdfs:label "rankValue"^^xsd:string ;
+    rdfs:domain :Rank ;
+    rdfs:range xsd:integer .
+
+:numberOfRooms a owl:DatatypeProperty ;
+    rdfs:label "numberOfRooms"^^xsd:string ;
+    rdfs:domain :Hotel ;
+    rdfs:range xsd:integer .
+
+:monetaryValue a owl:DatatypeProperty ;
+    rdfs:label "monetaryValue"^^xsd:string ;
+    rdfs:domain :MonetaryAmount ;
+    rdfs:range xsd:decimal .
+
+:currency a owl:DatatypeProperty ;
+    rdfs:label "currency"^^xsd:string ;
+    rdfs:domain :MonetaryAmount ;
+    rdfs:range xsd:string .
+
+:purposeDescription a owl:DatatypeProperty ;
+    rdfs:label "purposeDescription"^^xsd:string ;
+    rdfs:domain :Building ;
+    rdfs:range xsd:string .
+
+:officeSpaceClass a owl:DatatypeProperty ;
+    rdfs:label "officeSpaceClass"^^xsd:string ;
+    rdfs:domain :OfficeSpace ;
+    rdfs:range xsd:string .
+
+###############################################################################
+# Named Individuals
+###############################################################################
+
+:WilshireGrandCenter a :Skyscraper , :MixedUseComplex , owl:NamedIndividual ;
+    rdfs:label "Wilshire Grand Center"^^xsd:string ;
+    :locatedInDistrict :FinancialDistrictDowntownLA ;
+    :locatedInCity :LosAngeles ;
+    :locatedInState :California ;
+    :tallestBuildingIn :LosAngeles ;
+    :tallestBuildingIn :California ;
+    :tallestBuildingWestOf :MississippiRiver ;
+    :tallestOutsideOf :NewYorkCity ;
+    :tallestOutsideOf :Chicago ;
+    :tallestOutsideOf :Philadelphia ;
+    :surpassesHeightOf :USBankTower ;
+    :hasTallnessRank :Rank11thUSA ;
+    :hasHotelComponent :InterContinentalWilshireGrand ;
+    :hasEstimatedCost :OnPointTwoBillion ;
+    :includesFacility :RetailComponent ;
+    :includesFacility :ClassAOfficeComponent ;
+    :includesFacility :ObservationDecksComponent ;
+    :includesFacility :ShoppingMallComponent ;
+    :purposeDescription "mixed-use hotel, retail, observation decks, shopping mall, and office complex"^^xsd:string .
+
+:FinancialDistrictDowntownLA a :FinancialDistrict , owl:NamedIndividual ;
+    rdfs:label "Financial District of Downtown Los Angeles"^^xsd:string ;
+    :districtIn :LosAngeles .
+
+:LosAngeles a :City , owl:NamedIndividual ;
+    rdfs:label "Los Angeles"^^xsd:string ;
+    :cityIn :California .
+
+:California a :State , owl:NamedIndividual ;
+    rdfs:label "California"^^xsd:string .
+
+:NewYorkCity a :City , owl:NamedIndividual ;
+    rdfs:label "New York City"^^xsd:string .
+
+:Chicago a :City , owl:NamedIndividual ;
+    rdfs:label "Chicago"^^xsd:string .
+
+:Philadelphia a :City , owl:NamedIndividual ;
+    rdfs:label "Philadelphia"^^xsd:string .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:MississippiRiver a :River , owl:NamedIndividual ;
+    rdfs:label "Mississippi River"^^xsd:string .
+
+:USBankTower a :Skyscraper , owl:NamedIndividual ;
+    rdfs:label "U.S. Bank Tower"^^xsd:string ;
+    :locatedInCity :LosAngeles .
+
+:InterContinental a :HotelBrand , owl:NamedIndividual ;
+    rdfs:label "InterContinental"^^xsd:string .
+
+:InterContinentalWilshireGrand a :Hotel , owl:NamedIndividual ;
+    rdfs:label "InterContinental"^^xsd:string ;
+    :operatedBy :InterContinental ;
+    :numberOfRooms 900 ;
+    :partOf :WilshireGrandCenter .
+
+:Rank11thUSA a :Rank , owl:NamedIndividual ;
+    rdfs:label "11th tallest building in the United States"^^xsd:string ;
+    :rankValue 11 ;
+    :rankAmong :UnitedStates .
+
+:OnPointTwoBillion a :MonetaryAmount , owl:NamedIndividual ;
+    rdfs:label "$ 1.2 billion"^^xsd:string ;
+    :monetaryValue 1.2 ;
+    :currency "billion USD"^^xsd:string .
+
+:RetailComponent a :RetailSpace , :Facility , owl:NamedIndividual ;
+    rdfs:label "retail"^^xsd:string ;
+    :partOf :WilshireGrandCenter .
+
+:ClassAOfficeComponent a :ClassAOfficeSpace , :Facility , owl:NamedIndividual ;
+    rdfs:label "Class A office space"^^xsd:string ;
+    :officeSpaceClass "Class A"^^xsd:string ;
+    :partOf :WilshireGrandCenter .
+
+:ObservationDecksComponent a :ObservationDeck , :Facility , owl:NamedIndividual ;
+    rdfs:label "observation decks"^^xsd:string ;
+    :partOf :WilshireGrandCenter .
+
+:ShoppingMallComponent a :ShoppingMall , :Facility , owl:NamedIndividual ;
+    rdfs:label "shopping mall"^^xsd:string ;
+    :partOf :WilshireGrandCenter .
+
+:NineHundredHotelRooms a :HotelRoom , owl:NamedIndividual ;
+    rdfs:label "900 hotel rooms"^^xsd:string ;
+    :partOf :InterContinentalWilshireGrand .

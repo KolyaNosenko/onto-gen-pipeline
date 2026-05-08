@@ -1,0 +1,353 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#############################################################
+# Ontology declaration
+#############################################################
+
+: a owl:Ontology .
+
+#############################################################
+# Classes
+#############################################################
+
+:Dam a owl:Class ;
+    rdfs:label "Dam"^^xsd:string .
+
+:ConcreteArchDam a owl:Class ;
+    rdfs:subClassOf :Dam ;
+    rdfs:label "Concrete Arch Dam"^^xsd:string .
+
+:Reservoir a owl:Class ;
+    rdfs:label "Reservoir"^^xsd:string .
+
+:River a owl:Class ;
+    rdfs:label "River"^^xsd:string .
+
+:TroutStream a owl:Class ;
+    rdfs:subClassOf :River ;
+    rdfs:label "Trout Stream"^^xsd:string .
+
+:State a owl:Class ;
+    rdfs:label "State"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string .
+
+:GovernmentAgency a owl:Class ;
+    rdfs:label "Government Agency"^^xsd:string .
+
+:FederalAgency a owl:Class ;
+    rdfs:subClassOf :GovernmentAgency ;
+    rdfs:label "Federal Agency"^^xsd:string .
+
+:NativeAmericanTribe a owl:Class ;
+    rdfs:label "Native American Tribe"^^xsd:string .
+
+:NativeAmericanReservation a owl:Class ;
+    rdfs:label "Native American Reservation"^^xsd:string .
+
+:Era a owl:Class ;
+    rdfs:label "Era"^^xsd:string .
+
+:Year a owl:Class ;
+    rdfs:label "Year"^^xsd:string .
+
+:Duration a owl:Class ;
+    rdfs:label "Duration"^^xsd:string .
+
+:Purpose a owl:Class ;
+    rdfs:label "Purpose"^^xsd:string .
+
+:IrrigationPurpose a owl:Class ;
+    rdfs:subClassOf :Purpose ;
+    rdfs:label "Irrigation Purpose"^^xsd:string .
+
+:HydroelectricPowerGeneration a owl:Class ;
+    rdfs:subClassOf :Purpose ;
+    rdfs:label "Hydroelectric Power Generation"^^xsd:string .
+
+:RecreationalPurpose a owl:Class ;
+    rdfs:subClassOf :Purpose ;
+    rdfs:label "Recreational Purpose"^^xsd:string .
+
+:FlowRegulation a owl:Class ;
+    rdfs:subClassOf :Purpose ;
+    rdfs:label "Flow Regulation"^^xsd:string .
+
+:Controversy a owl:Class ;
+    rdfs:label "Controversy"^^xsd:string .
+
+:WaterAllocationControversy a owl:Class ;
+    rdfs:subClassOf :Controversy ;
+    rdfs:label "Water Allocation Controversy"^^xsd:string .
+
+:EcologicalImpact a owl:Class ;
+    rdfs:label "Ecological Impact"^^xsd:string .
+
+:EcologicalDamage a owl:Class ;
+    rdfs:subClassOf :EcologicalImpact ;
+    rdfs:label "Ecological Damage"^^xsd:string .
+
+:Negotiation a owl:Class ;
+    rdfs:label "Negotiation"^^xsd:string .
+
+:FederalGovernment a owl:Class ;
+    rdfs:subClassOf :GovernmentAgency ;
+    rdfs:label "Federal Government"^^xsd:string .
+
+:LandSale a owl:Class ;
+    rdfs:label "Land Sale"^^xsd:string .
+
+:ConstructionProject a owl:Class ;
+    rdfs:label "Construction Project"^^xsd:string .
+
+#############################################################
+# Object Properties
+#############################################################
+
+:crossesRiver a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :River ;
+    rdfs:label "crossesRiver"^^xsd:string .
+
+:locatedInState a owl:ObjectProperty ;
+    rdfs:label "locatedInState"^^xsd:string .
+
+:locatedInCountry a owl:ObjectProperty ;
+    rdfs:label "locatedInCountry"^^xsd:string .
+
+:hasType a owl:ObjectProperty ;
+    rdfs:label "hasType"^^xsd:string .
+
+:constructedInEra a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :Era ;
+    rdfs:label "constructedInEra"^^xsd:string .
+
+:hasPurpose a owl:ObjectProperty ;
+    rdfs:label "hasPurpose"^^xsd:string .
+
+:ownedBy a owl:ObjectProperty ;
+    rdfs:label "ownedBy"^^xsd:string .
+
+:hasReservoir a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :Reservoir ;
+    rdfs:label "hasReservoir"^^xsd:string .
+
+:involvedInNegotiation a owl:ObjectProperty ;
+    rdfs:label "involvedInNegotiation"^^xsd:string .
+
+:negotiationInvolves a owl:ObjectProperty ;
+    rdfs:label "negotiationInvolves"^^xsd:string .
+
+:surroundedByReservation a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :NativeAmericanReservation ;
+    rdfs:label "surroundedByReservation"^^xsd:string .
+
+:authorizedInYear a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :Year ;
+    rdfs:label "authorizedInYear"^^xsd:string .
+
+:groundbreakingInYear a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :Year ;
+    rdfs:label "groundbreakingInYear"^^xsd:string .
+
+:completedInYear a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :Year ;
+    rdfs:label "completedInYear"^^xsd:string .
+
+:constructionDuration a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :Duration ;
+    rdfs:label "constructionDuration"^^xsd:string .
+
+:reservoirExtendsIntoState a owl:ObjectProperty ;
+    rdfs:domain :Reservoir ;
+    rdfs:range :State ;
+    rdfs:label "reservoirExtendsIntoState"^^xsd:string .
+
+:regulatesRiver a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :River ;
+    rdfs:label "regulatesRiver"^^xsd:string .
+
+:transformedInto a owl:ObjectProperty ;
+    rdfs:label "transformedInto"^^xsd:string .
+
+:hasControversy a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :Controversy ;
+    rdfs:label "hasControversy"^^xsd:string .
+
+:controversyBetweenState a owl:ObjectProperty ;
+    rdfs:domain :WaterAllocationControversy ;
+    rdfs:range :State ;
+    rdfs:label "controversyBetweenState"^^xsd:string .
+
+:hasEcologicalImpact a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :EcologicalImpact ;
+    rdfs:label "hasEcologicalImpact"^^xsd:string .
+
+:resultOfNegotiation a owl:ObjectProperty ;
+    rdfs:domain :ConstructionProject ;
+    rdfs:range :Negotiation ;
+    rdfs:label "resultOfNegotiation"^^xsd:string .
+
+:landSoldTo a owl:ObjectProperty ;
+    rdfs:domain :LandSale ;
+    rdfs:range :FederalAgency ;
+    rdfs:label "landSoldTo"^^xsd:string .
+
+:reservoirLiesInReservation a owl:ObjectProperty ;
+    rdfs:domain :Reservoir ;
+    rdfs:range :NativeAmericanReservation ;
+    rdfs:label "reservoirLiesInReservation"^^xsd:string .
+
+:tribalHomeland a owl:ObjectProperty ;
+    rdfs:domain :NativeAmericanTribe ;
+    rdfs:range :NativeAmericanReservation ;
+    rdfs:label "tribalHomeland"^^xsd:string .
+
+#############################################################
+# Data Properties
+#############################################################
+
+:hasYearValue a owl:DatatypeProperty ;
+    rdfs:domain :Year ;
+    rdfs:range xsd:integer ;
+    rdfs:label "hasYearValue"^^xsd:string .
+
+:hasDurationYears a owl:DatatypeProperty ;
+    rdfs:domain :Duration ;
+    rdfs:range xsd:integer ;
+    rdfs:label "hasDurationYears"^^xsd:string .
+
+:geographicLocation a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "geographicLocation"^^xsd:string .
+
+#############################################################
+# Named Individuals
+#############################################################
+
+:YellowtailDam a :ConcreteArchDam , owl:NamedIndividual ;
+    rdfs:label "Yellowtail Dam"^^xsd:string ;
+    :crossesRiver :BighorRiver ;
+    :locatedInState :Montana ;
+    :locatedInCountry :UnitedStates ;
+    :constructedInEra :Mid1960sEra ;
+    :hasPurpose :IrrigationPurposeIndividual ;
+    :hasPurpose :HydroelectricPowerGenerationIndividual ;
+    :hasPurpose :FlowRegulationIndividual ;
+    :hasPurpose :RecreationIndividual ;
+    :ownedBy :USBureauOfReclamation ;
+    :hasReservoir :BighorLake ;
+    :surroundedByReservation :CrowIndianReservation ;
+    :authorizedInYear :Year1944 ;
+    :groundbreakingInYear :Year1961 ;
+    :completedInYear :Year1967 ;
+    :constructionDuration :SixYears ;
+    :regulatesRiver :BighorRiver ;
+    :hasControversy :WaterAllocationControversyIndividual ;
+    :hasEcologicalImpact :EcologicalDamageIndividual .
+
+:BighorRiver a :River , owl:NamedIndividual ;
+    rdfs:label "Bighorn River"^^xsd:string .
+
+:BighorLake a :Reservoir , owl:NamedIndividual ;
+    rdfs:label "Bighorn Lake"^^xsd:string ;
+    :ownedBy :USBureauOfReclamation ;
+    :reservoirExtendsIntoState :Montana ;
+    :reservoirExtendsIntoState :Wyoming ;
+    :reservoirLiesInReservation :CrowIndianReservation .
+
+:Montana a :State , owl:NamedIndividual ;
+    rdfs:label "Montana"^^xsd:string .
+
+:Wyoming a :State , owl:NamedIndividual ;
+    rdfs:label "Wyoming"^^xsd:string .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:USBureauOfReclamation a :FederalAgency , owl:NamedIndividual ;
+    rdfs:label "U.S. Bureau of Reclamation"^^xsd:string .
+
+:Reclamation a :FederalAgency , owl:NamedIndividual ;
+    rdfs:label "Reclamation"^^xsd:string .
+
+:CrowNation a :NativeAmericanTribe , owl:NamedIndividual ;
+    rdfs:label "Crow Nation"^^xsd:string ;
+    :tribalHomeland :CrowIndianReservation ;
+    :involvedInNegotiation :YellowtailDamNegotiation .
+
+:CrowIndianReservation a :NativeAmericanReservation , owl:NamedIndividual ;
+    rdfs:label "Crow Indian Reservation"^^xsd:string .
+
+:Mid1960sEra a :Era , owl:NamedIndividual ;
+    rdfs:label "mid-1960s era"^^xsd:string .
+
+:Year1944 a :Year , owl:NamedIndividual ;
+    rdfs:label "1944"^^xsd:string ;
+    :hasYearValue 1944 .
+
+:Year1961 a :Year , owl:NamedIndividual ;
+    rdfs:label "1961"^^xsd:string ;
+    :hasYearValue 1961 .
+
+:Year1967 a :Year , owl:NamedIndividual ;
+    rdfs:label "1967"^^xsd:string ;
+    :hasYearValue 1967 .
+
+:SixYears a :Duration , owl:NamedIndividual ;
+    rdfs:label "six years"^^xsd:string ;
+    :hasDurationYears 6 .
+
+:IrrigationPurposeIndividual a :IrrigationPurpose , owl:NamedIndividual ;
+    rdfs:label "irrigation"^^xsd:string .
+
+:HydroelectricPowerGenerationIndividual a :HydroelectricPowerGeneration , owl:NamedIndividual ;
+    rdfs:label "hydroelectric power"^^xsd:string .
+
+:FlowRegulationIndividual a :FlowRegulation , owl:NamedIndividual ;
+    rdfs:label "regulate the flow of the Bighorn"^^xsd:string .
+
+:RecreationIndividual a :RecreationalPurpose , owl:NamedIndividual ;
+    rdfs:label "recreation"^^xsd:string .
+
+:YellowtailDamNegotiation a :Negotiation , owl:NamedIndividual ;
+    rdfs:label "negotiations between the federal government and the Crow Nation"^^xsd:string ;
+    :negotiationInvolves :CrowNation ;
+    :negotiationInvolves :FederalGovernmentIndividual .
+
+:FederalGovernmentIndividual a :FederalGovernment , owl:NamedIndividual ;
+    rdfs:label "federal government"^^xsd:string .
+
+:WaterAllocationControversyIndividual a :WaterAllocationControversy , owl:NamedIndividual ;
+    rdfs:label "controversy surrounding the allocation of water in the reservoir between Montana and Wyoming"^^xsd:string ;
+    :controversyBetweenState :Montana ;
+    :controversyBetweenState :Wyoming .
+
+:EcologicalDamageIndividual a :EcologicalDamage , owl:NamedIndividual ;
+    rdfs:label "ecological damage wrought on river both above and below the dam"^^xsd:string .
+
+:LowerBighornTroutStream a :TroutStream , owl:NamedIndividual ;
+    rdfs:label "Montana's premier trout streams"^^xsd:string .
+
+:YellowtailDamProject a :ConstructionProject , owl:NamedIndividual ;
+    rdfs:label "Yellowtail Dam project"^^xsd:string ;
+    :resultOfNegotiation :YellowtailDamNegotiation .
+
+:YellowtailDamLandSale a :LandSale , owl:NamedIndividual ;
+    rdfs:label "land sold to Reclamation"^^xsd:string ;
+    :landSoldTo :Reclamation .

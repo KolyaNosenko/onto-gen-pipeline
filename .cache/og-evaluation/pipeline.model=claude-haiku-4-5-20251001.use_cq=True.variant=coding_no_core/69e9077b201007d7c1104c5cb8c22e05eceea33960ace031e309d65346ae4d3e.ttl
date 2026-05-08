@@ -1,0 +1,176 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:YellowtailDam a owl:NamedIndividual,
+        ns1:ConcreteArchDam ;
+    rdfs:label "Yellowtail Dam"^^xsd:string ;
+    ns1:affectsDownstreamAs "transformed the lower river into one of Montana's premier trout streams"^^xsd:string ;
+    ns1:authorizedInYear 1944 ;
+    ns1:completedInYear 1967 ;
+    ns1:constructionDurationYears 6 ;
+    ns1:constructionStartYear 1961 ;
+    ns1:hasEcologicalImpact "ecological damage wrought on river both above and below the dam"^^xsd:string ;
+    ns1:hasPurpose "hydroelectric power"^^xsd:string,
+        "irrigation"^^xsd:string,
+        "recreation"^^xsd:string ;
+    ns1:hasReservoir ns1:BighornLake ;
+    ns1:locatedIn ns1:Montana,
+        ns1:UnitedStates ;
+    ns1:negotiatedWith ns1:CrowNation ;
+    ns1:originalVision "shared facility that would provide profits for both sides"^^xsd:string ;
+    ns1:ownedBy ns1:USBureauOfReclamation ;
+    ns1:spansRiver ns1:BighornRiver .
+
+ns1:affectsDownstreamAs a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range xsd:string .
+
+ns1:authorizedInYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range xsd:integer .
+
+ns1:completedInYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range xsd:integer .
+
+ns1:constructionDurationYears a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range xsd:integer .
+
+ns1:constructionStartYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range xsd:integer .
+
+ns1:extendsInto a owl:ObjectProperty ;
+    rdfs:domain ns1:Reservoir ;
+    rdfs:range ns1:GeographicArea .
+
+ns1:hasEcologicalImpact a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range xsd:string .
+
+ns1:hasPurpose a owl:DatatypeProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range xsd:string .
+
+ns1:hasReservoir a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range ns1:Reservoir .
+
+ns1:hasWaterAllocationControversy a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Reservoir ;
+    rdfs:range xsd:string .
+
+ns1:inhabits a owl:ObjectProperty ;
+    rdfs:domain ns1:NativeAmericanTribe ;
+    rdfs:range ns1:Reservation .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Dam,
+        ns1:Reservation,
+        ns1:Reservoir ;
+    rdfs:range ns1:GeographicArea .
+
+ns1:negotiatedWith a owl:ObjectProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range ns1:NativeAmericanTribe .
+
+ns1:originalVision a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range xsd:string .
+
+ns1:ownedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Dam,
+        ns1:Reservoir ;
+    rdfs:range ns1:Organization .
+
+ns1:spansRiver a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Dam ;
+    rdfs:range ns1:River .
+
+ns1:BighornLake a owl:NamedIndividual,
+        ns1:Reservoir ;
+    rdfs:label "Bighorn Lake"^^xsd:string ;
+    ns1:extendsInto ns1:Montana,
+        ns1:Wyoming ;
+    ns1:hasWaterAllocationControversy "between Montana and Wyoming"^^xsd:string ;
+    ns1:locatedIn ns1:Montana,
+        ns1:Wyoming ;
+    ns1:ownedBy ns1:USBureauOfReclamation .
+
+ns1:BighornRiver a owl:NamedIndividual,
+        ns1:River ;
+    rdfs:label "Bighorn River"^^xsd:string .
+
+ns1:ConcreteArchDam a owl:Class ;
+    rdfs:subClassOf ns1:Dam .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:GeographicArea .
+
+ns1:CrowIndianReservation a owl:NamedIndividual,
+        ns1:Reservation ;
+    rdfs:label "Crow Indian Reservation"^^xsd:string ;
+    ns1:locatedIn ns1:Montana .
+
+ns1:CrowNation a owl:NamedIndividual,
+        ns1:NativeAmericanTribe ;
+    rdfs:label "Crow Nation"^^xsd:string ;
+    ns1:inhabits ns1:CrowIndianReservation .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United States"^^xsd:string .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:River a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf ns1:GeographicArea .
+
+ns1:USBureauOfReclamation a owl:NamedIndividual,
+        ns1:Organization ;
+    rdfs:label "U.S. Bureau of Reclamation"^^xsd:string .
+
+ns1:Wyoming a owl:NamedIndividual,
+        ns1:State ;
+    rdfs:label "Wyoming"^^xsd:string .
+
+ns1:NativeAmericanTribe a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Reservation a owl:Class ;
+    rdfs:subClassOf ns1:GeographicArea .
+
+ns1:Montana a owl:NamedIndividual,
+        ns1:State ;
+    rdfs:label "Montana"^^xsd:string .
+
+ns1:GeographicArea a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Reservoir a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Dam a owl:Class ;
+    rdfs:subClassOf owl:Thing .

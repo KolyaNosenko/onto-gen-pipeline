@@ -1,0 +1,342 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Ontology declaration
+#################################################################
+
+: a owl:Ontology .
+
+#################################################################
+# Classes
+#################################################################
+
+:Monarchy a owl:Class ;
+    rdfs:label "Monarchy"^^xsd:string ;
+    rdfs:comment "A state where supreme power resides with an individual hereditary head recognised as head of state."^^xsd:string .
+
+:ConstitutionalMonarchy a owl:Class ;
+    rdfs:subClassOf :Monarchy ;
+    rdfs:label "Constitutional Monarchy"^^xsd:string ;
+    rdfs:comment "A monarchy wherein the sovereign inherits office, usually keeps it until death or abdication, and is bound by laws and customs."^^xsd:string .
+
+:SovereignMonarchy a owl:Class ;
+    rdfs:subClassOf :Monarchy ;
+    rdfs:label "Sovereign Monarchy"^^xsd:string .
+
+:SovereignConstitutionalMonarchy a owl:Class ;
+    rdfs:subClassOf :ConstitutionalMonarchy , :SovereignMonarchy ;
+    rdfs:label "Sovereign Constitutional Monarchy"^^xsd:string .
+
+:NonSovereignConstituency a owl:Class ;
+    rdfs:label "Non-Sovereign Constituent Monarchy"^^xsd:string ;
+    rdfs:comment "A non-sovereign entity whose monarch is recognised by another state."^^xsd:string .
+
+:State a owl:Class ;
+    rdfs:label "State"^^xsd:string .
+
+:SovereignState a owl:Class ;
+    rdfs:subClassOf :State ;
+    rdfs:label "Sovereign State"^^xsd:string .
+
+:IndependentState a owl:Class ;
+    rdfs:subClassOf :SovereignState ;
+    rdfs:label "Independent State"^^xsd:string .
+
+:Dependency a owl:Class ;
+    rdfs:subClassOf :State ;
+    rdfs:label "Dependency"^^xsd:string .
+
+:Region a owl:Class ;
+    rdfs:label "Region"^^xsd:string .
+
+:Continent a owl:Class ;
+    rdfs:subClassOf :Region ;
+    rdfs:label "Continent"^^xsd:string .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:Monarch a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Monarch"^^xsd:string .
+
+:HeritableOffice a owl:Class ;
+    rdfs:label "Heritable Office"^^xsd:string .
+
+:HeadOfState a owl:Class ;
+    rdfs:subClassOf :HeritableOffice ;
+    rdfs:label "Head of State"^^xsd:string .
+
+:InternationalOrganisation a owl:Class ;
+    rdfs:label "International Organisation"^^xsd:string .
+
+:PoliticalGrouping a owl:Class ;
+    rdfs:label "Political Grouping"^^xsd:string .
+
+:Succession a owl:Class ;
+    rdfs:label "Succession"^^xsd:string .
+
+:SuccessionMethod a owl:Class ;
+    rdfs:label "Succession Method"^^xsd:string .
+
+:OfficeTerminationCondition a owl:Class ;
+    rdfs:label "Office Termination Condition"^^xsd:string .
+
+:Count a owl:Class ;
+    rdfs:label "Count"^^xsd:string .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:label "locatedIn"^^xsd:string ;
+    rdfs:domain :State ;
+    rdfs:range :Region .
+
+:isMonarchyIn a owl:ObjectProperty ;
+    rdfs:subPropertyOf :locatedIn ;
+    rdfs:label "isMonarchyIn"^^xsd:string ;
+    rdfs:domain :Monarchy ;
+    rdfs:range :Region .
+
+:hasHeadOfState a owl:ObjectProperty ;
+    rdfs:label "hasHeadOfState"^^xsd:string ;
+    rdfs:domain :Monarchy ;
+    rdfs:range :Monarch .
+
+:sharesMonarchWith a owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:label "sharesMonarchWith"^^xsd:string ;
+    rdfs:domain :Monarchy ;
+    rdfs:range :Monarchy .
+
+:isMemberOf a owl:ObjectProperty ;
+    rdfs:label "isMemberOf"^^xsd:string ;
+    rdfs:domain :State ;
+    rdfs:range :InternationalOrganisation .
+
+:isPartOf a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:label "isPartOf"^^xsd:string .
+
+:isPartOfGrouping a owl:ObjectProperty ;
+    rdfs:subPropertyOf :isPartOf ;
+    rdfs:label "isPartOfGrouping"^^xsd:string ;
+    rdfs:domain :Monarchy ;
+    rdfs:range :PoliticalGrouping .
+
+:hasDependency a owl:ObjectProperty ;
+    rdfs:label "hasDependency"^^xsd:string ;
+    rdfs:domain :IndependentState ;
+    rdfs:range :Dependency .
+
+:hasDependencyWithinRegion a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasDependency ;
+    rdfs:label "hasDependencyWithinRegion"^^xsd:string ;
+    rdfs:domain :IndependentState ;
+    rdfs:range :Dependency .
+
+:hasDependencyOutsideRegion a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasDependency ;
+    rdfs:label "hasDependencyOutsideRegion"^^xsd:string ;
+    rdfs:domain :IndependentState ;
+    rdfs:range :Dependency .
+
+:recognizesNonSovereignConstituent a owl:ObjectProperty ;
+    rdfs:label "recognizesNonSovereignConstituent"^^xsd:string ;
+    rdfs:domain :State ;
+    rdfs:range :NonSovereignConstituency .
+
+:hasSuccessionMethod a owl:ObjectProperty ;
+    rdfs:label "hasSuccessionMethod"^^xsd:string ;
+    rdfs:domain :ConstitutionalMonarchy ;
+    rdfs:range :SuccessionMethod .
+
+:hasOfficeTerminationCondition a owl:ObjectProperty ;
+    rdfs:label "hasOfficeTerminationCondition"^^xsd:string ;
+    rdfs:domain :ConstitutionalMonarchy ;
+    rdfs:range :OfficeTerminationCondition .
+
+:boundBy a owl:ObjectProperty ;
+    rdfs:label "boundBy"^^xsd:string ;
+    rdfs:domain :Monarch ;
+    rdfs:range :LawsAndCustoms .
+
+:LawsAndCustoms a owl:Class ;
+    rdfs:label "Laws and Customs"^^xsd:string .
+
+:exercisedUnder a owl:ObjectProperty ;
+    rdfs:label "exercisedUnder"^^xsd:string ;
+    rdfs:domain :HeadOfState ;
+    rdfs:range :LawsAndCustoms .
+
+:hasCount a owl:ObjectProperty ;
+    rdfs:label "hasCount"^^xsd:string ;
+    rdfs:range :Count .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:monarchyCount a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "monarchyCount"^^xsd:string ;
+    rdfs:domain :Region ;
+    rdfs:range xsd:integer .
+
+:nonSovereignConstituentCount a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "nonSovereignConstituentCount"^^xsd:string ;
+    rdfs:range xsd:integer .
+
+:independentStatesShareMonarchCount a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "independentStatesShareMonarchCount"^^xsd:string ;
+    rdfs:range xsd:integer .
+
+:typicalReignDuration a owl:DatatypeProperty ;
+    rdfs:label "typicalReignDuration"^^xsd:string ;
+    rdfs:domain :ConstitutionalMonarchy ;
+    rdfs:range xsd:string .
+
+#################################################################
+# Class restrictions
+#################################################################
+
+:ConstitutionalMonarchy rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :hasSuccessionMethod ;
+      owl:someValuesFrom :HereditarySuccession ] ;
+    rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :hasOfficeTerminationCondition ;
+      owl:someValuesFrom :OfficeTerminationCondition ] .
+
+:HereditarySuccession a owl:Class ;
+    rdfs:subClassOf :SuccessionMethod ;
+    rdfs:label "Hereditary Succession"^^xsd:string .
+
+:Death a owl:Class ;
+    rdfs:subClassOf :OfficeTerminationCondition ;
+    rdfs:label "Death"^^xsd:string .
+
+:Abdication a owl:Class ;
+    rdfs:subClassOf :OfficeTerminationCondition ;
+    rdfs:label "Abdication"^^xsd:string .
+
+:Monarchy rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :hasHeadOfState ;
+      owl:someValuesFrom :Monarch ] .
+
+:SovereignConstitutionalMonarchy rdfs:subClassOf :IndependentState .
+
+#################################################################
+# Named Individuals
+#################################################################
+
+:Oceania a :Region , owl:NamedIndividual ;
+    rdfs:label "Oceania"^^xsd:string ;
+    :monarchyCount "6"^^xsd:integer .
+
+:QueenElizabethII a :Monarch , owl:NamedIndividual ;
+    rdfs:label "Queen Elizabeth II"^^xsd:string .
+
+:CommonwealthRealms a :PoliticalGrouping , owl:NamedIndividual ;
+    rdfs:label "Commonwealth realms"^^xsd:string .
+
+:CommonwealthOfNations a :InternationalOrganisation , owl:NamedIndividual ;
+    rdfs:label "Commonwealth of Nations"^^xsd:string .
+
+:Tonga a :SovereignConstitutionalMonarchy , owl:NamedIndividual ;
+    rdfs:label "Tonga"^^xsd:string ;
+    :isMonarchyIn :Oceania ;
+    :isMemberOf :CommonwealthOfNations .
+
+:Australia a :SovereignConstitutionalMonarchy , owl:NamedIndividual ;
+    rdfs:label "Australia"^^xsd:string ;
+    :isMonarchyIn :Oceania ;
+    :hasHeadOfState :QueenElizabethII ;
+    :isPartOfGrouping :CommonwealthRealms ;
+    :isMemberOf :CommonwealthOfNations ;
+    :sharesMonarchWith :NewZealand .
+
+:NewZealand a :SovereignConstitutionalMonarchy , owl:NamedIndividual ;
+    rdfs:label "New Zealand"^^xsd:string ;
+    :isMonarchyIn :Oceania ;
+    :hasHeadOfState :QueenElizabethII ;
+    :isPartOfGrouping :CommonwealthRealms ;
+    :isMemberOf :CommonwealthOfNations ;
+    :sharesMonarchWith :Australia .
+
+:PapuaNewGuinea a :SovereignConstitutionalMonarchy , owl:NamedIndividual ;
+    rdfs:label "Papua New Guinea"^^xsd:string ;
+    :isMonarchyIn :Oceania ;
+    :hasHeadOfState :QueenElizabethII ;
+    :isPartOfGrouping :CommonwealthRealms ;
+    :isMemberOf :CommonwealthOfNations .
+
+:France a :SovereignState , owl:NamedIndividual ;
+    rdfs:label "France"^^xsd:string .
+
+:HereditarySuccessionMethod a :HereditarySuccession , owl:NamedIndividual ;
+    rdfs:label "hereditary succession"^^xsd:string .
+
+:DeathCondition a :Death , owl:NamedIndividual ;
+    rdfs:label "death"^^xsd:string .
+
+:AbdicationCondition a :Abdication , owl:NamedIndividual ;
+    rdfs:label "abdication"^^xsd:string .
+
+:LawsAndCustomsConstraint a :LawsAndCustoms , owl:NamedIndividual ;
+    rdfs:label "laws and customs"^^xsd:string .
+
+:NonSovereignConstituentMonarchsOceania a :NonSovereignConstituency , owl:NamedIndividual ;
+    rdfs:label "non-sovereign constituent monarchs"^^xsd:string ;
+    :nonSovereignConstituentCount "5"^^xsd:integer .
+
+#################################################################
+# Additional facts from text
+#################################################################
+
+:NewZealand :recognizesNonSovereignConstituent :NonSovereignConstituentMonarchsOceania .
+:PapuaNewGuinea :recognizesNonSovereignConstituent :NonSovereignConstituentMonarchsOceania .
+:France :recognizesNonSovereignConstituent :NonSovereignConstituentMonarchsOceania .
+
+:Australia :hasDependencyWithinRegion
+    [ a :Dependency ;
+      rdfs:label "Australian dependencies within Oceania"^^xsd:string ] .
+
+:Australia :hasDependencyOutsideRegion
+    [ a :Dependency ;
+      rdfs:label "Australian dependencies outside Oceania"^^xsd:string ] .
+
+:NewZealand :hasDependencyWithinRegion
+    [ a :Dependency ;
+      rdfs:label "New Zealand dependencies within Oceania"^^xsd:string ] .
+
+:NewZealand :hasDependencyOutsideRegion
+    [ a :Dependency ;
+      rdfs:label "New Zealand dependencies outside Oceania"^^xsd:string ] .
+
+:Tonga :hasSuccessionMethod :HereditarySuccessionMethod ;
+    :hasOfficeTerminationCondition :DeathCondition ;
+    :hasOfficeTerminationCondition :AbdicationCondition ;
+    :typicalReignDuration "until death or abdication"^^xsd:string .
+
+:Australia :hasSuccessionMethod :HereditarySuccessionMethod ;
+    :hasOfficeTerminationCondition :DeathCondition ;
+    :hasOfficeTerminationCondition :AbdicationCondition ;
+    :typicalReignDuration "until death or abdication"^^xsd:string .
+
+:NewZealand :hasSuccessionMethod :HereditarySuccessionMethod ;
+    :hasOfficeTerminationCondition :DeathCondition ;
+    :hasOfficeTerminationCondition :AbdicationCondition ;
+    :typicalReignDuration "until death or abdication"^^xsd:string .
+
+:PapuaNewGuinea :hasSuccessionMethod :HereditarySuccessionMethod ;
+    :hasOfficeTerminationCondition :DeathCondition ;
+    :hasOfficeTerminationCondition :AbdicationCondition ;
+    :typicalReignDuration "until death or abdication"^^xsd:string .
+
+:Oceania :independentStatesShareMonarchCount "5"^^xsd:integer .

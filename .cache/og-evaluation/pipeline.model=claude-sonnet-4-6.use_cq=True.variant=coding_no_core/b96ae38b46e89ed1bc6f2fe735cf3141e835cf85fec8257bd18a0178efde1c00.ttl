@@ -1,0 +1,187 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:FranceState a owl:NamedIndividual,
+        ns1:SovereignState ;
+    rdfs:label "France"^^xsd:string ;
+    ns1:acknowledgesNonSovereignConstituentMonarchy true .
+
+ns1:PapuaNewGuineaState a owl:NamedIndividual,
+        ns1:SovereignState ;
+    rdfs:label "Papua New Guinea"^^xsd:string ;
+    ns1:acknowledgesNonSovereignConstituentMonarchy true .
+
+ns1:TongaState a owl:NamedIndividual,
+        ns1:ConstitutionalMonarchy ;
+    rdfs:label "Tonga"^^xsd:string ;
+    ns1:isSoleMonarchy true ;
+    ns1:locatedIn ns1:OceaniaRegion ;
+    ns1:memberOf ns1:CommonwealthOfNationsOrg ;
+    ns1:officeIsInherited true ;
+    ns1:sovereignBoundByLawsAndCustoms true ;
+    ns1:sovereignLeavesOfficeBy "abdication"^^xsd:string,
+        "death"^^xsd:string .
+
+ns1:acknowledgesNonSovereignConstituentMonarchy a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:SovereignState ;
+    rdfs:range xsd:boolean .
+
+ns1:hasDependenciesOutsideRegion a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:SovereignState ;
+    rdfs:range xsd:boolean .
+
+ns1:hasDependencyIn a owl:ObjectProperty ;
+    rdfs:domain ns1:SovereignState ;
+    rdfs:range ns1:Region .
+
+ns1:isSoleMonarchy a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:ConstitutionalMonarchy ;
+    rdfs:range xsd:boolean .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range ns1:Region .
+
+ns1:memberOf a owl:ObjectProperty ;
+    rdfs:domain ns1:SovereignState ;
+    rdfs:range ns1:Organization .
+
+ns1:monarchyCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Region ;
+    rdfs:range xsd:integer .
+
+ns1:nonSovereignConstituentMonarchyCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Region ;
+    rdfs:range xsd:integer .
+
+ns1:officeIsInherited a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:ConstitutionalMonarchy ;
+    rdfs:range xsd:boolean .
+
+ns1:partOf a owl:ObjectProperty ;
+    rdfs:domain ns1:SovereignState ;
+    rdfs:range ns1:GlobalGrouping .
+
+ns1:recognizesConstituentMonarchy a owl:ObjectProperty ;
+    rdfs:domain ns1:SovereignState ;
+    rdfs:range ns1:NonSovereignConstituentMonarchy .
+
+ns1:sharesMonarchWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:ConstitutionalMonarchy ;
+    rdfs:range ns1:ConstitutionalMonarchy .
+
+ns1:sovereignBoundByLawsAndCustoms a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:ConstitutionalMonarchy ;
+    rdfs:range xsd:boolean .
+
+ns1:sovereignLeavesOfficeBy a owl:DatatypeProperty ;
+    rdfs:domain ns1:ConstitutionalMonarchy ;
+    rdfs:range xsd:string .
+
+ns1:AustraliaState a owl:NamedIndividual,
+        ns1:CommonwealthRealm ;
+    rdfs:label "Australia"^^xsd:string ;
+    ns1:hasDependenciesOutsideRegion true ;
+    ns1:hasDependencyIn ns1:OceaniaRegion ;
+    ns1:hasHeadOfState ns1:QueenElizabethII ;
+    ns1:isSoleMonarchy false ;
+    ns1:locatedIn ns1:OceaniaRegion ;
+    ns1:memberOf ns1:CommonwealthOfNationsOrg ;
+    ns1:officeIsInherited true ;
+    ns1:partOf ns1:CommonwealthRealmsGrouping ;
+    ns1:sharesMonarchWith ns1:NewZealandState ;
+    ns1:sovereignBoundByLawsAndCustoms true ;
+    ns1:sovereignLeavesOfficeBy "abdication"^^xsd:string,
+        "death"^^xsd:string .
+
+ns1:InternationalOrganization a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:NewZealandState a owl:NamedIndividual,
+        ns1:CommonwealthRealm ;
+    rdfs:label "New Zealand"^^xsd:string ;
+    ns1:acknowledgesNonSovereignConstituentMonarchy true ;
+    ns1:hasDependenciesOutsideRegion true ;
+    ns1:hasDependencyIn ns1:OceaniaRegion ;
+    ns1:hasHeadOfState ns1:QueenElizabethII ;
+    ns1:isSoleMonarchy false ;
+    ns1:locatedIn ns1:OceaniaRegion ;
+    ns1:memberOf ns1:CommonwealthOfNationsOrg ;
+    ns1:officeIsInherited true ;
+    ns1:partOf ns1:CommonwealthRealmsGrouping ;
+    ns1:sharesMonarchWith ns1:AustraliaState ;
+    ns1:sovereignBoundByLawsAndCustoms true ;
+    ns1:sovereignLeavesOfficeBy "abdication"^^xsd:string,
+        "death"^^xsd:string .
+
+ns1:NonSovereignConstituentMonarchy a owl:Class ;
+    rdfs:subClassOf ns1:Monarchy .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:hasHeadOfState a owl:ObjectProperty ;
+    rdfs:domain ns1:Monarchy ;
+    rdfs:range ns1:Monarch .
+
+ns1:CommonwealthRealm a owl:Class ;
+    rdfs:subClassOf ns1:ConstitutionalMonarchy .
+
+ns1:CommonwealthRealmsGrouping a owl:NamedIndividual,
+        ns1:GlobalGrouping ;
+    rdfs:label "Commonwealth realms"^^xsd:string .
+
+ns1:GlobalGrouping a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:QueenElizabethII a owl:NamedIndividual,
+        ns1:Monarch ;
+    rdfs:label "Queen Elizabeth II"^^xsd:string .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CommonwealthOfNationsOrg a owl:NamedIndividual,
+        ns1:InternationalOrganization ;
+    rdfs:label "Commonwealth of Nations"^^xsd:string .
+
+ns1:Monarch a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Monarchy a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasHeadOfState ;
+            owl:someValuesFrom ns1:Monarch ],
+        ns1:SovereignState .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:OceaniaRegion a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "Oceania"^^xsd:string ;
+    ns1:monarchyCount 6 ;
+    ns1:nonSovereignConstituentMonarchyCount 5 .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ConstitutionalMonarchy a owl:Class ;
+    rdfs:subClassOf ns1:Monarchy .
+
+ns1:SovereignState a owl:Class ;
+    rdfs:subClassOf ns1:State .

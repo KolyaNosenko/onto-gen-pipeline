@@ -1,0 +1,170 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:ProceduralVote a owl:Class ;
+    rdfs:subClassOf ns1:Vote .
+
+ns1:UN_Instance a owl:NamedIndividual,
+        ns1:UnitedNations ;
+    rdfs:label "United Nations"^^xsd:string .
+
+ns1:VetoPowerInstance a owl:NamedIndividual,
+        ns1:VetoPower ;
+    ns1:associatedWith ns1:UNSecurityCouncil ;
+    ns1:hasArgument ns1:ChecksAgainstInterventions,
+        ns1:PromotesStability,
+        ns1:SafeguardAgainstDomination ;
+    ns1:hasCriticism ns1:CausesInaction,
+        ns1:UndemocraticCharacter .
+
+ns1:absencePreventsAdoption a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:SecurityCouncil ;
+    rdfs:range xsd:boolean .
+
+ns1:abstentionPreventsAdoption a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:SecurityCouncil ;
+    rdfs:range xsd:boolean .
+
+ns1:associatedWith a owl:ObjectProperty ;
+    rdfs:domain ns1:VetoPower ;
+    rdfs:range ns1:SecurityCouncil .
+
+ns1:canBlockSelection a owl:ObjectProperty ;
+    rdfs:domain ns1:Country ;
+    rdfs:range ns1:SecretaryGeneralPosition .
+
+ns1:canVeto a owl:ObjectProperty ;
+    rdfs:domain ns1:Country ;
+    rdfs:range ns1:SubstantiveVote .
+
+ns1:contributedToIneffectiveness a owl:ObjectProperty ;
+    rdfs:domain ns1:Country ;
+    rdfs:range ns1:Organization .
+
+ns1:determinedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Vote ;
+    rdfs:range ns1:Country .
+
+ns1:formalVetoRequired a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:SecretaryGeneralPosition ;
+    rdfs:range xsd:boolean .
+
+ns1:hasArgument a owl:ObjectProperty ;
+    rdfs:domain ns1:VetoPower ;
+    rdfs:range ns1:Argument .
+
+ns1:hasCriticism a owl:ObjectProperty ;
+    rdfs:domain ns1:VetoPower ;
+    rdfs:range ns1:Criticism .
+
+ns1:hasPermanentMember a owl:ObjectProperty ;
+    rdfs:domain ns1:SecurityCouncil ;
+    rdfs:range ns1:Country .
+
+ns1:CausesInaction a owl:NamedIndividual,
+        ns1:Criticism ;
+    rdfs:label "Main cause for international inaction on war crimes and crimes against humanity"^^xsd:string .
+
+ns1:ChecksAgainstInterventions a owl:NamedIndividual,
+        ns1:Argument ;
+    rdfs:label "Check against military interventions"^^xsd:string .
+
+ns1:China a owl:NamedIndividual,
+        ns1:Country ;
+    ns1:canBlockSelection ns1:SG_Position .
+
+ns1:France a owl:NamedIndividual,
+        ns1:Country ;
+    ns1:canBlockSelection ns1:SG_Position .
+
+ns1:LON_Instance a owl:NamedIndividual,
+        ns1:LeagueOfNations ;
+    rdfs:label "League of Nations"^^xsd:string .
+
+ns1:LeagueOfNations a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:Position a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PromotesStability a owl:NamedIndividual,
+        ns1:Argument ;
+    rdfs:label "Promoter of international stability"^^xsd:string .
+
+ns1:Russia a owl:NamedIndividual,
+        ns1:Country ;
+    ns1:canBlockSelection ns1:SG_Position .
+
+ns1:SafeguardAgainstDomination a owl:NamedIndividual,
+        ns1:Argument ;
+    rdfs:label "Safeguard against U.S. domination"^^xsd:string .
+
+ns1:SubstantiveVote a owl:Class ;
+    rdfs:subClassOf ns1:Vote .
+
+ns1:UNSecurityCouncil a owl:NamedIndividual,
+        ns1:SecurityCouncil ;
+    rdfs:label "UN Security Council"^^xsd:string ;
+    ns1:absencePreventsAdoption false ;
+    ns1:abstentionPreventsAdoption false ;
+    ns1:hasPermanentMember ns1:China,
+        ns1:France,
+        ns1:Russia,
+        ns1:UnitedKingdom,
+        ns1:UnitedStates .
+
+ns1:UndemocraticCharacter a owl:NamedIndividual,
+        ns1:Criticism ;
+    rdfs:label "Most undemocratic character of the UN"^^xsd:string .
+
+ns1:UnitedKingdom a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United Kingdom"^^xsd:string ;
+    ns1:canBlockSelection ns1:SG_Position .
+
+ns1:UnitedNations a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United States"^^xsd:string ;
+    ns1:canBlockSelection ns1:SG_Position ;
+    ns1:contributedToIneffectiveness ns1:LON_Instance .
+
+ns1:Criticism a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SecretaryGeneralPosition a owl:Class ;
+    rdfs:subClassOf ns1:Position .
+
+ns1:Vote a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Argument a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:VetoPower a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SG_Position a owl:NamedIndividual,
+        ns1:SecretaryGeneralPosition ;
+    rdfs:label "Secretary-General"^^xsd:string ;
+    ns1:formalVetoRequired false .
+
+ns1:SecurityCouncil a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf owl:Thing .

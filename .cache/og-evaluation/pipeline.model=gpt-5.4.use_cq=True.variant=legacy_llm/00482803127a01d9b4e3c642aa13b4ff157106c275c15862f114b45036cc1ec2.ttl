@@ -1,0 +1,364 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Thing a owl:Class .
+
+:Person a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Artist a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:Musician a owl:Class ;
+    rdfs:subClassOf :Artist .
+
+:FineArtist a owl:Class ;
+    rdfs:subClassOf :Artist .
+
+:SingerSongwriter a owl:Class ;
+    rdfs:subClassOf :Musician .
+
+:Nationality a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:AmericanNationality a owl:Class ;
+    rdfs:subClassOf :Nationality .
+
+:Place a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:City a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:State a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Organization a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:RecordLabel a owl:Class ;
+    rdfs:subClassOf :Organization .
+
+:MusicalWork a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Album a owl:Class ;
+    rdfs:subClassOf :MusicalWork .
+
+:StudioAlbum a owl:Class ;
+    rdfs:subClassOf :Album .
+
+:FullLengthStudioAlbum a owl:Class ;
+    rdfs:subClassOf :StudioAlbum .
+
+:Music a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Genre a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:DescriptiveTerm a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:VoiceType a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:VocalAttribute a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Falsetto a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Publication a owl:Class ;
+    rdfs:subClassOf :Organization .
+
+:Description a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Quotation a owl:Class ;
+    rdfs:subClassOf :Description .
+
+:TimeInterval a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Date a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:MonthYear a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:Year a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:OrdinalQuantity a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Acclaim a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:MythologicalPlace a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Musician rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasMusic ;
+    owl:someValuesFrom :Music
+] .
+
+:Album rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :releasedIn ;
+    owl:someValuesFrom :TimeInterval
+] .
+
+:RecordLabel rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :signsArtist ;
+    owl:someValuesFrom :Artist
+] .
+
+:bornOn a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:date .
+
+:activeSinceYear a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:gYear .
+
+:releaseOrderValue a owl:DatatypeProperty ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:integer .
+
+:quotationText a owl:DatatypeProperty ;
+    rdfs:domain :Quotation ;
+    rdfs:range xsd:string .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Nationality .
+
+:basedIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Place .
+
+:locatedIn a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Place .
+
+:currentlySignedTo a owl:ObjectProperty ;
+    rdfs:domain :Artist ;
+    rdfs:range :RecordLabel .
+
+:signsArtist a owl:ObjectProperty ;
+    owl:inverseOf :currentlySignedTo ;
+    rdfs:domain :RecordLabel ;
+    rdfs:range :Artist .
+
+:released a owl:ObjectProperty ;
+    rdfs:domain :Artist ;
+    rdfs:range :Album .
+
+:releasedIn a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :TimeInterval .
+
+:hasMusic a owl:ObjectProperty ;
+    rdfs:domain :Artist ;
+    rdfs:range :Music .
+
+:defiesClassification a owl:DatatypeProperty ;
+    rdfs:domain :Music ;
+    rdfs:range xsd:boolean .
+
+:rootedInGenre a owl:ObjectProperty ;
+    rdfs:domain :Music ;
+    rdfs:range :Genre .
+
+:bringsInElementOfGenre a owl:ObjectProperty ;
+    rdfs:domain :Music ;
+    rdfs:range :Genre .
+
+:describedByTerm a owl:ObjectProperty ;
+    rdfs:domain :Music ;
+    rdfs:range :DescriptiveTerm .
+
+:singsInVoiceType a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :VoiceType .
+
+:hasVocalsAcclaim a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Acclaim .
+
+:hasVoice a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Thing .
+
+:hasFalsetto a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Falsetto .
+
+:describedByPublication a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Publication .
+
+:hasDescription a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Description .
+
+:issuedBy a owl:ObjectProperty ;
+    rdfs:domain :Description ;
+    rdfs:range :Publication .
+
+:describes a owl:ObjectProperty ;
+    rdfs:domain :Description ;
+    rdfs:range :Thing .
+
+:hasVocalAttribute a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :VocalAttribute .
+
+:mentionsPlace a owl:ObjectProperty ;
+    rdfs:domain :Description ;
+    rdfs:range :Place .
+
+:MarissaNadler a :SingerSongwriter , :FineArtist , owl:NamedIndividual ;
+    rdfs:label "Marissa Nadler"^^xsd:string ;
+    :bornOn "1981-04-05"^^xsd:date ;
+    :hasNationality :American ;
+    :basedIn :Boston ;
+    :activeSinceYear "2000"^^xsd:gYear ;
+    :currentlySignedTo :SacredBonesRecords , :BellaUnion ;
+    :released :Strangers ;
+    :hasMusic :MarissaNadlersMusic ;
+    :singsInVoiceType :MezzoSoprano ;
+    :hasVocalsAcclaim :VocalsAcclaim ;
+    :hasVoice :MarissaNadlersVoice ;
+    :hasFalsetto :MarissaNadlersFalsetto .
+
+:April51981 a :Date , owl:NamedIndividual ;
+    rdfs:label "April 5 , 1981"^^xsd:string .
+
+:American a :AmericanNationality , owl:NamedIndividual ;
+    rdfs:label "American"^^xsd:string .
+
+:Boston a :City , owl:NamedIndividual ;
+    rdfs:label "Boston"^^xsd:string ;
+    :locatedIn :Massachusetts .
+
+:Massachusetts a :State , owl:NamedIndividual ;
+    rdfs:label "Massachusetts"^^xsd:string .
+
+:SacredBonesRecords a :RecordLabel , owl:NamedIndividual ;
+    rdfs:label "Sacred Bones Records"^^xsd:string ;
+    :signsArtist :MarissaNadler .
+
+:BellaUnion a :RecordLabel , owl:NamedIndividual ;
+    rdfs:label "Bella Union"^^xsd:string ;
+    :signsArtist :MarissaNadler .
+
+:Year2000 a :Year , owl:NamedIndividual ;
+    rdfs:label "2000"^^xsd:string .
+
+:Strangers a :FullLengthStudioAlbum , owl:NamedIndividual ;
+    rdfs:label "Strangers"^^xsd:string ;
+    :releasedIn :May2016 ;
+    :releaseOrderValue 7 .
+
+:May2016 a :MonthYear , owl:NamedIndividual ;
+    rdfs:label "May 2016"^^xsd:string .
+
+:Seventh a :OrdinalQuantity , owl:NamedIndividual ;
+    rdfs:label "seventh"^^xsd:string .
+
+:MarissaNadlersMusic a :Music , owl:NamedIndividual ;
+    rdfs:label "her music"^^xsd:string ;
+    :defiesClassification "true"^^xsd:boolean ;
+    :rootedInGenre :OldSchoolCountry , :Folk ;
+    :bringsInElementOfGenre :Experimental , :BlackMetal ;
+    :describedByTerm :DreamFolk .
+
+:OldSchoolCountry a :Genre , owl:NamedIndividual ;
+    rdfs:label "old - school country"^^xsd:string .
+
+:Folk a :Genre , owl:NamedIndividual ;
+    rdfs:label "folk"^^xsd:string .
+
+:Experimental a :Genre , owl:NamedIndividual ;
+    rdfs:label "experimental"^^xsd:string .
+
+:BlackMetal a :Genre , owl:NamedIndividual ;
+    rdfs:label "black metal"^^xsd:string .
+
+:DreamFolk a :DescriptiveTerm , owl:NamedIndividual ;
+    rdfs:label "dream folk"^^xsd:string .
+
+:MezzoSoprano a :VoiceType , owl:NamedIndividual ;
+    rdfs:label "mezzo - soprano"^^xsd:string .
+
+:VocalsAcclaim a :Acclaim , owl:NamedIndividual ;
+    rdfs:label "acclaim for her vocals"^^xsd:string .
+
+:Pitchfork a :Publication , owl:NamedIndividual ;
+    rdfs:label "Pitchfork"^^xsd:string .
+
+:TheBostonGlobe a :Publication , owl:NamedIndividual ;
+    rdfs:label "The Boston Globe"^^xsd:string .
+
+:Hades a :MythologicalPlace , owl:NamedIndividual ;
+    rdfs:label "Hades"^^xsd:string .
+
+:MarissaNadlersVoice a :Thing , owl:NamedIndividual ;
+    rdfs:label "Her voice"^^xsd:string ;
+    :describedByPublication :Pitchfork , :TheBostonGlobe ;
+    :hasDescription :PitchforkDescription1 , :PitchforkDescription2 , :BostonGlobeDescription ;
+    :hasVocalAttribute :Textured , :Angelic , :IntoxicatingSoprano , :GauzyReverb , :BellClearHeights .
+
+:MarissaNadlersFalsetto a :Falsetto , owl:NamedIndividual ;
+    rdfs:label "her iridescent falsetto"^^xsd:string ;
+    :hasVocalAttribute :Iridescent , :HintOfPain .
+
+:PitchforkDescription1 a :Quotation , owl:NamedIndividual ;
+    rdfs:label "you would follow straight into Hades"^^xsd:string ;
+    :quotationText "you would follow straight into Hades"^^xsd:string ;
+    :issuedBy :Pitchfork ;
+    :describes :MarissaNadlersVoice ;
+    :mentionsPlace :Hades .
+
+:PitchforkDescription2 a :Quotation , owl:NamedIndividual ;
+    rdfs:label "textured and angelic , with just a hint of pain captured within her iridescent falsetto"^^xsd:string ;
+    :quotationText "textured and angelic , with just a hint of pain captured within her iridescent falsetto"^^xsd:string ;
+    :issuedBy :Pitchfork ;
+    :describes :MarissaNadlersVoice .
+
+:BostonGlobeDescription a :Quotation , owl:NamedIndividual ;
+    rdfs:label "She has a voice that , in mythological times , could have lured men to their deaths at sea , an intoxicating soprano drenched in gauzy reverb that hits bell - clear heights , lingers , and tapers off like rings of smoke"^^xsd:string ;
+    :quotationText "She has a voice that , in mythological times , could have lured men to their deaths at sea , an intoxicating soprano drenched in gauzy reverb that hits bell - clear heights , lingers , and tapers off like rings of smoke"^^xsd:string ;
+    :issuedBy :TheBostonGlobe ;
+    :describes :MarissaNadlersVoice .
+
+:Textured a :VocalAttribute , owl:NamedIndividual ;
+    rdfs:label "textured"^^xsd:string .
+
+:Angelic a :VocalAttribute , owl:NamedIndividual ;
+    rdfs:label "angelic"^^xsd:string .
+
+:HintOfPain a :VocalAttribute , owl:NamedIndividual ;
+    rdfs:label "hint of pain"^^xsd:string .
+
+:Iridescent a :VocalAttribute , owl:NamedIndividual ;
+    rdfs:label "iridescent"^^xsd:string .
+
+:IntoxicatingSoprano a :VocalAttribute , owl:NamedIndividual ;
+    rdfs:label "an intoxicating soprano"^^xsd:string .
+
+:GauzyReverb a :VocalAttribute , owl:NamedIndividual ;
+    rdfs:label "gauzy reverb"^^xsd:string .
+
+:BellClearHeights a :VocalAttribute , owl:NamedIndividual ;
+    rdfs:label "bell - clear heights"^^xsd:string .

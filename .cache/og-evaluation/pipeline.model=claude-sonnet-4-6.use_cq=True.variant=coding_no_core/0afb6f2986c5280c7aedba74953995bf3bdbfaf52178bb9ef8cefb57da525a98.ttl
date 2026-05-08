@@ -1,0 +1,235 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:albumNumber a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:StudioAlbum ;
+    rdfs:range xsd:integer .
+
+ns1:featuresInstrument a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:MusicalInstrument .
+
+ns1:featuresMusician a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Musician .
+
+ns1:hasBassist a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Musician .
+
+ns1:hasDrummer a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Musician .
+
+ns1:hasFirstSingle a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Single .
+
+ns1:hasGuitarist a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Musician .
+
+ns1:hasPreviousAlbum a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Album .
+
+ns1:hasPromotionalMedia a owl:ObjectProperty ;
+    rdfs:domain ns1:Single ;
+    rdfs:range ns1:PromotionalMedia .
+
+ns1:hasVocalist a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Musician .
+
+ns1:isOriginalMemberOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range ns1:MusicGroup .
+
+ns1:memberOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range ns1:MusicGroup .
+
+ns1:performedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:MusicGroup .
+
+ns1:playsInstrument a owl:ObjectProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range ns1:MusicalInstrument .
+
+ns1:promotesAlbum a owl:ObjectProperty ;
+    rdfs:domain ns1:Single ;
+    rdfs:range ns1:Album .
+
+ns1:recordingEndDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range xsd:string .
+
+ns1:recordingStartDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range xsd:string .
+
+ns1:releaseDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range xsd:string .
+
+ns1:releasedThrough a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:RecordLabel .
+
+ns1:singleReleaseDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Single ;
+    rdfs:range xsd:string .
+
+ns1:Celestial_Completion a owl:NamedIndividual,
+        ns1:Album ;
+    rdfs:label "Celestial Completion"^^xsd:string ;
+    ns1:featuresInstrument ns1:horns,
+        ns1:sitars ;
+    ns1:performedBy ns1:Becoming_the_Archetype .
+
+ns1:HeavyMetalBand a owl:Class ;
+    rdfs:subClassOf ns1:MusicGroup .
+
+ns1:I_Am a owl:NamedIndividual,
+        ns1:StudioAlbum ;
+    rdfs:label "I Am"^^xsd:string ;
+    ns1:albumNumber 5 ;
+    ns1:featuresMusician ns1:Chris_Heaton,
+        ns1:Chris_McCane,
+        ns1:Codey_Watkins,
+        ns1:Seth_Hecox ;
+    ns1:hasBassist ns1:Codey_Watkins ;
+    ns1:hasDrummer ns1:Chris_Heaton ;
+    ns1:hasFirstSingle ns1:The_Time_Bender ;
+    ns1:hasGuitarist ns1:Seth_Hecox ;
+    ns1:hasPreviousAlbum ns1:Celestial_Completion ;
+    ns1:hasVocalist ns1:Chris_McCane,
+        ns1:Seth_Hecox ;
+    ns1:performedBy ns1:Becoming_the_Archetype ;
+    ns1:recordingEndDate "June 17"^^xsd:string ;
+    ns1:recordingStartDate "May 21"^^xsd:string ;
+    ns1:releaseDate "September 18, 2012"^^xsd:string ;
+    ns1:releasedThrough ns1:Solid_State_Records .
+
+ns1:LyricVideo a owl:Class ;
+    rdfs:subClassOf ns1:PromotionalMedia .
+
+ns1:LyricVideoForTheTimeBender a owl:NamedIndividual,
+        ns1:LyricVideo ;
+    rdfs:label "lyric video"^^xsd:string .
+
+ns1:OfficialVideo a owl:Class ;
+    rdfs:subClassOf ns1:PromotionalMedia .
+
+ns1:OfficialVideoForTheTimeBender a owl:NamedIndividual,
+        ns1:OfficialVideo ;
+    rdfs:label "official video"^^xsd:string .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Solid_State_Records a owl:NamedIndividual,
+        ns1:RecordLabel ;
+    rdfs:label "Solid State Records"^^xsd:string .
+
+ns1:Song a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:The_Time_Bender a owl:NamedIndividual,
+        ns1:Single ;
+    rdfs:label "The Time Bender"^^xsd:string ;
+    ns1:hasPromotionalMedia ns1:LyricVideoForTheTimeBender,
+        ns1:OfficialVideoForTheTimeBender ;
+    ns1:promotesAlbum ns1:I_Am ;
+    ns1:singleReleaseDate "August 28, 2012"^^xsd:string .
+
+ns1:bass a owl:NamedIndividual,
+        ns1:MusicalInstrument ;
+    rdfs:label "bass"^^xsd:string .
+
+ns1:drums a owl:NamedIndividual,
+        ns1:MusicalInstrument ;
+    rdfs:label "drums"^^xsd:string .
+
+ns1:guitar a owl:NamedIndividual,
+        ns1:MusicalInstrument ;
+    rdfs:label "guitar"^^xsd:string .
+
+ns1:horns a owl:NamedIndividual,
+        ns1:MusicalInstrument ;
+    rdfs:label "horns"^^xsd:string .
+
+ns1:sitars a owl:NamedIndividual,
+        ns1:MusicalInstrument ;
+    rdfs:label "sitars"^^xsd:string .
+
+ns1:Chris_Heaton a owl:NamedIndividual,
+        ns1:Musician ;
+    rdfs:label "Chris Heaton"^^xsd:string ;
+    ns1:memberOf ns1:Becoming_the_Archetype ;
+    ns1:playsInstrument ns1:drums .
+
+ns1:Chris_McCane a owl:NamedIndividual,
+        ns1:Musician ;
+    rdfs:label "Chris McCane"^^xsd:string ;
+    ns1:memberOf ns1:Becoming_the_Archetype ;
+    ns1:playsInstrument ns1:vocals .
+
+ns1:Codey_Watkins a owl:NamedIndividual,
+        ns1:Musician ;
+    rdfs:label "Codey Watkins"^^xsd:string ;
+    ns1:memberOf ns1:Becoming_the_Archetype ;
+    ns1:playsInstrument ns1:bass .
+
+ns1:RecordLabel a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:StudioAlbum a owl:Class ;
+    rdfs:subClassOf ns1:Album .
+
+ns1:vocals a owl:NamedIndividual,
+        ns1:MusicalInstrument ;
+    rdfs:label "vocals"^^xsd:string .
+
+ns1:PromotionalMedia a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Seth_Hecox a owl:NamedIndividual,
+        ns1:Musician ;
+    rdfs:label "Seth Hecox"^^xsd:string ;
+    ns1:isOriginalMemberOf ns1:Becoming_the_Archetype ;
+    ns1:memberOf ns1:Becoming_the_Archetype ;
+    ns1:playsInstrument ns1:guitar,
+        ns1:vocals .
+
+ns1:MusicGroup a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Single a owl:Class ;
+    rdfs:subClassOf ns1:Song .
+
+ns1:Becoming_the_Archetype a owl:NamedIndividual,
+        ns1:HeavyMetalBand ;
+    rdfs:label "Becoming the Archetype"^^xsd:string .
+
+ns1:MusicalInstrument a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Musician a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Album a owl:Class ;
+    rdfs:subClassOf owl:Thing .

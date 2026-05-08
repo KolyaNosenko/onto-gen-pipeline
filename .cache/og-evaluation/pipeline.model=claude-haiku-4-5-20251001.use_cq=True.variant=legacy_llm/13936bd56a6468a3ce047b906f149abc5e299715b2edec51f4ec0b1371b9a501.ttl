@@ -1,0 +1,257 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:Street a owl:Class ;
+    rdfs:label "Street"@en .
+
+:StreetSegment a owl:Class ;
+    rdfs:subClassOf :Street ;
+    rdfs:label "Street Segment"@en .
+
+:City a owl:Class ;
+    rdfs:label "City"@en .
+
+:Region a owl:Class ;
+    rdfs:label "Region"@en .
+
+:Country a owl:Class ;
+    rdfs:label "Country"@en .
+
+:Survey a owl:Class ;
+    rdfs:label "Survey"@en .
+
+:Person a owl:Class ;
+    rdfs:label "Person"@en .
+
+:LieutenantGovernor a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Lieutenant-Governor"@en .
+
+:Settlement a owl:Class ;
+    rdfs:label "Settlement"@en .
+
+:TimePoint a owl:Class ;
+    rdfs:label "Time Point"@en .
+
+:Building a owl:Class ;
+    rdfs:label "Building"@en .
+
+:HeritageBuilding a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "Heritage Building"@en .
+
+:OfficeBlock a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "Office Block"@en .
+
+:Skyscraper a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "Skyscraper"@en .
+
+:Cafe a owl:Class ;
+    rdfs:label "Cafe"@en .
+
+:SidewalkCafe a owl:Class ;
+    rdfs:subClassOf :Cafe ;
+    rdfs:label "Sidewalk Cafe"@en .
+
+:ShoppingBoutique a owl:Class ;
+    rdfs:label "Shopping Boutique"@en .
+
+:StreetTree a owl:Class ;
+    rdfs:label "Street Tree"@en .
+
+:FinancialDistrict a owl:Class ;
+    rdfs:label "Financial District"@en .
+
+:Institution a owl:Class ;
+    rdfs:label "Institution"@en .
+
+:Bank a owl:Class ;
+    rdfs:subClassOf :Institution ;
+    rdfs:label "Bank"@en .
+
+:InsuranceCompany a owl:Class ;
+    rdfs:subClassOf :Institution ;
+    rdfs:label "Insurance Company"@en .
+
+:Locality a owl:Class ;
+    rdfs:label "Locality"@en .
+
+:TimePeriod a owl:Class ;
+    rdfs:label "Time Period"@en .
+
+:Decade a owl:Class ;
+    rdfs:subClassOf :TimePeriod ;
+    rdfs:label "Decade"@en .
+
+:Century a owl:Class ;
+    rdfs:subClassOf :TimePeriod ;
+    rdfs:label "Century"@en .
+
+# Object Properties
+:locatedIn a owl:ObjectProperty ;
+    rdfs:label "located in"@en ;
+    owl:asymmetricProperty owl:AsymmetricProperty .
+
+:contains a owl:ObjectProperty ;
+    rdfs:label "contains"@en ;
+    owl:inverseOf :partOf .
+
+:partOf a owl:ObjectProperty ;
+    rdfs:label "part of"@en ;
+    owl:transitiveProperty owl:TransitiveProperty .
+
+:namedAfter a owl:ObjectProperty ;
+    rdfs:label "named after"@en .
+
+:establishedDuring a owl:ObjectProperty ;
+    rdfs:label "established during"@en .
+
+:laidOutDuring a owl:ObjectProperty ;
+    rdfs:label "laid out during"@en .
+
+:basedOnSurvey a owl:ObjectProperty ;
+    rdfs:label "based on survey"@en .
+
+:knownAsFrom a owl:ObjectProperty ;
+    rdfs:label "known as from"@en .
+
+:knownAs a owl:ObjectProperty ;
+    rdfs:label "known as"@en .
+
+:hasCharacteristic a owl:ObjectProperty ;
+    rdfs:label "has characteristic"@en .
+
+:includes a owl:ObjectProperty ;
+    rdfs:label "includes"@en .
+
+:intersectsWith a owl:ObjectProperty ;
+    rdfs:label "intersects with"@en ;
+    owl:symmetricProperty owl:SymmetricProperty .
+
+:becameHeartOf a owl:ObjectProperty ;
+    rdfs:label "became heart of"@en .
+
+:historicallyLocatedIn a owl:ObjectProperty ;
+    rdfs:label "historically located in"@en .
+
+:currentlyLocatedIn a owl:ObjectProperty ;
+    rdfs:label "currently located in"@en .
+
+:ledSettlement a owl:ObjectProperty ;
+    rdfs:label "led settlement"@en .
+
+:firstLocationOf a owl:ObjectProperty ;
+    rdfs:label "first location of"@en .
+
+# Data Properties
+:year a owl:DatatypeProperty ;
+    rdfs:label "year"@en ;
+    rdfs:range xsd:gYear .
+
+:decade a owl:DatatypeProperty ;
+    rdfs:label "decade"@en ;
+    rdfs:range xsd:string .
+
+:description a owl:DatatypeProperty ;
+    rdfs:label "description"@en ;
+    rdfs:range xsd:string .
+
+# Named Individuals - Geography
+:CollinsStreet a :Street , owl:NamedIndividual ;
+    rdfs:label "Collins Street"@en ;
+    :locatedIn :Melbourne ;
+    :namedAfter :DavidCollins ;
+    :laidOutDuring :OriginalHodgleGrid ;
+    :becameHeartOf :FinancialHeartMelbourne .
+
+:ParisEnd a :StreetSegment , owl:NamedIndividual ;
+    rdfs:label "Paris End"@en ;
+    :partOf :CollinsStreet ;
+    :knownAsFrom :Nineteenfifties ;
+    :hasCharacteristic :HeritageCharacter ;
+    :hasCharacteristic :OldStreetTrees ;
+    :hasCharacteristic :HighEndShopping ;
+    :hasCharacteristic :FirstSidewalkCafes .
+
+:QueenStreet a :Street , owl:NamedIndividual ;
+    rdfs:label "Queen Street"@en ;
+    :locatedIn :Melbourne ;
+    :intersectsWith :CollinsStreet ;
+    :becameHeartOf :FinancialHeartMelbourne .
+
+:Melbourne a :City , owl:NamedIndividual ;
+    rdfs:label "Melbourne"@en ;
+    :locatedIn :Victoria .
+
+:Victoria a :Region , owl:NamedIndividual ;
+    rdfs:label "Victoria"@en ;
+    :locatedIn :Australia .
+
+:Australia a :Country , owl:NamedIndividual ;
+    rdfs:label "Australia"@en .
+
+:Sorrento a :Locality , owl:NamedIndividual ;
+    rdfs:label "Sorrento"@en .
+
+# Named Individuals - People
+:DavidCollins a :LieutenantGovernor , owl:NamedIndividual ;
+    rdfs:label "David Collins"@en ;
+    rdfs:label "Lieutenant-Governor David Collins"@en ;
+    :ledSettlement :SorrentoSettlement .
+
+# Named Individuals - Surveys and Plans
+:OriginalHodgleGrid a :Survey , owl:NamedIndividual ;
+    rdfs:label "Hoddle Grid"@en ;
+    :year "1837"^^xsd:gYear ;
+    :locatedIn :Melbourne .
+
+# Named Individuals - Settlements
+:SorrentoSettlement a :Settlement , owl:NamedIndividual ;
+    rdfs:label "settlement at Sorrento"@en ;
+    :locatedIn :Sorrento ;
+    :year "1803"^^xsd:gYear ;
+    :description "short-lived settlement"@en .
+
+# Named Individuals - Time Points and Periods
+:Eighteen37 a :TimePoint , owl:NamedIndividual ;
+    rdfs:label "1837"@en ;
+    :year "1837"^^xsd:gYear .
+
+:Eighteen03 a :TimePoint , owl:NamedIndividual ;
+    rdfs:label "1803"@en ;
+    :year "1803"^^xsd:gYear .
+
+:Nineteenfifties a :Decade , owl:NamedIndividual ;
+    rdfs:label "1950s"@en ;
+    :decade "1950s"@en .
+
+:NineteenthCentury a :Century , owl:NamedIndividual ;
+    rdfs:label "19th century"@en .
+
+# Named Individuals - Characteristics and Features
+:HeritageCharacter a owl:NamedIndividual ;
+    rdfs:label "heritage buildings"@en .
+
+:OldStreetTrees a owl:NamedIndividual ;
+    rdfs:label "old street trees"@en .
+
+:HighEndShopping a owl:NamedIndividual ;
+    rdfs:label "high-end shopping boutiques"@en .
+
+:FirstSidewalkCafes a owl:NamedIndividual ;
+    rdfs:label "first sidewalk cafes in the city"@en .
+
+# Named Individuals - Institutional Roles
+:FinancialHeartMelbourne a :FinancialDistrict , owl:NamedIndividual ;
+    rdfs:label "financial heart of Melbourne"@en ;
+    :establishedDuring :NineteenthCentury ;
+    :includes :Bank ;
+    :includes :InsuranceCompany ;
+    :includes :OfficeBlock ;
+    :includes :Skyscraper .

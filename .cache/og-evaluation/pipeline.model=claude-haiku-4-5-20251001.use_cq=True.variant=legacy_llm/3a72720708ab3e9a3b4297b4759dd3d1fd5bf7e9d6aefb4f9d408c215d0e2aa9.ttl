@@ -1,0 +1,297 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:Community a owl:Class ;
+    rdfs:label "Community"^^xsd:string .
+
+:UnincorporatedCommunity a owl:Class ;
+    rdfs:subClassOf :Community ;
+    rdfs:label "Unincorporated Community"^^xsd:string .
+
+:County a owl:Class ;
+    rdfs:label "County"^^xsd:string .
+
+:State a owl:Class ;
+    rdfs:label "State"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string .
+
+:Region a owl:Class ;
+    rdfs:label "Region"^^xsd:string .
+
+:Flower a owl:Class ;
+    rdfs:label "Flower"^^xsd:string .
+
+:ResortLocation a owl:Class ;
+    rdfs:label "Resort Location"^^xsd:string .
+
+:DiseaseOutbreak a owl:Class ;
+    rdfs:label "Disease Outbreak"^^xsd:string .
+
+:Disease a owl:Class ;
+    rdfs:label "Disease"^^xsd:string .
+
+:Building a owl:Class ;
+    rdfs:label "Building"^^xsd:string .
+
+:Hotel a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "Hotel"^^xsd:string .
+
+:Bank a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "Bank"^^xsd:string .
+
+:PostOffice a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "Post Office"^^xsd:string .
+
+:GeneralStore a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "General Store"^^xsd:string .
+
+:ReligiousBuilding a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "Religious Building"^^xsd:string .
+
+:Church a owl:Class ;
+    rdfs:subClassOf :ReligiousBuilding ;
+    rdfs:label "Church"^^xsd:string .
+
+:MethodistChurch a owl:Class ;
+    rdfs:subClassOf :Church ;
+    rdfs:label "Methodist Church"^^xsd:string .
+
+:Railroad a owl:Class ;
+    rdfs:label "Railroad"^^xsd:string .
+
+:RailroadCompany a owl:Class ;
+    rdfs:label "Railroad Company"^^xsd:string .
+
+:HistoricHome a owl:Class ;
+    rdfs:subClassOf :Building ;
+    rdfs:label "Historic Home"^^xsd:string .
+
+:Census a owl:Class ;
+    rdfs:label "Census"^^xsd:string .
+
+:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string .
+
+:CitizenGroup a owl:Class ;
+    rdfs:label "Citizen Group"^^xsd:string .
+
+:AffluenceCitizens a owl:Class ;
+    rdfs:subClassOf :CitizenGroup ;
+    rdfs:label "Affluent Citizens"^^xsd:string .
+
+:PopulationCount a owl:Class ;
+    rdfs:label "Population Count"^^xsd:string .
+
+:Year a owl:Class ;
+    rdfs:label "Year"^^xsd:string .
+
+:Road a owl:Class ;
+    rdfs:label "Road"^^xsd:string .
+
+:BuildingCondition a owl:Class ;
+    rdfs:label "Building Condition"^^xsd:string .
+
+:Renovation a owl:Class ;
+    rdfs:label "Renovation"^^xsd:string .
+
+# Object Properties
+:locatedIn a owl:ObjectProperty ;
+    rdfs:label "located in"^^xsd:string .
+
+:hasAlternativeName a owl:ObjectProperty ;
+    rdfs:label "has alternative name"^^xsd:string .
+
+:namedAfter a owl:ObjectProperty ;
+    rdfs:label "named after"^^xsd:string .
+
+:developedDuring a owl:ObjectProperty ;
+    rdfs:label "developed during"^^xsd:string .
+
+:ownedBy a owl:ObjectProperty ;
+    rdfs:label "owned by"^^xsd:string .
+
+:hasFacility a owl:ObjectProperty ;
+    rdfs:label "has facility"^^xsd:string .
+
+:hasBuilding a owl:ObjectProperty ;
+    rdfs:label "has building"^^xsd:string .
+
+:hasChurch a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasBuilding ;
+    rdfs:label "has church"^^xsd:string .
+
+:locatedOn a owl:ObjectProperty ;
+    rdfs:label "located on"^^xsd:string .
+
+:attractsCitizens a owl:ObjectProperty ;
+    rdfs:label "attracts citizens"^^xsd:string .
+
+:recordedBy a owl:ObjectProperty ;
+    rdfs:label "recorded by"^^xsd:string .
+
+:largestInRegion a owl:ObjectProperty ;
+    rdfs:label "largest in region"^^xsd:string .
+
+:undergoneRenovation a owl:ObjectProperty ;
+    rdfs:label "undergone renovation"^^xsd:string .
+
+:inCounty a owl:ObjectProperty ;
+    rdfs:label "in county"^^xsd:string .
+
+:inState a owl:ObjectProperty ;
+    rdfs:label "in state"^^xsd:string .
+
+:inCountry a owl:ObjectProperty ;
+    rdfs:label "in country"^^xsd:string .
+
+:regionDirection a owl:ObjectProperty ;
+    rdfs:label "region direction"^^xsd:string .
+
+# Data Properties
+:populationSize a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "population size"^^xsd:string .
+
+:incorporationStatus a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "incorporation status"^^xsd:string .
+
+:buildingConditionStatus a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "building condition status"^^xsd:string .
+
+:censusYear a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "census year"^^xsd:string .
+
+:historicalPeriod a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "historical period"^^xsd:string .
+
+:roadNumber a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "road number"^^xsd:string .
+
+:name a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "name"^^xsd:string .
+
+:outbreakPeriod a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "outbreak period"^^xsd:string .
+
+# Individuals
+:Verbena a :UnincorporatedCommunity , owl:NamedIndividual ;
+    rdfs:label "Verbena"^^xsd:string ;
+    :hasAlternativeName :Summerfield ;
+    :locatedIn :SoutheasternChiltonCounty ;
+    :inCounty :ChiltonCounty ;
+    :inState :Alabama ;
+    :inCountry :UnitedStates ;
+    :namedAfter :VerbenaFlower ;
+    :locatedOn :Railroad ;
+    :attractsCitizens :Affluent_Citizens_of_Montgomery ;
+    :hasBuilding :VerbenaHotel1 ;
+    :hasBuilding :VerbenaHotel2 ;
+    :hasBuilding :VerbenaBank ;
+    :hasBuilding :VerbenaPostOffice ;
+    :hasBuilding :VerbenaGeneralStore ;
+    :hasChurch :VerbenaUnitedMethodistChurch ;
+    :recordedBy :USCensus1890 ;
+    :largestInRegion :ChiltonCounty ;
+    :incorporationStatus "unincorporated"^^xsd:string ;
+    :populationSize 756 .
+
+:Summerfield a owl:NamedIndividual ;
+    rdfs:label "Summerfield"^^xsd:string ;
+    a :Community .
+
+:SoutheasternChiltonCounty a :Region , owl:NamedIndividual ;
+    rdfs:label "southeastern Chilton County"^^xsd:string ;
+    :inCounty :ChiltonCounty .
+
+:ChiltonCounty a :County , owl:NamedIndividual ;
+    rdfs:label "Chilton County"^^xsd:string ;
+    :inState :Alabama .
+
+:Alabama a :State , owl:NamedIndividual ;
+    rdfs:label "Alabama"^^xsd:string ;
+    :inCountry :UnitedStates .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:VerbenaFlower a :Flower , owl:NamedIndividual ;
+    rdfs:label "Verbena"^^xsd:string .
+
+:Montgomery a :Community , owl:NamedIndividual ;
+    rdfs:label "Montgomery"^^xsd:string ;
+    :inState :Alabama .
+
+:YellowFeverOutbreaks a :DiseaseOutbreak , owl:NamedIndividual ;
+    rdfs:label "yellow fever outbreaks"^^xsd:string ;
+    :outbreakPeriod "late 19th and early 20th centuries"^^xsd:string .
+
+:YellowFever a :Disease , owl:NamedIndividual ;
+    rdfs:label "yellow fever"^^xsd:string .
+
+:Affluent_Citizens_of_Montgomery a :AffluenceCitizens , owl:NamedIndividual ;
+    rdfs:label "affluent citizenry of Montgomery"^^xsd:string .
+
+:VerbenaHotel1 a :Hotel , owl:NamedIndividual ;
+    rdfs:label "Verbena hotel (1)"^^xsd:string ;
+    :buildingConditionStatus "gone or boarded up"^^xsd:string .
+
+:VerbenaHotel2 a :Hotel , owl:NamedIndividual ;
+    rdfs:label "Verbena hotel (2)"^^xsd:string ;
+    :buildingConditionStatus "gone or boarded up"^^xsd:string .
+
+:VerbenaBank a :Bank , owl:NamedIndividual ;
+    rdfs:label "Verbena bank"^^xsd:string ;
+    :buildingConditionStatus "gone or boarded up"^^xsd:string .
+
+:VerbenaPostOffice a :PostOffice , owl:NamedIndividual ;
+    rdfs:label "Verbena post office"^^xsd:string ;
+    :buildingConditionStatus "gone or boarded up"^^xsd:string .
+
+:VerbenaGeneralStore a :GeneralStore , owl:NamedIndividual ;
+    rdfs:label "Verbena general store"^^xsd:string ;
+    :buildingConditionStatus "gone or boarded up"^^xsd:string .
+
+:VerbenaUnitedMethodistChurch a :MethodistChurch , owl:NamedIndividual ;
+    rdfs:label "Verbena United Methodist Church"^^xsd:string ;
+    :locatedOn :CountyRoad59 ;
+    :buildingConditionStatus "still stands"^^xsd:string .
+
+:CountyRoad59 a :Road , owl:NamedIndividual ;
+    rdfs:label "County Road 59"^^xsd:string .
+
+:Railroad a :Railroad , owl:NamedIndividual ;
+    rdfs:label "railroad"^^xsd:string ;
+    :ownedBy :CSXTransportation .
+
+:CSXTransportation a :RailroadCompany , owl:NamedIndividual ;
+    rdfs:label "CSX Transportation"^^xsd:string .
+
+:USCensus1890 a :Census , owl:NamedIndividual ;
+    rdfs:label "U.S. Census in 1890"^^xsd:string ;
+    :censusYear 1890 .
+
+:StatelySomeBuildingsVerbena a :HistoricHome , owl:NamedIndividual ;
+    rdfs:label "stately homes"^^xsd:string ;
+    :undergoneRenovation :RecentRenovationAndRestoration ;
+    :buildingConditionStatus "undergone recent renovation and restoration"^^xsd:string .
+
+:RecentRenovationAndRestoration a :Renovation , owl:NamedIndividual ;
+    rdfs:label "recent renovation and restoration"^^xsd:string .

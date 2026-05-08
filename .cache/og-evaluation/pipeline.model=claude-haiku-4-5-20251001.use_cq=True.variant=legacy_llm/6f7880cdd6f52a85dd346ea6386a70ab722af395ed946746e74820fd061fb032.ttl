@@ -1,0 +1,348 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:VideoGame a owl:Class ;
+    rdfs:label "Video Game"^^xsd:string .
+
+:PuzzleVideoGame a owl:Class ;
+    rdfs:subClassOf :VideoGame ;
+    rdfs:label "Puzzle Video Game"^^xsd:string .
+
+:PhysicsBasedPuzzleVideoGame a owl:Class ;
+    rdfs:subClassOf :PuzzleVideoGame ;
+    rdfs:label "Physics-Based Puzzle Video Game"^^xsd:string .
+
+:VideoGameConsole a owl:Class ;
+    rdfs:label "Video Game Console"^^xsd:string .
+
+:Organisation a owl:Class ;
+    rdfs:label "Organisation"^^xsd:string .
+
+:VideoGameDeveloper a owl:Class ;
+    rdfs:subClassOf :Organisation ;
+    rdfs:label "Video Game Developer"^^xsd:string .
+
+:VideoGamePublisher a owl:Class ;
+    rdfs:subClassOf :Organisation ;
+    rdfs:label "Video Game Publisher"^^xsd:string .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:FilmDirector a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Film Director"^^xsd:string .
+
+:GameDesigner a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Game Designer"^^xsd:string .
+
+:GeographicTerritory a owl:Class ;
+    rdfs:label "Geographic Territory"^^xsd:string .
+
+:TimePoint a owl:Class ;
+    rdfs:label "Time Point"^^xsd:string .
+
+:ReleaseDate a owl:Class ;
+    rdfs:subClassOf :TimePoint ;
+    rdfs:label "Release Date"^^xsd:string .
+
+:AnnouncementDate a owl:Class ;
+    rdfs:subClassOf :TimePoint ;
+    rdfs:label "Announcement Date"^^xsd:string .
+
+:Gameplay a owl:Class ;
+    rdfs:label "Gameplay"^^xsd:string .
+
+:GameMechanic a owl:Class ;
+    rdfs:label "Game Mechanic"^^xsd:string .
+
+:GameMode a owl:Class ;
+    rdfs:label "Game Mode"^^xsd:string .
+
+:GameLevel a owl:Class ;
+    rdfs:label "Game Level"^^xsd:string .
+
+:OnlineFeature a owl:Class ;
+    rdfs:label "Online Feature"^^xsd:string .
+
+:ServerShutdown a owl:Class ;
+    rdfs:label "Server Shutdown"^^xsd:string .
+
+:BusinessDeal a owl:Class ;
+    rdfs:label "Business Deal"^^xsd:string .
+
+:Quantity a owl:Class ;
+    rdfs:label "Quantity"^^xsd:string .
+
+:NumericValue a owl:Class ;
+    rdfs:subClassOf :Quantity ;
+    rdfs:label "Numeric Value"^^xsd:string .
+
+# Object Properties
+:hasTitle a owl:ObjectProperty ;
+    rdfs:label "has title"^^xsd:string .
+
+:hasAlternativeName a owl:ObjectProperty ;
+    rdfs:label "has alternative name"^^xsd:string .
+
+:developedBy a owl:ObjectProperty ;
+    rdfs:label "developed by"^^xsd:string ;
+    owl:inverseOf :develops .
+
+:develops a owl:ObjectProperty ;
+    rdfs:label "develops"^^xsd:string .
+
+:publishedBy a owl:ObjectProperty ;
+    rdfs:label "published by"^^xsd:string ;
+    owl:inverseOf :publishes .
+
+:publishes a owl:ObjectProperty ;
+    rdfs:label "publishes"^^xsd:string .
+
+:releasedFor a owl:ObjectProperty ;
+    rdfs:label "released for"^^xsd:string .
+
+:sequelOf a owl:ObjectProperty ;
+    rdfs:label "sequel of"^^xsd:string ;
+    owl:inverseOf :hasPredecessor .
+
+:hasPredecessor a owl:ObjectProperty ;
+    rdfs:label "has predecessor"^^xsd:string .
+
+:releasedIn a owl:ObjectProperty ;
+    rdfs:label "released in"^^xsd:string .
+
+:hasReleaseDate a owl:ObjectProperty ;
+    rdfs:label "has release date"^^xsd:string .
+
+:releaseDateValue a owl:DatatypeProperty ;
+    rdfs:label "release date value"^^xsd:string ;
+    rdfs:range xsd:date .
+
+:territoryOfRelease a owl:ObjectProperty ;
+    rdfs:label "territory of release"^^xsd:string .
+
+:designedBy a owl:ObjectProperty ;
+    rdfs:label "designed by"^^xsd:string ;
+    owl:inverseOf :designs .
+
+:designs a owl:ObjectProperty ;
+    rdfs:label "designs"^^xsd:string .
+
+:hasGameplay a owl:ObjectProperty ;
+    rdfs:label "has gameplay"^^xsd:string .
+
+:resemblesGameplay a owl:ObjectProperty ;
+    rdfs:label "resembles gameplay"^^xsd:string .
+
+:hasGameMechanic a owl:ObjectProperty ;
+    rdfs:label "has game mechanic"^^xsd:string .
+
+:hasGameMode a owl:ObjectProperty ;
+    rdfs:label "has game mode"^^xsd:string .
+
+:hasEmphasis a owl:ObjectProperty ;
+    rdfs:label "has emphasis"^^xsd:string .
+
+:hasNumberOfLevels a owl:ObjectProperty ;
+    rdfs:label "has number of levels"^^xsd:string .
+
+:levelCount a owl:DatatypeProperty ;
+    rdfs:label "level count"^^xsd:string ;
+    rdfs:range xsd:integer .
+
+:hasOnlineFeature a owl:ObjectProperty ;
+    rdfs:label "has online feature"^^xsd:string .
+
+:allowsDownload a owl:ObjectProperty ;
+    rdfs:label "allows download"^^xsd:string .
+
+:allowsUpload a owl:ObjectProperty ;
+    rdfs:label "allows upload"^^xsd:string .
+
+:allowsSharing a owl:ObjectProperty ;
+    rdfs:label "allows sharing"^^xsd:string .
+
+:formallyAnnouncedOn a owl:ObjectProperty ;
+    rdfs:label "formally announced on"^^xsd:string .
+
+:announcementDateValue a owl:DatatypeProperty ;
+    rdfs:label "announcement date value"^^xsd:string ;
+    rdfs:range xsd:date .
+
+:createdAs a owl:ObjectProperty ;
+    rdfs:label "created as"^^xsd:string .
+
+:partOfDeal a owl:ObjectProperty ;
+    rdfs:label "part of deal"^^xsd:string .
+
+:dealBetween a owl:ObjectProperty ;
+    rdfs:label "deal between"^^xsd:string .
+
+:dealInvolves a owl:ObjectProperty ;
+    rdfs:label "deal involves"^^xsd:string .
+
+:countsAsOriginalProperty a owl:DatatypeProperty ;
+    rdfs:label "counts as original property"^^xsd:string ;
+    rdfs:range xsd:boolean .
+
+:numberOfOriginalProperties a owl:DatatypeProperty ;
+    rdfs:label "number of original properties"^^xsd:string ;
+    rdfs:range xsd:integer .
+
+:hasServerShutdown a owl:ObjectProperty ;
+    rdfs:label "has server shutdown"^^xsd:string .
+
+:shutdownDate a owl:DatatypeProperty ;
+    rdfs:label "shutdown date"^^xsd:string ;
+    rdfs:range xsd:date .
+
+:madeUnavailable a owl:ObjectProperty ;
+    rdfs:label "made unavailable"^^xsd:string .
+
+:developmentBeganAfter a owl:ObjectProperty ;
+    rdfs:label "development began after"^^xsd:string .
+
+:completionOf a owl:ObjectProperty ;
+    rdfs:label "completion of"^^xsd:string .
+
+# Data Properties
+:name a owl:DatatypeProperty ;
+    rdfs:label "name"^^xsd:string ;
+    rdfs:range xsd:string .
+
+:description a owl:DatatypeProperty ;
+    rdfs:label "description"^^xsd:string ;
+    rdfs:range xsd:string .
+
+# Individuals - Games
+:BoomBloxBashParty a :PhysicsBasedPuzzleVideoGame , owl:NamedIndividual ;
+    rdfs:label "Boom Blox Bash Party"^^xsd:string ;
+    :hasAlternativeName :BoomBloxSmashParty ;
+    :developedBy :EALosAngeles ;
+    :developedBy :AmblinEntertainment ;
+    :publishedBy :ElectronicArts ;
+    :releasedFor :WiiConsole ;
+    :sequelOf :BoomBlox ;
+    :designedBy :StevenSpielberg ;
+    :hasNumberOfLevels :FourHundredLevels ;
+    :hasGameplay :BoomBloxBashPartyGameplay ;
+    :hasGameMode :ShootingMode ;
+    :hasOnlineFeature :DownloadFeature ;
+    :hasOnlineFeature :UploadFeature ;
+    :hasOnlineFeature :SharingFeature ;
+    :createdAs :OriginalProperty ;
+    :partOfDeal :EASpielbergDeal ;
+    :countsAsOriginalProperty false ;
+    :hasServerShutdown :BoomBloxBashPartyServerShutdown ;
+    :releasedIn :NorthAmerica ;
+    :releasedIn :Europe ;
+    :formallyAnnouncedOn :AnnouncementDate20090128 ;
+    :developmentBeganAfter :BoomBloxCompletion .
+
+:BoomBloxSmashParty a owl:NamedIndividual ;
+    rdfs:label "Boom Blox Smash Party"^^xsd:string .
+
+:BoomBlox a :PhysicsBasedPuzzleVideoGame , owl:NamedIndividual ;
+    rdfs:label "Boom Blox"^^xsd:string .
+
+# Individuals - Organisations
+:EALosAngeles a :VideoGameDeveloper , owl:NamedIndividual ;
+    rdfs:label "EA Los Angeles"^^xsd:string .
+
+:AmblinEntertainment a :VideoGameDeveloper , owl:NamedIndividual ;
+    rdfs:label "Amblin Entertainment"^^xsd:string .
+
+:ElectronicArts a :VideoGamePublisher , owl:NamedIndividual ;
+    rdfs:label "Electronic Arts"^^xsd:string .
+
+# Individuals - Persons
+:StevenSpielberg a :FilmDirector , :GameDesigner , owl:NamedIndividual ;
+    rdfs:label "Steven Spielberg"^^xsd:string .
+
+# Individuals - Hardware
+:WiiConsole a :VideoGameConsole , owl:NamedIndividual ;
+    rdfs:label "Wii"^^xsd:string .
+
+# Individuals - Territories
+:NorthAmerica a :GeographicTerritory , owl:NamedIndividual ;
+    rdfs:label "North America"^^xsd:string .
+
+:Europe a :GeographicTerritory , owl:NamedIndividual ;
+    rdfs:label "Europe"^^xsd:string .
+
+# Individuals - Release Dates
+:ReleaseDateNorthAmerica a :ReleaseDate , owl:NamedIndividual ;
+    rdfs:label "19 May 2009"^^xsd:string ;
+    :releaseDateValue "2009-05-19"^^xsd:date ;
+    :territoryOfRelease :NorthAmerica .
+
+:ReleaseDateEurope a :ReleaseDate , owl:NamedIndividual ;
+    rdfs:label "29 May 2009"^^xsd:string ;
+    :releaseDateValue "2009-05-29"^^xsd:date ;
+    :territoryOfRelease :Europe .
+
+:AnnouncementDate20090128 a :AnnouncementDate , owl:NamedIndividual ;
+    rdfs:label "28 January 2009"^^xsd:string ;
+    :announcementDateValue "2009-01-28"^^xsd:date .
+
+# Individuals - Quantities
+:FourHundredLevels a :NumericValue , owl:NamedIndividual ;
+    rdfs:label "more than 400"^^xsd:string ;
+    :levelCount 400 .
+
+:ThreeOriginalProperties a :NumericValue , owl:NamedIndividual ;
+    rdfs:label "three"^^xsd:string ;
+    :numberOfOriginalProperties 3 .
+
+# Individuals - Gameplay and Mechanics
+:BoomBloxBashPartyGameplay a :Gameplay , owl:NamedIndividual ;
+    rdfs:label "Boom Blox Bash Party gameplay"^^xsd:string ;
+    :resemblesGameplay :BoomBloxGameplay ;
+    :hasGameMechanic :NewMechanics .
+
+:BoomBloxGameplay a :Gameplay , owl:NamedIndividual ;
+    rdfs:label "original Boom Blox gameplay"^^xsd:string .
+
+:NewMechanics a :GameMechanic , owl:NamedIndividual ;
+    rdfs:label "new mechanics"^^xsd:string .
+
+:ShootingMode a :GameMode , owl:NamedIndividual ;
+    rdfs:label "shooting mode"^^xsd:string .
+
+# Individuals - Online Features
+:DownloadFeature a :OnlineFeature , owl:NamedIndividual ;
+    rdfs:label "download new levels"^^xsd:string .
+
+:UploadFeature a :OnlineFeature , owl:NamedIndividual ;
+    rdfs:label "upload custom-created levels"^^xsd:string .
+
+:SharingFeature a :OnlineFeature , owl:NamedIndividual ;
+    rdfs:label "share online"^^xsd:string .
+
+# Individuals - Server Shutdown
+:BoomBloxBashPartyServerShutdown a :ServerShutdown , owl:NamedIndividual ;
+    rdfs:label "EA server shutdown for Boom Blox Bash Party in April 2012"^^xsd:string ;
+    :shutdownDate "2012-04"^^xsd:gYearMonth ;
+    :madeUnavailable :DownloadFeature ;
+    :madeUnavailable :UploadFeature .
+
+# Individuals - Business Deal
+:EASpielbergDeal a :BusinessDeal , owl:NamedIndividual ;
+    rdfs:label "Electronic Arts and Steven Spielberg deal"^^xsd:string ;
+    :dealBetween :ElectronicArts ;
+    :dealBetween :StevenSpielberg ;
+    :numberOfOriginalProperties 3 .
+
+:OriginalProperty a owl:Class ;
+    rdfs:label "Original Property"^^xsd:string .
+
+# Completion of predecessor
+:BoomBloxCompletion a owl:Class , owl:NamedIndividual ;
+    rdfs:label "completion of Boom Blox"^^xsd:string ;
+    :completionOf :BoomBlox .

@@ -1,0 +1,161 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Place a owl:Class .
+:GeographicalFeature a owl:Class .
+:AdministrativeDivision a owl:Class .
+:County a owl:Class ; rdfs:subClassOf :AdministrativeDivision .
+:Municipality a owl:Class ; rdfs:subClassOf :AdministrativeDivision .
+:Island a owl:Class ; rdfs:subClassOf :Place , :GeographicalFeature .
+:Town a owl:Class ; rdfs:subClassOf :Place .
+:Sea a owl:Class ; rdfs:subClassOf :GeographicalFeature .
+:WaterAccess a owl:Class .
+:Structure a owl:Class .
+:Lighthouse a owl:Class ; rdfs:subClassOf :Structure .
+:Tower a owl:Class ; rdfs:subClassOf :Structure .
+:House a owl:Class ; rdfs:subClassOf :Structure .
+:CoatOfArms a owl:Class .
+:Entrance a owl:Class .
+:OpeningSchedule a owl:Class .
+:AccommodationUse a owl:Class .
+:PublicAccessibility a owl:Class .
+:Year a owl:Class .
+:Nickname a owl:Class .
+
+:locatedIn a owl:ObjectProperty .
+:near a owl:ObjectProperty .
+:marksEntranceTo a owl:ObjectProperty .
+:throughGeographicalFeature a owl:ObjectProperty .
+:builtInYear a owl:ObjectProperty .
+:builtWithSameSpecificationsAs a owl:ObjectProperty ; a owl:SymmetricProperty .
+:hasNickname a owl:ObjectProperty .
+:placedOnCoatOfArmsOf a owl:ObjectProperty .
+:placedWhenLocatedIn a owl:ObjectProperty .
+:isStillStanding a owl:ObjectProperty .
+:isStillInUse a owl:ObjectProperty .
+:accessibleBy a owl:ObjectProperty .
+:openToPublic a owl:ObjectProperty .
+:openDuring a owl:ObjectProperty .
+:usedFor a owl:ObjectProperty .
+:partOf a owl:ObjectProperty ; a owl:TransitiveProperty .
+:hasPart a owl:ObjectProperty .
+:hasSite a owl:ObjectProperty .
+:hasTower a owl:ObjectProperty .
+:hasKeeperHouse a owl:ObjectProperty .
+
+:locatedIn rdfs:domain :Place ; rdfs:range :Place .
+:near rdfs:domain :Place ; rdfs:range :Place .
+:marksEntranceTo rdfs:domain :Structure ; rdfs:range :Place .
+:throughGeographicalFeature rdfs:domain :Entrance ; rdfs:range :GeographicalFeature .
+:builtInYear rdfs:domain :Structure ; rdfs:range :Year .
+:hasNickname rdfs:domain :Structure ; rdfs:range :Nickname .
+:placedOnCoatOfArmsOf rdfs:domain :Structure ; rdfs:range :Municipality .
+:placedWhenLocatedIn rdfs:domain :Structure ; rdfs:range :Municipality .
+:isStillStanding rdfs:domain :Lighthouse ; rdfs:range xsd:boolean .
+:isStillInUse rdfs:domain :Lighthouse ; rdfs:range xsd:boolean .
+:accessibleBy rdfs:domain :Place ; rdfs:range :WaterAccess .
+:openToPublic rdfs:domain :Place ; rdfs:range xsd:boolean .
+:openDuring rdfs:domain :Structure ; rdfs:range :OpeningSchedule .
+:usedFor rdfs:domain :Structure ; rdfs:range :AccommodationUse .
+:partOf rdfs:domain :Place ; rdfs:range :Place .
+:hasPart rdfs:domain :Place ; rdfs:range :Place .
+:hasSite rdfs:domain :Lighthouse ; rdfs:range :Place .
+:hasTower rdfs:domain :Lighthouse ; rdfs:range :Tower .
+:hasKeeperHouse rdfs:domain :Lighthouse ; rdfs:range :House .
+
+:StoreTorungenLighthouse a :Lighthouse , owl:NamedIndividual ;
+    rdfs:label "Store Torungen Lighthouse"^^xsd:string ;
+    :locatedIn :StoreTorungenIsland ;
+    :locatedIn :ArendalMunicipality ;
+    :locatedIn :AustAgderCounty ;
+    :near :LilleTorungenLighthouse ;
+    :marksEntranceTo :ArendalTown ;
+    :throughGeographicalFeature :Skagerrak ;
+    :builtInYear :Year1844 ;
+    :builtWithSameSpecificationsAs :LilleTorungenLighthouse ;
+    :hasNickname :TwinLighthouses ;
+    :placedOnCoatOfArmsOf :HisoyMunicipality ;
+    :placedWhenLocatedIn :HisoyMunicipality ;
+    :isStillStanding false ;
+    :isStillInUse false ;
+    :accessibleBy :BoatAccess ;
+    :hasSite :StoreTorungenSite ;
+    :hasTower :StoreTorungenTower ;
+    :hasKeeperHouse :LighthouseKeepersHouse .
+
+:LilleTorungenLighthouse a :Lighthouse , owl:NamedIndividual ;
+    rdfs:label "Lille Torungen Lighthouse"^^xsd:string ;
+    :locatedIn :ArendalMunicipality ;
+    :locatedIn :AustAgderCounty ;
+    :near :StoreTorungenLighthouse ;
+    :marksEntranceTo :ArendalTown ;
+    :throughGeographicalFeature :Skagerrak ;
+    :builtInYear :Year1844 ;
+    :builtWithSameSpecificationsAs :StoreTorungenLighthouse ;
+    :hasNickname :TwinLighthouses ;
+    :placedOnCoatOfArmsOf :HisoyMunicipality ;
+    :placedWhenLocatedIn :HisoyMunicipality ;
+    :isStillStanding true ;
+    :isStillInUse false .
+
+:StoreTorungenIsland a :Island , owl:NamedIndividual ;
+    rdfs:label "Store Torungen"^^xsd:string ;
+    :locatedIn :ArendalMunicipality .
+
+:ArendalMunicipality a :Municipality , owl:NamedIndividual ;
+    rdfs:label "Arendal"^^xsd:string ;
+    :locatedIn :AustAgderCounty .
+
+:AustAgderCounty a :County , owl:NamedIndividual ;
+    rdfs:label "Aust - Agder county"^^xsd:string ;
+    :locatedIn :Norway .
+
+:Norway a :Place , owl:NamedIndividual ;
+    rdfs:label "Norway"^^xsd:string .
+
+:Skagerrak a :Sea , owl:NamedIndividual ;
+    rdfs:label "Skaggerak"^^xsd:string .
+
+:ArendalTown a :Town , owl:NamedIndividual ;
+    rdfs:label "Arendal"^^xsd:string .
+
+:HisoyMunicipality a :Municipality , owl:NamedIndividual ;
+    rdfs:label "Hisøy"^^xsd:string .
+
+:Year1844 a :Year , owl:NamedIndividual ;
+    rdfs:label "1844"^^xsd:string .
+
+:TwinLighthouses a :Nickname , owl:NamedIndividual ;
+    rdfs:label "twin"^^xsd:string .
+
+:BoatAccess a :WaterAccess , owl:NamedIndividual ;
+    rdfs:label "boat"^^xsd:string .
+
+:StoreTorungenSite a :Place , owl:NamedIndividual ;
+    rdfs:label "site of the Store Torungen Lighthouse"^^xsd:string ;
+    :accessibleBy :BoatAccess ;
+    :openToPublic true .
+
+:StoreTorungenTower a :Tower , owl:NamedIndividual ;
+    rdfs:label "tower"^^xsd:string ;
+    :openDuring :SummerDaily .
+
+:SummerDaily a :OpeningSchedule , owl:NamedIndividual ;
+    rdfs:label "daily during the summers"^^xsd:string .
+
+:LighthouseKeepersHouse a :House , owl:NamedIndividual ;
+    rdfs:label "lighthouse keepers house"^^xsd:string ;
+    :usedFor :OvernightAccommodations .
+
+:OvernightAccommodations a :AccommodationUse , owl:NamedIndividual ;
+    rdfs:label "overnight accommodations"^^xsd:string .
+
+:StoreTorungenLighthouse :partOf :StoreTorungenIsland .
+:StoreTorungenIsland :partOf :ArendalMunicipality .
+:ArendalMunicipality :partOf :AustAgderCounty .
+:AustAgderCounty :partOf :Norway .

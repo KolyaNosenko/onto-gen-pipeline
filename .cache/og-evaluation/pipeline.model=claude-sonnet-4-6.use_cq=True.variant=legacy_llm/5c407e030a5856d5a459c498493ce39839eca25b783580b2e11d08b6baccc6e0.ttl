@@ -1,0 +1,377 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Ontology declaration
+#################################################################
+
+: a owl:Ontology .
+
+#################################################################
+# Classes
+#################################################################
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:Musician a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Musician"^^xsd:string .
+
+:FineArtist a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Fine Artist"^^xsd:string .
+
+:SingerSongwriter a owl:Class ;
+    rdfs:subClassOf :Musician ;
+    rdfs:label "Singer-Songwriter"^^xsd:string .
+
+:Place a owl:Class ;
+    rdfs:label "Place"^^xsd:string .
+
+:City a owl:Class ;
+    rdfs:subClassOf :Place ;
+    rdfs:label "City"^^xsd:string .
+
+:State a owl:Class ;
+    rdfs:subClassOf :Place ;
+    rdfs:label "State"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Place ;
+    rdfs:label "Country"^^xsd:string .
+
+:Organisation a owl:Class ;
+    rdfs:label "Organisation"^^xsd:string .
+
+:RecordLabel a owl:Class ;
+    rdfs:subClassOf :Organisation ;
+    rdfs:label "Record Label"^^xsd:string .
+
+:MediaPublication a owl:Class ;
+    rdfs:subClassOf :Organisation ;
+    rdfs:label "Media Publication"^^xsd:string .
+
+:Album a owl:Class ;
+    rdfs:label "Album"^^xsd:string .
+
+:StudioAlbum a owl:Class ;
+    rdfs:subClassOf :Album ;
+    rdfs:label "Studio Album"^^xsd:string .
+
+:FullLengthStudioAlbum a owl:Class ;
+    rdfs:subClassOf :StudioAlbum ;
+    rdfs:label "Full-Length Studio Album"^^xsd:string .
+
+:MusicalGenre a owl:Class ;
+    rdfs:label "Musical Genre"^^xsd:string .
+
+:MusicalStyle a owl:Class ;
+    rdfs:label "Musical Style"^^xsd:string .
+
+:VocalRange a owl:Class ;
+    rdfs:label "Vocal Range"^^xsd:string .
+
+:VocalTechnique a owl:Class ;
+    rdfs:label "Vocal Technique"^^xsd:string .
+
+:VocalQuality a owl:Class ;
+    rdfs:label "Vocal Quality"^^xsd:string .
+
+:StyleLabel a owl:Class ;
+    rdfs:label "Style Label"^^xsd:string .
+
+:Nationality a owl:Class ;
+    rdfs:label "Nationality"^^xsd:string .
+
+:Date a owl:Class ;
+    rdfs:label "Date"^^xsd:string .
+
+:Year a owl:Class ;
+    rdfs:subClassOf :Date ;
+    rdfs:label "Year"^^xsd:string .
+
+:TimePeriod a owl:Class ;
+    rdfs:label "Time Period"^^xsd:string .
+
+:Quantity a owl:Class ;
+    rdfs:label "Quantity"^^xsd:string .
+
+:AlbumCount a owl:Class ;
+    rdfs:subClassOf :Quantity ;
+    rdfs:label "Album Count"^^xsd:string .
+
+:MythologicalPlace a owl:Class ;
+    rdfs:label "Mythological Place"^^xsd:string .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:basedIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :City ;
+    rdfs:label "basedIn"^^xsd:string .
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :State ;
+    rdfs:label "locatedIn"^^xsd:string .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Nationality ;
+    rdfs:label "hasNationality"^^xsd:string .
+
+:signedTo a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :RecordLabel ;
+    rdfs:label "signedTo"^^xsd:string .
+
+:released a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :Album ;
+    rdfs:label "released"^^xsd:string .
+
+:associatedWithGenre a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :MusicalGenre ;
+    rdfs:label "associatedWithGenre"^^xsd:string .
+
+:incorporatesElement a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :MusicalGenre ;
+    rdfs:label "incorporatesElement"^^xsd:string .
+
+:rootedIn a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :MusicalGenre ;
+    rdfs:label "rootedIn"^^xsd:string .
+
+:describedByStyleLabel a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :StyleLabel ;
+    rdfs:label "describedByStyleLabel"^^xsd:string .
+
+:hasProfession a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Profession ;
+    rdfs:label "hasProfession"^^xsd:string .
+
+:singsIn a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :VocalRange ;
+    rdfs:label "singsIn"^^xsd:string .
+
+:hasVocalTechnique a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :VocalTechnique ;
+    rdfs:label "hasVocalTechnique"^^xsd:string .
+
+:reviewedBy a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :MediaPublication ;
+    rdfs:label "reviewedBy"^^xsd:string .
+
+:describedVocalQuality a owl:ObjectProperty ;
+    rdfs:domain :MediaPublication ;
+    rdfs:range :VocalQuality ;
+    rdfs:label "describedVocalQuality"^^xsd:string .
+
+:activeFrom a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :Year ;
+    rdfs:label "activeFrom"^^xsd:string .
+
+:hasAlbumCount a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :AlbumCount ;
+    rdfs:label "hasAlbumCount"^^xsd:string .
+
+:hasAlbumNumber a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :Quantity ;
+    rdfs:label "hasAlbumNumber"^^xsd:string .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:birthDate a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:date ;
+    rdfs:label "birthDate"^^xsd:string .
+
+:activeFromYear a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "activeFromYear"^^xsd:string .
+
+:releaseDate a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:string ;
+    rdfs:label "releaseDate"^^xsd:string .
+
+:albumSequenceNumber a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:integer ;
+    rdfs:label "albumSequenceNumber"^^xsd:string .
+
+:totalFullLengthAlbumsReleased a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range xsd:integer ;
+    rdfs:label "totalFullLengthAlbumsReleased"^^xsd:string .
+
+:vocalDescription a owl:DatatypeProperty ;
+    rdfs:domain :VocalQuality ;
+    rdfs:range xsd:string ;
+    rdfs:label "vocalDescription"^^xsd:string .
+
+:styleDescription a owl:DatatypeProperty ;
+    rdfs:domain :MusicalStyle ;
+    rdfs:range xsd:string ;
+    rdfs:label "styleDescription"^^xsd:string .
+
+#################################################################
+# Additional Classes
+#################################################################
+
+:Profession a owl:Class ;
+    rdfs:label "Profession"^^xsd:string .
+
+#################################################################
+# Property Characteristics
+#################################################################
+
+:basedIn a owl:FunctionalProperty .
+:birthDate a owl:FunctionalProperty .
+
+#################################################################
+# Named Individuals
+#################################################################
+
+:MarissaNadler a :SingerSongwriter , :FineArtist , owl:NamedIndividual ;
+    rdfs:label "Marissa Nadler"^^xsd:string ;
+    :birthDate "1981-04-05"^^xsd:date ;
+    :hasNationality :American ;
+    :basedIn :Boston ;
+    :activeFromYear "2000"^^xsd:gYear ;
+    :signedTo :SacredBonesRecords ;
+    :signedTo :BellaUnion ;
+    :released :Strangers ;
+    :describedByStyleLabel :DreamFolk ;
+    :singsIn :MezzoSoprano ;
+    :hasVocalTechnique :Falsetto ;
+    :reviewedBy :Pitchfork ;
+    :reviewedBy :TheBostonGlobe ;
+    :hasProfession :MusicianProfession ;
+    :hasProfession :FineArtistProfession ;
+    :totalFullLengthAlbumsReleased "7"^^xsd:integer .
+
+:Boston a :City , owl:NamedIndividual ;
+    rdfs:label "Boston"^^xsd:string ;
+    :locatedIn :Massachusetts .
+
+:Massachusetts a :State , owl:NamedIndividual ;
+    rdfs:label "Massachusetts"^^xsd:string .
+
+:American a :Nationality , owl:NamedIndividual ;
+    rdfs:label "American"^^xsd:string .
+
+:SacredBonesRecords a :RecordLabel , owl:NamedIndividual ;
+    rdfs:label "Sacred Bones Records"^^xsd:string .
+
+:BellaUnion a :RecordLabel , owl:NamedIndividual ;
+    rdfs:label "Bella Union"^^xsd:string .
+
+:Strangers a :FullLengthStudioAlbum , owl:NamedIndividual ;
+    rdfs:label "Strangers"^^xsd:string ;
+    :releaseDate "May 2016"^^xsd:string ;
+    :albumSequenceNumber "7"^^xsd:integer ;
+    :rootedIn :OldSchoolCountry ;
+    :rootedIn :Folk ;
+    :incorporatesElement :Experimental ;
+    :incorporatesElement :BlackMetal ;
+    :associatedWithGenre :DreamFolkGenre .
+
+:Year2000 a :Year , owl:NamedIndividual ;
+    rdfs:label "2000"^^xsd:string .
+
+:May2016 a :TimePeriod , owl:NamedIndividual ;
+    rdfs:label "May 2016"^^xsd:string .
+
+:Pitchfork a :MediaPublication , owl:NamedIndividual ;
+    rdfs:label "Pitchfork"^^xsd:string ;
+    :describedVocalQuality :PitchforkVocalDescription .
+
+:TheBostonGlobe a :MediaPublication , owl:NamedIndividual ;
+    rdfs:label "The Boston Globe"^^xsd:string ;
+    :describedVocalQuality :BostonGlobeVocalDescription .
+
+:Hades a :MythologicalPlace , owl:NamedIndividual ;
+    rdfs:label "Hades"^^xsd:string .
+
+:MezzoSoprano a :VocalRange , owl:NamedIndividual ;
+    rdfs:label "mezzo-soprano"^^xsd:string .
+
+:Falsetto a :VocalTechnique , owl:NamedIndividual ;
+    rdfs:label "falsetto"^^xsd:string .
+
+:DreamFolk a :StyleLabel , owl:NamedIndividual ;
+    rdfs:label "dream folk"^^xsd:string .
+
+:OldSchoolCountry a :MusicalGenre , owl:NamedIndividual ;
+    rdfs:label "old-school country"^^xsd:string .
+
+:Folk a :MusicalGenre , owl:NamedIndividual ;
+    rdfs:label "folk"^^xsd:string .
+
+:Experimental a :MusicalGenre , owl:NamedIndividual ;
+    rdfs:label "experimental"^^xsd:string .
+
+:BlackMetal a :MusicalGenre , owl:NamedIndividual ;
+    rdfs:label "black metal"^^xsd:string .
+
+:DreamFolkGenre a :MusicalGenre , owl:NamedIndividual ;
+    rdfs:label "dream folk"^^xsd:string .
+
+:PitchforkVocalDescription a :VocalQuality , owl:NamedIndividual ;
+    rdfs:label "Pitchfork vocal description"^^xsd:string ;
+    :vocalDescription "you would follow straight into Hades; textured and angelic, with just a hint of pain captured within her iridescent falsetto"^^xsd:string .
+
+:BostonGlobeVocalDescription a :VocalQuality , owl:NamedIndividual ;
+    rdfs:label "Boston Globe vocal description"^^xsd:string ;
+    :vocalDescription "She has a voice that, in mythological times, could have lured men to their deaths at sea, an intoxicating soprano drenched in gauzy reverb that hits bell-clear heights, lingers, and tapers off like rings of smoke"^^xsd:string .
+
+:MusicianProfession a :Profession , owl:NamedIndividual ;
+    rdfs:label "musician"^^xsd:string .
+
+:FineArtistProfession a :Profession , owl:NamedIndividual ;
+    rdfs:label "fine artist"^^xsd:string .
+
+:SingerSongwriterProfession a :Profession , owl:NamedIndividual ;
+    rdfs:label "singer-songwriter"^^xsd:string .
+
+#################################################################
+# Class Restrictions
+#################################################################
+
+:SingerSongwriter rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :singsIn ;
+      owl:someValuesFrom :VocalRange ] .
+
+:FullLengthStudioAlbum rdfs:subClassOf :StudioAlbum .
+
+:Musician rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :released ;
+      owl:someValuesFrom :Album ] .
+
+:Musician rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :signedTo ;
+      owl:someValuesFrom :RecordLabel ] .

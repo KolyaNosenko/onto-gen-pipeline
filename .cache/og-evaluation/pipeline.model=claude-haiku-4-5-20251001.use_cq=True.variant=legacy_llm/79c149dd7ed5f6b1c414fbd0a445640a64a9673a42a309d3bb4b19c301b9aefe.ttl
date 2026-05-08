@@ -1,0 +1,394 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:ClimatePhase a owl:Class ;
+    rdfs:label "Climate Phase"^^xsd:string .
+
+:WarmPhase a owl:Class ;
+    rdfs:subClassOf :ClimatePhase ;
+    rdfs:label "Warm Phase"^^xsd:string .
+
+:ColdPhase a owl:Class ;
+    rdfs:subClassOf :ClimatePhase ;
+    rdfs:label "Cold Phase"^^xsd:string .
+
+:ElNino a owl:Class ;
+    rdfs:subClassOf :WarmPhase ;
+    rdfs:label "El Niño"^^xsd:string .
+
+:LaNina a owl:Class ;
+    rdfs:subClassOf :ColdPhase ;
+    rdfs:label "La Niña"^^xsd:string .
+
+:ClimateOscillation a owl:Class ;
+    rdfs:label "Climate Oscillation"^^xsd:string .
+
+:ElNinoSouthernOscillation a owl:Class ;
+    rdfs:subClassOf :ClimateOscillation ;
+    rdfs:label "El Niño Southern Oscillation"^^xsd:string .
+
+:OceanicRegion a owl:Class ;
+    rdfs:label "Oceanic Region"^^xsd:string .
+
+:PacificOcean a owl:Class ;
+    rdfs:subClassOf :OceanicRegion ;
+    rdfs:label "Pacific Ocean"^^xsd:string .
+
+:EquatorialPacific a owl:Class ;
+    rdfs:subClassOf :PacificOcean ;
+    rdfs:label "Equatorial Pacific"^^xsd:string .
+
+:CentralPacific a owl:Class ;
+    rdfs:subClassOf :EquatorialPacific ;
+    rdfs:label "Central Pacific"^^xsd:string .
+
+:EastCentralEquatorialPacific a owl:Class ;
+    rdfs:subClassOf :EquatorialPacific ;
+    rdfs:label "East-Central Equatorial Pacific"^^xsd:string .
+
+:WesternPacific a owl:Class ;
+    rdfs:subClassOf :PacificOcean ;
+    rdfs:label "Western Pacific"^^xsd:string .
+
+:EasternPacific a owl:Class ;
+    rdfs:subClassOf :PacificOcean ;
+    rdfs:label "Eastern Pacific"^^xsd:string .
+
+:PacificCoast a owl:Class ;
+    rdfs:label "Pacific Coast"^^xsd:string .
+
+:SouthAmericanPacificCoast a owl:Class ;
+    rdfs:subClassOf :PacificCoast ;
+    rdfs:label "Pacific Coast of South America"^^xsd:string .
+
+:WaterMass a owl:Class ;
+    rdfs:label "Water Mass"^^xsd:string .
+
+:WarmWaterMass a owl:Class ;
+    rdfs:subClassOf :WaterMass ;
+    rdfs:label "Warm Water Mass"^^xsd:string .
+
+:OceanTemperature a owl:Class ;
+    rdfs:label "Ocean Temperature"^^xsd:string .
+
+:SeaSurfaceTemperature a owl:Class ;
+    rdfs:subClassOf :OceanTemperature ;
+    rdfs:label "Sea Surface Temperature"^^xsd:string .
+
+:AirPressure a owl:Class ;
+    rdfs:label "Air Pressure"^^xsd:string .
+
+:HighAirPressure a owl:Class ;
+    rdfs:subClassOf :AirPressure ;
+    rdfs:label "High Air Pressure"^^xsd:string .
+
+:LowAirPressure a owl:Class ;
+    rdfs:subClassOf :AirPressure ;
+    rdfs:label "Low Air Pressure"^^xsd:string .
+
+:ClimateChange a owl:Class ;
+    rdfs:label "Climate Change"^^xsd:string .
+
+:GlobalTemperatureChange a owl:Class ;
+    rdfs:subClassOf :ClimateChange ;
+    rdfs:label "Global Temperature Change"^^xsd:string .
+
+:GlobalRainfallChange a owl:Class ;
+    rdfs:subClassOf :ClimateChange ;
+    rdfs:label "Global Rainfall Change"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string .
+
+:DevelopingCountry a owl:Class ;
+    rdfs:subClassOf :Country ;
+    rdfs:label "Developing Country"^^xsd:string .
+
+:EconomicSector a owl:Class ;
+    rdfs:label "Economic Sector"^^xsd:string .
+
+:Agriculture a owl:Class ;
+    rdfs:subClassOf :EconomicSector ;
+    rdfs:label "Agriculture"^^xsd:string .
+
+:Fishing a owl:Class ;
+    rdfs:subClassOf :EconomicSector ;
+    rdfs:label "Fishing"^^xsd:string .
+
+:GeographicLocation a owl:Class ;
+    rdfs:label "Geographic Location"^^xsd:string .
+
+:Continent a owl:Class ;
+    rdfs:subClassOf :GeographicLocation ;
+    rdfs:label "Continent"^^xsd:string .
+
+:SouthAmerica a owl:Class ;
+    rdfs:subClassOf :Continent ;
+    rdfs:label "South America"^^xsd:string .
+
+:TimePoint a owl:Class ;
+    rdfs:label "Time Point"^^xsd:string .
+
+:Season a owl:Class ;
+    rdfs:subClassOf :TimePoint ;
+    rdfs:label "Season"^^xsd:string .
+
+:Holiday a owl:Class ;
+    rdfs:subClassOf :TimePoint ;
+    rdfs:label "Holiday"^^xsd:string .
+
+:TemperatureCycle a owl:Class ;
+    rdfs:label "Temperature Cycle"^^xsd:string .
+
+:GeographicBoundary a owl:Class ;
+    rdfs:label "Geographic Boundary"^^xsd:string .
+
+:Meridian a owl:Class ;
+    rdfs:subClassOf :GeographicBoundary ;
+    rdfs:label "Meridian"^^xsd:string .
+
+:NamingOrigin a owl:Class ;
+    rdfs:label "Naming Origin"^^xsd:string .
+
+:ReligiousReference a owl:Class ;
+    rdfs:subClassOf :NamingOrigin ;
+    rdfs:label "Religious Reference"^^xsd:string .
+
+:PopulationGroup a owl:Class ;
+    rdfs:label "Population Group"^^xsd:string .
+
+:Fishermen a owl:Class ;
+    rdfs:subClassOf :PopulationGroup ;
+    rdfs:label "Fishermen"^^xsd:string .
+
+:PeruvianFishermen a owl:Class ;
+    rdfs:subClassOf :Fishermen ;
+    rdfs:label "Peruvian Fishermen"^^xsd:string .
+
+# Object Properties
+:isPhaseOf a owl:ObjectProperty ;
+    rdfs:label "is phase of"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :ClimateOscillation .
+
+:affects a owl:ObjectProperty ;
+    rdfs:label "affects"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :OceanicRegion .
+
+:hasWaterMass a owl:ObjectProperty ;
+    rdfs:label "has water mass"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :WaterMass .
+
+:isLocatedIn a owl:ObjectProperty ;
+    rdfs:label "is located in"^^xsd:string ;
+    rdfs:domain :WaterMass ;
+    rdfs:range :OceanicRegion .
+
+:hasAirPressurePattern a owl:ObjectProperty ;
+    rdfs:label "has air pressure pattern"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :AirPressure .
+
+:hasSeaSurfaceTemperature a owl:ObjectProperty ;
+    rdfs:label "has sea surface temperature"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :SeaSurfaceTemperature .
+
+:causesClimateChange a owl:ObjectProperty ;
+    rdfs:label "causes climate change"^^xsd:string ;
+    rdfs:domain :ClimateOscillation ;
+    rdfs:range :ClimateChange .
+
+:affectsEconomicSector a owl:ObjectProperty ;
+    rdfs:label "affects economic sector"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :EconomicSector .
+
+:affectsCountry a owl:ObjectProperty ;
+    rdfs:label "affects country"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :Country .
+
+:borders a owl:ObjectProperty ;
+    rdfs:label "borders"^^xsd:string ;
+    rdfs:domain :Country ;
+    rdfs:range :OceanicRegion .
+
+:oppositePhase a owl:ObjectProperty, owl:SymmetricProperty ;
+    rdfs:label "opposite phase"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :ClimatePhase .
+
+:occurs a owl:ObjectProperty ;
+    rdfs:label "occurs"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :TimePoint .
+
+:namedAfter a owl:ObjectProperty ;
+    rdfs:label "named after"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :NamingOrigin .
+
+:namedBy a owl:ObjectProperty ;
+    rdfs:label "named by"^^xsd:string ;
+    rdfs:domain :ClimatePhase ;
+    rdfs:range :PopulationGroup .
+
+:references a owl:ObjectProperty ;
+    rdfs:label "references"^^xsd:string ;
+    rdfs:domain :ReligiousReference ;
+    rdfs:range :Holiday .
+
+:hasGeographicBoundary a owl:ObjectProperty ;
+    rdfs:label "has geographic boundary"^^xsd:string ;
+    rdfs:domain :OceanicRegion ;
+    rdfs:range :GeographicBoundary .
+
+:containsRegion a owl:ObjectProperty ;
+    rdfs:label "contains region"^^xsd:string ;
+    rdfs:domain :OceanicRegion ;
+    rdfs:range :OceanicRegion .
+
+# Data Properties
+:hasMeaning a owl:DatatypeProperty ;
+    rdfs:label "has meaning"^^xsd:string ;
+    rdfs:range xsd:string .
+
+:hasTemperatureStatus a owl:DatatypeProperty ;
+    rdfs:label "has temperature status"^^xsd:string ;
+    rdfs:range xsd:string .
+
+:hasAbbreviation a owl:DatatypeProperty ;
+    rdfs:label "has abbreviation"^^xsd:string ;
+    rdfs:range xsd:string .
+
+# Named Individuals
+
+:ElNinoIndividual a :ElNino, owl:NamedIndividual ;
+    rdfs:label "El Niño"^^xsd:string ;
+    :isPhaseOf :ENSOCycle ;
+    :affects :CentralEquatorialPacificRegion ;
+    :affects :EastCentralEquatorialPacificRegion ;
+    :affects :SouthAmericanPacificCoastRegion ;
+    :hasWaterMass :WarmWaterBandElNino ;
+    :hasAirPressurePattern :HighAirPressureWesternPacific ;
+    :hasAirPressurePattern :LowAirPressureEasternPacific ;
+    :causesClimateChange :GlobalTemperatureChangeENSO ;
+    :causesClimateChange :GlobalRainfallChangeENSO ;
+    :affectsEconomicSector :AgricultureSector ;
+    :affectsEconomicSector :FishingSector ;
+    :occurs :ChristmasTime ;
+    :namedAfter :ChristReference ;
+    :namedBy :PeruvianFishermenGroup ;
+    :oppositePhase :LaNinaIndividual ;
+    :hasMeaning "the boy"^^xsd:string ;
+    :hasAbbreviation "ENS"^^xsd:string .
+
+:LaNinaIndividual a :LaNina, owl:NamedIndividual ;
+    rdfs:label "La Niña"^^xsd:string ;
+    :isPhaseOf :ENSOCycle ;
+    :hasSeaSurfaceTemperature :BelowAverageSSTEasternPacific ;
+    :hasAirPressurePattern :HighAirPressureEasternPacific ;
+    :hasAirPressurePattern :LowAirPressureWesternPacific ;
+    :oppositePhase :ElNinoIndividual ;
+    :hasMeaning "the girl"^^xsd:string .
+
+:ENSOCycle a :ElNinoSouthernOscillation, owl:NamedIndividual ;
+    rdfs:label "El Niño Southern Oscillation"^^xsd:string ;
+    :hasAbbreviation "ENSO"^^xsd:string ;
+    :causesClimateChange :GlobalTemperatureChangeENSO ;
+    :causesClimateChange :GlobalRainfallChangeENSO .
+
+:CentralEquatorialPacificRegion a :CentralPacific, owl:NamedIndividual ;
+    rdfs:label "Central Equatorial Pacific"^^xsd:string .
+
+:EastCentralEquatorialPacificRegion a :EastCentralEquatorialPacific, owl:NamedIndividual ;
+    rdfs:label "East-Central Equatorial Pacific"^^xsd:string .
+
+:SouthAmericanPacificCoastRegion a :SouthAmericanPacificCoast, owl:NamedIndividual ;
+    rdfs:label "Pacific coast of South America"^^xsd:string .
+
+:WesternPacificRegion a :WesternPacific, owl:NamedIndividual ;
+    rdfs:label "Western Pacific"^^xsd:string .
+
+:EasternPacificRegion a :EasternPacific, owl:NamedIndividual ;
+    rdfs:label "Eastern Pacific"^^xsd:string .
+
+:WarmWaterBandElNino a :WarmWaterMass, owl:NamedIndividual ;
+    rdfs:label "warm water band"^^xsd:string ;
+    :isLocatedIn :CentralEquatorialPacificRegion ;
+    :isLocatedIn :EastCentralEquatorialPacificRegion ;
+    :isLocatedIn :SouthAmericanPacificCoastRegion .
+
+:InternationalDateLine a :Meridian, owl:NamedIndividual ;
+    rdfs:label "International Date Line"^^xsd:string .
+
+:Meridian120WestLongitude a :Meridian, owl:NamedIndividual ;
+    rdfs:label "120 ° W"^^xsd:string .
+
+:HighAirPressureWesternPacific a :HighAirPressure, owl:NamedIndividual ;
+    rdfs:label "high air pressure in the western Pacific"^^xsd:string .
+
+:LowAirPressureEasternPacific a :LowAirPressure, owl:NamedIndividual ;
+    rdfs:label "low air pressure in the eastern Pacific"^^xsd:string .
+
+:HighAirPressureEasternPacific a :HighAirPressure, owl:NamedIndividual ;
+    rdfs:label "high air pressure in the eastern Pacific"^^xsd:string .
+
+:LowAirPressureWesternPacific a :LowAirPressure, owl:NamedIndividual ;
+    rdfs:label "low air pressure in the western Pacific"^^xsd:string .
+
+:BelowAverageSSTEasternPacific a :SeaSurfaceTemperature, owl:NamedIndividual ;
+    rdfs:label "below average sea surface temperature in the eastern Pacific"^^xsd:string ;
+    :hasTemperatureStatus "below average"^^xsd:string .
+
+:GlobalTemperatureChangeENSO a :GlobalTemperatureChange, owl:NamedIndividual ;
+    rdfs:label "global temperature changes caused by ENSO"^^xsd:string .
+
+:GlobalRainfallChangeENSO a :GlobalRainfallChange, owl:NamedIndividual ;
+    rdfs:label "global rainfall changes caused by ENSO"^^xsd:string .
+
+:AgricultureSector a :Agriculture, owl:NamedIndividual ;
+    rdfs:label "Agriculture"^^xsd:string .
+
+:FishingSector a :Fishing, owl:NamedIndividual ;
+    rdfs:label "Fishing"^^xsd:string .
+
+:DevelopingCountriesPacific a :DevelopingCountry, owl:NamedIndividual ;
+    rdfs:label "Developing countries that are dependent upon agriculture and fishing, particularly those bordering the Pacific Ocean"^^xsd:string ;
+    :affectsEconomicSector :AgricultureSector ;
+    :affectsEconomicSector :FishingSector ;
+    :borders :EasternPacificRegion .
+
+:ChristmasTime a :Holiday, owl:NamedIndividual ;
+    rdfs:label "Christmas"^^xsd:string .
+
+:ChristReference a :ReligiousReference, owl:NamedIndividual ;
+    rdfs:label "the newborn Christ"^^xsd:string ;
+    :references :ChristmasTime .
+
+:PeruvianFishermenGroup a :PeruvianFishermen, owl:NamedIndividual ;
+    rdfs:label "Peruvian fishermen"^^xsd:string ;
+    :namedBy :ElNinoIndividual .
+
+:OriginalElNinoName a owl:NamedIndividual ;
+    rdfs:label "El Niño de Navidad"^^xsd:string .
+
+:AmericanSpanishLanguage a owl:NamedIndividual ;
+    rdfs:label "American Spanish"^^xsd:string .
+
+:SouthAmericaContinent a :SouthAmerica, owl:NamedIndividual ;
+    rdfs:label "South America"^^xsd:string .
+
+:PacificOceanIndividual a :PacificOcean, owl:NamedIndividual ;
+    rdfs:label "Pacific Ocean"^^xsd:string ;
+    :containsRegion :CentralEquatorialPacificRegion ;
+    :containsRegion :EastCentralEquatorialPacificRegion ;
+    :containsRegion :WesternPacificRegion ;
+    :containsRegion :EasternPacificRegion .

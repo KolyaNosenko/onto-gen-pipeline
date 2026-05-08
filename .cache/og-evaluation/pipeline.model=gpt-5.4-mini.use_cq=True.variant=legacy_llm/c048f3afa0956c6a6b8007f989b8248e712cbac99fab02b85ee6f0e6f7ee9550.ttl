@@ -1,0 +1,240 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:ClimateChangeDescription a owl:Class .
+:ClimateChange a owl:Class .
+:Country a owl:Class .
+:Impact a owl:Class .
+:LongTermImpact a owl:Class ;
+    rdfs:subClassOf :Impact .
+:Agriculture a owl:Class .
+:Heatwave a owl:Class .
+:Coldwave a owl:Class .
+:Flooding a owl:Class .
+:FlashFlooding a owl:Class ;
+    rdfs:subClassOf :Flooding .
+:CoastalFlooding a owl:Class ;
+    rdfs:subClassOf :Flooding .
+:WaterAvailability a owl:Class .
+:Challenge a owl:Class .
+:MitigationStrategy a owl:Class .
+:EnergySector a owl:Class .
+:Debate a owl:Class .
+:EnergyTransition a owl:Class .
+:PoliticalIssue a owl:Class .
+:Politics a owl:Class .
+:PoliticalParty a owl:Class .
+:Person a owl:Class .
+:Organisation a owl:Class .
+:CoalitionTalk a owl:Class .
+:Investment a owl:Class .
+:Energy a owl:Class .
+:RenewableEnergy a owl:Class ;
+    rdfs:subClassOf :Energy .
+:Coal a owl:Class .
+:CoalProduction a owl:Class .
+:CoalUsage a owl:Class .
+:Region a owl:Class .
+:Continent a owl:Class .
+:PoliticalEntity a owl:Class .
+:Meeting a owl:Class .
+:Event a owl:Class .
+:Location a owl:Class .
+:City a owl:Class ;
+    rdfs:subClassOf :Location .
+:TrainJourney a owl:Class .
+:Train a owl:Class .
+:Delegation a owl:Class .
+:Commitment a owl:Class .
+:CarbonNeutrality a owl:Class .
+:Quantity a owl:Class .
+:Percentage a owl:Class ;
+    rdfs:subClassOf :Quantity .
+:Amount a owl:Class ;
+    rdfs:subClassOf :Quantity .
+
+:describes a owl:ObjectProperty .
+:on a owl:ObjectProperty .
+:includesImpact a owl:ObjectProperty .
+:hasImpact a owl:ObjectProperty .
+:affects a owl:ObjectProperty .
+:addressedBy a owl:ObjectProperty .
+:sparkedChangeIn a owl:ObjectProperty .
+:hasStrategy a owl:ObjectProperty .
+:isPoliticalIssueIn a owl:ObjectProperty .
+:madeDifficultFor a owl:ObjectProperty .
+:hasParty a owl:ObjectProperty .
+:madeDifficult a owl:ObjectProperty .
+:investedIn a owl:ObjectProperty .
+:reduce a owl:ObjectProperty .
+:produces a owl:ObjectProperty .
+:isLargestImporterOf a owl:ObjectProperty .
+:inRegion a owl:ObjectProperty .
+:behind a owl:ObjectProperty .
+:accountsFor a owl:ObjectProperty .
+:hosted a owl:ObjectProperty .
+:travelledTo a owl:ObjectProperty .
+:travelledBy a owl:ObjectProperty .
+:toDemonstrateCommitmentTo a owl:ObjectProperty .
+:demonstrateCommitmentTo a owl:ObjectProperty .
+:hasLabelText a owl:DatatypeProperty .
+
+:ClimateChangeInGermany a :ClimateChangeDescription , owl:NamedIndividual ;
+    rdfs:label "Climate change in Germany"^^xsd:string ;
+    :describes :AnthropogenicClimateChangeInGermany .
+
+:AnthropogenicClimateChangeInGermany a :ClimateChange , owl:NamedIndividual ;
+    rdfs:label "anthropogenic climate change"^^xsd:string ;
+    :on :Germany ;
+    :includesImpact :ImpactOnAgriculture ,
+                   :ImpactOnHeatwaves ,
+                   :ImpactOnColdwaves ,
+                   :ImpactOnFlashFlooding ,
+                   :ImpactOnCoastalFlooding ,
+                   :ImpactOnWaterAvailability ;
+    :sparkedChangeIn :EnergySector ,
+                     :MitigationStrategies .
+
+:Germany a :Country , owl:NamedIndividual ;
+    rdfs:label "Germany"^^xsd:string ;
+    :isPoliticalIssueIn :GermanPolitics ;
+    :hasStrategy :Energiewende ;
+    :madeDifficult :CoalitionTalks ;
+    :investedIn :RenewableEnergyInvestments ;
+    :reduce :CoalProduction ,
+            :CoalUsage ;
+    :isLargestImporterOf :Coal ;
+    :produces :GermanCoalProduction ;
+    :hosted :COP23Meeting ;
+    :inRegion :Europe .
+
+:ImpactOnAgriculture a :LongTermImpact , owl:NamedIndividual ;
+    rdfs:label "long-term impacts on agriculture"^^xsd:string ;
+    :affects :Agriculture .
+
+:Agriculture a :Agriculture , owl:NamedIndividual ;
+    rdfs:label "agriculture"^^xsd:string .
+
+:ImpactOnHeatwaves a :LongTermImpact , owl:NamedIndividual ;
+    rdfs:label "more intense heatwaves"^^xsd:string ;
+    :affects :Heatwaves .
+
+:Heatwaves a :Heatwave , owl:NamedIndividual ;
+    rdfs:label "heatwaves"^^xsd:string .
+
+:ImpactOnColdwaves a :LongTermImpact , owl:NamedIndividual ;
+    rdfs:label "coldwaves"^^xsd:string ;
+    :affects :Coldwaves .
+
+:Coldwaves a :Coldwave , owl:NamedIndividual ;
+    rdfs:label "coldwaves"^^xsd:string .
+
+:ImpactOnFlashFlooding a :LongTermImpact , owl:NamedIndividual ;
+    rdfs:label "flash flooding"^^xsd:string ;
+    :affects :FlashFlooding .
+
+:FlashFlooding a :FlashFlooding , owl:NamedIndividual ;
+    rdfs:label "flash flooding"^^xsd:string .
+
+:ImpactOnCoastalFlooding a :LongTermImpact , owl:NamedIndividual ;
+    rdfs:label "coastal flooding"^^xsd:string ;
+    :affects :CoastalFlooding .
+
+:CoastalFlooding a :CoastalFlooding , owl:NamedIndividual ;
+    rdfs:label "coastal flooding"^^xsd:string .
+
+:ImpactOnWaterAvailability a :LongTermImpact , owl:NamedIndividual ;
+    rdfs:label "reduced water availability"^^xsd:string ;
+    :affects :WaterAvailability .
+
+:WaterAvailability a :WaterAvailability , owl:NamedIndividual ;
+    rdfs:label "water availability"^^xsd:string .
+
+:DebatesOverHowToAddressTheseLongTermChallenges a :Debate , owl:NamedIndividual ;
+    rdfs:label "Debates over how to address these long-term challenges"^^xsd:string ;
+    :addressedBy :MitigationStrategies ;
+    :sparkedChangeIn :EnergySector .
+
+:MitigationStrategies a :MitigationStrategy , owl:NamedIndividual ;
+    rdfs:label "mitigation strategies"^^xsd:string .
+
+:EnergySector a :EnergySector , owl:NamedIndividual ;
+    rdfs:label "energy sector"^^xsd:string .
+
+:GermanPolitics a :Politics , owl:NamedIndividual ;
+    rdfs:label "German politics"^^xsd:string .
+
+:Energiewende a :EnergyTransition , owl:NamedIndividual ;
+    rdfs:label "energiewende"^^xsd:string ;
+    :isPoliticalIssueIn :GermanPolitics .
+
+:EnergyTransition a :EnergyTransition , owl:NamedIndividual ;
+    rdfs:label "energy transition"^^xsd:string .
+
+:PoliticalIssue a :PoliticalIssue , owl:NamedIndividual ;
+    rdfs:label "political issue"^^xsd:string .
+
+:AngelaMerkel a :Person , owl:NamedIndividual ;
+    rdfs:label "Angela Merkel"^^xsd:string .
+
+:CDU a :PoliticalParty , owl:NamedIndividual ;
+    rdfs:label "CDU"^^xsd:string .
+
+:CoalitionTalks a :CoalitionTalk , owl:NamedIndividual ;
+    rdfs:label "coalition talks"^^xsd:string ;
+    :madeDifficultFor :CDU .
+
+:RenewableEnergy a :RenewableEnergy , owl:NamedIndividual ;
+    rdfs:label "renewable energy"^^xsd:string .
+
+:RenewableEnergyInvestments a :Investment , owl:NamedIndividual ;
+    rdfs:label "massive investments in renewable energy"^^xsd:string ;
+    :investedIn :RenewableEnergy .
+
+:CoalProduction a :CoalProduction , owl:NamedIndividual ;
+    rdfs:label "coal production"^^xsd:string .
+
+:CoalUsage a :CoalUsage , owl:NamedIndividual ;
+    rdfs:label "usage"^^xsd:string .
+
+:Coal a :Coal , owl:NamedIndividual ;
+    rdfs:label "coal"^^xsd:string .
+
+:Europe a :Continent , owl:NamedIndividual ;
+    rdfs:label "Europe"^^xsd:string .
+
+:EuropeanUnion a :PoliticalEntity , owl:NamedIndividual ;
+    rdfs:label "European Union"^^xsd:string .
+
+:Poland a :Country , owl:NamedIndividual ;
+    rdfs:label "Poland"^^xsd:string .
+
+:GermanCoalProduction a :CoalProduction , owl:NamedIndividual ;
+    rdfs:label "coal"^^xsd:string ;
+    :behind :Poland ;
+    :accountsFor :GlobalCoalTotalShare .
+
+:GlobalCoalTotalShare a :Percentage , owl:NamedIndividual ;
+    rdfs:label "about 1 %"^^xsd:string .
+
+:COP23Meeting a :Meeting , owl:NamedIndividual ;
+    rdfs:label "COP23 meeting"^^xsd:string ;
+    :hostedIn :Bonn .
+
+:Bonn a :City , owl:NamedIndividual ;
+    rdfs:label "Bonn"^^xsd:string .
+
+:GermanDelegation a :Delegation , owl:NamedIndividual ;
+    rdfs:label "the German delegation"^^xsd:string ;
+    :travelledTo :COP23Meeting ;
+    :travelledBy :CarbonNeutralTrain ;
+    :toDemonstrateCommitmentTo :CarbonNeutrality .
+
+:CarbonNeutralTrain a :TrainJourney , owl:NamedIndividual ;
+    rdfs:label "a carbon-neutral train"^^xsd:string .
+
+:CarbonNeutrality a :Commitment , owl:NamedIndividual ;
+    rdfs:label "carbon neutrality"^^xsd:string .

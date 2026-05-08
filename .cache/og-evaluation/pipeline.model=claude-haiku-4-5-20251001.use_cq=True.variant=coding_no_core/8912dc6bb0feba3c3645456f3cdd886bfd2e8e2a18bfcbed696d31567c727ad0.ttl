@@ -1,0 +1,99 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:MyVisionChallengesInTheRaceForExcellence a owl:NamedIndividual,
+        ns1:Book ;
+    rdfs:label "My Vision — Challenges in the Race for Excellence"^^xsd:string ;
+    ns1:authoredBy ns1:MohammedBinRashidAlMaktoum ;
+    ns1:basedOnConcept "Excellence"^^xsd:string ;
+    ns1:coversTopic "Development"^^xsd:string,
+        "Excellence"^^xsd:string ;
+    ns1:discussesRegion ns1:Dubai,
+        ns1:UnitedArabEmirates ;
+    ns1:numberOfPages 223 ;
+    ns1:numberOfParts 5 ;
+    ns1:visualContentTypes "Personal Images"^^xsd:string,
+        "Public Images"^^xsd:string .
+
+ns1:authoredBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:Person .
+
+ns1:basedOnConcept a owl:DatatypeProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:string .
+
+ns1:coversTopic a owl:DatatypeProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:string .
+
+ns1:discussesRegion a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:Place .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Place .
+
+ns1:numberOfPages a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:integer .
+
+ns1:numberOfParts a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:integer .
+
+ns1:primeMinisterOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Country .
+
+ns1:rulerOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Place .
+
+ns1:vicePresidentOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Country .
+
+ns1:visualContentTypes a owl:DatatypeProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:string .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:MohammedBinRashidAlMaktoum a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Mohammed bin Rashid Al Maktoum"^^xsd:string ;
+    ns1:primeMinisterOf ns1:UnitedArabEmirates ;
+    ns1:rulerOf ns1:Dubai ;
+    ns1:vicePresidentOf ns1:UnitedArabEmirates .
+
+ns1:Dubai a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Dubai"^^xsd:string ;
+    ns1:locatedIn ns1:UnitedArabEmirates .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:UnitedArabEmirates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United Arab Emirates"^^xsd:string .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Book a owl:Class ;
+    rdfs:subClassOf owl:Thing .

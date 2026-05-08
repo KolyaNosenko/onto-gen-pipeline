@@ -1,0 +1,370 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+: a owl:Ontology .
+
+#################################################################
+# Classes
+#################################################################
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:FictionalCharacter a owl:Class ;
+    rdfs:label "Fictional Character"^^xsd:string .
+
+:Actor a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Actor"^^xsd:string .
+
+:Scientist a owl:Class ;
+    rdfs:subClassOf :FictionalCharacter ;
+    rdfs:label "Scientist"^^xsd:string .
+
+:MachiavellianScientist a owl:Class ;
+    rdfs:subClassOf :Scientist ;
+    rdfs:label "Machiavellian Scientist"^^xsd:string .
+
+:TelevisionSeries a owl:Class ;
+    rdfs:label "Television Series"^^xsd:string .
+
+:MilitaryScienceFictionSeries a owl:Class ;
+    rdfs:subClassOf :TelevisionSeries ;
+    rdfs:label "Military Science Fiction Series"^^xsd:string .
+
+:SerialDrama a owl:Class ;
+    rdfs:subClassOf :TelevisionSeries ;
+    rdfs:label "Serial Drama"^^xsd:string .
+
+:MilitaryScienceFictionSerialDrama a owl:Class ;
+    rdfs:subClassOf :MilitaryScienceFictionSeries , :SerialDrama ;
+    rdfs:label "Military Science Fiction Serial Drama"^^xsd:string .
+
+:Genre a owl:Class ;
+    rdfs:label "Genre"^^xsd:string .
+
+:Episode a owl:Class ;
+    rdfs:label "Episode"^^xsd:string .
+
+:PilotEpisode a owl:Class ;
+    rdfs:subClassOf :Episode ;
+    rdfs:label "Pilot Episode"^^xsd:string .
+
+:Spaceship a owl:Class ;
+    rdfs:label "Spaceship"^^xsd:string .
+
+:AncientSpaceship a owl:Class ;
+    rdfs:subClassOf :Spaceship ;
+    rdfs:label "Ancient Spaceship"^^xsd:string .
+
+:Stargate a owl:Class ;
+    rdfs:label "Stargate"^^xsd:string .
+
+:Chevron a owl:Class ;
+    rdfs:label "Chevron"^^xsd:string .
+
+:Base a owl:Class ;
+    rdfs:label "Base"^^xsd:string .
+
+:MilitaryBase a owl:Class ;
+    rdfs:subClassOf :Base ;
+    rdfs:label "Military Base"^^xsd:string .
+
+:ExplorationTeam a owl:Class ;
+    rdfs:label "Exploration Team"^^xsd:string .
+
+:MultinationalExplorationTeam a owl:Class ;
+    rdfs:subClassOf :ExplorationTeam ;
+    rdfs:label "Multinational Exploration Team"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string .
+
+:BroadcastNetwork a owl:Class ;
+    rdfs:label "Broadcast Network"^^xsd:string .
+
+:ProductionCompany a owl:Class ;
+    rdfs:label "Production Company"^^xsd:string .
+
+:Galaxy a owl:Class ;
+    rdfs:label "Galaxy"^^xsd:string .
+
+:Planet a owl:Class ;
+    rdfs:label "Planet"^^xsd:string .
+
+:Nationality a owl:Class ;
+    rdfs:label "Nationality"^^xsd:string .
+
+:PersonalityType a owl:Class ;
+    rdfs:label "Personality Type"^^xsd:string .
+
+:Year a owl:Class ;
+    rdfs:label "Year"^^xsd:string .
+
+:Broadcast a owl:Class ;
+    rdfs:label "Broadcast"^^xsd:string .
+
+:ScientificFocus a owl:Class ;
+    rdfs:label "Scientific Focus"^^xsd:string .
+
+:Mystery a owl:Class ;
+    rdfs:label "Mystery"^^xsd:string .
+
+:Evacuation a owl:Class ;
+    rdfs:label "Evacuation"^^xsd:string .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:portrays a owl:ObjectProperty ;
+    rdfs:domain :Actor ;
+    rdfs:range :FictionalCharacter ;
+    rdfs:label "portrays"^^xsd:string .
+
+:isPortrayedBy a owl:ObjectProperty ;
+    owl:inverseOf :portrays ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :Actor ;
+    rdfs:label "is portrayed by"^^xsd:string .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Nationality ;
+    rdfs:label "has nationality"^^xsd:string .
+
+:appearsIn a owl:ObjectProperty ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :TelevisionSeries ;
+    rdfs:label "appears in"^^xsd:string .
+
+:hasGenre a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Genre ;
+    rdfs:label "has genre"^^xsd:string .
+
+:producedBy a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :ProductionCompany ;
+    rdfs:label "produced by"^^xsd:string .
+
+:broadcastBy a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :BroadcastNetwork ;
+    rdfs:label "broadcast by"^^xsd:string .
+
+:producedInCountry a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Country ;
+    rdfs:label "produced in country"^^xsd:string .
+
+:featuresSpaceship a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Spaceship ;
+    rdfs:label "features spaceship"^^xsd:string .
+
+:hasScientificFocus a owl:ObjectProperty ;
+    rdfs:domain :Scientist ;
+    rdfs:range :ScientificFocus ;
+    rdfs:label "has scientific focus"^^xsd:string .
+
+:relatedToChevron a owl:ObjectProperty ;
+    rdfs:domain :ScientificFocus ;
+    rdfs:range :Chevron ;
+    rdfs:label "related to chevron"^^xsd:string .
+
+:chevronOf a owl:ObjectProperty ;
+    rdfs:domain :Chevron ;
+    rdfs:range :Stargate ;
+    rdfs:label "chevron of"^^xsd:string .
+
+:leadsThrough a owl:ObjectProperty ;
+    rdfs:domain :Chevron ;
+    rdfs:range :Stargate ;
+    rdfs:label "leads through"^^xsd:string .
+
+:leadsTo a owl:ObjectProperty ;
+    rdfs:label "leads to"^^xsd:string .
+
+:hasInitialAttitude a owl:ObjectProperty ;
+    rdfs:domain :Actor ;
+    rdfs:label "has initial attitude"^^xsd:string .
+
+:hasPersonalityType a owl:ObjectProperty ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :PersonalityType ;
+    rdfs:label "has personality type"^^xsd:string .
+
+:madeFirstAppearanceIn a owl:ObjectProperty ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :Episode ;
+    rdfs:label "made first appearance in"^^xsd:string .
+
+:isEpisodeOf a owl:ObjectProperty ;
+    rdfs:domain :Episode ;
+    rdfs:range :TelevisionSeries ;
+    rdfs:label "is episode of"^^xsd:string .
+
+:firstBroadcastIn a owl:ObjectProperty ;
+    rdfs:domain :Episode ;
+    rdfs:range :Country ;
+    rdfs:label "first broadcast in"^^xsd:string .
+
+:firstBroadcastYear a owl:ObjectProperty ;
+    rdfs:domain :Episode ;
+    rdfs:range :Year ;
+    rdfs:label "first broadcast year"^^xsd:string .
+
+:traveledThrough a owl:ObjectProperty ;
+    rdfs:label "traveled through"^^xsd:string .
+
+:traveledFrom a owl:ObjectProperty ;
+    rdfs:label "traveled from"^^xsd:string .
+
+:hasTeam a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :ExplorationTeam ;
+    rdfs:label "has team"^^xsd:string .
+
+:unableToReturnTo a owl:ObjectProperty ;
+    rdfs:domain :ExplorationTeam ;
+    rdfs:range :Planet ;
+    rdfs:label "unable to return to"^^xsd:string .
+
+:evacuatedTo a owl:ObjectProperty ;
+    rdfs:domain :ExplorationTeam ;
+    rdfs:range :AncientSpaceship ;
+    rdfs:label "evacuated to"^^xsd:string .
+
+:travelingIn a owl:ObjectProperty ;
+    rdfs:domain :AncientSpaceship ;
+    rdfs:label "traveling in"^^xsd:string .
+
+:personnelFrom a owl:ObjectProperty ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :MilitaryBase ;
+    rdfs:label "personnel from"^^xsd:string .
+
+:uncoversMysteryOf a owl:ObjectProperty ;
+    rdfs:domain :Scientist ;
+    rdfs:range :Chevron ;
+    rdfs:label "uncovers mystery of"^^xsd:string .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:hasChevronNumber a owl:DatatypeProperty ;
+    rdfs:domain :Chevron ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has chevron number"^^xsd:string .
+
+:broadcastYearValue a owl:DatatypeProperty ;
+    rdfs:domain :Year ;
+    rdfs:range xsd:integer ;
+    rdfs:label "broadcast year value"^^xsd:string .
+
+:hasEpisodeTitle a owl:DatatypeProperty ;
+    rdfs:domain :Episode ;
+    rdfs:range xsd:string ;
+    rdfs:label "has episode title"^^xsd:string .
+
+:hasCharacterDescription a owl:DatatypeProperty ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range xsd:string ;
+    rdfs:label "has character description"^^xsd:string .
+
+#################################################################
+# Individuals
+#################################################################
+
+:NicholasRush a :MachiavellianScientist , owl:NamedIndividual ;
+    rdfs:label "Dr. Nicholas Rush"^^xsd:string ;
+    :appearsIn :StargateUniverse ;
+    :isPortrayedBy :RobertCarlyle ;
+    :hasPersonalityType :Machiavellian ;
+    :hasScientificFocus :NinthChevronMystery ;
+    :uncoversMysteryOf :NinthChevron ;
+    :madeFirstAppearanceIn :AirEpisode ;
+    :personnelFrom :IcarusBase ;
+    :hasCharacterDescription "very interesting"^^xsd:string .
+
+:RobertCarlyle a :Actor , owl:NamedIndividual ;
+    rdfs:label "Robert Carlyle"^^xsd:string ;
+    :portrays :NicholasRush ;
+    :hasNationality :Scottish .
+
+:Scottish a :Nationality , owl:NamedIndividual ;
+    rdfs:label "Scottish"^^xsd:string .
+
+:StargateUniverse a :MilitaryScienceFictionSerialDrama , owl:NamedIndividual ;
+    rdfs:label "Stargate Universe"^^xsd:string ;
+    :producedBy :MetroGoldwynMayer ;
+    :broadcastBy :Syfy ;
+    :producedInCountry :Canada ;
+    :producedInCountry :UnitedStates ;
+    :featuresSpaceship :Destiny ;
+    :hasTeam :MultinationalTeam ;
+    :hasGenre :MilitaryScienceFiction .
+
+:MetroGoldwynMayer a :ProductionCompany , owl:NamedIndividual ;
+    rdfs:label "Metro-Goldwyn-Mayer"^^xsd:string .
+
+:Syfy a :BroadcastNetwork , owl:NamedIndividual ;
+    rdfs:label "Syfy"^^xsd:string .
+
+:Canada a :Country , owl:NamedIndividual ;
+    rdfs:label "Canada"^^xsd:string .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:Destiny a :AncientSpaceship , owl:NamedIndividual ;
+    rdfs:label "Destiny"^^xsd:string .
+
+:IcarusBase a :MilitaryBase , owl:NamedIndividual ;
+    rdfs:label "Icarus Base"^^xsd:string .
+
+:TheStargate a :Stargate , owl:NamedIndividual ;
+    rdfs:label "the Stargate"^^xsd:string .
+
+:NinthChevron a :Chevron , owl:NamedIndividual ;
+    rdfs:label "ninth chevron"^^xsd:string ;
+    :hasChevronNumber 9 ;
+    :chevronOf :TheStargate .
+
+:NinthChevronMystery a :ScientificFocus , owl:NamedIndividual ;
+    rdfs:label "ninth chevron of the Stargate"^^xsd:string ;
+    :relatedToChevron :NinthChevron .
+
+:FarAwayGalaxy a :Galaxy , owl:NamedIndividual ;
+    rdfs:label "far-away galaxy"^^xsd:string .
+
+:Earth a :Planet , owl:NamedIndividual ;
+    rdfs:label "Earth"^^xsd:string .
+
+:AirEpisode a :PilotEpisode , owl:NamedIndividual ;
+    rdfs:label "Air"^^xsd:string ;
+    :hasEpisodeTitle "Air"^^xsd:string ;
+    :isEpisodeOf :StargateUniverse ;
+    :firstBroadcastIn :UnitedStates ;
+    :firstBroadcastIn :Canada ;
+    :firstBroadcastYear :Year2009 .
+
+:Year2009 a :Year , owl:NamedIndividual ;
+    rdfs:label "2009"^^xsd:string ;
+    :broadcastYearValue 2009 .
+
+:MultinationalTeam a :MultinationalExplorationTeam , owl:NamedIndividual ;
+    rdfs:label "multinational exploration team"^^xsd:string ;
+    :unableToReturnTo :Earth ;
+    :evacuatedTo :Destiny .
+
+:Machiavellian a :PersonalityType , owl:NamedIndividual ;
+    rdfs:label "machiavellian"^^xsd:string .
+
+:MilitaryScienceFiction a :Genre , owl:NamedIndividual ;
+    rdfs:label "military science fiction"^^xsd:string .

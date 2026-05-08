@@ -1,0 +1,192 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:BedAndBreakfasts a owl:NamedIndividual,
+        ns1:BedAndBreakfast ;
+    rdfs:label "bed and breakfast type businesses"^^xsd:string ;
+    ns1:operatesIn ns1:Milton .
+
+ns1:BoutiqueStores a owl:NamedIndividual,
+        ns1:BoutiqueStore ;
+    rdfs:label "boutique stores"^^xsd:string ;
+    ns1:operatesIn ns1:Milton .
+
+ns1:Cafes a owl:NamedIndividual,
+        ns1:Cafe ;
+    rdfs:label "cafes"^^xsd:string ;
+    ns1:operatesIn ns1:Milton .
+
+ns1:GeorgeKnight a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "George Knight"^^xsd:string ;
+    ns1:hasOccupation ns1:Postmaster ;
+    ns1:owns ns1:property1 .
+
+ns1:NewHousingEstates a owl:NamedIndividual,
+        ns1:HousingEstate ;
+    rdfs:label "new housing estates"^^xsd:string ;
+    ns1:developingNear ns1:Milton .
+
+ns1:PrincesHighway a owl:NamedIndividual,
+        ns1:Highway ;
+    rdfs:label "Princes Highway"^^xsd:string ;
+    ns1:runsThrough ns1:Milton .
+
+ns1:developingNear a owl:ObjectProperty ;
+    rdfs:domain ns1:HousingEstate ;
+    rdfs:range ns1:Town .
+
+ns1:foundedInYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Town ;
+    rdfs:range xsd:integer .
+
+ns1:hasOccupation a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Occupation .
+
+ns1:importantCentreDuring a owl:ObjectProperty ;
+    rdfs:domain ns1:Town ;
+    rdfs:range ns1:TimePeriod .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Town ;
+    rdfs:range ns1:AdministrativeArea,
+        ns1:Country,
+        ns1:District,
+        ns1:Region,
+        ns1:State .
+
+ns1:locatedWithin a owl:ObjectProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range ns1:Country .
+
+ns1:mainCommercialCentreOf a owl:ObjectProperty ;
+    rdfs:domain ns1:CommercialCentre ;
+    rdfs:range ns1:District .
+
+ns1:namedAfter a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Town ;
+    rdfs:range ns1:Person,
+        ns1:Property .
+
+ns1:operatesIn a owl:ObjectProperty ;
+    rdfs:domain ns1:BusinessType ;
+    rdfs:range ns1:Town .
+
+ns1:owns a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Property .
+
+ns1:population a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Town ;
+    rdfs:range xsd:integer .
+
+ns1:runsThrough a owl:ObjectProperty ;
+    rdfs:domain ns1:Highway ;
+    rdfs:range ns1:Town .
+
+ns1:Australia a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Australia"^^xsd:string .
+
+ns1:BedAndBreakfast a owl:Class ;
+    rdfs:subClassOf ns1:BusinessType .
+
+ns1:BoutiqueStore a owl:Class ;
+    rdfs:subClassOf ns1:BusinessType .
+
+ns1:Cafe a owl:Class ;
+    rdfs:subClassOf ns1:BusinessType .
+
+ns1:CityOfShoalhaven a owl:NamedIndividual,
+        ns1:AdministrativeArea ;
+    rdfs:label "City of Shoalhaven"^^xsd:string .
+
+ns1:NewSouthWales a owl:NamedIndividual,
+        ns1:State ;
+    rdfs:label "New South Wales"^^xsd:string ;
+    ns1:locatedWithin ns1:Australia .
+
+ns1:NineteenthCentury a owl:NamedIndividual,
+        ns1:TimePeriod ;
+    rdfs:label "19th Century"^^xsd:string .
+
+ns1:Postmaster a owl:NamedIndividual,
+        ns1:Occupation ;
+    rdfs:label "postmaster"^^xsd:string .
+
+ns1:SouthCoast a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "South Coast"^^xsd:string .
+
+ns1:AdministrativeArea a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CommercialCentre a owl:Class ;
+    rdfs:subClassOf ns1:Town .
+
+ns1:Highway a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:HousingEstate a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MiltonUlladulla a owl:NamedIndividual,
+        ns1:District ;
+    rdfs:label "Milton - Ulladulla district"^^xsd:string .
+
+ns1:Occupation a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TimePeriod a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:property1 a owl:NamedIndividual,
+        ns1:Property .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:District a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Property a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:BusinessType a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Milton a owl:NamedIndividual,
+        ns1:CommercialCentre ;
+    rdfs:label "Milton"^^xsd:string ;
+    ns1:foundedInYear 1860 ;
+    ns1:importantCentreDuring ns1:NineteenthCentury ;
+    ns1:locatedIn ns1:CityOfShoalhaven,
+        ns1:MiltonUlladulla,
+        ns1:NewSouthWales,
+        ns1:SouthCoast ;
+    ns1:mainCommercialCentreOf ns1:MiltonUlladulla ;
+    ns1:namedAfter ns1:property1 ;
+    ns1:population 1663 .
+
+ns1:Town a owl:Class ;
+    rdfs:subClassOf owl:Thing .

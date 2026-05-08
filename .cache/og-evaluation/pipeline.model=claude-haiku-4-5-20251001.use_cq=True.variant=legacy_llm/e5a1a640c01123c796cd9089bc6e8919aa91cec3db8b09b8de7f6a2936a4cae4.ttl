@@ -1,0 +1,237 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:VideoGame a owl:Class .
+:TurnBasedGame a owl:Class ;
+    rdfs:subClassOf :VideoGame .
+:TacticalGame a owl:Class ;
+    rdfs:subClassOf :VideoGame .
+:RolePlayingGame a owl:Class ;
+    rdfs:subClassOf :VideoGame .
+:TacticalRolePlayingGame a owl:Class ;
+    rdfs:subClassOf :TacticalGame, :RolePlayingGame .
+:GameUniverse a owl:Class .
+:Organisation a owl:Class .
+:GameDeveloper a owl:Class ;
+    rdfs:subClassOf :Organisation .
+:GamePublisher a owl:Class ;
+    rdfs:subClassOf :Organisation .
+:Campaign a owl:Class .
+:KickstarterCampaign a owl:Class ;
+    rdfs:subClassOf :Campaign .
+:FundingGoal a owl:Class .
+:GameFeature a owl:Class .
+:LevelEditor a owl:Class ;
+    rdfs:subClassOf :GameFeature .
+:SinglePlayerCampaign a owl:Class ;
+    rdfs:subClassOf :GameFeature, :Campaign .
+:GameEngine a owl:Class .
+:Platform a owl:Class .
+:OperatingSystem a owl:Class ;
+    rdfs:subClassOf :Platform .
+:GameEdition a owl:Class .
+:ExtendedEdition a owl:Class ;
+    rdfs:subClassOf :GameEdition .
+:DeveloperCommentary a owl:Class ;
+    rdfs:subClassOf :GameFeature .
+:BugFix a owl:Class .
+:MoneyAmount a owl:Class .
+:TimePoint a owl:Class .
+:TimeDuration a owl:Class .
+:PreviousGame a owl:Class ;
+    rdfs:subClassOf :VideoGame .
+:GameExpansion a owl:Class ;
+    rdfs:subClassOf :VideoGame .
+
+# Object Properties
+:setIn a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GameUniverse .
+:developedBy a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GameDeveloper .
+:publishedBy a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GamePublisher .
+:developedPreviouslyBy a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :PreviousGame .
+:includesFeature a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GameFeature .
+:launchedCampaign a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :KickstarterCampaign .
+:fundingGoalOf a owl:ObjectProperty ;
+    rdfs:domain :FundingGoal ;
+    rdfs:range :KickstarterCampaign .
+:goalAmount a owl:ObjectProperty ;
+    rdfs:domain :FundingGoal ;
+    rdfs:range :MoneyAmount .
+:receivedFunding a owl:ObjectProperty ;
+    rdfs:domain :KickstarterCampaign ;
+    rdfs:range :MoneyAmount .
+:campaignDuration a owl:ObjectProperty ;
+    rdfs:domain :KickstarterCampaign ;
+    rdfs:range :TimeDuration .
+:usesEngine a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GameEngine .
+:engineUsedFor a owl:ObjectProperty ;
+    rdfs:domain :GameEngine ;
+    rdfs:range :VideoGame ;
+    owl:inverseOf :usesEngine .
+:developedForPlatform a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :Platform .
+:releasedOn a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :TimePoint .
+:hasEdition a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GameEdition .
+:editionIncludesFeature a owl:ObjectProperty ;
+    rdfs:domain :GameEdition ;
+    rdfs:range :GameFeature .
+:editionReleasedOn a owl:ObjectProperty ;
+    rdfs:domain :GameEdition ;
+    rdfs:range :TimePoint .
+:includesBugFix a owl:ObjectProperty ;
+    rdfs:domain :GameEdition ;
+    rdfs:range :BugFix .
+:freeUpdateFor a owl:ObjectProperty ;
+    rdfs:domain :GameEdition ;
+    rdfs:range :VideoGame .
+:standaloneExpansionOf a owl:ObjectProperty ;
+    rdfs:domain :GameExpansion ;
+    rdfs:range :VideoGame .
+
+# Data Properties
+:label a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+:amountInUSD a owl:DatatypeProperty ;
+    rdfs:domain :MoneyAmount ;
+    rdfs:range xsd:decimal .
+:durationInHours a owl:DatatypeProperty ;
+    rdfs:domain :TimeDuration ;
+    rdfs:range xsd:decimal .
+
+# Individuals - Games
+:ShadowrunHongKong a :TacticalRolePlayingGame, owl:NamedIndividual ;
+    rdfs:label "Shadowrun : Hong Kong"^^xsd:string ;
+    :setIn :ShadowrunUniverse ;
+    :developedBy :HarebrainedSchemes ;
+    :publishedBy :HarebrainedSchemes ;
+    :usesEngine :ImprovedShadowrunEngine ;
+    :developedForPlatform :MicrosoftWindows ;
+    :developedForPlatform :OSX ;
+    :developedForPlatform :Linux ;
+    :releasedOn :August2015 ;
+    :hasEdition :OriginalEdition ;
+    :hasEdition :ExtendedEditionRelease ;
+    :includesFeature :NewSinglePlayerCampaign ;
+    :includesFeature :LevelEditorFeature .
+
+:ShadowrunReturns a :PreviousGame, owl:NamedIndividual ;
+    rdfs:label "Shadowrun Returns"^^xsd:string ;
+    :usesEngine :OriginalShadowrunEngine .
+
+:Dragonfall a :GameExpansion, owl:NamedIndividual ;
+    rdfs:label "Dragonfall"^^xsd:string ;
+    :standaloneExpansionOf :ShadowrunReturns ;
+    :usesEngine :OriginalShadowrunEngine .
+
+# Individuals - Organisations
+:HarebrainedSchemes a :GameDeveloper, :GamePublisher, owl:NamedIndividual ;
+    rdfs:label "Harebrained Schemes"^^xsd:string ;
+    :developedPreviouslyBy :ShadowrunReturns ;
+    :developedPreviouslyBy :Dragonfall ;
+    :launchedCampaign :ShadowrunHongKongKickstarter .
+
+# Individuals - Game Universe
+:ShadowrunUniverse a :GameUniverse, owl:NamedIndividual ;
+    rdfs:label "Shadowrun universe"^^xsd:string .
+
+# Individuals - Campaigns
+:ShadowrunHongKongKickstarter a :KickstarterCampaign, owl:NamedIndividual ;
+    rdfs:label "Kickstarter campaign"^^xsd:string ;
+    :goalAmount :InitialFundingGoal ;
+    :receivedFunding :TotalFundingReceived ;
+    :campaignDuration :KickstarterDuration .
+
+# Individuals - Funding
+:InitialFundingGoal a :FundingGoal, :MoneyAmount, owl:NamedIndividual ;
+    rdfs:label "US$ 100,000"^^xsd:string ;
+    :amountInUSD "100000"^^xsd:decimal .
+
+:TotalFundingReceived a :MoneyAmount, owl:NamedIndividual ;
+    rdfs:label "$ 1.2 million"^^xsd:string ;
+    :amountInUSD "1200000"^^xsd:decimal .
+
+# Individuals - Time Points
+:January2015 a :TimePoint, owl:NamedIndividual ;
+    rdfs:label "January 2015"^^xsd:string .
+
+:August2015 a :TimePoint, owl:NamedIndividual ;
+    rdfs:label "August 2015"^^xsd:string .
+
+:February2016 a :TimePoint, owl:NamedIndividual ;
+    rdfs:label "February 2016"^^xsd:string .
+
+# Individuals - Time Durations
+:KickstarterDuration a :TimeDuration, owl:NamedIndividual ;
+    rdfs:label "a few hours to the following month"^^xsd:string .
+
+:FewHours a :TimeDuration, owl:NamedIndividual ;
+    rdfs:label "a few hours"^^xsd:string .
+
+# Individuals - Game Engines
+:OriginalShadowrunEngine a :GameEngine, owl:NamedIndividual ;
+    rdfs:label "engine used with Shadowrun Returns and Dragonfall"^^xsd:string .
+
+:ImprovedShadowrunEngine a :GameEngine, owl:NamedIndividual ;
+    rdfs:label "improved version of the engine used with Shadowrun Returns and Dragonfall"^^xsd:string .
+
+# Individuals - Platforms
+:MicrosoftWindows a :OperatingSystem, owl:NamedIndividual ;
+    rdfs:label "Microsoft Windows"^^xsd:string .
+
+:OSX a :OperatingSystem, owl:NamedIndividual ;
+    rdfs:label "OS X"^^xsd:string .
+
+:Linux a :OperatingSystem, owl:NamedIndividual ;
+    rdfs:label "Linux"^^xsd:string .
+
+# Individuals - Game Features
+:NewSinglePlayerCampaign a :SinglePlayerCampaign, owl:NamedIndividual ;
+    rdfs:label "new single - player campaign"^^xsd:string .
+
+:LevelEditorFeature a :LevelEditor, owl:NamedIndividual ;
+    rdfs:label "level editor that lets players create their own Shadowrun campaigns and share them with other players"^^xsd:string .
+
+# Individuals - Game Editions
+:OriginalEdition a :GameEdition, owl:NamedIndividual ;
+    rdfs:label "original game"^^xsd:string ;
+    :editionReleasedOn :August2015 .
+
+:ExtendedEditionRelease a :ExtendedEdition, owl:NamedIndividual ;
+    rdfs:label "extended edition"^^xsd:string ;
+    :editionReleasedOn :February2016 ;
+    :editionIncludesFeature :NewExtendedEditionCampaign ;
+    :editionIncludesFeature :DeveloperCommentaryFeature ;
+    :includesBugFix :BugFixesForOriginal ;
+    :freeUpdateFor :ShadowrunHongKong .
+
+# Individuals - Extended Edition Features
+:NewExtendedEditionCampaign a :Campaign, owl:NamedIndividual ;
+    rdfs:label "new campaign"^^xsd:string .
+
+:DeveloperCommentaryFeature a :DeveloperCommentary, owl:NamedIndividual ;
+    rdfs:label "developer commentary"^^xsd:string .
+
+:BugFixesForOriginal a :BugFix, owl:NamedIndividual ;
+    rdfs:label "bug fixes for the original game"^^xsd:string .

@@ -1,0 +1,472 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Ontology declaration
+#################################################################
+
+: a owl:Ontology .
+
+#################################################################
+# Classes
+#################################################################
+
+:VideoGame a owl:Class ;
+    rdfs:label "Video Game"^^xsd:string .
+
+:TurnBasedTacticalRPG a owl:Class ;
+    rdfs:subClassOf :VideoGame ;
+    rdfs:label "Turn-Based Tactical Role-Playing Video Game"^^xsd:string .
+
+:GameExpansion a owl:Class ;
+    rdfs:subClassOf :VideoGame ;
+    rdfs:label "Game Expansion"^^xsd:string .
+
+:StandaloneExpansion a owl:Class ;
+    rdfs:subClassOf :GameExpansion ;
+    rdfs:label "Standalone Expansion"^^xsd:string .
+
+:ExtendedEdition a owl:Class ;
+    rdfs:subClassOf :VideoGame ;
+    rdfs:label "Extended Edition"^^xsd:string .
+
+:GameUniverse a owl:Class ;
+    rdfs:label "Game Universe"^^xsd:string .
+
+:GameEngine a owl:Class ;
+    rdfs:label "Game Engine"^^xsd:string .
+
+:Organisation a owl:Class ;
+    rdfs:label "Organisation"^^xsd:string .
+
+:GameDeveloper a owl:Class ;
+    rdfs:subClassOf :Organisation ;
+    rdfs:label "Game Developer"^^xsd:string .
+
+:GamePublisher a owl:Class ;
+    rdfs:subClassOf :Organisation ;
+    rdfs:label "Game Publisher"^^xsd:string .
+
+:CrowdfundingPlatform a owl:Class ;
+    rdfs:label "Crowdfunding Platform"^^xsd:string .
+
+:CrowdfundingCampaign a owl:Class ;
+    rdfs:label "Crowdfunding Campaign"^^xsd:string .
+
+:FundingGoal a owl:Class ;
+    rdfs:label "Funding Goal"^^xsd:string .
+
+:MonetaryAmount a owl:Class ;
+    rdfs:label "Monetary Amount"^^xsd:string .
+
+:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string .
+
+:PointInTime a owl:Class ;
+    rdfs:label "Point In Time"^^xsd:string .
+
+:Month a owl:Class ;
+    rdfs:subClassOf :PointInTime ;
+    rdfs:label "Month"^^xsd:string .
+
+:Duration a owl:Class ;
+    rdfs:label "Duration"^^xsd:string .
+
+:OperatingSystem a owl:Class ;
+    rdfs:label "Operating System"^^xsd:string .
+
+:SoftwareTool a owl:Class ;
+    rdfs:label "Software Tool"^^xsd:string .
+
+:LevelEditor a owl:Class ;
+    rdfs:subClassOf :SoftwareTool ;
+    rdfs:label "Level Editor"^^xsd:string .
+
+:Campaign a owl:Class ;
+    rdfs:label "Campaign"^^xsd:string .
+
+:SinglePlayerCampaign a owl:Class ;
+    rdfs:subClassOf :Campaign ;
+    rdfs:label "Single-Player Campaign"^^xsd:string .
+
+:GameContent a owl:Class ;
+    rdfs:label "Game Content"^^xsd:string .
+
+:DeveloperCommentary a owl:Class ;
+    rdfs:subClassOf :GameContent ;
+    rdfs:label "Developer Commentary"^^xsd:string .
+
+:BugFix a owl:Class ;
+    rdfs:subClassOf :GameContent ;
+    rdfs:label "Bug Fix"^^xsd:string .
+
+:SoftwareUpdate a owl:Class ;
+    rdfs:label "Software Update"^^xsd:string .
+
+:HardwarePlatform a owl:Class ;
+    rdfs:label "Hardware Platform"^^xsd:string .
+
+:Player a owl:Class ;
+    rdfs:label "Player"^^xsd:string .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:developedBy a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GameDeveloper ;
+    rdfs:label "developed by"^^xsd:string .
+
+:publishedBy a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GamePublisher ;
+    rdfs:label "published by"^^xsd:string .
+
+:setInUniverse a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GameUniverse ;
+    rdfs:label "set in universe"^^xsd:string .
+
+:usesEngine a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GameEngine ;
+    rdfs:label "uses engine"^^xsd:string .
+
+:engineUsedBy a owl:ObjectProperty ;
+    rdfs:domain :GameEngine ;
+    rdfs:range :VideoGame ;
+    rdfs:label "engine used by"^^xsd:string .
+
+:isImprovedVersionOf a owl:ObjectProperty ;
+    rdfs:domain :GameEngine ;
+    rdfs:range :GameEngine ;
+    rdfs:label "is improved version of"^^xsd:string .
+
+:includesFeature a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :GameContent ;
+    rdfs:label "includes feature"^^xsd:string .
+
+:shippedWith a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :SoftwareTool ;
+    rdfs:label "shipped with"^^xsd:string .
+
+:enablesCreationOf a owl:ObjectProperty ;
+    rdfs:domain :LevelEditor ;
+    rdfs:range :Campaign ;
+    rdfs:label "enables creation of"^^xsd:string .
+
+:enablesSharingWith a owl:ObjectProperty ;
+    rdfs:domain :LevelEditor ;
+    rdfs:range :Player ;
+    rdfs:label "enables sharing with"^^xsd:string .
+
+:launchedCampaign a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :CrowdfundingCampaign ;
+    rdfs:label "launched campaign"^^xsd:string .
+
+:launchedOn a owl:ObjectProperty ;
+    rdfs:domain :CrowdfundingCampaign ;
+    rdfs:range :CrowdfundingPlatform ;
+    rdfs:label "launched on"^^xsd:string .
+
+:hasLaunchDate a owl:ObjectProperty ;
+    rdfs:domain :CrowdfundingCampaign ;
+    rdfs:range :PointInTime ;
+    rdfs:label "has launch date"^^xsd:string .
+
+:hasEndDate a owl:ObjectProperty ;
+    rdfs:domain :CrowdfundingCampaign ;
+    rdfs:range :PointInTime ;
+    rdfs:label "has end date"^^xsd:string .
+
+:hasInitialFundingGoal a owl:ObjectProperty ;
+    rdfs:domain :CrowdfundingCampaign ;
+    rdfs:range :FundingGoal ;
+    rdfs:label "has initial funding goal"^^xsd:string .
+
+:goalAmount a owl:ObjectProperty ;
+    rdfs:domain :FundingGoal ;
+    rdfs:range :MonetaryAmount ;
+    rdfs:label "goal amount"^^xsd:string .
+
+:totalAmountReceived a owl:ObjectProperty ;
+    rdfs:domain :CrowdfundingCampaign ;
+    rdfs:range :MonetaryAmount ;
+    rdfs:label "total amount received"^^xsd:string .
+
+:goalMetIn a owl:ObjectProperty ;
+    rdfs:domain :FundingGoal ;
+    rdfs:range :Duration ;
+    rdfs:label "goal met in"^^xsd:string .
+
+:campaignPurpose a owl:ObjectProperty ;
+    rdfs:domain :CrowdfundingCampaign ;
+    rdfs:range :VideoGame ;
+    rdfs:label "campaign purpose"^^xsd:string .
+
+:developedForOS a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :OperatingSystem ;
+    rdfs:label "developed for OS"^^xsd:string .
+
+:notDevelopedFor a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :HardwarePlatform ;
+    rdfs:label "not developed for"^^xsd:string .
+
+:hasReleaseDate a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :PointInTime ;
+    rdfs:label "has release date"^^xsd:string .
+
+:isExtendedEditionOf a owl:ObjectProperty ;
+    rdfs:domain :ExtendedEdition ;
+    rdfs:range :VideoGame ;
+    rdfs:label "is extended edition of"^^xsd:string .
+
+:isStandaloneExpansionOf a owl:ObjectProperty ;
+    rdfs:domain :StandaloneExpansion ;
+    rdfs:range :VideoGame ;
+    rdfs:label "is standalone expansion of"^^xsd:string .
+
+:hasUpdate a owl:ObjectProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range :SoftwareUpdate ;
+    rdfs:label "has update"^^xsd:string .
+
+:updateAvailableTo a owl:ObjectProperty ;
+    rdfs:domain :SoftwareUpdate ;
+    rdfs:range :Player ;
+    rdfs:label "update available to"^^xsd:string .
+
+:previouslyDeveloped a owl:ObjectProperty ;
+    rdfs:domain :GameDeveloper ;
+    rdfs:range :VideoGame ;
+    rdfs:label "previously developed"^^xsd:string .
+
+:avoidedDueTo a owl:ObjectProperty ;
+    rdfs:domain :HardwarePlatform ;
+    rdfs:range :HardwarePlatform ;
+    rdfs:label "avoided due to"^^xsd:string .
+
+:hadLimitation a owl:ObjectProperty ;
+    rdfs:domain :HardwarePlatform ;
+    rdfs:label "had limitation"^^xsd:string .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:hasCurrencyCode a owl:DatatypeProperty ;
+    rdfs:domain :MonetaryAmount ;
+    rdfs:range xsd:string ;
+    rdfs:label "has currency code"^^xsd:string .
+
+:hasNumericValue a owl:DatatypeProperty ;
+    rdfs:domain :MonetaryAmount ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has numeric value"^^xsd:string .
+
+:hasLabel a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "has label"^^xsd:string .
+
+:isFreeUpdate a owl:DatatypeProperty ;
+    rdfs:domain :SoftwareUpdate ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is free update"^^xsd:string .
+
+:releasedWorldwide a owl:DatatypeProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "released worldwide"^^xsd:string .
+
+:reasonForExclusion a owl:DatatypeProperty ;
+    rdfs:domain :VideoGame ;
+    rdfs:range xsd:string ;
+    rdfs:label "reason for exclusion"^^xsd:string .
+
+#################################################################
+# Property characteristics
+#################################################################
+
+:isExtendedEditionOf a owl:AsymmetricProperty , owl:IrreflexiveProperty .
+:isStandaloneExpansionOf a owl:AsymmetricProperty , owl:IrreflexiveProperty .
+:isImprovedVersionOf a owl:AsymmetricProperty , owl:IrreflexiveProperty , owl:TransitiveProperty .
+
+#################################################################
+# Class restrictions
+#################################################################
+
+:TurnBasedTacticalRPG rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :setInUniverse ;
+      owl:someValuesFrom :GameUniverse ] .
+
+:VideoGame rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :developedBy ;
+      owl:someValuesFrom :GameDeveloper ] .
+
+:CrowdfundingCampaign rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :hasInitialFundingGoal ;
+      owl:someValuesFrom :FundingGoal ] .
+
+:ExtendedEdition rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :isExtendedEditionOf ;
+      owl:someValuesFrom :VideoGame ] .
+
+#################################################################
+# Named Individuals
+#################################################################
+
+:ShadowrunHongKong a :TurnBasedTacticalRPG , owl:NamedIndividual ;
+    rdfs:label "Shadowrun : Hong Kong"^^xsd:string ;
+    :developedBy :HarebrainedSchemes ;
+    :publishedBy :HarebrainedSchemes ;
+    :setInUniverse :ShadowrunUniverse ;
+    :usesEngine :ImprovedShadowrunEngine ;
+    :shippedWith :LevelEditorTool ;
+    :includesFeature :NewSinglePlayerCampaign ;
+    :developedForOS :MicrosoftWindows ;
+    :developedForOS :OSX ;
+    :developedForOS :Linux ;
+    :notDevelopedFor :Tablets ;
+    :hasReleaseDate :August2015 ;
+    :hasUpdate :ExtendedEditionUpdate ;
+    :releasedWorldwide "true"^^xsd:boolean ;
+    :reasonForExclusion "did not have to factor in the hardware limitations of tablets"^^xsd:string .
+
+:HarebrainedSchemes a :GameDeveloper , :GamePublisher , owl:NamedIndividual ;
+    rdfs:label "Harebrained Schemes"^^xsd:string ;
+    :previouslyDeveloped :ShadowrunReturns ;
+    :previouslyDeveloped :Dragonfall ;
+    :launchedCampaign :KickstarterCampaign2015 .
+
+:ShadowrunUniverse a :GameUniverse , owl:NamedIndividual ;
+    rdfs:label "Shadowrun universe"^^xsd:string .
+
+:ShadowrunReturns a :VideoGame , owl:NamedIndividual ;
+    rdfs:label "Shadowrun Returns"^^xsd:string ;
+    :developedBy :HarebrainedSchemes ;
+    :setInUniverse :ShadowrunUniverse ;
+    :usesEngine :OriginalShadowrunEngine .
+
+:Dragonfall a :StandaloneExpansion , owl:NamedIndividual ;
+    rdfs:label "Dragonfall"^^xsd:string ;
+    :developedBy :HarebrainedSchemes ;
+    :isStandaloneExpansionOf :ShadowrunReturns ;
+    :setInUniverse :ShadowrunUniverse ;
+    :usesEngine :OriginalShadowrunEngine .
+
+:OriginalShadowrunEngine a :GameEngine , owl:NamedIndividual ;
+    rdfs:label "engine used with Shadowrun Returns and Dragonfall"^^xsd:string ;
+    :engineUsedBy :ShadowrunReturns ;
+    :engineUsedBy :Dragonfall .
+
+:ImprovedShadowrunEngine a :GameEngine , owl:NamedIndividual ;
+    rdfs:label "improved version of the engine used with Shadowrun Returns and Dragonfall"^^xsd:string ;
+    :isImprovedVersionOf :OriginalShadowrunEngine .
+
+:LevelEditorTool a :LevelEditor , owl:NamedIndividual ;
+    rdfs:label "level editor"^^xsd:string ;
+    :enablesCreationOf :ShadowrunCampaigns ;
+    :enablesSharingWith :OtherPlayers .
+
+:ShadowrunCampaigns a :Campaign , owl:NamedIndividual ;
+    rdfs:label "Shadowrun campaigns"^^xsd:string .
+
+:OtherPlayers a :Player , owl:NamedIndividual ;
+    rdfs:label "other players"^^xsd:string .
+
+:NewSinglePlayerCampaign a :SinglePlayerCampaign , owl:NamedIndividual ;
+    rdfs:label "new single-player campaign"^^xsd:string .
+
+:Kickstarter a :CrowdfundingPlatform , owl:NamedIndividual ;
+    rdfs:label "Kickstarter"^^xsd:string .
+
+:KickstarterCampaign2015 a :CrowdfundingCampaign , owl:NamedIndividual ;
+    rdfs:label "Kickstarter campaign"^^xsd:string ;
+    :launchedOn :Kickstarter ;
+    :hasLaunchDate :January2015 ;
+    :hasEndDate :FollowingMonth ;
+    :hasInitialFundingGoal :InitialFundingGoal100k ;
+    :totalAmountReceived :TotalAmount1Point2Million ;
+    :campaignPurpose :ShadowrunHongKong .
+
+:January2015 a :Month , owl:NamedIndividual ;
+    rdfs:label "January 2015"^^xsd:string .
+
+:FollowingMonth a :Month , owl:NamedIndividual ;
+    rdfs:label "the following month"^^xsd:string .
+
+:August2015 a :Month , owl:NamedIndividual ;
+    rdfs:label "August 2015"^^xsd:string .
+
+:February2016 a :Month , owl:NamedIndividual ;
+    rdfs:label "February 2016"^^xsd:string .
+
+:InitialFundingGoal100k a :FundingGoal , owl:NamedIndividual ;
+    rdfs:label "US$ 100,000"^^xsd:string ;
+    :goalAmount :Amount100k ;
+    :goalMetIn :AFewHours .
+
+:Amount100k a :MonetaryAmount , owl:NamedIndividual ;
+    rdfs:label "US$ 100,000"^^xsd:string ;
+    :hasNumericValue "100000"^^xsd:decimal ;
+    :hasCurrencyCode "USD"^^xsd:string .
+
+:TotalAmount1Point2Million a :MonetaryAmount , owl:NamedIndividual ;
+    rdfs:label "over $ 1.2 million"^^xsd:string ;
+    :hasNumericValue "1200000"^^xsd:decimal ;
+    :hasCurrencyCode "USD"^^xsd:string .
+
+:AFewHours a :Duration , owl:NamedIndividual ;
+    rdfs:label "a few hours"^^xsd:string .
+
+:MicrosoftWindows a :OperatingSystem , owl:NamedIndividual ;
+    rdfs:label "Microsoft Windows"^^xsd:string .
+
+:OSX a :OperatingSystem , owl:NamedIndividual ;
+    rdfs:label "OS X"^^xsd:string .
+
+:Linux a :OperatingSystem , owl:NamedIndividual ;
+    rdfs:label "Linux"^^xsd:string .
+
+:Tablets a :HardwarePlatform , owl:NamedIndividual ;
+    rdfs:label "tablets"^^xsd:string .
+
+:ExtendedEditionGame a :ExtendedEdition , owl:NamedIndividual ;
+    rdfs:label "extended edition"^^xsd:string ;
+    :isExtendedEditionOf :ShadowrunHongKong ;
+    :includesFeature :NewExtendedCampaign ;
+    :includesFeature :DeveloperCommentaryContent ;
+    :includesFeature :BugFixesContent ;
+    :hasReleaseDate :February2016 ;
+    :hasUpdate :ExtendedEditionUpdate .
+
+:NewExtendedCampaign a :Campaign , owl:NamedIndividual ;
+    rdfs:label "new campaign"^^xsd:string .
+
+:DeveloperCommentaryContent a :DeveloperCommentary , owl:NamedIndividual ;
+    rdfs:label "developer commentary"^^xsd:string .
+
+:BugFixesContent a :BugFix , owl:NamedIndividual ;
+    rdfs:label "bug fixes for the original game"^^xsd:string .
+
+:ExtendedEditionUpdate a :SoftwareUpdate , owl:NamedIndividual ;
+    rdfs:label "the update"^^xsd:string ;
+    :isFreeUpdate "true"^^xsd:boolean ;
+    :updateAvailableTo :OriginalGameOwners .
+
+:OriginalGameOwners a :Player , owl:NamedIndividual ;
+    rdfs:label "everybody who owned the original game"^^xsd:string .

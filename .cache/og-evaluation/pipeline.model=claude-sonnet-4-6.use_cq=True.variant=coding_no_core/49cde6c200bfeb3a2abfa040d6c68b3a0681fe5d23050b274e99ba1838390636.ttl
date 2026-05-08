@@ -1,0 +1,128 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:MyVisionBook a owl:NamedIndividual,
+        ns1:Book ;
+    rdfs:label "My Vision — Challenges in the Race for Excellence"^^xsd:string ;
+    ns1:associatedWithCity ns1:Dubai ;
+    ns1:associatedWithCountry ns1:UnitedArabEmirates ;
+    ns1:containsPhotographCollection ns1:PersonalPhotosCollection,
+        ns1:PublicPhotosCollection ;
+    ns1:hasArabicTitle "رؤيتي .. التحديات في سباق التميز"^^xsd:string ;
+    ns1:hasAuthor ns1:MohammedBinRashidAlMaktoum ;
+    ns1:hasPageCount 223 ;
+    ns1:hasPartCount 5 ;
+    ns1:hasPhotographSetCount 2 ;
+    ns1:hasTheme "development based on excellence"^^xsd:string .
+
+ns1:associatedWithCity a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:City .
+
+ns1:associatedWithCountry a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:Country .
+
+ns1:containsPhotographCollection a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:PhotographCollection .
+
+ns1:hasArabicTitle a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:string .
+
+ns1:hasAuthor a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:Person .
+
+ns1:hasFormerEconomicRole a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range xsd:string .
+
+ns1:hasPageCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:integer .
+
+ns1:hasPartCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:integer .
+
+ns1:hasPhotographSetCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:integer .
+
+ns1:hasTheme a owl:DatatypeProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:string .
+
+ns1:isPrimeMinisterOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Country .
+
+ns1:isRulerOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:City .
+
+ns1:isVicePresidentOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Country .
+
+ns1:MohammedBinRashidAlMaktoum a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Mohammed bin Rashid Al Maktoum"^^xsd:string ;
+    ns1:isPrimeMinisterOf ns1:UnitedArabEmirates ;
+    ns1:isRulerOf ns1:Dubai ;
+    ns1:isVicePresidentOf ns1:UnitedArabEmirates .
+
+ns1:PersonalPhotographCollection a owl:Class ;
+    rdfs:subClassOf ns1:PhotographCollection .
+
+ns1:PersonalPhotosCollection a owl:NamedIndividual,
+        ns1:PersonalPhotographCollection ;
+    rdfs:label "personal writer"^^xsd:string .
+
+ns1:PublicPhotographCollection a owl:Class ;
+    rdfs:subClassOf ns1:PhotographCollection .
+
+ns1:PublicPhotosCollection a owl:NamedIndividual,
+        ns1:PublicPhotographCollection ;
+    rdfs:label "book public images"^^xsd:string .
+
+ns1:Dubai a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Dubai"^^xsd:string ;
+    ns1:hasFormerEconomicRole "regional economic"^^xsd:string .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:PhotographCollection a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:UnitedArabEmirates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United Arab Emirates"^^xsd:string ;
+    ns1:hasFormerEconomicRole "regional economic"^^xsd:string .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Book a owl:Class ;
+    rdfs:subClassOf owl:Thing .

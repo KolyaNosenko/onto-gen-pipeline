@@ -1,0 +1,160 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Album a owl:Class .
+:StudioAlbum a owl:Class .
+:HeavyMetalBand a owl:Class .
+:Band a owl:Class .
+:RecordLabel a owl:Class .
+:Song a owl:Class .
+:Single a owl:Class .
+:LyricVideo a owl:Class .
+:OfficialVideo a owl:Class .
+:Person a owl:Class .
+:BandMember a owl:Class .
+:Guitarist a owl:Class .
+:Vocalist a owl:Class .
+:Bassist a owl:Class .
+:Drummer a owl:Class .
+:RecordingSession a owl:Class .
+:ReleaseEvent a owl:Class .
+:DateInterval a owl:Class .
+:Date a owl:Class .
+:InstrumentOrElement a owl:Class .
+:BandRoleFeature a owl:Class .
+:AlbumTrackFeature a owl:Class .
+
+:StudioAlbum rdfs:subClassOf :Album .
+:HeavyMetalBand rdfs:subClassOf :Band .
+:BandMember rdfs:subClassOf :Person .
+:Guitarist rdfs:subClassOf :BandMember .
+:Vocalist rdfs:subClassOf :BandMember .
+:Bassist rdfs:subClassOf :BandMember .
+:Drummer rdfs:subClassOf :BandMember .
+
+:performedBy a owl:ObjectProperty .
+:releasedBy a owl:ObjectProperty .
+:recordedDuring a owl:ObjectProperty .
+:recordedBetween a owl:ObjectProperty .
+:releasedOn a owl:ObjectProperty .
+:releasedThrough a owl:ObjectProperty .
+:hasFirstSingle a owl:ObjectProperty .
+:promotesAlbum a owl:ObjectProperty .
+:hasAccompanyingMedia a owl:ObjectProperty .
+:hasLyricsAbsentOn a owl:ObjectProperty .
+:hasFormerFeature a owl:ObjectProperty .
+:hasMember a owl:ObjectProperty .
+:featuresOnAlbum a owl:ObjectProperty .
+:hasRoleOnAlbum a owl:ObjectProperty .
+:hasLabel a owl:ObjectProperty .
+:hasReleaseDate a owl:ObjectProperty .
+:hasRecordingStartDate a owl:ObjectProperty .
+:hasRecordingEndDate a owl:ObjectProperty .
+:describedAs a owl:ObjectProperty .
+:comparisonTarget a owl:ObjectProperty .
+:hasPreviousEffort a owl:ObjectProperty .
+:hasOriginalMember a owl:ObjectProperty .
+:featuredOn a owl:ObjectProperty .
+
+:recordedBetween rdfs:domain :Album ; rdfs:range :DateInterval .
+:releasedOn rdfs:domain :Album ; rdfs:range :Date .
+:releasedThrough rdfs:domain :Album ; rdfs:range :RecordLabel .
+:hasFirstSingle rdfs:domain :Album ; rdfs:range :Single .
+:promotesAlbum rdfs:domain :Single ; rdfs:range :Album .
+:hasAccompanyingMedia rdfs:domain :Single ; rdfs:range owl:Thing .
+:hasFormerFeature rdfs:domain :Album ; rdfs:range :InstrumentOrElement .
+:hasMember rdfs:domain :Band ; rdfs:range :BandMember .
+:featuresOnAlbum rdfs:domain :Person ; rdfs:range :Album .
+:hasRoleOnAlbum rdfs:domain :Person ; rdfs:range :BandRoleFeature .
+:hasLabel rdfs:domain :Album ; rdfs:range :RecordLabel .
+
+:IAm a :StudioAlbum , owl:NamedIndividual ;
+    rdfs:label "I Am"^^xsd:string ;
+    :performedBy :BecomingTheArchetype ;
+    :recordedBetween :RecordingPeriodMay21ToJune17 ;
+    :releasedOn :September182012 ;
+    :releasedThrough :SolidStateRecords ;
+    :hasFirstSingle :TheTimeBender ;
+    :hasFormerFeature :Sitars ;
+    :hasFormerFeature :Horns ;
+    :hasPreviousEffort :CelestialCompletion .
+
+:BecomingTheArchetype a :HeavyMetalBand , owl:NamedIndividual ;
+    rdfs:label "Becoming the Archetype"^^xsd:string ;
+    :hasMember :SethHecox , :ChrisMcCane , :CodeyWatkins , :ChrisHeaton .
+
+:SolidStateRecords a :RecordLabel , owl:NamedIndividual ;
+    rdfs:label "Solid State Records"^^xsd:string .
+
+:CelestialCompletion a :Album , owl:NamedIndividual ;
+    rdfs:label "Celestial Completion"^^xsd:string .
+
+:SethHecox a :Guitarist , :Vocalist , :BandMember , owl:NamedIndividual ;
+    rdfs:label "Seth Hecox"^^xsd:string ;
+    :featuresOnAlbum :IAm ;
+    :hasRoleOnAlbum :GuitaristRole , :VocalistRole .
+
+:ChrisMcCane a :BandMember , owl:NamedIndividual ;
+    rdfs:label "Chris McCane"^^xsd:string ;
+    :featuresOnAlbum :IAm ;
+    :hasRoleOnAlbum :VocalistRole .
+
+:CodeyWatkins a :BandMember , owl:NamedIndividual ;
+    rdfs:label "Codey Watkins"^^xsd:string ;
+    :featuresOnAlbum :IAm ;
+    :hasRoleOnAlbum :BassistRole .
+
+:ChrisHeaton a :BandMember , owl:NamedIndividual ;
+    rdfs:label "Chris Heaton"^^xsd:string ;
+    :featuresOnAlbum :IAm ;
+    :hasRoleOnAlbum :DrummerRole .
+
+:TheTimeBender a :Single , owl:NamedIndividual ;
+    rdfs:label "The Time Bender"^^xsd:string ;
+    :promotesAlbum :IAm ;
+    :releasedOn :August282012 ;
+    :hasAccompanyingMedia :LyricVideoTheTimeBender , :OfficialVideoTheTimeBender .
+
+:LyricVideoTheTimeBender a :LyricVideo , owl:NamedIndividual ;
+    rdfs:label "lyric video"^^xsd:string .
+
+:OfficialVideoTheTimeBender a :OfficialVideo , owl:NamedIndividual ;
+    rdfs:label "official video"^^xsd:string .
+
+:RecordingPeriodMay21ToJune17 a :DateInterval , owl:NamedIndividual ;
+    rdfs:label "between May 21 and June 17"^^xsd:string ;
+    :hasRecordingStartDate :May21 ;
+    :hasRecordingEndDate :June17 .
+
+:May21 a :Date , owl:NamedIndividual ;
+    rdfs:label "May 21"^^xsd:string .
+
+:June17 a :Date , owl:NamedIndividual ;
+    rdfs:label "June 17"^^xsd:string .
+
+:September182012 a :Date , owl:NamedIndividual ;
+    rdfs:label "September 18, 2012"^^xsd:string .
+
+:August282012 a :Date , owl:NamedIndividual ;
+    rdfs:label "August 28, 2012"^^xsd:string .
+
+:Sitars a :InstrumentOrElement , owl:NamedIndividual ;
+    rdfs:label "sitars"^^xsd:string .
+
+:Horns a :InstrumentOrElement , owl:NamedIndividual ;
+    rdfs:label "horns"^^xsd:string .
+
+:GuitaristRole a :BandRoleFeature , owl:NamedIndividual ;
+    rdfs:label "guitarist"^^xsd:string .
+
+:VocalistRole a :BandRoleFeature , owl:NamedIndividual ;
+    rdfs:label "vocalist"^^xsd:string .
+
+:BassistRole a :BandRoleFeature , owl:NamedIndividual ;
+    rdfs:label "bass"^^xsd:string .
+
+:DrummerRole a :BandRoleFeature , owl:NamedIndividual ;
+    rdfs:label "drums"^^xsd:string .

@@ -1,0 +1,198 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:Person a owl:Class .
+:Musician a owl:Class ;
+    rdfs:subClassOf :Person .
+:FineArtist a owl:Class ;
+    rdfs:subClassOf :Person .
+:Place a owl:Class .
+:City a owl:Class ;
+    rdfs:subClassOf :Place .
+:State a owl:Class ;
+    rdfs:subClassOf :Place .
+:RecordLabel a owl:Class .
+:Album a owl:Class .
+:StudioAlbum a owl:Class ;
+    rdfs:subClassOf :Album .
+:Genre a owl:Class .
+:MusicalStyle a owl:Class .
+:VocalCharacteristic a owl:Class .
+:VocalRange a owl:Class .
+:Critique a owl:Class .
+:Critic a owl:Class ;
+    rdfs:subClassOf :Person .
+:MediaOrganization a owl:Class .
+:Date a owl:Class .
+:BirthDate a owl:Class ;
+    rdfs:subClassOf :Date .
+
+# Object Properties
+:birthDate a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :BirthDate ;
+    rdf:type owl:FunctionalProperty .
+:basedIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Place ;
+    rdf:type owl:FunctionalProperty .
+:signedTo a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :RecordLabel .
+:released a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :Album .
+:hasGenreInfluence a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :Genre .
+:hasMusicalStyle a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :MusicalStyle .
+:singsInVocalRange a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :VocalRange ;
+    rdf:type owl:FunctionalProperty .
+:vocalCharacteristicDescribedBy a owl:ObjectProperty ;
+    rdfs:domain :VocalCharacteristic ;
+    rdfs:range :Critic .
+:vocalCharacteristicOfMusician a owl:ObjectProperty ;
+    rdfs:domain :VocalCharacteristic ;
+    rdfs:range :Musician .
+:criticWorks a owl:ObjectProperty ;
+    rdfs:domain :Critic ;
+    rdfs:range :MediaOrganization ;
+    rdf:type owl:FunctionalProperty .
+:locatedIn a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :State ;
+    rdf:type owl:FunctionalProperty .
+
+# Data Properties
+:birthYear a owl:DatatypeProperty ;
+    rdfs:domain :BirthDate ;
+    rdfs:range xsd:gYear .
+:birthMonth a owl:DatatypeProperty ;
+    rdfs:domain :BirthDate ;
+    rdfs:range xsd:int .
+:birthDay a owl:DatatypeProperty ;
+    rdfs:domain :BirthDate ;
+    rdfs:range xsd:int .
+:activeFrom a owl:DatatypeProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range xsd:gYear .
+:releaseYear a owl:DatatypeProperty ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:gYear .
+:releaseMonth a owl:DatatypeProperty ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:int .
+:studioAlbumCount a owl:DatatypeProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range xsd:int .
+:description a owl:DatatypeProperty ;
+    rdfs:domain :VocalCharacteristic ;
+    rdfs:range xsd:string .
+:musicianNationality a owl:DatatypeProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range xsd:string .
+
+# Individuals - People
+:MarissaNadler a :Musician, :FineArtist, owl:NamedIndividual ;
+    rdfs:label "Marissa Nadler"^^xsd:string ;
+    :musicianNationality "American"^^xsd:string ;
+    :basedIn :Boston ;
+    :signedTo :SacredBonesRecords ;
+    :signedTo :BellaUnion ;
+    :released :Strangers ;
+    :hasGenreInfluence :Country ;
+    :hasGenreInfluence :Folk ;
+    :hasGenreInfluence :Experimental ;
+    :hasGenreInfluence :BlackMetal ;
+    :hasMusicalStyle :DreamFolk ;
+    :singsInVocalRange :MezzoSoprano ;
+    :birthDate :MarissaNadlerBirthDate ;
+    :activeFrom "2000"^^xsd:gYear ;
+    :studioAlbumCount 7 .
+
+:MarissaNadlerBirthDate a :BirthDate, owl:NamedIndividual ;
+    rdfs:label "April 5, 1981"^^xsd:string ;
+    :birthYear "1981"^^xsd:gYear ;
+    :birthMonth 4 ;
+    :birthDay 5 .
+
+:Pitchfork a :Critic, owl:NamedIndividual ;
+    rdfs:label "Pitchfork"^^xsd:string ;
+    :criticWorks :PitchforkMediaOrganization .
+
+:BostonGlobe a :Critic, owl:NamedIndividual ;
+    rdfs:label "The Boston Globe"^^xsd:string ;
+    :criticWorks :BostonGlobeMediaOrganization .
+
+# Individuals - Places
+:Boston a :City, owl:NamedIndividual ;
+    rdfs:label "Boston"^^xsd:string ;
+    :locatedIn :Massachusetts .
+
+:Massachusetts a :State, owl:NamedIndividual ;
+    rdfs:label "Massachusetts"^^xsd:string .
+
+# Individuals - Record Labels
+:SacredBonesRecords a :RecordLabel, owl:NamedIndividual ;
+    rdfs:label "Sacred Bones Records"^^xsd:string .
+
+:BellaUnion a :RecordLabel, owl:NamedIndividual ;
+    rdfs:label "Bella Union"^^xsd:string .
+
+# Individuals - Albums
+:Strangers a :StudioAlbum, owl:NamedIndividual ;
+    rdfs:label "Strangers"^^xsd:string ;
+    :releaseYear "2016"^^xsd:gYear ;
+    :releaseMonth 5 .
+
+# Individuals - Genres
+:Country a :Genre, owl:NamedIndividual ;
+    rdfs:label "country"^^xsd:string .
+
+:Folk a :Genre, owl:NamedIndividual ;
+    rdfs:label "folk"^^xsd:string .
+
+:Experimental a :Genre, owl:NamedIndividual ;
+    rdfs:label "experimental"^^xsd:string .
+
+:BlackMetal a :Genre, owl:NamedIndividual ;
+    rdfs:label "black metal"^^xsd:string .
+
+# Individuals - Musical Styles
+:DreamFolk a :MusicalStyle, owl:NamedIndividual ;
+    rdfs:label "dream folk"^^xsd:string .
+
+# Individuals - Vocal Range
+:MezzoSoprano a :VocalRange, owl:NamedIndividual ;
+    rdfs:label "mezzo-soprano"^^xsd:string .
+
+# Individuals - Vocal Characteristics
+:PitchforkVocalCharacteristic a :VocalCharacteristic, owl:NamedIndividual ;
+    rdfs:label "you would follow straight into Hades"^^xsd:string ;
+    :vocalCharacteristicOfMusician :MarissaNadler ;
+    :vocalCharacteristicDescribedBy :Pitchfork .
+
+:PitchforkVocalCharacteristic2 a :VocalCharacteristic, owl:NamedIndividual ;
+    rdfs:label "textured and angelic, with just a hint of pain captured within her iridescent falsetto"^^xsd:string ;
+    :vocalCharacteristicOfMusician :MarissaNadler ;
+    :vocalCharacteristicDescribedBy :Pitchfork .
+
+:BostonGlobeVocalCharacteristic a :VocalCharacteristic, owl:NamedIndividual ;
+    rdfs:label "a voice that, in mythological times, could have lured men to their deaths at sea, an intoxicating soprano drenched in gauzy reverb that hits bell-clear heights, lingers, and tapers off like rings of smoke"^^xsd:string ;
+    :vocalCharacteristicOfMusician :MarissaNadler ;
+    :vocalCharacteristicDescribedBy :BostonGlobe .
+
+# Individuals - Media Organizations
+:PitchforkMediaOrganization a :MediaOrganization, owl:NamedIndividual ;
+    rdfs:label "Pitchfork"^^xsd:string .
+
+:BostonGlobeMediaOrganization a :MediaOrganization, owl:NamedIndividual ;
+    rdfs:label "The Boston Globe"^^xsd:string .

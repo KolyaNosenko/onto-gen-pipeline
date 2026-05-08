@@ -1,0 +1,374 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+
+:Neuron a owl:Class ;
+    rdfs:label "Neuron" .
+
+:GridCell a owl:Class ;
+    rdfs:subClassOf :Neuron ;
+    rdfs:label "Grid cell" .
+
+:PlaceCell a owl:Class ;
+    rdfs:subClassOf :Neuron ;
+    rdfs:label "Place cell" .
+
+:Electrode a owl:Class ;
+    rdfs:label "Electrode" .
+
+:BrainRegion a owl:Class ;
+    rdfs:label "Brain region" .
+
+:CerebralCortex a owl:Class ;
+    rdfs:subClassOf :BrainRegion ;
+    rdfs:label "Cerebral cortex" .
+
+:DorsomedialEntorhinalCortex a owl:Class ;
+    rdfs:subClassOf :CerebralCortex ;
+    rdfs:label "Dorsomedial entorhinal cortex" .
+
+:Hippocampus a owl:Class ;
+    rdfs:subClassOf :BrainRegion ;
+    rdfs:label "Hippocampus" .
+
+:Species a owl:Class ;
+    rdfs:label "Species" .
+
+:Rat a owl:Class ;
+    rdfs:subClassOf :Species ;
+    rdfs:label "Rat" .
+
+:Person a owl:Class ;
+    rdfs:label "Person" .
+
+:Scientist a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Scientist" .
+
+:Discovery a owl:Class ;
+    rdfs:label "Discovery" .
+
+:Award a owl:Class ;
+    rdfs:label "Award" .
+
+:NobelPrize a owl:Class ;
+    rdfs:subClassOf :Award ;
+    rdfs:label "Nobel Prize" .
+
+:NobelPrizeInPhysiologyOrMedicine a owl:Class ;
+    rdfs:subClassOf :NobelPrize ;
+    rdfs:label "Nobel Prize in Physiology or Medicine" .
+
+:Research a owl:Class ;
+    rdfs:label "Research" .
+
+:ExperimentalStudy a owl:Class ;
+    rdfs:subClassOf :Research ;
+    rdfs:label "Experimental study" .
+
+:Organisation a owl:Class ;
+    rdfs:label "Organisation" .
+
+:ResearchCentre a owl:Class ;
+    rdfs:subClassOf :Organisation ;
+    rdfs:label "Research centre" .
+
+:Location a owl:Class ;
+    rdfs:label "Location" .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Location ;
+    rdfs:label "Country" .
+
+:SpatialFiringField a owl:Class ;
+    rdfs:label "Spatial firing field" .
+
+:FiringPattern a owl:Class ;
+    rdfs:label "Firing pattern" .
+
+:GridPattern a owl:Class ;
+    rdfs:subClassOf :FiringPattern ;
+    rdfs:label "Grid pattern" .
+
+:TrianglePattern a owl:Class ;
+    rdfs:subClassOf :GridPattern ;
+    rdfs:label "Triangle pattern" .
+
+:EquilateralTriangle a owl:Class ;
+    rdfs:label "Equilateral triangle" .
+
+:PlaceField a owl:Class ;
+    rdfs:label "Place field" .
+
+:ActionPotential a owl:Class ;
+    rdfs:label "Action potential" .
+
+:PositioningSystem a owl:Class ;
+    rdfs:label "Positioning system" .
+
+:CognitiveRepresentation a owl:Class ;
+    rdfs:label "Cognitive representation" .
+
+:EuclideanSpace a owl:Class ;
+    rdfs:label "Euclidean space" .
+
+:Mechanism a owl:Class ;
+    rdfs:label "Mechanism" .
+
+:DynamicComputation a owl:Class ;
+    rdfs:subClassOf :Mechanism ;
+    rdfs:label "Dynamic computation" .
+
+:SelfPositionComputation a owl:Class ;
+    rdfs:subClassOf :DynamicComputation ;
+    rdfs:label "Self-position computation" .
+
+:Information a owl:Class ;
+    rdfs:label "Information" .
+
+:PositionInformation a owl:Class ;
+    rdfs:subClassOf :Information ;
+    rdfs:label "Position information" .
+
+:DirectionInformation a owl:Class ;
+    rdfs:subClassOf :Information ;
+    rdfs:label "Direction information" .
+
+:Arena a owl:Class ;
+    rdfs:label "Arena" .
+
+:OpenArena a owl:Class ;
+    rdfs:subClassOf :Arena ;
+    rdfs:label "Open arena" .
+
+:Cluster a owl:Class ;
+    rdfs:label "Cluster" .
+
+:Vertex a owl:Class ;
+    rdfs:label "Vertex" .
+
+:Year a owl:Class ;
+    rdfs:label "Year" .
+
+# Object Properties
+
+:discoveredBy a owl:ObjectProperty ;
+    rdfs:label "discovered by" ;
+    rdfs:domain :Discovery ;
+    rdfs:range :Scientist .
+
+:discoveredIn a owl:ObjectProperty ;
+    rdfs:label "discovered in" ;
+    rdfs:domain :Discovery ;
+    rdfs:range :Year .
+
+:discoveredAt a owl:ObjectProperty ;
+    rdfs:label "discovered at" ;
+    rdfs:domain :Discovery ;
+    rdfs:range :Organisation .
+
+:awardedTo a owl:ObjectProperty ;
+    rdfs:label "awarded to" ;
+    rdfs:domain :Award ;
+    rdfs:range :Scientist .
+
+:awardedFor a owl:ObjectProperty ;
+    rdfs:label "awarded for" ;
+    rdfs:domain :Award ;
+    rdfs:range :Discovery .
+
+:awardedInYear a owl:ObjectProperty ;
+    rdfs:label "awarded in year" ;
+    rdfs:domain :Award ;
+    rdfs:range :Year .
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:label "located in" ;
+    rdfs:domain :BrainRegion ;
+    rdfs:range :BrainRegion .
+
+:isLocationOf a owl:ObjectProperty ;
+    rdfs:label "is location of" ;
+    rdfs:domain :BrainRegion ;
+    rdfs:range :Neuron ;
+    owl:inverseOf :hasLocation .
+
+:hasLocation a owl:ObjectProperty ;
+    rdfs:label "has location" ;
+    rdfs:domain :Neuron ;
+    rdfs:range :BrainRegion .
+
+:allowsUnderstanding a owl:ObjectProperty ;
+    rdfs:label "allows understanding" ;
+    rdfs:domain :GridCell ;
+    rdfs:range :CognitiveRepresentation .
+
+:encodesCognitiveRepresentation a owl:ObjectProperty ;
+    rdfs:label "encodes cognitive representation" ;
+    rdfs:domain :GridCell ;
+    rdfs:range :CognitiveRepresentation .
+
+:exhibitsPattern a owl:ObjectProperty ;
+    rdfs:label "exhibits pattern" ;
+    rdfs:domain :SpatialFiringField ;
+    rdfs:range :FiringPattern .
+
+:formsVertices a owl:ObjectProperty ;
+    rdfs:label "forms vertices" ;
+    rdfs:domain :Cluster ;
+    rdfs:range :Vertex .
+
+:structuredBy a owl:ObjectProperty ;
+    rdfs:label "structured by" ;
+    rdfs:domain :SpatialFiringField ;
+    rdfs:range :TrianglePattern .
+
+:implantedIn a owl:ObjectProperty ;
+    rdfs:label "implanted in" ;
+    rdfs:domain :Electrode ;
+    rdfs:range :BrainRegion .
+
+:records a owl:ObjectProperty ;
+    rdfs:label "records" ;
+    rdfs:domain :Electrode ;
+    rdfs:range :ActionPotential .
+
+:studiedWith a owl:ObjectProperty ;
+    rdfs:label "studied with" ;
+    rdfs:domain :Neuron ;
+    rdfs:range :ExperimentalStudy .
+
+:employsElectrode a owl:ObjectProperty ;
+    rdfs:label "employs electrode" ;
+    rdfs:domain :ExperimentalStudy ;
+    rdfs:range :Electrode .
+
+:conductsResearchIn a owl:ObjectProperty ;
+    rdfs:label "conducts research in" ;
+    rdfs:domain :ResearchCentre ;
+    rdfs:range :Research .
+
+:locatedInCountry a owl:ObjectProperty ;
+    rdfs:label "located in country" ;
+    rdfs:domain :ResearchCentre ;
+    rdfs:range :Country .
+
+:differsfrom a owl:ObjectProperty ;
+    rdfs:label "differs from" ;
+    rdfs:domain :Neuron ;
+    rdfs:range :Neuron .
+
+:contributesToMechanism a owl:ObjectProperty ;
+    rdfs:label "contributes to mechanism" ;
+    rdfs:domain :GridCell ;
+    rdfs:range :SelfPositionComputation .
+
+:updatedBy a owl:ObjectProperty ;
+    rdfs:label "updated by" ;
+    rdfs:domain :SelfPositionComputation ;
+    rdfs:range :Information .
+
+:utilizesInformation a owl:ObjectProperty ;
+    rdfs:label "utilizes information" ;
+    rdfs:domain :SelfPositionComputation ;
+    rdfs:range :Information .
+
+:hasFiringField a owl:ObjectProperty ;
+    rdfs:label "has firing field" ;
+    rdfs:domain :Neuron ;
+    rdfs:range :SpatialFiringField .
+
+:consistsOfCell a owl:ObjectProperty ;
+    rdfs:label "consists of cell" ;
+    rdfs:domain :PositioningSystem ;
+    rdfs:range :Neuron .
+
+# Data Properties
+
+:hasYear a owl:DatatypeProperty ;
+    rdfs:label "has year" ;
+    rdfs:domain :Year ;
+    rdfs:range xsd:integer .
+
+# Individuals
+
+:GridCellDiscovery a :Discovery , owl:NamedIndividual ;
+    rdfs:label "Grid cell discovery" ;
+    :discoveredBy :EdvardMoser ;
+    :discoveredBy :MayBrittMoser ;
+    :discoveredBy :TorkelHafting ;
+    :discoveredBy :MarianneF ;
+    :discoveredBy :SturlaMolden ;
+    :discoveredIn :Year2005 ;
+    :discoveredAt :CBM .
+
+:Year2005 a :Year , owl:NamedIndividual ;
+    rdfs:label "2005" ;
+    :hasYear 2005 .
+
+:Year2014 a :Year , owl:NamedIndividual ;
+    rdfs:label "2014" ;
+    :hasYear 2014 .
+
+:EdvardMoser a :Scientist , owl:NamedIndividual ;
+    rdfs:label "Edvard Moser" .
+
+:MayBrittMoser a :Scientist , owl:NamedIndividual ;
+    rdfs:label "May-Britt Moser" .
+
+:TorkelHafting a :Scientist , owl:NamedIndividual ;
+    rdfs:label "Torkel Hafting" .
+
+:MarianneF a :Scientist , owl:NamedIndividual ;
+    rdfs:label "Marianne Fyhn" .
+
+:SturlaMolden a :Scientist , owl:NamedIndividual ;
+    rdfs:label "Sturla Molden" .
+
+:JohnOKeefe a :Scientist , owl:NamedIndividual ;
+    rdfs:label "John O'Keefe" .
+
+:CBM a :ResearchCentre , owl:NamedIndividual ;
+    rdfs:label "Centre for the Biology of Memory (CBM)" ;
+    :locatedInCountry :Norway .
+
+:Norway a :Country , owl:NamedIndividual ;
+    rdfs:label "Norway" .
+
+:NobelPrizePhysiologyMedicine2014 a :NobelPrizeInPhysiologyOrMedicine , owl:NamedIndividual ;
+    rdfs:label "2014 Nobel Prize in Physiology or Medicine" ;
+    :awardedTo :EdvardMoser ;
+    :awardedTo :MayBrittMoser ;
+    :awardedTo :JohnOKeefe ;
+    :awardedFor :GridCellDiscovery ;
+    :awardedInYear :Year2014 .
+
+:RatSpecies a :Rat , owl:NamedIndividual ;
+    rdfs:label "Rat" .
+
+:DorsomedialEntorhinalCortexRegion a :DorsomedialEntorhinalCortex , owl:NamedIndividual ;
+    rdfs:label "Dorsomedial entorhinal cortex" ;
+    :locatedIn :CerebralCortexRegion .
+
+:CerebralCortexRegion a :CerebralCortex , owl:NamedIndividual ;
+    rdfs:label "Cerebral cortex" .
+
+:RatHippocampus a :Hippocampus , owl:NamedIndividual ;
+    rdfs:label "Rat hippocampus" .
+
+:EquilateralTrianglePattern a :TrianglePattern , owl:NamedIndividual ;
+    rdfs:label "Equilateral triangle pattern" .
+
+:EuclideanSpaceRepresentation a :EuclideanSpace , owl:NamedIndividual ;
+    rdfs:label "Euclidean space" .
+
+:ElectrodeForRecording a :Electrode , owl:NamedIndividual ;
+    rdfs:label "Electrode capable of recording the activity of an individual neuron" .
+
+:RatExperiment a :ExperimentalStudy , owl:NamedIndividual ;
+    rdfs:label "Typical experimental study" ;
+    :employsElectrode :ElectrodeForRecording .

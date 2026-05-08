@@ -1,0 +1,286 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:Painter a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Painter"^^xsd:string .
+
+:PaintingTechnique a owl:Class ;
+    rdfs:label "Painting Technique"^^xsd:string .
+
+:Guild a owl:Class ;
+    rdfs:label "Guild"^^xsd:string .
+
+:GuildRole a owl:Class ;
+    rdfs:label "Guild Role"^^xsd:string .
+
+:Location a owl:Class ;
+    rdfs:label "Location"^^xsd:string .
+
+:City a owl:Class ;
+    rdfs:subClassOf :Location ;
+    rdfs:label "City"^^xsd:string .
+
+:Region a owl:Class ;
+    rdfs:subClassOf :Location ;
+    rdfs:label "Region"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Location ;
+    rdfs:label "Country"^^xsd:string .
+
+:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string .
+
+:Artwork a owl:Class ;
+    rdfs:label "Artwork"^^xsd:string .
+
+:Painting a owl:Class ;
+    rdfs:subClassOf :Artwork ;
+    rdfs:label "Painting"^^xsd:string .
+
+:ReligiousWork a owl:Class ;
+    rdfs:subClassOf :Painting ;
+    rdfs:label "Religious Work"^^xsd:string .
+
+:Portrait a owl:Class ;
+    rdfs:subClassOf :Painting ;
+    rdfs:label "Portrait"^^xsd:string .
+
+:ArtisticStyle a owl:Class ;
+    rdfs:label "Artistic Style"^^xsd:string .
+
+:RenaissanceStyle a owl:Class ;
+    rdfs:subClassOf :ArtisticStyle ;
+    rdfs:label "Renaissance Style"^^xsd:string .
+
+:NetherlandishStyle a owl:Class ;
+    rdfs:subClassOf :ArtisticStyle ;
+    rdfs:label "Netherlandish Style"^^xsd:string .
+
+:PaintingSubject a owl:Class ;
+    rdfs:label "Painting Subject"^^xsd:string .
+
+:Royalty a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Royalty"^^xsd:string .
+
+:MentalIllness a owl:Class ;
+    rdfs:label "Mental Illness"^^xsd:string .
+
+:ArtisticInnovation a owl:Class ;
+    rdfs:label "Artistic Innovation"^^xsd:string .
+
+:Landscape a owl:Class ;
+    rdfs:subClassOf :PaintingElement ;
+    rdfs:label "Landscape"^^xsd:string .
+
+:PaintingElement a owl:Class ;
+    rdfs:label "Painting Element"^^xsd:string .
+
+:Residence a owl:Class ;
+    rdfs:label "Residence"^^xsd:string .
+
+# Object Properties
+:activePainterIn a owl:ObjectProperty ;
+    rdfs:domain :Painter ;
+    rdfs:range :Location ;
+    rdfs:label "active painter in"^^xsd:string .
+
+:combinesTechnique a owl:ObjectProperty ;
+    rdfs:domain :Painter ;
+    rdfs:range :PaintingTechnique ;
+    rdfs:label "combines technique"^^xsd:string .
+
+:influencedBy a owl:ObjectProperty ;
+    rdfs:domain :Painter ;
+    rdfs:range :ArtisticStyle ;
+    rdfs:label "influenced by"^^xsd:string .
+
+:memberOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Guild ;
+    rdfs:label "member of"^^xsd:string .
+
+:guildRole a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :GuildRole ;
+    rdfs:label "guild role"^^xsd:string .
+
+:paints a owl:ObjectProperty ;
+    rdfs:domain :Painter ;
+    rdfs:range :Painting ;
+    rdfs:label "paints"^^xsd:string .
+
+:hasPaintingSubject a owl:ObjectProperty ;
+    rdfs:domain :Painting ;
+    rdfs:range :PaintingSubject ;
+    rdfs:label "has painting subject"^^xsd:string .
+
+:fatherOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdfs:label "father of"^^xsd:string .
+
+:sonOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdfs:label "son of"^^xsd:string .
+
+:hasArtisticCharacteristic a owl:ObjectProperty ;
+    rdfs:domain :Painter ;
+    rdfs:range :ArtisticCharacteristic ;
+    rdfs:label "has artistic characteristic"^^xsd:string .
+
+:introduced a owl:ObjectProperty ;
+    rdfs:domain :Painter ;
+    rdfs:range :ArtisticInnovation ;
+    rdfs:label "introduced"^^xsd:string .
+
+:hasBackground a owl:ObjectProperty ;
+    rdfs:domain :Painting ;
+    rdfs:range :PaintingElement ;
+    rdfs:label "has background"^^xsd:string .
+
+:residedIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Location ;
+    rdfs:label "resided in"^^xsd:string .
+
+:suffersFrom a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :MentalIllness ;
+    rdfs:label "suffers from"^^xsd:string .
+
+# Data Properties
+:activeFrom a owl:DatatypeProperty ;
+    rdfs:domain :Painter ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "active from"^^xsd:string .
+
+:activeTo a owl:DatatypeProperty ;
+    rdfs:domain :Painter ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "active to"^^xsd:string .
+
+:bornApproximately a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "born approximately"^^xsd:string .
+
+:diedBetween a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "died between"^^xsd:string .
+
+:lifespan a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "lifespan"^^xsd:string .
+
+:birthYear a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "birth year"^^xsd:string .
+
+:deathYear a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "death year"^^xsd:string .
+
+:nickname a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "nickname"^^xsd:string .
+
+:alternativeName a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "alternative name"^^xsd:string .
+
+# Classes for Artistic Characteristics
+:ArtisticCharacteristic a owl:Class ;
+    rdfs:label "Artistic Characteristic"^^xsd:string .
+
+:ColorSensitivity a owl:Class ;
+    rdfs:subClassOf :ArtisticCharacteristic ;
+    rdfs:label "Color Sensitivity"^^xsd:string .
+
+:FigureSolidity a owl:Class ;
+    rdfs:subClassOf :ArtisticCharacteristic ;
+    rdfs:label "Figure Solidity"^^xsd:string .
+
+# Individuals
+:JoosVanCleve a :Painter , owl:NamedIndividual ;
+    rdfs:label "Joos van Cleve"^^xsd:string ;
+    :alternativeName "Joos van der Beke"^^xsd:string ;
+    :bornApproximately 1485 ;
+    :diedBetween "1540/1541"^^xsd:string ;
+    :activePainterIn :Antwerp ;
+    :activeFrom 1511 ;
+    :activeTo 1540 ;
+    :memberOf :GuildOfSaintLukeOfAntwerp ;
+    :guildRole :Codeacon ;
+    :combinesTechnique :TraditionalNetherlandishTechnique ;
+    :combinesTechnique :RenaissanceTechnique ;
+    :influencedBy :RenaissancePainting ;
+    :hasArtisticCharacteristic :ColorSensitivity ;
+    :hasArtisticCharacteristic :FigureSolidity ;
+    :introduced :BroadLandscapeBackground ;
+    :fatherOf :cornelisVanCleve .
+
+:Antwerp a :City , owl:NamedIndividual ;
+    rdfs:label "Antwerp"^^xsd:string .
+
+:GuildOfSaintLukeOfAntwerp a :Guild , owl:NamedIndividual ;
+    rdfs:label "Guild of Saint Luke of Antwerp"^^xsd:string .
+
+:Codeacon a :GuildRole , owl:NamedIndividual ;
+    rdfs:label "co-deacon"^^xsd:string .
+
+:TraditionalNetherlandishTechnique a :PaintingTechnique , owl:NamedIndividual ;
+    rdfs:label "traditional Netherlandish painting techniques"^^xsd:string .
+
+:RenaissanceTechnique a :PaintingTechnique , owl:NamedIndividual ;
+    rdfs:label "Renaissance painting styles"^^xsd:string .
+
+:RenaissancePainting a :ArtisticStyle , owl:NamedIndividual ;
+    rdfs:label "Renaissance painting styles"^^xsd:string .
+
+:ReligiousWorkSubject a :PaintingSubject , owl:NamedIndividual ;
+    rdfs:label "religious"^^xsd:string .
+
+:RoyaltySubject a :PaintingSubject , owl:NamedIndividual ;
+    rdfs:label "royalty"^^xsd:string .
+
+:BroadLandscapeBackground a :ArtisticInnovation , owl:NamedIndividual ;
+    rdfs:label "broad landscapes in the backgrounds of paintings"^^xsd:string .
+
+:ColorSensitivityChar a :ColorSensitivity , owl:NamedIndividual ;
+    rdfs:label "sensitivity to color"^^xsd:string .
+
+:UniqueFigureSolidity a :FigureSolidity , owl:NamedIndividual ;
+    rdfs:label "unique solidarity of figures"^^xsd:string .
+
+:cornelisVanCleve a :Painter , owl:NamedIndividual ;
+    rdfs:label "Cornelis van Cleve"^^xsd:string ;
+    :birthYear 1520 ;
+    :deathYear 1567 ;
+    :sonOf :JoosVanCleve ;
+    :residedIn :England ;
+    :suffersFrom :MentalIllness ;
+    :nickname "Sotte Cleef"^^xsd:string ;
+    :nickname "mad Cleef"^^xsd:string .
+
+:England a :Country , owl:NamedIndividual ;
+    rdfs:label "England"^^xsd:string .
+
+:MentalIllnessCondition a :MentalIllness , owl:NamedIndividual ;
+    rdfs:label "mental illness"^^xsd:string .

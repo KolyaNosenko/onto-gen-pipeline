@@ -1,0 +1,212 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:GeorgyFotev a owl:NamedIndividual,
+        ns1:Sociologist ;
+    rdfs:label "Georgy Fotev"^^xsd:string ;
+    ns1:affiliatedWith ns1:NewBulgarianUniversity ;
+    ns1:birthDate "1941-08-24"^^xsd:date ;
+    ns1:hasNationality ns1:Bulgaria ;
+    ns1:hasPublished ns1:BulgarianMelancholy,
+        ns1:TheLongNightOfCommunismInBulgaria ;
+    ns1:hasResearchInterest ns1:CrisisOfLegitimacy,
+        ns1:Dialogue,
+        ns1:Ethnosociology,
+        ns1:HistoricalSociology,
+        ns1:ModernSociology,
+        ns1:MultipleparadigmSociology,
+        ns1:SociologyOfPolitics,
+        ns1:SociologyOfValues,
+        ns1:TheoryAndHistoryOfSociology ;
+    ns1:heldPosition ns1:MinisterOfEducationAndScience,
+        ns1:ProfessorEmeritus ;
+    ns1:receivedAward ns1:DistinguishedServiceAward .
+
+ns1:affiliatedWith a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Institution .
+
+ns1:awardYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Award ;
+    rdfs:range xsd:integer .
+
+ns1:awardedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Award ;
+    rdfs:range ns1:Institution .
+
+ns1:baseFor a owl:ObjectProperty ;
+    rdfs:domain ns1:SociologicalConcept ;
+    rdfs:range ns1:SociologicalConcept .
+
+ns1:birthDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:date .
+
+ns1:endYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Position ;
+    rdfs:range xsd:integer .
+
+ns1:hasNationality a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Country .
+
+ns1:hasPublished a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Publication .
+
+ns1:hasResearchInterest a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:SociologicalConcept,
+        ns1:SociologicalField .
+
+ns1:heldPosition a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Position .
+
+ns1:horizonFor a owl:ObjectProperty ;
+    rdfs:domain ns1:SociologicalConcept ;
+    rdfs:range ns1:SociologicalConcept .
+
+ns1:positionAt a owl:ObjectProperty ;
+    rdfs:domain ns1:Position ;
+    rdfs:range ns1:Institution .
+
+ns1:positionTitle a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Position ;
+    rdfs:range xsd:string .
+
+ns1:receivedAward a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Award .
+
+ns1:startYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Position ;
+    rdfs:range xsd:integer .
+
+ns1:AcademicPosition a owl:Class ;
+    rdfs:subClassOf ns1:Position .
+
+ns1:AmericanUniversityInBulgaria a owl:NamedIndividual,
+        ns1:University ;
+    rdfs:label "American University in Bulgaria"^^xsd:string .
+
+ns1:Bulgaria a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Bulgaria"^^xsd:string .
+
+ns1:BulgarianMelancholy a owl:NamedIndividual,
+        ns1:Book ;
+    rdfs:label "Bulgarian melancholy"^^xsd:string .
+
+ns1:CrisisOfLegitimacy a owl:NamedIndividual,
+        ns1:SociologicalField ;
+    rdfs:label "Crisis of Legitimacy"^^xsd:string .
+
+ns1:Dialogue a owl:NamedIndividual,
+        ns1:SociologicalConcept ;
+    rdfs:label "Dialogue"^^xsd:string ;
+    ns1:baseFor ns1:MultipleparadigmSociology ;
+    ns1:horizonFor ns1:MultipleparadigmSociology .
+
+ns1:DistinguishedServiceAward a owl:NamedIndividual,
+        ns1:Award ;
+    rdfs:label "Distinguished Service Award"^^xsd:string ;
+    ns1:awardYear 2003 ;
+    ns1:awardedBy ns1:AmericanUniversityInBulgaria .
+
+ns1:Ethnosociology a owl:NamedIndividual,
+        ns1:SociologicalField ;
+    rdfs:label "Ethnosociology"^^xsd:string .
+
+ns1:HistoricalSociology a owl:NamedIndividual,
+        ns1:SociologicalField ;
+    rdfs:label "Historical Sociology"^^xsd:string .
+
+ns1:MinisterOfEducationAndScience a owl:NamedIndividual,
+        ns1:MinisterialPosition ;
+    rdfs:label "Minister of Education and Science"^^xsd:string ;
+    ns1:endYear 1992 ;
+    ns1:positionTitle "Minister of Education and Science"^^xsd:string ;
+    ns1:startYear 1991 .
+
+ns1:MinisterialPosition a owl:Class ;
+    rdfs:subClassOf ns1:Position .
+
+ns1:ModernSociology a owl:NamedIndividual,
+        ns1:SociologicalField ;
+    rdfs:label "Modern Sociology"^^xsd:string .
+
+ns1:ProfessorEmeritus a owl:NamedIndividual,
+        ns1:AcademicPosition ;
+    rdfs:label "Professor Emeritus"^^xsd:string ;
+    ns1:positionAt ns1:NewBulgarianUniversity ;
+    ns1:positionTitle "Professor Emeritus"^^xsd:string .
+
+ns1:Sociologist a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:SociologyOfPolitics a owl:NamedIndividual,
+        ns1:SociologicalField ;
+    rdfs:label "Sociology of Politics"^^xsd:string .
+
+ns1:SociologyOfValues a owl:NamedIndividual,
+        ns1:SociologicalField ;
+    rdfs:label "Sociology of Values"^^xsd:string .
+
+ns1:TheLongNightOfCommunismInBulgaria a owl:NamedIndividual,
+        ns1:Book ;
+    rdfs:label "The long night of communism in Bulgaria"^^xsd:string .
+
+ns1:TheoryAndHistoryOfSociology a owl:NamedIndividual,
+        ns1:SociologicalField ;
+    rdfs:label "Theory and History of Sociology"^^xsd:string .
+
+ns1:Book a owl:Class ;
+    rdfs:subClassOf ns1:Publication .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:NewBulgarianUniversity a owl:NamedIndividual,
+        ns1:University ;
+    rdfs:label "New Bulgarian University"^^xsd:string .
+
+ns1:Publication a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:University a owl:Class ;
+    rdfs:subClassOf ns1:Institution .
+
+ns1:MultipleparadigmSociology a owl:NamedIndividual,
+        ns1:SociologicalConcept ;
+    rdfs:label "Multiple paradigm sociology"^^xsd:string .
+
+ns1:Award a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Institution a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Position a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SociologicalConcept a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SociologicalField a owl:Class ;
+    rdfs:subClassOf owl:Thing .

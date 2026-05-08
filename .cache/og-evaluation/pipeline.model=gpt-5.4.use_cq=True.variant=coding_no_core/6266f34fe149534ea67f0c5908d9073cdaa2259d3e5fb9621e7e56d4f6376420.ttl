@@ -1,0 +1,299 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:affiliatedWith a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Organization .
+
+ns1:allowsContestantChoice a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range xsd:boolean .
+
+ns1:contestantsComeFromField a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:Field .
+
+ns1:effectiveCancellationAnnouncedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:Person .
+
+ns1:effectiveCancellationAnnouncedOn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:TimePoint .
+
+ns1:hasContestantType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:ContestantType .
+
+ns1:hasHost a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:Person .
+
+ns1:hasOpeningThemeSong a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:Song .
+
+ns1:hasPrecursor a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:hasRole a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Role .
+
+ns1:hostingEndTime a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:TimePoint .
+
+ns1:hostingStartTime a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:TimePoint .
+
+ns1:hosts a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:includesSeasonNumber a owl:DatatypeProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range xsd:integer .
+
+ns1:isEffectivelyCanceled a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range xsd:boolean .
+
+ns1:isVariationOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:linkedInSeasonsTo a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:performedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Song ;
+    rdfs:range ns1:MusicGroup .
+
+ns1:prizeMoneyIntendedFor a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:CharitableOrganization .
+
+ns1:ActorOccupation a owl:NamedIndividual,
+        ns1:Occupation ;
+    rdfs:label "actor"^^xsd:string .
+
+ns1:AmericanTelevisionRealityCompetitionSeries a owl:Class ;
+    rdfs:subClassOf ns1:AmericanTelevisionSeries,
+        ns1:RealityCompetitionSeries .
+
+ns1:AmericanTelevisionSeries a owl:Class ;
+    rdfs:subClassOf ns1:TelevisionSeries .
+
+ns1:ArnoldSchwarzenegger a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Arnold Schwarzenegger"^^xsd:string ;
+    ns1:hasRole ns1:ActorOccupation,
+        ns1:FormerCaliforniaGovernor ;
+    ns1:hostingStartTime ns1:January2017 ;
+    ns1:hosts ns1:TheCelebrityApprentice .
+
+ns1:August32017 a owl:NamedIndividual,
+        ns1:TimePoint ;
+    rdfs:label "August 3 , 2017"^^xsd:string .
+
+ns1:BobGreenblatt a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Bob Greenblatt"^^xsd:string ;
+    ns1:affiliatedWith ns1:NBCEntertainment ;
+    ns1:hasRole ns1:NBCEntertainmentChairman .
+
+ns1:Celebrities a owl:NamedIndividual,
+        ns1:ContestantType ;
+    rdfs:label "celebrities"^^xsd:string .
+
+ns1:CharitableOrganizationOfTheirChoice a owl:NamedIndividual,
+        ns1:CharitableOrganization ;
+    rdfs:label "charitable organization of their choice"^^xsd:string .
+
+ns1:DonaldTrump a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Donald Trump"^^xsd:string ;
+    ns1:hasRole ns1:RealEstateDeveloper,
+        ns1:USPresident ;
+    ns1:hostingEndTime ns1:Year2015 ;
+    ns1:hostingStartTime ns1:Year2008 ;
+    ns1:hosts ns1:TheCelebrityApprentice .
+
+ns1:FormerCaliforniaGovernor a owl:NamedIndividual,
+        ns1:PublicRole ;
+    rdfs:label "former California Governor"^^xsd:string .
+
+ns1:January2017 a owl:NamedIndividual,
+        ns1:TimePoint ;
+    rdfs:label "January 2017"^^xsd:string .
+
+ns1:MusicIndustry a owl:NamedIndividual,
+        ns1:Field ;
+    rdfs:label "music industry"^^xsd:string .
+
+ns1:NBCEntertainment a owl:NamedIndividual,
+        ns1:Organization ;
+    rdfs:label "NBC Entertainment"^^xsd:string .
+
+ns1:NBCEntertainmentChairman a owl:NamedIndividual,
+        ns1:NetworkExecutiveRole ;
+    rdfs:label "NBC Entertainment Chairman"^^xsd:string .
+
+ns1:NetworkExecutiveRole a owl:Class ;
+    rdfs:subClassOf ns1:PublicRole .
+
+ns1:OtherBackgrounds a owl:NamedIndividual,
+        ns1:Field ;
+    rdfs:label "other backgrounds"^^xsd:string .
+
+ns1:ProfessionalSports a owl:NamedIndividual,
+        ns1:Field ;
+    rdfs:label "professional sports"^^xsd:string .
+
+ns1:Radio a owl:NamedIndividual,
+        ns1:Field ;
+    rdfs:label "radio"^^xsd:string .
+
+ns1:RealEstateDeveloper a owl:NamedIndividual,
+        ns1:Occupation ;
+    rdfs:label "real estate developer"^^xsd:string .
+
+ns1:RealityCompetitionSeries a owl:Class ;
+    rdfs:subClassOf ns1:TelevisionSeries .
+
+ns1:RealityTelevision a owl:NamedIndividual,
+        ns1:Field ;
+    rdfs:label "reality television"^^xsd:string .
+
+ns1:Sitcoms a owl:NamedIndividual,
+        ns1:Field ;
+    rdfs:label "sitcoms"^^xsd:string .
+
+ns1:TelevisionProgram a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TheOJays a owl:NamedIndividual,
+        ns1:MusicGroup ;
+    rdfs:label "The O'Jays"^^xsd:string .
+
+ns1:USPresident a owl:NamedIndividual,
+        ns1:PublicRole ;
+    rdfs:label "U.S. President"^^xsd:string .
+
+ns1:Unknowns a owl:NamedIndividual,
+        ns1:ContestantType ;
+    rdfs:label "unknowns"^^xsd:string .
+
+ns1:Year2008 a owl:NamedIndividual,
+        ns1:TimePoint ;
+    rdfs:label "2008"^^xsd:string .
+
+ns1:Year2015 a owl:NamedIndividual,
+        ns1:TimePoint ;
+    rdfs:label "2015"^^xsd:string .
+
+ns1:CharitableOrganization a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:ForTheLoveOfMoney a owl:NamedIndividual,
+        ns1:Song ;
+    rdfs:label "For the Love of Money"^^xsd:string ;
+    ns1:performedBy ns1:TheOJays .
+
+ns1:MusicGroup a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:Occupation a owl:Class ;
+    rdfs:subClassOf ns1:Role .
+
+ns1:TheCelebrityApprentice a owl:NamedIndividual,
+        ns1:AmericanTelevisionRealityCompetitionSeries ;
+    rdfs:label "The Celebrity Apprentice"^^xsd:string ;
+    ns1:allowsContestantChoice true ;
+    ns1:contestantsComeFromField ns1:MusicIndustry,
+        ns1:OtherBackgrounds,
+        ns1:ProfessionalSports,
+        ns1:Radio,
+        ns1:RealityTelevision,
+        ns1:Sitcoms ;
+    ns1:effectiveCancellationAnnouncedBy ns1:BobGreenblatt ;
+    ns1:effectiveCancellationAnnouncedOn ns1:August32017 ;
+    ns1:hasContestantType ns1:Celebrities ;
+    ns1:hasHost ns1:ArnoldSchwarzenegger,
+        ns1:DonaldTrump ;
+    ns1:hasOpeningThemeSong ns1:ForTheLoveOfMoney ;
+    ns1:hasPrecursor ns1:TheApprenticeSeries ;
+    ns1:includesSeasonNumber 7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15 ;
+    ns1:isEffectivelyCanceled true ;
+    ns1:isVariationOf ns1:TheApprenticeSeries ;
+    ns1:linkedInSeasonsTo ns1:TheApprenticeSeries ;
+    ns1:prizeMoneyIntendedFor ns1:CharitableOrganizationOfTheirChoice .
+
+ns1:ContestantType a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PublicRole a owl:Class ;
+    rdfs:subClassOf ns1:Role .
+
+ns1:Role a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Song a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TheApprenticeSeries a owl:NamedIndividual,
+        ns1:TelevisionSeries ;
+    rdfs:label "The Apprentice"^^xsd:string,
+        "The Apprentice series"^^xsd:string ;
+    ns1:hasContestantType ns1:Unknowns ;
+    ns1:hasOpeningThemeSong ns1:ForTheLoveOfMoney ;
+    ns1:includesSeasonNumber 1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        10 .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Field a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TimePoint a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TelevisionSeries a owl:Class ;
+    rdfs:subClassOf ns1:TelevisionProgram .

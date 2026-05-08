@@ -1,0 +1,341 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:VerbenaUnitedMethodistChurch a [ a owl:Restriction ;
+            owl:onProperty ns1:near ;
+            owl:someValuesFrom ns1:TownCenter ],
+        owl:NamedIndividual,
+        ns1:Church,
+        ns1:HistoricBuilding ;
+    rdfs:label "Verbena United Methodist Church"^^xsd:string ;
+    ns1:locatedIn ns1:Verbena ;
+    ns1:locatedOn ns1:CountyRoad59 ;
+    ns1:stillStands true .
+
+ns1:alsoKnownAs a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:capitalOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:City ;
+    rdfs:range ns1:State .
+
+ns1:conductedIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Census ;
+    rdfs:range ns1:Year .
+
+ns1:hasPopulation a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range xsd:integer .
+
+ns1:largestCommunityIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:County .
+
+ns1:locatedIn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:locatedOn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:Road .
+
+ns1:namedAfterText a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string .
+
+ns1:numberOfHotels a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range xsd:integer .
+
+ns1:populationAccordingTo a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:Census .
+
+ns1:stillStands a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Building ;
+    rdfs:range xsd:boolean .
+
+ns1:Bank a owl:Class ;
+    rdfs:subClassOf ns1:Facility .
+
+ns1:CSXTransportation a owl:NamedIndividual,
+        ns1:TransportationCompany ;
+    rdfs:label "CSX Transportation"^^xsd:string .
+
+ns1:Church a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:CountyRoad59 a owl:NamedIndividual,
+        ns1:Road ;
+    rdfs:label "County Road 59"^^xsd:string .
+
+ns1:GeneralStore a owl:Class ;
+    rdfs:subClassOf ns1:Facility .
+
+ns1:HistoricalPeriod a owl:Class ;
+    rdfs:subClassOf ns1:TimePeriod .
+
+ns1:Hotel a owl:Class ;
+    rdfs:subClassOf ns1:Facility .
+
+ns1:Infrastructure a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Late19thAndEarly20thCenturies a owl:Class ;
+    rdfs:subClassOf ns1:HistoricalPeriod .
+
+ns1:Montgomery a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Montgomery"^^xsd:string ;
+    ns1:capitalOf ns1:Alabama ;
+    ns1:locatedIn ns1:Alabama,
+        ns1:UnitedStates .
+
+ns1:MoreAffluentCitizenry a owl:Class ;
+    rdfs:subClassOf ns1:Citizenry .
+
+ns1:MoreAffluentCitizenryOfMontgomery a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:hasValue ns1:Montgomery ;
+            owl:onProperty ns1:fromPlace ],
+        ns1:MoreAffluentCitizenry .
+
+ns1:Outbreak a owl:Class ;
+    rdfs:subClassOf ns1:Event .
+
+ns1:PopularResortLocation a owl:Class ;
+    rdfs:subClassOf ns1:ResortLocation .
+
+ns1:PostOffice a owl:Class ;
+    rdfs:subClassOf ns1:Facility .
+
+ns1:RailroadCurrentlyOwnedByCSXTransportation a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:hasValue ns1:CSXTransportation ;
+            owl:onProperty ns1:ownedBy ],
+        ns1:Railroad .
+
+ns1:RenovatedRestoredStatelyHome a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:hasValue true ;
+            owl:onProperty ns1:recentlyRenovated ],
+        [ a owl:Restriction ;
+            owl:hasValue true ;
+            owl:onProperty ns1:recentlyRestored ],
+        ns1:StatelyHome .
+
+ns1:Summerfield a owl:NamedIndividual,
+        ns1:UnincorporatedCommunity ;
+    rdfs:label "Summerfield"^^xsd:string ;
+    ns1:alsoKnownAs ns1:Verbena .
+
+ns1:TownCenter a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:TransportationCompany a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:USCensus a owl:NamedIndividual,
+        ns1:Census ;
+    rdfs:label "U.S. Census"^^xsd:string ;
+    ns1:conductedIn ns1:Year1890 .
+
+ns1:Year1890 a owl:NamedIndividual,
+        ns1:Year ;
+    rdfs:label "1890"^^xsd:string .
+
+ns1:YellowFeverOutbreaks a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:occurredDuring ;
+            owl:someValuesFrom ns1:Late19thAndEarly20thCenturies ],
+        ns1:Outbreak .
+
+ns1:builtBeside a owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:TransportInfrastructure .
+
+ns1:developedDuring a owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:Event .
+
+ns1:developedInto a owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:ResortLocation .
+
+ns1:fromPlace a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Citizenry ;
+    rdfs:range ns1:Place .
+
+ns1:near a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:Place .
+
+ns1:occurredDuring a owl:ObjectProperty ;
+    rdfs:domain ns1:Event ;
+    rdfs:range ns1:TimePeriod .
+
+ns1:ownedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Railroad ;
+    rdfs:range ns1:Organization .
+
+ns1:popularWith a owl:ObjectProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Citizenry .
+
+ns1:recentlyRenovated a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:HistoricBuilding ;
+    rdfs:range xsd:boolean .
+
+ns1:recentlyRestored a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:HistoricBuilding ;
+    rdfs:range xsd:boolean .
+
+ns1:ChiltonCounty a owl:NamedIndividual,
+        ns1:County ;
+    rdfs:label "Chilton County"^^xsd:string ;
+    ns1:locatedIn ns1:Alabama,
+        ns1:UnitedStates .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Community .
+
+ns1:County a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Railroad a owl:Class ;
+    rdfs:subClassOf ns1:TransportInfrastructure .
+
+ns1:ResortLocation a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Road a owl:Class ;
+    rdfs:subClassOf ns1:TransportInfrastructure .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:StatelyHome a owl:Class ;
+    rdfs:subClassOf ns1:HistoricBuilding .
+
+ns1:UnincorporatedCommunity a owl:Class ;
+    rdfs:subClassOf ns1:Community .
+
+ns1:Verbena a [ a owl:Restriction ;
+            owl:onProperty ns1:developedInto ;
+            owl:someValuesFrom ns1:PopularResortLocation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:builtBeside ;
+            owl:someValuesFrom ns1:RailroadCurrentlyOwnedByCSXTransportation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:developedDuring ;
+            owl:someValuesFrom ns1:YellowFeverOutbreaks ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:popularWith ;
+            owl:someValuesFrom ns1:MoreAffluentCitizenryOfMontgomery ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasHistoricBuilding ;
+            owl:someValuesFrom ns1:StatelyHome ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasHistoricBuilding ;
+            owl:someValuesFrom ns1:RenovatedRestoredStatelyHome ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasFacility ;
+            owl:someValuesFrom ns1:Hotel ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasFacility ;
+            owl:someValuesFrom ns1:Bank ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasFacility ;
+            owl:someValuesFrom ns1:PostOffice ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasFacility ;
+            owl:someValuesFrom ns1:GeneralStore ],
+        owl:NamedIndividual,
+        ns1:UnincorporatedCommunity ;
+    rdfs:label "Verbena"^^xsd:string ;
+    ns1:alsoKnownAs ns1:Summerfield ;
+    ns1:hasPopulation 756 ;
+    ns1:largestCommunityIn ns1:ChiltonCounty ;
+    ns1:locatedIn ns1:Alabama,
+        ns1:ChiltonCounty,
+        ns1:UnitedStates ;
+    ns1:namedAfterText "the indigenous flower"^^xsd:string ;
+    ns1:numberOfHotels 2 ;
+    ns1:populationAccordingTo ns1:USCensus .
+
+ns1:Year a owl:Class ;
+    rdfs:subClassOf ns1:TimePeriod .
+
+ns1:hasHistoricBuilding a owl:ObjectProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:HistoricBuilding .
+
+ns1:Census a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:Citizenry a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Event a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TimePeriod a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TransportInfrastructure a owl:Class ;
+    rdfs:subClassOf ns1:Infrastructure .
+
+ns1:Alabama a owl:NamedIndividual,
+        ns1:State ;
+    rdfs:label "Alabama"^^xsd:string ;
+    ns1:locatedIn ns1:UnitedStates .
+
+ns1:Building a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United States"^^xsd:string .
+
+ns1:hasFacility a owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:Facility .
+
+ns1:Facility a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:HistoricBuilding a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:Community a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .

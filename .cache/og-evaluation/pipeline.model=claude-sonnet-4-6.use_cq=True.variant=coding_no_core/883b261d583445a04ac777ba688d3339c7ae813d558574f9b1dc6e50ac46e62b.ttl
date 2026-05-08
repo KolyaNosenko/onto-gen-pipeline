@@ -1,0 +1,227 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:BovetFleurierSA a owl:NamedIndividual,
+        ns1:WatchCompany ;
+    rdfs:label "Bovet Fleurier SA"^^xsd:string ;
+    ns1:charteredDate "May 1, 1822"^^xsd:string ;
+    ns1:employsWomenArtisans true ;
+    ns1:foundedBy ns1:EdouardBovet ;
+    ns1:foundedInCity ns1:London ;
+    ns1:hasCountryOfOrigin ns1:Switzerland ;
+    ns1:hasCurrentOwner ns1:PascalRaffy ;
+    ns1:isKnownFor ns1:Engraving,
+        ns1:FleurierMiniaturePainting,
+        ns1:MiniaturePainting,
+        ns1:SevenDayTourbillon ;
+    ns1:producesWatch ns1:BovetArtisticWatch,
+        ns1:BovetPocketWatch ;
+    ns1:usesWatchmakingTechnique ns1:Engraving,
+        ns1:MiniaturePainting .
+
+ns1:charteredDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:WatchCompany ;
+    rdfs:range xsd:string .
+
+ns1:employsWomenArtisans a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:WatchCompany ;
+    rdfs:range xsd:boolean .
+
+ns1:foundedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:WatchCompany ;
+    rdfs:range ns1:Person .
+
+ns1:foundedInCity a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:WatchCompany ;
+    rdfs:range ns1:City .
+
+ns1:hasCountryOfOrigin a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:WatchCompany ;
+    rdfs:range ns1:Country .
+
+ns1:hasCurrentOwner a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:WatchCompany ;
+    rdfs:range ns1:Person .
+
+ns1:hasDial a owl:ObjectProperty ;
+    rdfs:domain ns1:Watch ;
+    rdfs:range ns1:Dial .
+
+ns1:hasFeature a owl:ObjectProperty ;
+    rdfs:domain ns1:Watch ;
+    rdfs:range ns1:WatchFeature .
+
+ns1:hasMovement a owl:ObjectProperty ;
+    rdfs:domain ns1:Watch ;
+    rdfs:range ns1:WatchMovement .
+
+ns1:hasTourbillon a owl:ObjectProperty ;
+    rdfs:domain ns1:Watch ;
+    rdfs:range ns1:Tourbillon .
+
+ns1:isKnownFor a owl:ObjectProperty ;
+    rdfs:domain ns1:WatchCompany ;
+    rdfs:range owl:Thing .
+
+ns1:locatedIn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Place .
+
+ns1:manufacturedFor a owl:ObjectProperty ;
+    rdfs:domain ns1:Watch ;
+    rdfs:range ns1:Market .
+
+ns1:manufacturedInCentury a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Watch ;
+    rdfs:range ns1:Century .
+
+ns1:maximumPrice a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Watch ;
+    rdfs:range xsd:decimal .
+
+ns1:minimumPrice a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Watch ;
+    rdfs:range xsd:decimal .
+
+ns1:producesWatch a owl:ObjectProperty ;
+    rdfs:domain ns1:WatchCompany ;
+    rdfs:range ns1:Watch .
+
+ns1:usesWatchmakingTechnique a owl:ObjectProperty ;
+    rdfs:domain ns1:WatchCompany ;
+    rdfs:range ns1:WatchmakingTechnique .
+
+ns1:ArtisticWatch a owl:Class ;
+    rdfs:subClassOf ns1:Watch .
+
+ns1:BovetArtisticWatch a owl:NamedIndividual,
+        ns1:ArtisticWatch ;
+    rdfs:label "artistic watches"^^xsd:string ;
+    ns1:hasDial ns1:FleurierMiniaturePainting ;
+    ns1:hasTourbillon ns1:SevenDayTourbillon ;
+    ns1:maximumPrice 2500000.0 ;
+    ns1:minimumPrice 18000.0 .
+
+ns1:BovetPocketWatch a owl:NamedIndividual,
+        ns1:PocketWatch ;
+    rdfs:label "pocket watches"^^xsd:string ;
+    ns1:hasFeature ns1:SecondHand,
+        ns1:SkeletonizedView ;
+    ns1:manufacturedFor ns1:ChineseMarket ;
+    ns1:manufacturedInCentury ns1:NineteenthCentury .
+
+ns1:ChineseMarket a owl:NamedIndividual,
+        ns1:Market ;
+    rdfs:label "Chinese market"^^xsd:string .
+
+ns1:EdouardBovet a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Édouard Bovet"^^xsd:string .
+
+ns1:London a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "London"^^xsd:string ;
+    ns1:locatedIn ns1:UK .
+
+ns1:NineteenthCentury a owl:NamedIndividual,
+        ns1:Century ;
+    rdfs:label "19th century"^^xsd:string .
+
+ns1:Organisation a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PascalRaffy a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Pascal Raffy"^^xsd:string .
+
+ns1:PocketWatch a owl:Class ;
+    rdfs:subClassOf ns1:Watch .
+
+ns1:SecondHand a owl:NamedIndividual,
+        ns1:WatchFeature ;
+    rdfs:label "second hand"^^xsd:string .
+
+ns1:SkeletonizedView a owl:NamedIndividual,
+        ns1:WatchFeature ;
+    rdfs:label "skeletonized views"^^xsd:string .
+
+ns1:Switzerland a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Switzerland"^^xsd:string .
+
+ns1:UK a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "U.K."^^xsd:string .
+
+ns1:WatchMovement a owl:Class ;
+    rdfs:subClassOf ns1:WatchComponent .
+
+ns1:Century a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Dial a owl:Class ;
+    rdfs:subClassOf ns1:WatchComponent .
+
+ns1:Engraving a owl:NamedIndividual,
+        ns1:WatchmakingTechnique ;
+    rdfs:label "engraving"^^xsd:string .
+
+ns1:FleurierMiniaturePainting a owl:NamedIndividual,
+        ns1:Dial ;
+    rdfs:label "Fleurier Miniature Painting"^^xsd:string .
+
+ns1:Market a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MiniaturePainting a owl:NamedIndividual,
+        ns1:WatchmakingTechnique ;
+    rdfs:label "miniature painting"^^xsd:string .
+
+ns1:SevenDayTourbillon a owl:NamedIndividual,
+        ns1:Tourbillon ;
+    rdfs:label "seven-day tourbillon"^^xsd:string .
+
+ns1:Tourbillon a owl:Class ;
+    rdfs:subClassOf ns1:WatchComponent .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:WatchComponent a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:WatchFeature a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:WatchmakingTechnique a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:WatchCompany a owl:Class ;
+    rdfs:subClassOf ns1:Organisation .
+
+ns1:Watch a owl:Class ;
+    rdfs:subClassOf owl:Thing .

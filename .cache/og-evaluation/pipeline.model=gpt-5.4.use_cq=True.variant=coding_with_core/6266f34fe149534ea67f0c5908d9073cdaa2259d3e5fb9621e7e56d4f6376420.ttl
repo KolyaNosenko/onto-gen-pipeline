@@ -1,0 +1,734 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:Accomplishment a owl:Class ;
+    rdfs:label "Accomplishment"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty ns1:temporallyLocatedAt ;
+                    owl:someValuesFrom ns1:Atom ] ],
+        ns1:Event ;
+    owl:disjointWith ns1:Achievement .
+
+ns1:AmountOfMatter a owl:Class ;
+    rdfs:label "Amount of Matter"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointWith ns1:Feature,
+        ns1:PhysicalObject .
+
+ns1:Arnold_Schwarzenegger a owl:NamedIndividual,
+        ns1:Actor,
+        ns1:FormerCaliforniaGovernor,
+        ns1:TelevisionHost ;
+    rdfs:label "Arnold Schwarzenegger"^^xsd:string ;
+    ns1:hostedSeries ns1:The_Celebrity_Apprentice ;
+    ns1:hostingInterval ns1:January_2017 ;
+    ns1:isGovernorOf ns1:California .
+
+ns1:Bob_Greenblatt a owl:NamedIndividual,
+        ns1:EntertainmentChairman ;
+    rdfs:label "Bob Greenblatt"^^xsd:string ;
+    ns1:announcedEffectiveCancellationOf ns1:The_Celebrity_Apprentice ;
+    ns1:announcementDate ns1:August_3_2017 ;
+    ns1:chairsOrganization ns1:NBC_Entertainment .
+
+ns1:CurrentCelebrityContestant a owl:Class ;
+    rdfs:subClassOf ns1:CelebrityContestant .
+
+ns1:Donald_Trump a owl:NamedIndividual,
+        ns1:RealEstateDeveloper,
+        ns1:TelevisionHost,
+        ns1:UnitedStatesPresident ;
+    rdfs:label "Donald Trump"^^xsd:string ;
+    ns1:hostedSeries ns1:The_Celebrity_Apprentice ;
+    ns1:hostingInterval ns1:From_2008_to_2015 ;
+    ns1:isPresidentOf ns1:US .
+
+ns1:MentalObject a owl:Class ;
+    rdfs:label "Mental Object"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:specificallyDependsOn ;
+            owl:someValuesFrom ns1:AgentivePhysicalObject ],
+        ns1:NonPhysicalObject ;
+    owl:disjointWith ns1:SocialObject .
+
+ns1:OutOfPublicEyeCelebrityContestant a owl:Class ;
+    rdfs:subClassOf ns1:CelebrityContestant .
+
+ns1:Process a owl:Class ;
+    rdfs:label "Process"^^xsd:string ;
+    rdfs:subClassOf ns1:Stative ;
+    owl:disjointWith ns1:State .
+
+ns1:Season_ten a owl:NamedIndividual,
+        ns1:TelevisionSeasonGroup ;
+    rdfs:label "season ten"^^xsd:string ;
+    ns1:seasonGroupOf ns1:The_Apprentice .
+
+ns1:Seasons_eleven_to_fifteen a owl:NamedIndividual,
+        ns1:TelevisionSeasonGroup ;
+    rdfs:label "seasons eleven to fifteen"^^xsd:string ;
+    ns1:seasonGroupOf ns1:The_Celebrity_Apprentice .
+
+ns1:Seasons_one_to_six a owl:NamedIndividual,
+        ns1:TelevisionSeasonGroup ;
+    rdfs:label "seasons one to six"^^xsd:string ;
+    ns1:seasonGroupOf ns1:The_Apprentice .
+
+ns1:Seasons_seven_to_nine a owl:NamedIndividual,
+        ns1:TelevisionSeasonGroup ;
+    rdfs:label "seasons seven to nine"^^xsd:string ;
+    ns1:seasonGroupOf ns1:The_Celebrity_Apprentice .
+
+ns1:SocialAgent a owl:Class ;
+    rdfs:label "Social Agent"^^xsd:string ;
+    rdfs:subClassOf ns1:AgentiveSocialObject ;
+    owl:disjointWith ns1:Society .
+
+ns1:announcedEffectiveCancellationOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:announcementDate a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:ReferencedTimeInterval .
+
+ns1:atomicPartOf a owl:ObjectProperty ;
+    rdfs:label "atomic part of"^^xsd:string ;
+    rdfs:domain ns1:Atom ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:broadcastInCountry a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:Country .
+
+ns1:chairsOrganization a owl:ObjectProperty ;
+    rdfs:domain ns1:EntertainmentChairman ;
+    rdfs:range ns1:EntertainmentOrganization .
+
+ns1:hasOpeningThemeSong a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:TelevisionThemeSong .
+
+ns1:hostedSeries a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionHost ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:hostingInterval a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionHost ;
+    rdfs:range ns1:ReferencedTimeInterval .
+
+ns1:isGovernorOf a owl:ObjectProperty ;
+    rdfs:domain ns1:FormerCaliforniaGovernor ;
+    rdfs:range ns1:StateRegion .
+
+ns1:isPresidentOf a owl:ObjectProperty ;
+    rdfs:domain ns1:UnitedStatesPresident ;
+    rdfs:range ns1:Country .
+
+ns1:linkedInSeasonsTo a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:performedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Song ;
+    rdfs:range ns1:MusicGroup .
+
+ns1:seasonGroupOf a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeasonGroup ;
+    rdfs:range ns1:TelevisionSeries ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:temporalPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "temporal part of"^^xsd:string ;
+    rdfs:domain ns1:Perdurant ;
+    rdfs:range ns1:Perdurant ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:variationOfSeries a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:Achievement a owl:Class ;
+    rdfs:label "Achievement"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:Atom ],
+        ns1:Event .
+
+ns1:Actor a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:ApprenticePrecursorSeries a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasContestant ;
+            owl:someValuesFrom ns1:UnknownContestant ],
+        ns1:TelevisionRealityCompetitionSeries .
+
+ns1:ArbitrarySum a owl:Class ;
+    rdfs:label "Arbitrary Sum"^^xsd:string ;
+    rdfs:subClassOf ns1:Endurant .
+
+ns1:August_3_2017 a owl:NamedIndividual,
+        ns1:ReferencedTimeInterval ;
+    rdfs:label "August 3 , 2017"^^xsd:string .
+
+ns1:California a owl:NamedIndividual,
+        ns1:StateRegion ;
+    rdfs:label "California"^^xsd:string .
+
+ns1:CelebrityApprenticeSeries a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasContestant ;
+            owl:someValuesFrom ns1:CelebrityContestant ],
+        ns1:TelevisionRealityCompetitionSeries .
+
+ns1:ConstantAtom a owl:Class ;
+    rdfs:label "Constant Atom"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty [ owl:inverseOf ns1:constantProperPartOf ] ;
+                    owl:someValuesFrom ns1:Particular ] ],
+        ns1:Endurant .
+
+ns1:Feature a owl:Class ;
+    rdfs:label "Feature"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointWith ns1:PhysicalObject .
+
+ns1:For_the_Love_of_Money a owl:NamedIndividual,
+        ns1:TelevisionThemeSong ;
+    rdfs:label "\" For the Love of Money \""^^xsd:string,
+        "For the Love of Money"^^xsd:string ;
+    ns1:performedBy ns1:The_OJays .
+
+ns1:From_2008_to_2015 a owl:NamedIndividual,
+        ns1:ReferencedTimeInterval ;
+    rdfs:label "2008 to 2015"^^xsd:string .
+
+ns1:January_2017 a owl:NamedIndividual,
+        ns1:ReferencedTimeInterval ;
+    rdfs:label "January 2017"^^xsd:string .
+
+ns1:MusicIndustryField a owl:Class ;
+    rdfs:subClassOf ns1:MediaField .
+
+ns1:NBC_Entertainment a owl:NamedIndividual,
+        ns1:EntertainmentOrganization ;
+    rdfs:label "NBC Entertainment"^^xsd:string .
+
+ns1:NonAgentivePhysicalObject a owl:Class ;
+    rdfs:label "Non-Agentive Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalObject .
+
+ns1:OtherBackgroundField a owl:Class ;
+    rdfs:subClassOf ns1:MediaField .
+
+ns1:ProfessionalSportsField a owl:Class ;
+    rdfs:subClassOf ns1:MediaField .
+
+ns1:RadioField a owl:Class ;
+    rdfs:subClassOf ns1:MediaField .
+
+ns1:RealEstateDeveloper a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:RealityTelevisionField a owl:Class ;
+    rdfs:subClassOf ns1:MediaField .
+
+ns1:SitcomField a owl:Class ;
+    rdfs:subClassOf ns1:MediaField .
+
+ns1:TelevisionProgram a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:TemporalLocation a owl:Class ;
+    rdfs:label "Temporal Location"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:qualeOf ] ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:TemporalQuality .
+
+ns1:The_OJays a owl:NamedIndividual,
+        ns1:MusicGroup ;
+    rdfs:label "The O'Jays"^^xsd:string .
+
+ns1:UnknownContestant a owl:Class ;
+    rdfs:subClassOf ns1:Contestant .
+
+ns1:comesFromField a owl:ObjectProperty ;
+    rdfs:domain ns1:CelebrityContestant ;
+    rdfs:range ns1:MediaField .
+
+ns1:competesFor a owl:ObjectProperty ;
+    rdfs:domain ns1:CelebrityContestant ;
+    rdfs:range ns1:CharitableOrganization .
+
+ns1:constantAtomicPartOf a owl:ObjectProperty ;
+    rdfs:label "constant atomic part of"^^xsd:string ;
+    rdfs:domain ns1:ConstantAtom ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantPartOf .
+
+ns1:constantParticipantOf a owl:ObjectProperty ;
+    rdfs:label "constant participation of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Perdurant ;
+    rdfs:subPropertyOf [ owl:inverseOf ns1:specificallyDependsOn ] .
+
+ns1:properPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "proper part of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:CharitableOrganization a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:EntertainmentChairman a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:EntertainmentOrganization a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:Event a owl:Class ;
+    rdfs:label "Event"^^xsd:string ;
+    rdfs:subClassOf ns1:Perdurant ;
+    owl:disjointWith ns1:Stative .
+
+ns1:FormerCaliforniaGovernor a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:GeographicRegion a owl:Class ;
+    rdfs:subClassOf ns1:SpaceRegion .
+
+ns1:MusicGroup a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:NonPhysicalObject a owl:Class ;
+    rdfs:label "Non-Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalEndurant .
+
+ns1:Society a owl:Class ;
+    rdfs:label "Society"^^xsd:string ;
+    rdfs:subClassOf ns1:AgentiveSocialObject .
+
+ns1:Song a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:SpatialLocation a owl:Class ;
+    rdfs:label "Spatial Location"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalQuality .
+
+ns1:State a owl:Class ;
+    rdfs:label "State"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:State ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Stative .
+
+ns1:StateRegion a owl:Class ;
+    rdfs:subClassOf ns1:GeographicRegion .
+
+ns1:TelevisionThemeSong a owl:Class ;
+    rdfs:subClassOf ns1:Song .
+
+ns1:US a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "U.S."^^xsd:string .
+
+ns1:UnitedStatesPresident a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:constantProperPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant proper part of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantPartOf .
+
+ns1:constantlyOverlaps a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "constantly overlaps"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    owl:propertyChainAxiom ( [ owl:inverseOf ns1:constantPartOf ] ns1:constantPartOf ) .
+
+ns1:hasContestant a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionRealityCompetitionSeries ;
+    rdfs:range ns1:Contestant .
+
+ns1:qualeOf a owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "quale of"^^xsd:string ;
+    rdfs:domain ns1:TemporalRegion ;
+    rdfs:range ns1:TemporalQuality .
+
+ns1:AgentivePhysicalObject a owl:Class ;
+    rdfs:label "Agentive Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalObject .
+
+ns1:AgentiveSocialObject a owl:Class ;
+    rdfs:label "Agentive Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:Atom a owl:Class ;
+    rdfs:label "Atom"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ],
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty [ owl:inverseOf ns1:properPartOf ] ;
+                    owl:someValuesFrom ns1:Particular ] ],
+        ns1:Particular .
+
+ns1:Contestant a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:GeographicRegion .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf ns1:Society .
+
+ns1:Region a owl:Class ;
+    rdfs:label "Region"^^xsd:string ;
+    rdfs:subClassOf ns1:Abstract ;
+    owl:disjointUnionOf ( ns1:AbstractRegion ns1:PhysicalRegion ns1:TemporalRegion ) .
+
+ns1:SocialObject a owl:Class ;
+    rdfs:label "Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalObject ;
+    owl:disjointUnionOf ( ns1:AgentiveSocialObject ns1:NonAgentiveSocialObject ) .
+
+ns1:SpaceRegion a owl:Class ;
+    rdfs:label "Space Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpatialLocation ;
+            owl:onProperty ns1:constantQualeOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpaceRegion ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpaceRegion ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:PhysicalRegion .
+
+ns1:Stative a owl:Class ;
+    rdfs:label "Stative"^^xsd:string ;
+    rdfs:subClassOf ns1:Perdurant .
+
+ns1:TelevisionRealityCompetitionSeries a owl:Class ;
+    rdfs:subClassOf ns1:TelevisionSeries .
+
+ns1:TemporalRegion a owl:Class ;
+    rdfs:label "Temporal Region"^^xsd:string ;
+    rdfs:subClassOf ns1:Region .
+
+ns1:overlaps a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "overlaps"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    owl:propertyChainAxiom ( [ owl:inverseOf ns1:partOf ] ns1:partOf ),
+        ( [ owl:inverseOf ns1:presentAt ] ns1:temporallyLocatedAt ) .
+
+ns1:AbstractQuality a owl:Class ;
+    rdfs:label "Abstract Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty [ owl:inverseOf ns1:constantQualeOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:PhysicalObject a owl:Class ;
+    rdfs:label "Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointUnionOf ( ns1:AgentivePhysicalObject ns1:NonAgentivePhysicalObject ) .
+
+ns1:PhysicalRegion a owl:Class ;
+    rdfs:label "Physical Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalQuality ;
+            owl:onProperty ns1:constantQualeOf ],
+        ns1:Region .
+
+ns1:TelevisionHost a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:TemporalQuality a owl:Class ;
+    rdfs:label "Temporal Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:qualeOf ] ;
+            owl:someValuesFrom ns1:Particular ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:The_Apprentice a owl:NamedIndividual,
+        ns1:ApprenticePrecursorSeries ;
+    rdfs:label "The Apprentice"^^xsd:string,
+        "The Apprentice series"^^xsd:string .
+
+ns1:AbstractRegion a owl:Class ;
+    rdfs:label "Abstract Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractQuality ;
+            owl:onProperty ns1:constantQualeOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Region .
+
+ns1:CelebrityContestant a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:competesFor ;
+            owl:someValuesFrom ns1:CharitableOrganization ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:comesFromField ;
+            owl:someValuesFrom [ a owl:Class ;
+                    owl:unionOf ( ns1:SitcomField ns1:ProfessionalSportsField ns1:MusicIndustryField ns1:RealityTelevisionField ns1:RadioField ns1:OtherBackgroundField ) ] ],
+        ns1:Contestant .
+
+ns1:NonAgentiveSocialObject a owl:Class ;
+    rdfs:label "Non-Agentive Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:PhysicalQuality a owl:Class ;
+    rdfs:label "Physical Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalRegion ;
+            owl:onProperty [ owl:inverseOf ns1:constantQualeOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:ReferencedTimeInterval a owl:Class ;
+    rdfs:subClassOf ns1:TimeInterval .
+
+ns1:TelevisionSeasonGroup a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:The_Celebrity_Apprentice a owl:NamedIndividual,
+        ns1:CelebrityApprenticeSeries ;
+    rdfs:label "Celebrity Apprentice"^^xsd:string,
+        "The Celebrity Apprentice"^^xsd:string ;
+    ns1:broadcastInCountry ns1:US ;
+    ns1:hasOpeningThemeSong ns1:For_the_Love_of_Money ;
+    ns1:linkedInSeasonsTo ns1:The_Apprentice ;
+    ns1:variationOfSeries ns1:The_Apprentice .
+
+ns1:constantQualeOf a owl:ObjectProperty ;
+    rdfs:label "constant quale of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:AbstractRegion ns1:PhysicalRegion ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:AbstractQuality ns1:PhysicalQuality ) ] .
+
+ns1:specificallyDependsOn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "specifically depends on"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] .
+
+ns1:temporallyLocatedAt a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "temporally located at"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range ns1:TimeInterval ;
+    rdfs:subPropertyOf ns1:presentAt .
+
+ns1:MediaField a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:constantConstituentOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant constituent of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:NonPhysicalEndurant ns1:Perdurant ns1:PhysicalEndurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:NonPhysicalEndurant ns1:Perdurant ns1:PhysicalEndurant ) ] ;
+    rdfs:subPropertyOf [ owl:inverseOf ns1:specificallyDependsOn ] .
+
+ns1:constantPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant part of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantlyOverlaps .
+
+ns1:NonPhysicalEndurant a owl:Class ;
+    rdfs:label "Non-Physical Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty ns1:constantlyOverlaps ;
+                    owl:someValuesFrom ns1:PhysicalEndurant ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantPartOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        ns1:Endurant .
+
+ns1:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:TimeInterval ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:TemporalRegion .
+
+ns1:Particular a owl:Class ;
+    rdfs:label "Particular"^^xsd:string ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ns1:Abstract ns1:Endurant ns1:Perdurant ns1:Quality ) .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf ns1:AgentivePhysicalObject .
+
+ns1:Quality a owl:Class ;
+    rdfs:label "Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:directQualityOf ;
+            owl:someValuesFrom ns1:Particular ],
+        ns1:Particular ;
+    owl:disjointUnionOf ( ns1:AbstractQuality ns1:PhysicalQuality ns1:TemporalQuality ) .
+
+ns1:TelevisionSeries a owl:Class ;
+    rdfs:subClassOf ns1:TelevisionProgram .
+
+ns1:PhysicalEndurant a owl:Class ;
+    rdfs:label "Physical Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ;
+            owl:someValuesFrom ns1:SpatialLocation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantPartOf ] ],
+        ns1:Endurant .
+
+ns1:directQualityOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "direct quality of"^^xsd:string ;
+    rdfs:domain ns1:Quality ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:specificallyDependsOn .
+
+ns1:presentAt a owl:ObjectProperty ;
+    rdfs:label "present at"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range ns1:TimeInterval ;
+    owl:propertyChainAxiom ( ns1:constantAtomicPartOf ns1:presentAt ),
+        ( ns1:constantConstituentOf ns1:presentAt ),
+        ( ns1:constantPartOf ns1:presentAt ),
+        ( ns1:constantParticipantOf ns1:presentAt ),
+        ( ns1:constantProperPartOf ns1:presentAt ),
+        ( ns1:directQualityOf ns1:presentAt ),
+        ( ns1:presentAt [ owl:inverseOf ns1:partOf ] ),
+        ( [ owl:inverseOf ns1:directQualityOf ] ns1:presentAt ),
+        ( [ owl:inverseOf ns1:partOf ] ns1:presentAt ),
+        ( [ owl:inverseOf ns1:specificallyDependsOn ] ns1:presentAt ) .
+
+ns1:Abstract a owl:Class ;
+    rdfs:label "Abstract"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty ns1:overlaps ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Particular .
+
+ns1:Endurant a owl:Class ;
+    rdfs:label "Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:Particular ;
+    owl:disjointUnionOf ( ns1:ArbitrarySum ns1:NonPhysicalEndurant ns1:PhysicalEndurant ) .
+
+ns1:partOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "part of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:overlaps .
+
+ns1:Perdurant a owl:Class ;
+    rdfs:label "Perdurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:overlaps ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:TemporalQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ;
+            owl:someValuesFrom ns1:TemporalLocation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:Particular .

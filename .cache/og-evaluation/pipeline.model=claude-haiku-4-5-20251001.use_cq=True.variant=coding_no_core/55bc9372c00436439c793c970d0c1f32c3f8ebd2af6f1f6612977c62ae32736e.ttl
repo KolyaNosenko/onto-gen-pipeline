@@ -1,0 +1,96 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:Australia a owl:NamedIndividual,
+        ns1:CommonwealthRealm ;
+    rdfs:label "Australia"^^xsd:string ;
+    ns1:hasHeadOfState ns1:QueenElizabethII ;
+    ns1:isInRegion ns1:Oceania ;
+    ns1:isMemberOf ns1:CommonwealthOfNations,
+        ns1:CommonwealthRealms .
+
+ns1:NewZealand a owl:NamedIndividual,
+        ns1:CommonwealthRealm ;
+    rdfs:label "New Zealand"^^xsd:string ;
+    ns1:hasHeadOfState ns1:QueenElizabethII ;
+    ns1:isInRegion ns1:Oceania ;
+    ns1:isMemberOf ns1:CommonwealthOfNations,
+        ns1:CommonwealthRealms .
+
+ns1:Tonga a owl:NamedIndividual,
+        ns1:OceaniaMonarchy ;
+    rdfs:label "Tonga"^^xsd:string ;
+    ns1:isInRegion ns1:Oceania ;
+    ns1:isMemberOf ns1:CommonwealthOfNations .
+
+ns1:hasDependency a owl:ObjectProperty ;
+    rdfs:domain ns1:Monarchy ;
+    rdfs:range owl:Thing .
+
+ns1:hasHeadOfState a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Monarchy ;
+    rdfs:range ns1:Monarch .
+
+ns1:isInRegion a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Monarchy ;
+    rdfs:range ns1:Region .
+
+ns1:isMemberOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Monarchy ;
+    rdfs:range ns1:Organization .
+
+ns1:isRecognizedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:NonSovereignMonarchy ;
+    rdfs:range owl:Thing .
+
+ns1:ConstituionalMonarchy a owl:Class ;
+    rdfs:subClassOf ns1:Monarchy .
+
+ns1:NonSovereignMonarchy a owl:Class ;
+    rdfs:subClassOf ns1:Monarchy .
+
+ns1:SovereignMonarchy a owl:Class ;
+    rdfs:subClassOf ns1:Monarchy .
+
+ns1:CommonwealthRealm a owl:Class ;
+    rdfs:subClassOf ns1:OceaniaMonarchy .
+
+ns1:CommonwealthRealms a owl:NamedIndividual,
+        ns1:Organization ;
+    rdfs:label "Commonwealth realms"^^xsd:string .
+
+ns1:Monarch a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:OceaniaMonarchy a owl:Class ;
+    rdfs:subClassOf ns1:ConstituionalMonarchy,
+        ns1:SovereignMonarchy .
+
+ns1:QueenElizabethII a owl:NamedIndividual,
+        ns1:Monarch ;
+    rdfs:label "Queen Elizabeth II"^^xsd:string .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CommonwealthOfNations a owl:NamedIndividual,
+        ns1:Organization ;
+    rdfs:label "Commonwealth of Nations"^^xsd:string .
+
+ns1:Oceania a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "Oceania"^^xsd:string .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Monarchy a owl:Class ;
+    rdfs:subClassOf owl:Thing .

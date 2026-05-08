@@ -1,0 +1,344 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:KickstarterCampaignHK a owl:NamedIndividual,
+        ns1:KickstarterCampaign ;
+    rdfs:label "Kickstarter campaign"^^xsd:string ;
+    ns1:funds ns1:AdditionalContent,
+        ns1:AdditionalFeatures ;
+    ns1:hasFundingGoal ns1:US100000 ;
+    ns1:launchedBy ns1:HarebrainedSchemes ;
+    ns1:launchedIn ns1:January2015 ;
+    ns1:metInDuration ns1:FewHours ;
+    ns1:raisedAmount ns1:Over1_2Million .
+
+ns1:ShadowrunHongKongExtendedEdition a owl:NamedIndividual,
+        ns1:Edition ;
+    rdfs:label "extended edition"^^xsd:string ;
+    ns1:featuresAdded ns1:BugFixes,
+        ns1:DeveloperCommentary,
+        ns1:ExtendedEditionNewCampaign ;
+    ns1:freeForOwnersOf ns1:ShadowrunHongKong ;
+    ns1:releasedIn ns1:February2016 .
+
+ns1:allowsCreationOf a owl:ObjectProperty ;
+    rdfs:domain ns1:LevelEditor ;
+    rdfs:range ns1:Campaign .
+
+ns1:allowsSharingWith a owl:ObjectProperty ;
+    rdfs:domain ns1:LevelEditor ;
+    rdfs:range ns1:Player .
+
+ns1:avoidsHardwareLimitationsOf a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:HardwarePlatform .
+
+ns1:developedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Organization .
+
+ns1:developedWithEngine a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Engine .
+
+ns1:featuresAdded a owl:ObjectProperty ;
+    rdfs:domain ns1:Edition ;
+    rdfs:range ns1:Feature .
+
+ns1:freeForOwnersOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Edition ;
+    rdfs:range ns1:VideoGame .
+
+ns1:funds a owl:ObjectProperty ;
+    rdfs:domain ns1:Campaign ;
+    rdfs:range owl:Thing .
+
+ns1:hasFundingGoal a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Campaign ;
+    rdfs:range ns1:MonetaryAmount .
+
+ns1:improvedVersionOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Engine ;
+    rdfs:range ns1:Engine .
+
+ns1:includes a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range owl:Thing .
+
+ns1:launchedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Campaign ;
+    rdfs:range ns1:Organization .
+
+ns1:launchedIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Campaign ;
+    rdfs:range ns1:TimePoint .
+
+ns1:limitedToOperatingSystem a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:OperatingSystem .
+
+ns1:metInDuration a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Campaign ;
+    rdfs:range ns1:Duration .
+
+ns1:notPossibleWithBudget a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:Budget .
+
+ns1:previouslyDeveloped a owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:VideoGame .
+
+ns1:publishedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Organization .
+
+ns1:raisedAmount a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Campaign ;
+    rdfs:range ns1:MonetaryAmount .
+
+ns1:releasedIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Edition ;
+    rdfs:range ns1:TimePoint .
+
+ns1:releasedWorldwideIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:TimePoint .
+
+ns1:setInUniverse a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Universe .
+
+ns1:shippedWith a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range owl:Thing .
+
+ns1:usedFor a owl:ObjectProperty ;
+    rdfs:domain ns1:Engine ;
+    rdfs:range ns1:VideoGame .
+
+ns1:wantedToAddTo a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:VideoGame .
+
+ns1:AdditionalContent a owl:NamedIndividual,
+        ns1:Content ;
+    rdfs:label "content"^^xsd:string ;
+    ns1:notPossibleWithBudget ns1:CurrentBudget ;
+    ns1:wantedToAddTo ns1:ShadowrunHongKong .
+
+ns1:AdditionalFeatures a owl:NamedIndividual,
+        ns1:Feature ;
+    rdfs:label "additional features"^^xsd:string ;
+    ns1:notPossibleWithBudget ns1:CurrentBudget ;
+    ns1:wantedToAddTo ns1:ShadowrunHongKong .
+
+ns1:August2015 a owl:NamedIndividual,
+        ns1:TimePoint ;
+    rdfs:label "August 2015"^^xsd:string .
+
+ns1:BugFix a owl:Class ;
+    rdfs:subClassOf ns1:Feature .
+
+ns1:BugFixes a owl:NamedIndividual,
+        ns1:BugFix ;
+    rdfs:label "bug fixes"^^xsd:string .
+
+ns1:Commentary a owl:Class ;
+    rdfs:subClassOf ns1:Feature .
+
+ns1:Content a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:DeveloperCommentary a owl:NamedIndividual,
+        ns1:Commentary ;
+    rdfs:label "developer commentary"^^xsd:string .
+
+ns1:ExtendedEditionNewCampaign a owl:NamedIndividual,
+        ns1:Campaign ;
+    rdfs:label "new campaign"^^xsd:string .
+
+ns1:February2016 a owl:NamedIndividual,
+        ns1:TimePoint ;
+    rdfs:label "February 2016"^^xsd:string .
+
+ns1:FewHours a owl:NamedIndividual,
+        ns1:Duration ;
+    rdfs:label "a few hours"^^xsd:string .
+
+ns1:GameDeveloper a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:GamePublisher a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:ImprovedEngine a owl:NamedIndividual,
+        ns1:Engine ;
+    rdfs:label "improved version of the engine"^^xsd:string ;
+    ns1:improvedVersionOf ns1:OriginalShadowrunEngine .
+
+ns1:January2015 a owl:NamedIndividual,
+        ns1:TimePoint ;
+    rdfs:label "January 2015"^^xsd:string .
+
+ns1:KickstarterCampaign a owl:Class ;
+    rdfs:subClassOf ns1:Campaign .
+
+ns1:Linux a owl:NamedIndividual,
+        ns1:OperatingSystem ;
+    rdfs:label "Linux"^^xsd:string .
+
+ns1:MicrosoftWindows a owl:NamedIndividual,
+        ns1:OperatingSystem ;
+    rdfs:label "Microsoft Windows"^^xsd:string .
+
+ns1:NewSinglePlayerCampaign a owl:NamedIndividual,
+        ns1:SinglePlayerCampaign ;
+    rdfs:label "new single-player campaign"^^xsd:string .
+
+ns1:OSX a owl:NamedIndividual,
+        ns1:OperatingSystem ;
+    rdfs:label "OS X"^^xsd:string .
+
+ns1:OriginalShadowrunEngine a owl:NamedIndividual,
+        ns1:Engine ;
+    rdfs:label "the engine used with Shadowrun Returns and Dragonfall"^^xsd:string ;
+    ns1:usedFor ns1:Dragonfall,
+        ns1:ShadowrunReturns .
+
+ns1:OtherPlayers a owl:NamedIndividual,
+        ns1:Player ;
+    rdfs:label "other players"^^xsd:string .
+
+ns1:Over1_2Million a owl:NamedIndividual,
+        ns1:MonetaryAmount ;
+    rdfs:label "over $ 1.2 million"^^xsd:string .
+
+ns1:PlayerCreatedShadowrunCampaigns a owl:NamedIndividual,
+        ns1:Campaign ;
+    rdfs:label "their own Shadowrun campaigns"^^xsd:string .
+
+ns1:ShadowrunHongKongLevelEditor a owl:NamedIndividual,
+        ns1:LevelEditor ;
+    rdfs:label "level editor"^^xsd:string ;
+    ns1:allowsCreationOf ns1:PlayerCreatedShadowrunCampaigns ;
+    ns1:allowsSharingWith ns1:OtherPlayers .
+
+ns1:ShadowrunUniverse a owl:NamedIndividual,
+        ns1:Universe ;
+    rdfs:label "Shadowrun universe"^^xsd:string .
+
+ns1:SinglePlayerCampaign a owl:Class ;
+    rdfs:subClassOf ns1:Campaign .
+
+ns1:Tablet a owl:Class ;
+    rdfs:subClassOf ns1:HardwarePlatform .
+
+ns1:Tablets a owl:NamedIndividual,
+        ns1:Tablet ;
+    rdfs:label "tablets"^^xsd:string .
+
+ns1:US100000 a owl:NamedIndividual,
+        ns1:MonetaryAmount ;
+    rdfs:label "US$ 100,000"^^xsd:string .
+
+ns1:Budget a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CurrentBudget a owl:NamedIndividual,
+        ns1:Budget ;
+    rdfs:label "current budget"^^xsd:string .
+
+ns1:Dragonfall a owl:NamedIndividual,
+        ns1:TurnBasedTacticalRolePlayingVideoGame ;
+    rdfs:label "Dragonfall"^^xsd:string .
+
+ns1:Duration a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:HardwarePlatform a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Player a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ShadowrunReturns a owl:NamedIndividual,
+        ns1:TurnBasedTacticalRolePlayingVideoGame ;
+    rdfs:label "Shadowrun Returns"^^xsd:string .
+
+ns1:Universe a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:HarebrainedSchemes a owl:NamedIndividual,
+        ns1:GameDeveloper,
+        ns1:GamePublisher ;
+    rdfs:label "Harebrained Schemes"^^xsd:string ;
+    ns1:previouslyDeveloped ns1:Dragonfall,
+        ns1:ShadowrunReturns .
+
+ns1:LevelEditor a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ShadowrunHongKong a owl:NamedIndividual,
+        ns1:TurnBasedTacticalRolePlayingVideoGame ;
+    rdfs:label "Shadowrun : Hong Kong"^^xsd:string ;
+    ns1:avoidsHardwareLimitationsOf ns1:Tablets ;
+    ns1:developedBy ns1:HarebrainedSchemes ;
+    ns1:developedWithEngine ns1:ImprovedEngine ;
+    ns1:includes ns1:NewSinglePlayerCampaign ;
+    ns1:limitedToOperatingSystem ns1:Linux,
+        ns1:MicrosoftWindows,
+        ns1:OSX ;
+    ns1:publishedBy ns1:HarebrainedSchemes ;
+    ns1:releasedWorldwideIn ns1:August2015 ;
+    ns1:setInUniverse ns1:ShadowrunUniverse ;
+    ns1:shippedWith ns1:ShadowrunHongKongLevelEditor .
+
+ns1:TurnBasedTacticalRolePlayingVideoGame a owl:Class ;
+    rdfs:subClassOf ns1:VideoGame .
+
+ns1:Edition a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Feature a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MonetaryAmount a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:OperatingSystem a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Engine a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TimePoint a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Campaign a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:VideoGame a owl:Class ;
+    rdfs:subClassOf owl:Thing .

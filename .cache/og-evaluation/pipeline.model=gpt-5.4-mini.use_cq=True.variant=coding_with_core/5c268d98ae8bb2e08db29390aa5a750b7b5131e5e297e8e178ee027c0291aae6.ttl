@@ -1,0 +1,847 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:Accomplishment a owl:Class ;
+    rdfs:label "Accomplishment"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty ns1:temporallyLocatedAt ;
+                    owl:someValuesFrom ns1:Atom ] ],
+        ns1:Event ;
+    owl:disjointWith ns1:Achievement .
+
+ns1:EasternPacific a owl:NamedIndividual,
+        ns1:EasternPacificRegion ;
+    rdfs:label "eastern Pacific"^^xsd:string ;
+    ns1:partOf ns1:PacificOcean .
+
+ns1:ElNinoDeNavidad a owl:NamedIndividual,
+        ns1:Term ;
+    rdfs:label "El Niño de Navidad"^^xsd:string ;
+    ns1:inReferenceTo ns1:NewbornChrist ;
+    ns1:language ns1:AmericanSpanish ;
+    ns1:namedBy ns1:PeruvianFishermen ;
+    ns1:originalNameOf ns1:ElNinoPhenomenonInstance .
+
+ns1:ElNinoSpanishTermInstance a owl:NamedIndividual,
+        ns1:ElNinoSpanishTerm ;
+    rdfs:label "El Niño"^^xsd:string ;
+    ns1:language ns1:AmericanSpanish ;
+    ns1:meaning "the boy"^^xsd:string ;
+    ns1:refersTo ns1:ElNinoPhenomenonInstance .
+
+ns1:LaNinaSpanishTermInstance a owl:NamedIndividual,
+        ns1:LaNinaSpanishTerm ;
+    rdfs:label "La Niña"^^xsd:string ;
+    ns1:language ns1:AmericanSpanish ;
+    ns1:literalTranslation "the girl"^^xsd:string ;
+    ns1:refersTo ns1:LaNinaPhenomenonInstance .
+
+ns1:MentalObject a owl:Class ;
+    rdfs:label "Mental Object"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:specificallyDependsOn ;
+            owl:someValuesFrom ns1:AgentivePhysicalObject ],
+        ns1:NonPhysicalObject ;
+    owl:disjointWith ns1:SocialObject .
+
+ns1:PacificBorderingAgricultureFishingDependentCountry a owl:Class ;
+    rdfs:label "developing countries dependent upon agriculture and fishing, particularly those bordering the Pacific Ocean"^^xsd:string ;
+    rdfs:subClassOf ns1:AgricultureFishingDependentCountry,
+        ns1:PacificBorderingCountry .
+
+ns1:TropicalCentralEasternPacificOcean a owl:NamedIndividual,
+        ns1:TropicalCentralEasternPacificOceanRegion ;
+    rdfs:label "tropical central and eastern Pacific Ocean"^^xsd:string ;
+    ns1:partOf ns1:PacificOcean .
+
+ns1:WesternPacific a owl:NamedIndividual,
+        ns1:WesternPacificRegion ;
+    rdfs:label "western Pacific"^^xsd:string ;
+    ns1:partOf ns1:PacificOcean .
+
+ns1:associatedWithBand a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:ClimatePhase ;
+    rdfs:range ns1:OceanWaterBand .
+
+ns1:associatedWithRegion a owl:ObjectProperty ;
+    rdfs:domain ns1:ClimatePhase,
+        ns1:OceanWaterBand ;
+    rdfs:range ns1:GeographicRegion .
+
+ns1:atomicPartOf a owl:ObjectProperty ;
+    rdfs:label "atomic part of"^^xsd:string ;
+    rdfs:domain ns1:Atom ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:boundedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:OceanWaterBand ;
+    rdfs:range ns1:LongitudeBoundary .
+
+ns1:causes a owl:ObjectProperty ;
+    rdfs:domain ns1:ClimateCycle ;
+    rdfs:range ns1:EnvironmentalChange .
+
+ns1:developsIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:OceanWaterBand ;
+    rdfs:range ns1:GeographicRegion .
+
+ns1:hasAirPressureCondition a owl:ObjectProperty ;
+    rdfs:domain ns1:ClimatePhase ;
+    rdfs:range ns1:AirPressureCondition .
+
+ns1:hasSeaSurfaceTemperatureCondition a owl:ObjectProperty ;
+    rdfs:domain ns1:ClimatePhase ;
+    rdfs:range ns1:SeaSurfaceTemperatureCondition .
+
+ns1:inReferenceTo a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Term ;
+    rdfs:range ns1:SocialAgent .
+
+ns1:language a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Term ;
+    rdfs:range ns1:Language .
+
+ns1:literalTranslation a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Term ;
+    rdfs:range xsd:string .
+
+ns1:meaning a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Term ;
+    rdfs:range xsd:string .
+
+ns1:measuredBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:ClimateCycle ;
+    rdfs:range ns1:SeaSurfaceTemperatureCondition .
+
+ns1:namedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Term ;
+    rdfs:range ns1:SocialObject .
+
+ns1:originalNameOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Term ;
+    rdfs:range ns1:ClimatePhase .
+
+ns1:phaseOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:ClimatePhase ;
+    rdfs:range ns1:ClimateCycle .
+
+ns1:refersTo a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Term ;
+    rdfs:range ns1:ClimatePhase .
+
+ns1:temporalPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "temporal part of"^^xsd:string ;
+    rdfs:domain ns1:Perdurant ;
+    rdfs:range ns1:Perdurant ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:warmestAround a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:OceanWaterBand ;
+    rdfs:range ns1:TimeInterval .
+
+ns1:Achievement a owl:Class ;
+    rdfs:label "Achievement"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:Atom ],
+        ns1:Event .
+
+ns1:Agriculture a owl:Class ;
+    rdfs:label "agriculture"^^xsd:string ;
+    rdfs:subClassOf ns1:Process .
+
+ns1:AgricultureFishingDependentCountry a owl:Class ;
+    rdfs:label "developing countries dependent upon agriculture and fishing"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:specificallyDependsOn ;
+            owl:someValuesFrom ns1:Agriculture ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:specificallyDependsOn ;
+            owl:someValuesFrom ns1:Fishing ],
+        ns1:DevelopingCountry .
+
+ns1:AmountOfMatter a owl:Class ;
+    rdfs:label "Amount of Matter"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointWith ns1:Feature,
+        ns1:PhysicalObject .
+
+ns1:ArbitrarySum a owl:Class ;
+    rdfs:label "Arbitrary Sum"^^xsd:string ;
+    rdfs:subClassOf ns1:Endurant .
+
+ns1:BelowAverageSeaSurfaceTemperatureCondition a owl:Class ;
+    rdfs:label "below average sea surface temperature"^^xsd:string ;
+    rdfs:subClassOf ns1:SeaSurfaceTemperatureCondition .
+
+ns1:BelowAverageSeaSurfaceTemperatureEasternPacific a owl:NamedIndividual,
+        ns1:BelowAverageSeaSurfaceTemperatureCondition ;
+    rdfs:label "SST in the eastern Pacific below average"^^xsd:string .
+
+ns1:CentralEastCentralEquatorialPacificRegion a owl:Class ;
+    rdfs:label "central and east-central equatorial Pacific region"^^xsd:string ;
+    rdfs:subClassOf ns1:EquatorialPacificRegion .
+
+ns1:Christmas a owl:NamedIndividual,
+        ns1:TimeInterval ;
+    rdfs:label "Christmas"^^xsd:string .
+
+ns1:ConstantAtom a owl:Class ;
+    rdfs:label "Constant Atom"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty [ owl:inverseOf ns1:constantProperPartOf ] ;
+                    owl:someValuesFrom ns1:Particular ] ],
+        ns1:Endurant .
+
+ns1:CoolPhase a owl:Class ;
+    rdfs:label "cool phase"^^xsd:string ;
+    rdfs:subClassOf ns1:ClimatePhase .
+
+ns1:DevelopingCountry a owl:Class ;
+    rdfs:label "developing country"^^xsd:string ;
+    rdfs:subClassOf ns1:Country .
+
+ns1:EasternPacificRegion a owl:Class ;
+    rdfs:label "eastern Pacific region"^^xsd:string ;
+    rdfs:subClassOf ns1:PacificOceanRegion .
+
+ns1:ElNinoPhenomenon a owl:Class ;
+    rdfs:label "El Niño"^^xsd:string ;
+    rdfs:subClassOf ns1:WarmPhase .
+
+ns1:ElNinoSpanishTerm a owl:Class ;
+    rdfs:label "El Niño"^^xsd:string ;
+    rdfs:subClassOf ns1:Term .
+
+ns1:EquatorialPacificRegion a owl:Class ;
+    rdfs:label "equatorial Pacific region"^^xsd:string ;
+    rdfs:subClassOf ns1:PacificOceanRegion .
+
+ns1:Feature a owl:Class ;
+    rdfs:label "Feature"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointWith ns1:PhysicalObject .
+
+ns1:Fishing a owl:Class ;
+    rdfs:label "fishing"^^xsd:string ;
+    rdfs:subClassOf ns1:Process .
+
+ns1:GlobalRainfallChange a owl:NamedIndividual,
+        ns1:RainfallChange ;
+    rdfs:label "global changes of rainfall"^^xsd:string .
+
+ns1:GlobalTemperatureChange a owl:NamedIndividual,
+        ns1:TemperatureChange ;
+    rdfs:label "global changes of temperatures"^^xsd:string .
+
+ns1:HighAirPressureEasternPacific a owl:NamedIndividual,
+        ns1:HighAirPressureCondition ;
+    rdfs:label "high air pressure in the eastern Pacific"^^xsd:string .
+
+ns1:HighAirPressureWesternPacific a owl:NamedIndividual,
+        ns1:HighAirPressureCondition ;
+    rdfs:label "high air pressure in the western Pacific"^^xsd:string .
+
+ns1:InternationalDateLine a owl:NamedIndividual,
+        ns1:LongitudeBoundary ;
+    rdfs:label "International Date Line"^^xsd:string .
+
+ns1:LaNinaPhenomenon a owl:Class ;
+    rdfs:label "La Niña"^^xsd:string ;
+    rdfs:subClassOf ns1:CoolPhase .
+
+ns1:LaNinaPhenomenonInstance a owl:NamedIndividual,
+        ns1:LaNinaPhenomenon ;
+    rdfs:label "La Niña"^^xsd:string ;
+    ns1:hasAirPressureCondition ns1:HighAirPressureEasternPacific,
+        ns1:LowAirPressureWesternPacific ;
+    ns1:hasSeaSurfaceTemperatureCondition ns1:BelowAverageSeaSurfaceTemperatureEasternPacific ;
+    ns1:phaseOf ns1:ElNinoSouthernOscillation .
+
+ns1:LaNinaSpanishTerm a owl:Class ;
+    rdfs:label "La Niña"^^xsd:string ;
+    rdfs:subClassOf ns1:Term .
+
+ns1:Longitude120West a owl:NamedIndividual,
+        ns1:LongitudeBoundary ;
+    rdfs:label "120 ° W"^^xsd:string .
+
+ns1:LowAirPressureEasternPacific a owl:NamedIndividual,
+        ns1:LowAirPressureCondition ;
+    rdfs:label "low air pressure in the eastern Pacific"^^xsd:string .
+
+ns1:LowAirPressureWesternPacific a owl:NamedIndividual,
+        ns1:LowAirPressureCondition ;
+    rdfs:label "low air pressure in western Pacific"^^xsd:string .
+
+ns1:NewbornChrist a owl:NamedIndividual,
+        ns1:SocialAgent ;
+    rdfs:label "newborn Christ"^^xsd:string .
+
+ns1:NonAgentivePhysicalObject a owl:Class ;
+    rdfs:label "Non-Agentive Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalObject .
+
+ns1:NonAgentiveSocialObject a owl:Class ;
+    rdfs:label "Non-Agentive Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:OceanRegion a owl:Class ;
+    rdfs:label "oceanic region"^^xsd:string ;
+    rdfs:subClassOf ns1:GeographicRegion .
+
+ns1:PacificBorderingCountry a owl:Class ;
+    rdfs:label "countries bordering the Pacific Ocean"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:borders ;
+            owl:someValuesFrom ns1:PacificOceanRegion ],
+        ns1:Country .
+
+ns1:PacificCoastOfSouthAmericaRegion a owl:Class ;
+    rdfs:label "Pacific coast of South America region"^^xsd:string ;
+    rdfs:subClassOf ns1:GeographicRegion .
+
+ns1:PeruvianFishermen a owl:NamedIndividual,
+        ns1:SocialObject ;
+    rdfs:label "Peruvian fishermen"^^xsd:string .
+
+ns1:RainfallChange a owl:Class ;
+    rdfs:label "rainfall change"^^xsd:string ;
+    rdfs:subClassOf ns1:EnvironmentalChange .
+
+ns1:SeaSurfaceTemperatureOfTropicalCentralEasternPacificOcean a owl:NamedIndividual,
+        ns1:SeaSurfaceTemperatureCondition ;
+    rdfs:label "SST"^^xsd:string,
+        "sea surface temperature, SST, of the tropical central and eastern Pacific Ocean"^^xsd:string .
+
+ns1:Society a owl:Class ;
+    rdfs:label "Society"^^xsd:string ;
+    rdfs:subClassOf ns1:AgentiveSocialObject .
+
+ns1:SouthAmerica a owl:NamedIndividual,
+        ns1:SouthAmericaRegion ;
+    rdfs:label "South America"^^xsd:string .
+
+ns1:SouthAmericaRegion a owl:Class ;
+    rdfs:label "South America region"^^xsd:string ;
+    rdfs:subClassOf ns1:GeographicRegion .
+
+ns1:TemperatureChange a owl:Class ;
+    rdfs:label "temperature change"^^xsd:string ;
+    rdfs:subClassOf ns1:EnvironmentalChange .
+
+ns1:TemporalLocation a owl:Class ;
+    rdfs:label "Temporal Location"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:qualeOf ] ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:TemporalQuality .
+
+ns1:TropicalCentralEasternPacificOceanRegion a owl:Class ;
+    rdfs:label "tropical central and eastern Pacific Ocean region"^^xsd:string ;
+    rdfs:subClassOf ns1:PacificOceanRegion .
+
+ns1:WarmOceanWaterBand a owl:NamedIndividual,
+        ns1:OceanWaterBand ;
+    rdfs:label "band of warm ocean water"^^xsd:string ;
+    ns1:associatedWithRegion ns1:CentralEastCentralEquatorialPacific,
+        ns1:PacificCoastOfSouthAmerica ;
+    ns1:boundedBy ns1:InternationalDateLine,
+        ns1:Longitude120West ;
+    ns1:developsIn ns1:CentralEastCentralEquatorialPacific ;
+    ns1:warmestAround ns1:Christmas .
+
+ns1:WarmPhase a owl:Class ;
+    rdfs:label "warm phase"^^xsd:string ;
+    rdfs:subClassOf ns1:ClimatePhase .
+
+ns1:WesternPacificRegion a owl:Class ;
+    rdfs:label "western Pacific region"^^xsd:string ;
+    rdfs:subClassOf ns1:PacificOceanRegion .
+
+ns1:borders a owl:ObjectProperty ;
+    rdfs:domain ns1:Country ;
+    rdfs:range ns1:GeographicRegion .
+
+ns1:constantAtomicPartOf a owl:ObjectProperty ;
+    rdfs:label "constant atomic part of"^^xsd:string ;
+    rdfs:domain ns1:ConstantAtom ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantPartOf .
+
+ns1:constantParticipantOf a owl:ObjectProperty ;
+    rdfs:label "constant participation of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Perdurant ;
+    rdfs:subPropertyOf [ owl:inverseOf ns1:specificallyDependsOn ] .
+
+ns1:properPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "proper part of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:AgentivePhysicalObject a owl:Class ;
+    rdfs:label "Agentive Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalObject .
+
+ns1:CentralEastCentralEquatorialPacific a owl:NamedIndividual,
+        ns1:CentralEastCentralEquatorialPacificRegion ;
+    rdfs:label "central and east-central equatorial Pacific"^^xsd:string ;
+    ns1:partOf ns1:PacificOcean .
+
+ns1:ElNinoPhenomenonInstance a owl:NamedIndividual,
+        ns1:ElNinoPhenomenon ;
+    rdfs:label "El Niño"^^xsd:string ;
+    ns1:associatedWithBand ns1:WarmOceanWaterBand ;
+    ns1:associatedWithRegion ns1:PacificCoastOfSouthAmerica ;
+    ns1:hasAirPressureCondition ns1:HighAirPressureWesternPacific,
+        ns1:LowAirPressureEasternPacific ;
+    ns1:phaseOf ns1:ElNinoSouthernOscillation .
+
+ns1:ElNinoSouthernOscillation a owl:NamedIndividual,
+        ns1:ClimateCycle ;
+    rdfs:label "ENSO"^^xsd:string,
+        "El Niño Southern Oscillation"^^xsd:string ;
+    ns1:associatedWithRegion ns1:PacificCoastOfSouthAmerica ;
+    ns1:causes ns1:GlobalRainfallChange,
+        ns1:GlobalTemperatureChange ;
+    ns1:measuredBy ns1:SeaSurfaceTemperatureOfTropicalCentralEasternPacificOcean .
+
+ns1:Event a owl:Class ;
+    rdfs:label "Event"^^xsd:string ;
+    rdfs:subClassOf ns1:Perdurant ;
+    owl:disjointWith ns1:Stative .
+
+ns1:HighAirPressureCondition a owl:Class ;
+    rdfs:label "high air pressure"^^xsd:string ;
+    rdfs:subClassOf ns1:AirPressureCondition .
+
+ns1:Language a owl:Class ;
+    rdfs:label "language"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalObject .
+
+ns1:LowAirPressureCondition a owl:Class ;
+    rdfs:label "low air pressure"^^xsd:string ;
+    rdfs:subClassOf ns1:AirPressureCondition .
+
+ns1:SocialAgent a owl:Class ;
+    rdfs:label "Social Agent"^^xsd:string ;
+    rdfs:subClassOf ns1:AgentiveSocialObject ;
+    owl:disjointWith ns1:Society .
+
+ns1:SpaceRegion a owl:Class ;
+    rdfs:label "Space Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpatialLocation ;
+            owl:onProperty ns1:constantQualeOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpaceRegion ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpaceRegion ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:PhysicalRegion .
+
+ns1:SpatialLocation a owl:Class ;
+    rdfs:label "Spatial Location"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalQuality .
+
+ns1:constantProperPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant proper part of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantPartOf .
+
+ns1:constantlyOverlaps a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "constantly overlaps"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    owl:propertyChainAxiom ( [ owl:inverseOf ns1:constantPartOf ] ns1:constantPartOf ) .
+
+ns1:qualeOf a owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "quale of"^^xsd:string ;
+    rdfs:domain ns1:TemporalRegion ;
+    rdfs:range ns1:TemporalQuality .
+
+ns1:AgentiveSocialObject a owl:Class ;
+    rdfs:label "Agentive Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:AirPressureCondition a owl:Class ;
+    rdfs:label "air pressure"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalQuality .
+
+ns1:AmericanSpanish a owl:NamedIndividual,
+        ns1:Language ;
+    rdfs:label "American Spanish"^^xsd:string .
+
+ns1:Atom a owl:Class ;
+    rdfs:label "Atom"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ],
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty [ owl:inverseOf ns1:properPartOf ] ;
+                    owl:someValuesFrom ns1:Particular ] ],
+        ns1:Particular .
+
+ns1:Country a owl:Class ;
+    rdfs:label "country"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:EnvironmentalChange a owl:Class ;
+    rdfs:label "environmental change"^^xsd:string ;
+    rdfs:subClassOf ns1:Process .
+
+ns1:LongitudeBoundary a owl:Class ;
+    rdfs:label "longitude boundary"^^xsd:string ;
+    rdfs:subClassOf ns1:AbstractRegion .
+
+ns1:PacificCoastOfSouthAmerica a owl:NamedIndividual,
+        ns1:PacificCoastOfSouthAmericaRegion ;
+    rdfs:label "Pacific coast of South America"^^xsd:string ;
+    ns1:partOf ns1:SouthAmerica .
+
+ns1:Region a owl:Class ;
+    rdfs:label "Region"^^xsd:string ;
+    rdfs:subClassOf ns1:Abstract ;
+    owl:disjointUnionOf ( ns1:AbstractRegion ns1:PhysicalRegion ns1:TemporalRegion ) .
+
+ns1:State a owl:Class ;
+    rdfs:label "State"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:State ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Stative .
+
+ns1:Stative a owl:Class ;
+    rdfs:label "Stative"^^xsd:string ;
+    rdfs:subClassOf ns1:Perdurant .
+
+ns1:TemporalRegion a owl:Class ;
+    rdfs:label "Temporal Region"^^xsd:string ;
+    rdfs:subClassOf ns1:Region .
+
+ns1:overlaps a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "overlaps"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    owl:propertyChainAxiom ( [ owl:inverseOf ns1:partOf ] ns1:partOf ),
+        ( [ owl:inverseOf ns1:presentAt ] ns1:temporallyLocatedAt ) .
+
+ns1:AbstractQuality a owl:Class ;
+    rdfs:label "Abstract Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty [ owl:inverseOf ns1:constantQualeOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:ClimateCycle a owl:Class ;
+    rdfs:label "climate cycle"^^xsd:string ;
+    rdfs:subClassOf ns1:Process .
+
+ns1:NonPhysicalObject a owl:Class ;
+    rdfs:label "Non-Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalEndurant .
+
+ns1:PacificOcean a owl:NamedIndividual,
+        ns1:PacificOceanRegion ;
+    rdfs:label "Pacific Ocean"^^xsd:string .
+
+ns1:PhysicalObject a owl:Class ;
+    rdfs:label "Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointUnionOf ( ns1:AgentivePhysicalObject ns1:NonAgentivePhysicalObject ) .
+
+ns1:Process a owl:Class ;
+    rdfs:label "Process"^^xsd:string ;
+    rdfs:subClassOf ns1:Stative ;
+    owl:disjointWith ns1:State .
+
+ns1:SeaSurfaceTemperatureCondition a owl:Class ;
+    rdfs:label "sea surface temperature"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalQuality .
+
+ns1:TemporalQuality a owl:Class ;
+    rdfs:label "Temporal Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:qualeOf ] ;
+            owl:someValuesFrom ns1:Particular ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:PhysicalRegion a owl:Class ;
+    rdfs:label "Physical Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalQuality ;
+            owl:onProperty ns1:constantQualeOf ],
+        ns1:Region .
+
+ns1:constantQualeOf a owl:ObjectProperty ;
+    rdfs:label "constant quale of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:AbstractRegion ns1:PhysicalRegion ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:AbstractQuality ns1:PhysicalQuality ) ] .
+
+ns1:AbstractRegion a owl:Class ;
+    rdfs:label "Abstract Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractQuality ;
+            owl:onProperty ns1:constantQualeOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Region .
+
+ns1:GeographicRegion a owl:Class ;
+    rdfs:label "geographic region"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalRegion .
+
+ns1:OceanWaterBand a owl:Class ;
+    rdfs:label "band of warm ocean water"^^xsd:string ;
+    rdfs:subClassOf ns1:AmountOfMatter .
+
+ns1:PacificOceanRegion a owl:Class ;
+    rdfs:label "Pacific Ocean region"^^xsd:string ;
+    rdfs:subClassOf ns1:OceanRegion .
+
+ns1:SocialObject a owl:Class ;
+    rdfs:label "Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalObject ;
+    owl:disjointUnionOf ( ns1:AgentiveSocialObject ns1:NonAgentiveSocialObject ) .
+
+ns1:temporallyLocatedAt a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "temporally located at"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range ns1:TimeInterval ;
+    rdfs:subPropertyOf ns1:presentAt .
+
+ns1:PhysicalQuality a owl:Class ;
+    rdfs:label "Physical Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalRegion ;
+            owl:onProperty [ owl:inverseOf ns1:constantQualeOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:constantConstituentOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant constituent of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:NonPhysicalEndurant ns1:Perdurant ns1:PhysicalEndurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:NonPhysicalEndurant ns1:Perdurant ns1:PhysicalEndurant ) ] ;
+    rdfs:subPropertyOf [ owl:inverseOf ns1:specificallyDependsOn ] .
+
+ns1:constantPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant part of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantlyOverlaps .
+
+ns1:specificallyDependsOn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "specifically depends on"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] .
+
+ns1:NonPhysicalEndurant a owl:Class ;
+    rdfs:label "Non-Physical Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty ns1:constantlyOverlaps ;
+                    owl:someValuesFrom ns1:PhysicalEndurant ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantPartOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        ns1:Endurant .
+
+ns1:ClimatePhase a owl:Class ;
+    rdfs:label "climate phase"^^xsd:string ;
+    rdfs:subClassOf ns1:State .
+
+ns1:Particular a owl:Class ;
+    rdfs:label "Particular"^^xsd:string ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ns1:Abstract ns1:Endurant ns1:Perdurant ns1:Quality ) .
+
+ns1:Quality a owl:Class ;
+    rdfs:label "Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:directQualityOf ;
+            owl:someValuesFrom ns1:Particular ],
+        ns1:Particular ;
+    owl:disjointUnionOf ( ns1:AbstractQuality ns1:PhysicalQuality ns1:TemporalQuality ) .
+
+ns1:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:TimeInterval ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:TemporalRegion .
+
+ns1:Term a owl:Class ;
+    rdfs:label "term"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalObject .
+
+ns1:PhysicalEndurant a owl:Class ;
+    rdfs:label "Physical Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ;
+            owl:someValuesFrom ns1:SpatialLocation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantPartOf ] ],
+        ns1:Endurant .
+
+ns1:directQualityOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "direct quality of"^^xsd:string ;
+    rdfs:domain ns1:Quality ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:specificallyDependsOn .
+
+ns1:presentAt a owl:ObjectProperty ;
+    rdfs:label "present at"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range ns1:TimeInterval ;
+    owl:propertyChainAxiom ( ns1:constantAtomicPartOf ns1:presentAt ),
+        ( ns1:constantConstituentOf ns1:presentAt ),
+        ( ns1:constantPartOf ns1:presentAt ),
+        ( ns1:constantParticipantOf ns1:presentAt ),
+        ( ns1:constantProperPartOf ns1:presentAt ),
+        ( ns1:directQualityOf ns1:presentAt ),
+        ( ns1:presentAt [ owl:inverseOf ns1:partOf ] ),
+        ( [ owl:inverseOf ns1:directQualityOf ] ns1:presentAt ),
+        ( [ owl:inverseOf ns1:partOf ] ns1:presentAt ),
+        ( [ owl:inverseOf ns1:specificallyDependsOn ] ns1:presentAt ) .
+
+ns1:Abstract a owl:Class ;
+    rdfs:label "Abstract"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty ns1:overlaps ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Particular .
+
+ns1:partOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "part of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:overlaps .
+
+ns1:Endurant a owl:Class ;
+    rdfs:label "Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:Particular ;
+    owl:disjointUnionOf ( ns1:ArbitrarySum ns1:NonPhysicalEndurant ns1:PhysicalEndurant ) .
+
+ns1:Perdurant a owl:Class ;
+    rdfs:label "Perdurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:overlaps ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:TemporalQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ;
+            owl:someValuesFrom ns1:TemporalLocation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:Particular .

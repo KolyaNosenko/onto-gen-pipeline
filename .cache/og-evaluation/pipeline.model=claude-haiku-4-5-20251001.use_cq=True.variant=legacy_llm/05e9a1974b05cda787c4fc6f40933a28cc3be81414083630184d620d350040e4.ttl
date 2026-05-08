@@ -1,0 +1,272 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:Album a owl:Class ;
+    rdfs:label "Album"@en .
+
+:StudioAlbum a owl:Class ;
+    rdfs:subClassOf :Album ;
+    rdfs:label "Studio Album"@en .
+
+:Band a owl:Class ;
+    rdfs:label "Band"@en .
+
+:RecordLabel a owl:Class ;
+    rdfs:label "Record Label"@en .
+
+:BandMember a owl:Class ;
+    rdfs:label "Band Member"@en .
+
+:Person a owl:Class ;
+    rdfs:label "Person"@en .
+
+:Musician a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Musician"@en .
+
+:Vocalist a owl:Class ;
+    rdfs:subClassOf :Musician ;
+    rdfs:label "Vocalist"@en .
+
+:Guitarist a owl:Class ;
+    rdfs:subClassOf :Musician ;
+    rdfs:label "Guitarist"@en .
+
+:BassPlayer a owl:Class ;
+    rdfs:subClassOf :Musician ;
+    rdfs:label "Bass Player"@en .
+
+:Drummer a owl:Class ;
+    rdfs:subClassOf :Musician ;
+    rdfs:label "Drummer"@en .
+
+:Song a owl:Class ;
+    rdfs:label "Song"@en .
+
+:Single a owl:Class ;
+    rdfs:subClassOf :Song ;
+    rdfs:label "Single"@en .
+
+:Video a owl:Class ;
+    rdfs:label "Video"@en .
+
+:LyricVideo a owl:Class ;
+    rdfs:subClassOf :Video ;
+    rdfs:label "Lyric Video"@en .
+
+:OfficialVideo a owl:Class ;
+    rdfs:subClassOf :Video ;
+    rdfs:label "Official Video"@en .
+
+:MusicalInstrument a owl:Class ;
+    rdfs:label "Musical Instrument"@en .
+
+:Sitar a owl:Class ;
+    rdfs:subClassOf :MusicalInstrument ;
+    rdfs:label "Sitar"@en .
+
+:Horn a owl:Class ;
+    rdfs:subClassOf :MusicalInstrument ;
+    rdfs:label "Horn"@en .
+
+:DatePoint a owl:Class ;
+    rdfs:label "Date Point"@en .
+
+:DateRange a owl:Class ;
+    rdfs:label "Date Range"@en .
+
+:MusicalStyle a owl:Class ;
+    rdfs:label "Musical Style"@en .
+
+# Object Properties
+:isByBand a owl:ObjectProperty ;
+    rdfs:label "is by band"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :Band .
+
+:releasedBy a owl:ObjectProperty ;
+    rdfs:label "released by"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :RecordLabel ;
+    a owl:FunctionalProperty .
+
+:recordedBetween a owl:ObjectProperty ;
+    rdfs:label "recorded between"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :DateRange ;
+    a owl:FunctionalProperty .
+
+:releasedOn a owl:ObjectProperty ;
+    rdfs:label "released on"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :DatePoint ;
+    a owl:FunctionalProperty .
+
+:previousAlbum a owl:ObjectProperty ;
+    rdfs:label "previous album"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :Album ;
+    a owl:FunctionalProperty ;
+    a owl:AsymmetricProperty .
+
+:departsFrom a owl:ObjectProperty ;
+    rdfs:label "departs from"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :Album .
+
+:featuresMusicianOnVocals a owl:ObjectProperty ;
+    rdfs:label "features musician on vocals"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :Vocalist .
+
+:featuresMusicianOnBass a owl:ObjectProperty ;
+    rdfs:label "features musician on bass"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :BassPlayer .
+
+:featuresMusicianOnDrums a owl:ObjectProperty ;
+    rdfs:label "features musician on drums"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :Drummer .
+
+:featuresMusicianAsGuitaristVocalist a owl:ObjectProperty ;
+    rdfs:label "features musician as guitarist vocalist"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :Person .
+
+:isMemberOf a owl:ObjectProperty ;
+    rdfs:label "is member of"@en ;
+    rdfs:domain :BandMember ;
+    rdfs:range :Band .
+
+:isOriginalMemberOf a owl:ObjectProperty ;
+    rdfs:label "is original member of"@en ;
+    rdfs:domain :Person ;
+    rdfs:range :Band .
+
+:firstSinglePromoting a owl:ObjectProperty ;
+    rdfs:label "first single promoting"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :Single ;
+    a owl:FunctionalProperty .
+
+:releasedOnDate a owl:ObjectProperty ;
+    rdfs:label "released on date"@en ;
+    rdfs:domain :Single ;
+    rdfs:range :DatePoint ;
+    a owl:FunctionalProperty .
+
+:hasAssociatedVideo a owl:ObjectProperty ;
+    rdfs:label "has associated video"@en ;
+    rdfs:domain :Single ;
+    rdfs:range :Video .
+
+:featuresInstrument a owl:ObjectProperty ;
+    rdfs:label "features instrument"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :MusicalInstrument .
+
+:isFirstReleaseFeaturingMusician a owl:ObjectProperty ;
+    rdfs:label "is first release featuring musician"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :Person .
+
+:debutOf a owl:ObjectProperty ;
+    rdfs:label "debut of"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :Person .
+
+:hasMusicalStyle a owl:ObjectProperty ;
+    rdfs:label "has musical style"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :MusicalStyle .
+
+:differsIn a owl:ObjectProperty ;
+    rdfs:label "differs in"@en ;
+    rdfs:domain :Album ;
+    rdfs:range :MusicalStyle .
+
+:studioAlbumNumber a owl:DatatypeProperty ;
+    rdfs:label "studio album number"@en ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:integer ;
+    a owl:FunctionalProperty .
+
+# Individuals
+
+:BecominTheArchetype a :Band , owl:NamedIndividual ;
+    rdfs:label "Becoming the Archetype"@en .
+
+:IAmAlbum a :StudioAlbum , owl:NamedIndividual ;
+    rdfs:label "I Am"@en ;
+    :isByBand :BecominTheArchetype ;
+    :studioAlbumNumber 5 ;
+    :releasedBy :SolidStateRecords ;
+    :releasedOn :September182012 ;
+    :recordedBetween :May21ToJune17 ;
+    :previousAlbum :CelestialCompletion ;
+    :departsFrom :CelestialCompletion ;
+    :featuresMusicianOnVocals :ChrisMcCane ;
+    :featuresMusicianOnBass :CodeyWatkins ;
+    :featuresMusicianOnDrums :ChrisHeaton ;
+    :featuresMusicianAsGuitaristVocalist :SethHecox ;
+    :isFirstReleaseFeaturingMusician :ChrisMcCane ;
+    :isFirstReleaseFeaturingMusician :CodeyWatkins ;
+    :isFirstReleaseFeaturingMusician :ChrisHeaton ;
+    :firstSinglePromoting :TheTimeBender .
+
+:CelestialCompletion a :Album , owl:NamedIndividual ;
+    rdfs:label "Celestial Completion"@en ;
+    :isByBand :BecominTheArchetype ;
+    :featuresInstrument :SitarInstrument ;
+    :featuresInstrument :HornInstrument .
+
+:SolidStateRecords a :RecordLabel , owl:NamedIndividual ;
+    rdfs:label "Solid State Records"@en .
+
+:SethHecox a :Musician , owl:NamedIndividual ;
+    rdfs:label "Seth Hecox"@en ;
+    :isOriginalMemberOf :BecominTheArchetype .
+
+:ChrisMcCane a :Vocalist , owl:NamedIndividual ;
+    rdfs:label "Chris McCane"@en ;
+    :isMemberOf :BecominTheArchetype .
+
+:CodeyWatkins a :BassPlayer , owl:NamedIndividual ;
+    rdfs:label "Codey Watkins"@en ;
+    :isMemberOf :BecominTheArchetype .
+
+:ChrisHeaton a :Drummer , owl:NamedIndividual ;
+    rdfs:label "Chris Heaton"@en ;
+    :isMemberOf :BecominTheArchetype .
+
+:TheTimeBender a :Single , owl:NamedIndividual ;
+    rdfs:label "The Time Bender"@en ;
+    :releasedOnDate :August282012 ;
+    :hasAssociatedVideo :TheTimeBenderLyricVideo ;
+    :hasAssociatedVideo :TheTimeBenderOfficialVideo .
+
+:TheTimeBenderLyricVideo a :LyricVideo , owl:NamedIndividual ;
+    rdfs:label "The Time Bender lyric video"@en .
+
+:TheTimeBenderOfficialVideo a :OfficialVideo , owl:NamedIndividual ;
+    rdfs:label "The Time Bender official video"@en .
+
+:September182012 a :DatePoint , owl:NamedIndividual ;
+    rdfs:label "September 18, 2012"@en .
+
+:May21ToJune17 a :DateRange , owl:NamedIndividual ;
+    rdfs:label "May 21 to June 17"@en .
+
+:August282012 a :DatePoint , owl:NamedIndividual ;
+    rdfs:label "August 28, 2012"@en .
+
+:SitarInstrument a :Sitar , owl:NamedIndividual ;
+    rdfs:label "sitar"@en .
+
+:HornInstrument a :Horn , owl:NamedIndividual ;
+    rdfs:label "horn"@en .

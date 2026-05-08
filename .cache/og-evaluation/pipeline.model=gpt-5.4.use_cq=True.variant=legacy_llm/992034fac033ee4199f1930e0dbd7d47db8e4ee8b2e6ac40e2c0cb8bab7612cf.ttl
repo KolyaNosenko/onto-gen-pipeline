@@ -1,0 +1,348 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Thing a owl:Class .
+
+:Person a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Artist a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:Painter a owl:Class ;
+    rdfs:subClassOf :Artist .
+
+:Organisation a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Guild a owl:Class ;
+    rdfs:subClassOf :Organisation .
+
+:Place a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:City a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Residence a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:TimeInterval a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:DateMention a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:ArtWork a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:ReligiousWork a owl:Class ;
+    rdfs:subClassOf :ArtWork .
+
+:Portrait a owl:Class ;
+    rdfs:subClassOf :ArtWork .
+
+:RoyaltyPortrait a owl:Class ;
+    rdfs:subClassOf :Portrait .
+
+:PaintingTechnique a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:PaintingTradition a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:PaintingStyle a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:RenaissancePaintingStyle a owl:Class ;
+    rdfs:subClassOf :PaintingStyle .
+
+:PaintingMovement a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:NorthernRenaissancePainting a owl:Class ;
+    rdfs:subClassOf :PaintingMovement .
+
+:Century a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:Role a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:GuildRole a owl:Class ;
+    rdfs:subClassOf :Role .
+
+:Attribute a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:ArtisticQuality a owl:Class ;
+    rdfs:subClassOf :Attribute .
+
+:MentalCondition a owl:Class ;
+    rdfs:subClassOf :Attribute .
+
+:Nickname a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Meaning a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:BackgroundFeature a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:LandscapeFeature a owl:Class ;
+    rdfs:subClassOf :BackgroundFeature .
+
+:AlternativeName a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Person rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasAlternativeName ;
+    owl:allValuesFrom :AlternativeName
+] .
+
+:Painter rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :createdWorkType ;
+    owl:someValuesFrom :ArtWork
+] .
+
+:GuildRole rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :roleInOrganisation ;
+    owl:someValuesFrom :Organisation
+] .
+
+:hasAlternativeName a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :AlternativeName .
+
+:hasNickname a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Nickname .
+
+:nicknameMeans a owl:ObjectProperty ;
+    rdfs:domain :Nickname ;
+    rdfs:range :Meaning .
+
+:birthDateMention a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :DateMention .
+
+:deathDateMention a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :DateMention .
+
+:activeIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Place .
+
+:activeDuring a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :TimeInterval .
+
+:hasProfession a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Thing .
+
+:combinesTechniqueOrStyle a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Thing .
+
+:memberOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Organisation .
+
+:holdsRole a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Role .
+
+:roleInOrganisation a owl:ObjectProperty ;
+    rdfs:domain :Role ;
+    rdfs:range :Organisation .
+
+:knownForWorkType a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :ArtWork .
+
+:hasArtisticQuality a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :ArtisticQuality .
+
+:introducedTechnique a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :PaintingTechnique .
+
+:appliesToBackgroundOf a owl:ObjectProperty ;
+    rdfs:domain :PaintingTechnique ;
+    rdfs:range :ArtWork .
+
+:featuresBackgroundElement a owl:ObjectProperty ;
+    rdfs:domain :PaintingTechnique ;
+    rdfs:range :BackgroundFeature .
+
+:becamePopularIn a owl:ObjectProperty ;
+    rdfs:domain :PaintingTechnique ;
+    rdfs:range :PaintingMovement .
+
+:popularDuring a owl:ObjectProperty ;
+    rdfs:domain :PaintingTechnique ;
+    rdfs:range :TimeInterval .
+
+:hasFather a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person .
+
+:hasSon a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    owl:inverseOf :hasFather .
+
+:residedIn a owl:ObjectProperty ;
+    rdfs:domain :Residence ;
+    rdfs:range :Place .
+
+:hadResidence a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Residence .
+
+:becameMentallyIllDuring a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Residence .
+
+:hasMentalCondition a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :MentalCondition .
+
+:referredToAsBecauseOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :MentalCondition .
+
+:createdWorkType a owl:ObjectProperty ;
+    rdfs:domain :Painter ;
+    rdfs:range :ArtWork .
+
+:JoosVanCleve a :Painter , owl:NamedIndividual ;
+    rdfs:label "Joos van Cleve"^^xsd:string ;
+    :hasAlternativeName :JoosVanDerBeke ;
+    :birthDateMention :Circa1485 ;
+    :deathDateMention :Date15401541 ;
+    :activeIn :Antwerp ;
+    :activeDuring :Around1511To1540 ;
+    :hasProfession :PainterProfession ;
+    :combinesTechniqueOrStyle :TraditionalNetherlandishPaintingTechniques , :MoreContemporaryRenaissancePaintingStyles ;
+    :memberOf :GuildOfSaintLukeOfAntwerp ;
+    :holdsRole :ActiveMemberRole , :CoDeaconRole ;
+    :knownForWorkType :ReligiousWorks , :PortraitsOfRoyalty ;
+    :hasArtisticQuality :SensitivityToColor , :UniqueSolidarityOfFigures ;
+    :introducedTechnique :BroadLandscapesInBackgroundsTechnique ;
+    :hasSon :CornelisVanCleve .
+
+:JoosVanDerBeke a :AlternativeName , owl:NamedIndividual ;
+    rdfs:label "Joos van der Beke"^^xsd:string .
+
+:Circa1485 a :DateMention , owl:NamedIndividual ;
+    rdfs:label "c. 1485"^^xsd:string .
+
+:Date15401541 a :DateMention , owl:NamedIndividual ;
+    rdfs:label "1540/1541"^^xsd:string .
+
+:Around1511To1540 a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "around 1511 to 1540"^^xsd:string .
+
+:Antwerp a :City , owl:NamedIndividual ;
+    rdfs:label "Antwerp"^^xsd:string .
+
+:TraditionalNetherlandishPaintingTechniques a :PaintingTradition , owl:NamedIndividual ;
+    rdfs:label "traditional Netherlandish painting techniques"^^xsd:string .
+
+:MoreContemporaryRenaissancePaintingStyles a :RenaissancePaintingStyle , owl:NamedIndividual ;
+    rdfs:label "more contemporary Renaissance painting styles"^^xsd:string .
+
+:GuildOfSaintLukeOfAntwerp a :Guild , owl:NamedIndividual ;
+    rdfs:label "Guild of Saint Luke of Antwerp"^^xsd:string .
+
+:ActiveMemberRole a :GuildRole , owl:NamedIndividual ;
+    rdfs:label "active member"^^xsd:string ;
+    :roleInOrganisation :GuildOfSaintLukeOfAntwerp .
+
+:CoDeaconRole a :GuildRole , owl:NamedIndividual ;
+    rdfs:label "co - deacon"^^xsd:string ;
+    :roleInOrganisation :GuildOfSaintLukeOfAntwerp .
+
+:ReligiousWorks a :ReligiousWork , owl:NamedIndividual ;
+    rdfs:label "religious works"^^xsd:string .
+
+:PortraitsOfRoyalty a :RoyaltyPortrait , owl:NamedIndividual ;
+    rdfs:label "portraits of royalty"^^xsd:string .
+
+:SensitivityToColor a :ArtisticQuality , owl:NamedIndividual ;
+    rdfs:label "sensitivity to color"^^xsd:string .
+
+:UniqueSolidarityOfFigures a :ArtisticQuality , owl:NamedIndividual ;
+    rdfs:label "unique solidarity of figures"^^xsd:string .
+
+:BroadLandscapesInBackgroundsTechnique a :PaintingTechnique , owl:NamedIndividual ;
+    rdfs:label "broad landscapes in the backgrounds of his paintings"^^xsd:string ;
+    :appliesToBackgroundOf :HisPaintings ;
+    :featuresBackgroundElement :BroadLandscapes ;
+    :becamePopularIn :SixteenthCenturyNorthernRenaissancePaintings ;
+    :popularDuring :SixteenthCentury .
+
+:HisPaintings a :ArtWork , owl:NamedIndividual ;
+    rdfs:label "his paintings"^^xsd:string .
+
+:BroadLandscapes a :LandscapeFeature , owl:NamedIndividual ;
+    rdfs:label "broad landscapes"^^xsd:string .
+
+:SixteenthCenturyNorthernRenaissancePaintings a :NorthernRenaissancePainting , owl:NamedIndividual ;
+    rdfs:label "sixteenth century northern Renaissance paintings"^^xsd:string .
+
+:SixteenthCentury a :Century , owl:NamedIndividual ;
+    rdfs:label "sixteenth century"^^xsd:string .
+
+:CornelisVanCleve a :Painter , owl:NamedIndividual ;
+    rdfs:label "Cornelis van Cleve"^^xsd:string ;
+    :birthDateMention :Date1520 ;
+    :deathDateMention :Date1567 ;
+    :hasProfession :PainterProfession ;
+    :becameMentallyIllDuring :ResidenceInEngland ;
+    :hadResidence :ResidenceInEngland ;
+    :hasMentalCondition :MentallyIll ;
+    :hasNickname :SotteCleef ;
+    :referredToAsBecauseOf :MentallyIll .
+
+:Date1520 a :DateMention , owl:NamedIndividual ;
+    rdfs:label "1520"^^xsd:string .
+
+:Date1567 a :DateMention , owl:NamedIndividual ;
+    rdfs:label "1567"^^xsd:string .
+
+:England a :Country , owl:NamedIndividual ;
+    rdfs:label "England"^^xsd:string .
+
+:ResidenceInEngland a :Residence , owl:NamedIndividual ;
+    rdfs:label "a residence in England"^^xsd:string ;
+    :residedIn :England .
+
+:SotteCleef a :Nickname , owl:NamedIndividual ;
+    rdfs:label "' Sotte Cleef '"^^xsd:string ;
+    :nicknameMeans :MadCleef .
+
+:MadCleef a :Meaning , owl:NamedIndividual ;
+    rdfs:label "mad Cleef"^^xsd:string .
+
+:MentallyIll a :MentalCondition , owl:NamedIndividual ;
+    rdfs:label "mentally ill"^^xsd:string .
+
+:PainterProfession a :Thing , owl:NamedIndividual ;
+    rdfs:label "painter"^^xsd:string .

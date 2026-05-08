@@ -1,0 +1,374 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Thing a owl:Class .
+
+:Place a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Street a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:MajorStreet a owl:Class ;
+    rdfs:subClassOf :Street .
+
+:City a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:State a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Settlement a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:ShortLivedSettlement a owl:Class ;
+    rdfs:subClassOf :Settlement .
+
+:StreetSection a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:StreetEnd a owl:Class ;
+    rdfs:subClassOf :StreetSection .
+
+:StreetBlockGroup a owl:Class ;
+    rdfs:subClassOf :StreetSection .
+
+:Survey a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Grid a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Address a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:DesiredAddress a owl:Class ;
+    rdfs:subClassOf :Address .
+
+:Person a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:LieutenantGovernor a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:SettlerGroup a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Building a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:HeritageBuilding a owl:Class ;
+    rdfs:subClassOf :Building .
+
+:Tree a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:StreetTree a owl:Class ;
+    rdfs:subClassOf :Tree .
+
+:Boutique a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:ShoppingBoutique a owl:Class ;
+    rdfs:subClassOf :Boutique .
+
+:Cafe a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:SidewalkCafe a owl:Class ;
+    rdfs:subClassOf :Cafe .
+
+:Institution a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Bank a owl:Class ;
+    rdfs:subClassOf :Institution .
+
+:InsuranceCompany a owl:Class ;
+    rdfs:subClassOf :Institution .
+
+:OfficeBlock a owl:Class ;
+    rdfs:subClassOf :Building .
+
+:Skyscraper a owl:Class ;
+    rdfs:subClassOf :Building .
+
+:TimeInterval a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Year a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:NamedSection a owl:Class ;
+    rdfs:subClassOf :StreetSection .
+
+:FinancialHeart a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Place .
+
+:inCentreOf a owl:ObjectProperty ;
+    rdfs:subPropertyOf :locatedIn ;
+    rdfs:domain :Place ;
+    rdfs:range :City .
+
+:inState a owl:ObjectProperty ;
+    rdfs:subPropertyOf :locatedIn ;
+    rdfs:domain :Place ;
+    rdfs:range :State .
+
+:inCountry a owl:ObjectProperty ;
+    rdfs:subPropertyOf :locatedIn ;
+    rdfs:domain :Place ;
+    rdfs:range :Country .
+
+:laidOutIn a owl:ObjectProperty ;
+    rdfs:domain :Street ;
+    rdfs:range :Survey .
+
+:partOfGrid a owl:ObjectProperty ;
+    rdfs:domain :Street ;
+    rdfs:range :Grid .
+
+:becameSoonAfterLaidOut a owl:ObjectProperty ;
+    rdfs:domain :Street ;
+    rdfs:range :Address .
+
+:mostDesiredAddressIn a owl:ObjectProperty ;
+    rdfs:domain :Address ;
+    rdfs:range :City .
+
+:namedAfter a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Person .
+
+:led a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :SettlerGroup .
+
+:established a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Settlement .
+
+:establishedAt a owl:ObjectProperty ;
+    rdfs:domain :Settlement ;
+    rdfs:range :Place .
+
+:establishedInYear a owl:ObjectProperty ;
+    rdfs:domain :Settlement ;
+    rdfs:range :Year .
+
+:hasSection a owl:ObjectProperty ;
+    rdfs:domain :Street ;
+    rdfs:range :StreetSection .
+
+:easternEndOf a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain :StreetEnd ;
+    rdfs:range :Street .
+
+:westernBlocksOf a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain :StreetBlockGroup ;
+    rdfs:range :Street .
+
+:knownColloquiallyAs a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :NamedSection .
+
+:knownSince a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :TimeInterval .
+
+:hasReason a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Thing .
+
+:hasFeature a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Thing .
+
+:locationFor a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Thing .
+
+:firstInCity a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :City .
+
+:centredAround a owl:ObjectProperty ;
+    rdfs:domain :StreetBlockGroup ;
+    rdfs:range :Street .
+
+:becameFinancialHeartOf a owl:ObjectProperty ;
+    rdfs:domain :StreetSection ;
+    rdfs:range :City .
+
+:during a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :TimeInterval .
+
+:preferredHomeOf a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Institution .
+
+:traditionContinuesToday a owl:DatatypeProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range xsd:boolean .
+
+:foundAlongLengthOf a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Street .
+
+:hasPrestigeQualifier a owl:DatatypeProperty ;
+    rdfs:domain :Building ;
+    rdfs:range xsd:string .
+
+:hasQuantityQualifier a owl:DatatypeProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range xsd:string .
+
+:hasCommercialQualifier a owl:DatatypeProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range xsd:string .
+
+:hasLifespanQualifier a owl:DatatypeProperty ;
+    rdfs:domain :Settlement ;
+    rdfs:range xsd:string .
+
+:Street rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :locatedIn ;
+    owl:someValuesFrom :Place
+] .
+
+:StreetEnd rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :easternEndOf ;
+    owl:someValuesFrom :Street
+] .
+
+:StreetBlockGroup rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :westernBlocksOf ;
+    owl:someValuesFrom :Street
+] .
+
+:CollinsStreet a :MajorStreet , owl:NamedIndividual ;
+    rdfs:label "Collins Street"^^xsd:string ;
+    :inCentreOf :Melbourne ;
+    :inState :Victoria ;
+    :inCountry :Australia ;
+    :laidOutIn :FirstSurveyOfMelbourne ;
+    :partOfGrid :Original1837HoddleGrid ;
+    :becameSoonAfterLaidOut :MostDesiredAddressInMelbourne ;
+    :namedAfter :DavidCollins ;
+    :hasSection :EasternEndOfCollinsStreet , :BlocksFurtherWestCentredAroundQueenStreet .
+
+:Melbourne a :City , owl:NamedIndividual ;
+    rdfs:label "Melbourne"^^xsd:string .
+
+:Victoria a :State , owl:NamedIndividual ;
+    rdfs:label "Victoria"^^xsd:string .
+
+:Australia a :Country , owl:NamedIndividual ;
+    rdfs:label "Australia"^^xsd:string .
+
+:FirstSurveyOfMelbourne a :Survey , owl:NamedIndividual ;
+    rdfs:label "first survey of Melbourne"^^xsd:string .
+
+:Original1837HoddleGrid a :Grid , owl:NamedIndividual ;
+    rdfs:label "original 1837 Hoddle Grid"^^xsd:string .
+
+:MostDesiredAddressInMelbourne a :DesiredAddress , owl:NamedIndividual ;
+    rdfs:label "the most desired address in the city"^^xsd:string ;
+    :mostDesiredAddressIn :Melbourne .
+
+:DavidCollins a :LieutenantGovernor , owl:NamedIndividual ;
+    rdfs:label "David Collins"^^xsd:string ;
+    :led :GroupOfSettlers ;
+    :established :ShortLivedSettlementAtSorrento .
+
+:Sorrento a :Place , owl:NamedIndividual ;
+    rdfs:label "Sorrento"^^xsd:string .
+
+:1803 a :Year , owl:NamedIndividual ;
+    rdfs:label "1803"^^xsd:string .
+
+:EasternEndOfCollinsStreet a :StreetEnd , owl:NamedIndividual ;
+    rdfs:label "the eastern end of Collins Street"^^xsd:string ;
+    :easternEndOf :CollinsStreet ;
+    :knownColloquiallyAs :ParisEnd ;
+    :knownSince :The1950s ;
+    :hasReason :NumerousHeritageBuildings , :OldStreetTrees , :HighEndShoppingBoutiques , :FirstSidewalkCafesInTheCity ;
+    :hasFeature :NumerousHeritageBuildings , :OldStreetTrees , :HighEndShoppingBoutiques ;
+    :locationFor :FirstSidewalkCafesInTheCity .
+
+:ParisEnd a :NamedSection , owl:NamedIndividual ;
+    rdfs:label "' Paris End '"^^xsd:string .
+
+:The1950s a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "the 1950s"^^xsd:string .
+
+:QueenStreet a :Street , owl:NamedIndividual ;
+    rdfs:label "Queen Street"^^xsd:string .
+
+:BlocksFurtherWestCentredAroundQueenStreet a :StreetBlockGroup , owl:NamedIndividual ;
+    rdfs:label "Blocks further west centred around Queen Street"^^xsd:string ;
+    :westernBlocksOf :CollinsStreet ;
+    :centredAround :QueenStreet ;
+    :becameFinancialHeartOf :Melbourne ;
+    :during :19thCentury ;
+    :preferredHomeOf :MajorBanks , :InsuranceCompanies ;
+    :traditionContinuesToday true ;
+    :hasFeature :MostPrestigiousOfficeBlocks , :Skyscrapers .
+
+:19thCentury a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "the 19th century"^^xsd:string .
+
+:NumerousHeritageBuildings a :HeritageBuilding , owl:NamedIndividual ;
+    rdfs:label "numerous heritage buildings"^^xsd:string ;
+    :hasQuantityQualifier "numerous"^^xsd:string .
+
+:OldStreetTrees a :StreetTree , owl:NamedIndividual ;
+    rdfs:label "old street trees"^^xsd:string .
+
+:HighEndShoppingBoutiques a :ShoppingBoutique , owl:NamedIndividual ;
+    rdfs:label "high - end shopping boutiques"^^xsd:string ;
+    :hasCommercialQualifier "high-end"^^xsd:string .
+
+:FirstSidewalkCafesInTheCity a :SidewalkCafe , owl:NamedIndividual ;
+    rdfs:label "the first sidewalk cafes in the city"^^xsd:string ;
+    :firstInCity :Melbourne .
+
+:GroupOfSettlers a :SettlerGroup , owl:NamedIndividual ;
+    rdfs:label "a group of settlers"^^xsd:string .
+
+:ShortLivedSettlementAtSorrento a :ShortLivedSettlement , owl:NamedIndividual ;
+    rdfs:label "a short - lived settlement at Sorrento"^^xsd:string ;
+    :establishedAt :Sorrento ;
+    :establishedInYear :1803 ;
+    :hasLifespanQualifier "short-lived"^^xsd:string .
+
+:MajorBanks a :Bank , owl:NamedIndividual ;
+    rdfs:label "major banks"^^xsd:string .
+
+:InsuranceCompanies a :InsuranceCompany , owl:NamedIndividual ;
+    rdfs:label "insurance companies"^^xsd:string .
+
+:MostPrestigiousOfficeBlocks a :OfficeBlock , owl:NamedIndividual ;
+    rdfs:label "the most prestigious office blocks"^^xsd:string ;
+    :foundAlongLengthOf :CollinsStreet ;
+    :hasPrestigeQualifier "most prestigious"^^xsd:string .
+
+:Skyscrapers a :Skyscraper , owl:NamedIndividual ;
+    rdfs:label "skyscrapers"^^xsd:string ;
+    :foundAlongLengthOf :CollinsStreet .

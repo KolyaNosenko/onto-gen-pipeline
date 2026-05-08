@@ -1,0 +1,37 @@
+# Python / Poetry / IDE
+.idea/
+venv/
+.env
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+#/.cache/
+/experiments/
+src/og_agents/db/
+
+# LaTeX build artifacts
+thesis/**/*.aux
+thesis/**/*.bbl
+thesis/**/*.bcf
+thesis/**/*.blg
+thesis/**/*.log
+thesis/**/*.toc
+thesis/**/*.out
+thesis/**/*.synctex.gz
+thesis/**/*.fdb_latexmk
+thesis/**/*.fls
+
+# coding-agent sandboxes: main.py + output.txt are transient (regenerated each run);
+# engine/ and core/ duplicates are committed (sync via scripts/sync_envs.py).
+src/og_sandbox_with_core/main.py
+src/og_sandbox_with_core/output.txt
+src/og_sandbox_with_core/**/__pycache__/
+src/og_sandbox_no_core/main.py
+src/og_sandbox_no_core/output.txt
+src/og_sandbox_no_core/**/__pycache__/
+
+# Per-run coding-agent event logs (transcript.md, events.jsonl, raw LLM completions)
+logs/

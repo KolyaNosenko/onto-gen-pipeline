@@ -1,0 +1,233 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:Company a owl:Class ;
+    rdfs:label "Company"^^xsd:string .
+
+:SteelCompany a owl:Class ;
+    rdfs:subClassOf :Company ;
+    rdfs:label "Steel Company"^^xsd:string .
+
+:EnergyCompany a owl:Class ;
+    rdfs:subClassOf :Company ;
+    rdfs:label "Energy Company"^^xsd:string .
+
+:RenewableEnergyCompany a owl:Class ;
+    rdfs:subClassOf :EnergyCompany ;
+    rdfs:label "Renewable Energy Company"^^xsd:string .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:Place a owl:Class ;
+    rdfs:label "Place"^^xsd:string .
+
+:City a owl:Class ;
+    rdfs:subClassOf :Place ;
+    rdfs:label "City"^^xsd:string .
+
+:IndustrialPlant a owl:Class ;
+    rdfs:label "Industrial Plant"^^xsd:string .
+
+:Product a owl:Class ;
+    rdfs:label "Product"^^xsd:string .
+
+:SteelProduct a owl:Class ;
+    rdfs:subClassOf :Product ;
+    rdfs:label "Steel Product"^^xsd:string .
+
+:ProcessedSteelProduct a owl:Class ;
+    rdfs:subClassOf :SteelProduct ;
+    rdfs:label "Processed Steel Product"^^xsd:string .
+
+:SemiFinishedSteelProduct a owl:Class ;
+    rdfs:subClassOf :SteelProduct ;
+    rdfs:label "Semi-finished Steel Product"^^xsd:string .
+
+:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string .
+
+:Decade a owl:Class ;
+    rdfs:subClassOf :TimeInterval ;
+    rdfs:label "Decade"^^xsd:string .
+
+:Year a owl:Class ;
+    rdfs:subClassOf :TimeInterval ;
+    rdfs:label "Year"^^xsd:string .
+
+:CompanyName a owl:Class ;
+    rdfs:label "Company Name"^^xsd:string .
+
+:CrisisEvent a owl:Class ;
+    rdfs:label "Crisis Event"^^xsd:string .
+
+:Family a owl:Class ;
+    rdfs:label "Family"^^xsd:string .
+
+:Subsidiary a owl:Class ;
+    rdfs:subClassOf :Company ;
+    rdfs:label "Subsidiary"^^xsd:string .
+
+# Properties
+:locatedIn a owl:ObjectProperty ;
+    rdfs:label "located in"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :Place .
+
+:foundedIn a owl:ObjectProperty ;
+    rdfs:label "founded in"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :Year .
+
+:foundedBy a owl:ObjectProperty ;
+    rdfs:label "founded by"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :Person .
+
+:originalName a owl:ObjectProperty ;
+    rdfs:label "original name"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :CompanyName ;
+    a owl:FunctionalProperty .
+
+:produces a owl:ObjectProperty ;
+    rdfs:label "produces"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :Product .
+
+:changedNameInYear a owl:ObjectProperty ;
+    rdfs:label "changed name in year"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :Year .
+
+:newName a owl:ObjectProperty ;
+    rdfs:label "new name"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :CompanyName .
+
+:hasIndustrialPlant a owl:ObjectProperty ;
+    rdfs:label "has industrial plant"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :IndustrialPlant .
+
+:plantLocatedIn a owl:ObjectProperty ;
+    rdfs:label "plant located in"^^xsd:string ;
+    rdfs:domain :IndustrialPlant ;
+    rdfs:range :Place .
+
+:productionDuration a owl:DatatypeProperty ;
+    rdfs:label "production duration"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range xsd:string .
+
+:furnacesClosed a owl:ObjectProperty ;
+    rdfs:label "furnaces closed"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :Year .
+
+:crisisOccurredDuring a owl:ObjectProperty ;
+    rdfs:label "crisis occurred during"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :TimeInterval .
+
+:transitionedToBusiness a owl:ObjectProperty ;
+    rdfs:label "transitioned to business"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :Company .
+
+:transitionedDuring a owl:ObjectProperty ;
+    rdfs:label "transitioned during"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :Decade .
+
+:runBy a owl:ObjectProperty ;
+    rdfs:label "run by"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :Family .
+
+:hasSubsidiary a owl:ObjectProperty ;
+    rdfs:label "has subsidiary"^^xsd:string ;
+    rdfs:domain :Company ;
+    rdfs:range :Subsidiary .
+
+:companyLabel a owl:DatatypeProperty ;
+    rdfs:label "company label"^^xsd:string ;
+    rdfs:domain :CompanyName ;
+    rdfs:range xsd:string .
+
+:yearValue a owl:DatatypeProperty ;
+    rdfs:label "year value"^^xsd:string ;
+    rdfs:domain :Year ;
+    rdfs:range xsd:integer .
+
+# Individuals
+
+:FalckGroup a :SteelCompany, owl:NamedIndividual ;
+    rdfs:label "Falck Group"^^xsd:string ;
+    :locatedIn :SestoSanGiovanni ;
+    :foundedIn :Year1906 ;
+    :foundedBy :GiorgioEnricoFalck ;
+    :originalName :SocietaAnonimaAcciaierie ;
+    :produces :SteelProduct ;
+    :produces :ProcessedSteelProduct ;
+    :produces :SemiFinishedSteelProduct ;
+    :changedNameInYear :Year1931 ;
+    :newName :AcciaiereFerriereLombardeFalck ;
+    :hasIndustrialPlant :FirstIndustrialPlant ;
+    :productionDuration "over seventy years"^^xsd:string ;
+    :furnacesClosed :Year1995 ;
+    :crisisOccurredDuring :Mid1970s ;
+    :transitionedToBusiness :RenewableEnergyBusiness ;
+    :transitionedDuring :Decade1990s ;
+    :runBy :FalckFamily ;
+    :hasSubsidiary :FalckRenewables .
+
+:Year1906 a :Year, owl:NamedIndividual ;
+    rdfs:label "1906"^^xsd:string ;
+    :yearValue 1906 .
+
+:Year1931 a :Year, owl:NamedIndividual ;
+    rdfs:label "1931"^^xsd:string ;
+    :yearValue 1931 .
+
+:Year1995 a :Year, owl:NamedIndividual ;
+    rdfs:label "1995"^^xsd:string ;
+    :yearValue 1995 .
+
+:SestoSanGiovanni a :City, owl:NamedIndividual ;
+    rdfs:label "Sesto San Giovanni"^^xsd:string .
+
+:Milan a :City, owl:NamedIndividual ;
+    rdfs:label "Milan"^^xsd:string .
+
+:GiorgioEnricoFalck a :Person, owl:NamedIndividual ;
+    rdfs:label "Giorgio Enrico Falck"^^xsd:string .
+
+:SocietaAnonimaAcciaierie a :CompanyName, owl:NamedIndividual ;
+    rdfs:label "Società anonima Acciaierie e Ferriere Lombarde"^^xsd:string .
+
+:AcciaiereFerriereLombardeFalck a :CompanyName, owl:NamedIndividual ;
+    rdfs:label "Acciaiere e Ferriere Lombarde Falck"^^xsd:string .
+
+:FirstIndustrialPlant a :IndustrialPlant, owl:NamedIndividual ;
+    rdfs:label "first and most important industrial plants"^^xsd:string ;
+    :plantLocatedIn :SestoSanGiovanni .
+
+:Mid1970s a :TimeInterval, owl:NamedIndividual ;
+    rdfs:label "mid-seventies"^^xsd:string .
+
+:Decade1990s a :Decade, owl:NamedIndividual ;
+    rdfs:label "1990s"^^xsd:string .
+
+:RenewableEnergyBusiness a :RenewableEnergyCompany, owl:NamedIndividual ;
+    rdfs:label "production of renewable energy"^^xsd:string .
+
+:FalckFamily a :Family, owl:NamedIndividual ;
+    rdfs:label "Falck family"^^xsd:string .
+
+:FalckRenewables a :Subsidiary, :RenewableEnergyCompany, owl:NamedIndividual ;
+    rdfs:label "Falck Renewables"^^xsd:string .

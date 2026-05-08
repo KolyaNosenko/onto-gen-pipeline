@@ -1,0 +1,429 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Thing a owl:Class .
+
+:Person a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:FictionalCharacter a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:Actor a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:Scientist a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:MachiavellianScientist a owl:Class ;
+    rdfs:subClassOf :Scientist .
+
+:Organisation a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Company a owl:Class ;
+    rdfs:subClassOf :Organisation .
+
+:TelevisionSeries a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:SerialDrama a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:ScienceFiction a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:MilitaryScienceFiction a owl:Class ;
+    rdfs:subClassOf :ScienceFiction .
+
+:Team a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:ExplorationTeam a owl:Class ;
+    rdfs:subClassOf :Team .
+
+:MultinationalExplorationTeam a owl:Class ;
+    rdfs:subClassOf :ExplorationTeam .
+
+:Place a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Planet a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Galaxy a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:CornerOfUniverse a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Base a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Spacecraft a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:AncientSpaceship a owl:Class ;
+    rdfs:subClassOf :Spacecraft .
+
+:Artefact a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:StargateDevice a owl:Class ;
+    rdfs:subClassOf :Artefact .
+
+:Chevron a owl:Class ;
+    rdfs:subClassOf :Artefact .
+
+:Work a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:LifesWork a owl:Class ;
+    rdfs:subClassOf :Work .
+
+:Mystery a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Event a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Evacuation a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:TravelEvent a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:FirstAppearance a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:BroadcastEvent a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:Episode a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:PilotEpisode a owl:Class ;
+    rdfs:subClassOf :Episode .
+
+:TimeInterval a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Year a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:Setting a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:PresentDaySetting a owl:Class ;
+    rdfs:subClassOf :Setting .
+
+:Nationality a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Challenge a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:SurvivalChallenge a owl:Class ;
+    rdfs:subClassOf :Challenge .
+
+:hasTitle a owl:DatatypeProperty .
+
+:appearsInSeries a owl:ObjectProperty ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :TelevisionSeries .
+
+:portrayedBy a owl:ObjectProperty ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :Actor ;
+    owl:inverseOf :portrays .
+
+:portrays a owl:ObjectProperty ;
+    rdfs:domain :Actor ;
+    rdfs:range :FictionalCharacter .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Nationality .
+
+:associatedWithProductionCompany a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Company .
+
+:hasGenre a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Thing .
+
+:hasNationalContext a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Country .
+
+:aboutTeam a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Team .
+
+:hasSetting a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Setting .
+
+:unableToReturnTo a owl:ObjectProperty ;
+    rdfs:domain :Team ;
+    rdfs:range :Place .
+
+:afterEvacuationTo a owl:ObjectProperty ;
+    rdfs:domain :Team ;
+    rdfs:range :Spacecraft .
+
+:causedByEvent a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Event .
+
+:isAboutAdventuresOf a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Team .
+
+:isTravelingIn a owl:ObjectProperty ;
+    rdfs:domain :Spacecraft ;
+    rdfs:range :Place .
+
+:hasCharacterization a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Thing .
+
+:hasLifesWork a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :LifesWork .
+
+:workConcernsMystery a owl:ObjectProperty ;
+    rdfs:domain :LifesWork ;
+    rdfs:range :Mystery .
+
+:behindChevronOf a owl:ObjectProperty ;
+    rdfs:domain :Mystery ;
+    rdfs:range :Chevron .
+
+:chevronOf a owl:ObjectProperty ;
+    rdfs:domain :Chevron ;
+    rdfs:range :StargateDevice .
+
+:leadsThrough a owl:ObjectProperty ;
+    rdfs:domain :Work ;
+    rdfs:range :Artefact .
+
+:leadsFrom a owl:ObjectProperty ;
+    rdfs:domain :TravelEvent ;
+    rdfs:range :Place .
+
+:leadsTo a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Place .
+
+:involvesPerson a owl:ObjectProperty ;
+    rdfs:domain :Event ;
+    rdfs:range :Person .
+
+:involvesGroupFrom a owl:ObjectProperty ;
+    rdfs:domain :Event ;
+    rdfs:range :Base .
+
+:mustFightFor a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Challenge .
+
+:memberOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Team .
+
+:initiallySkepticalTowards a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :TelevisionSeries .
+
+:becameInterestedIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :FictionalCharacter .
+
+:interestReason a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string .
+
+:madeFirstAppearanceInEpisode a owl:ObjectProperty ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :Episode .
+
+:hasFirstAppearanceEvent a owl:ObjectProperty ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :FirstAppearance .
+
+:firstBroadcastInYear a owl:ObjectProperty ;
+    rdfs:domain :Episode ;
+    rdfs:range :Year .
+
+:firstBroadcastInCountry a owl:ObjectProperty ;
+    rdfs:domain :Episode ;
+    rdfs:range :Country .
+
+:FictionalCharacter rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :appearsInSeries ;
+    owl:someValuesFrom :TelevisionSeries
+] .
+
+:FictionalCharacter rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :portrayedBy ;
+    owl:someValuesFrom :Actor
+] .
+
+:MachiavellianScientist owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf ( :Scientist
+        [ a owl:Restriction ;
+            owl:onProperty :hasCharacterization ;
+            owl:someValuesFrom :Thing
+        ]
+    )
+] .
+
+:DrNicholasRush a :FictionalCharacter , owl:NamedIndividual , :MachiavellianScientist ;
+    rdfs:label "Dr. Nicholas Rush"^^xsd:string ;
+    :appearsInSeries :StargateUniverse ;
+    :portrayedBy :RobertCarlyle ;
+    :hasCharacterization :Machiavellian ;
+    :hasLifesWork :RushLifesWork ;
+    :madeFirstAppearanceInEpisode :Air ;
+    :hasFirstAppearanceEvent :RushFirstAppearance ;
+    :mustFightFor :OwnSurvivalChallenge .
+
+:Canadian a :Nationality , owl:NamedIndividual ;
+    rdfs:label "Canadian"^^xsd:string .
+
+:American a :Nationality , owl:NamedIndividual ;
+    rdfs:label "American"^^xsd:string .
+
+:MetroGoldwynMayer a :Company , owl:NamedIndividual ;
+    rdfs:label "Metro - Goldwyn - Mayer"^^xsd:string .
+
+:Syfy a :Company , owl:NamedIndividual ;
+    rdfs:label "Syfy"^^xsd:string .
+
+:StargateUniverse a :TelevisionSeries , owl:NamedIndividual ;
+    rdfs:label "Stargate Universe"^^xsd:string ;
+    :hasTitle "Stargate Universe"^^xsd:string ;
+    :associatedWithProductionCompany :MetroGoldwynMayer , :Syfy ;
+    :hasGenre :MilitaryScienceFictionGenre , :SerialDramaGenre ;
+    :hasNationalContext :Canada , :UnitedStates ;
+    :aboutTeam :PresentDayMultinationalExplorationTeam ;
+    :isAboutAdventuresOf :PresentDayMultinationalExplorationTeam ;
+    :hasSetting :PresentDay .
+
+:RobertCarlyle a :Actor , owl:NamedIndividual ;
+    rdfs:label "Robert Carlyle"^^xsd:string ;
+    :hasNationality :Scottish ;
+    :portrays :DrNicholasRush ;
+    :initiallySkepticalTowards :StargateUniverse ;
+    :becameInterestedIn :DrNicholasRush ;
+    :interestReason "he felt Rush was a \" very interesting \" character to portray"^^xsd:string .
+
+:Scottish a :Nationality , owl:NamedIndividual ;
+    rdfs:label "Scottish"^^xsd:string .
+
+:Rush a :FictionalCharacter , owl:NamedIndividual ;
+    rdfs:label "Rush"^^xsd:string .
+
+:IcarusBase a :Base , owl:NamedIndividual ;
+    rdfs:label "Icarus Base"^^xsd:string .
+
+:Earth a :Planet , owl:NamedIndividual ;
+    rdfs:label "Earth"^^xsd:string .
+
+:Destiny a :AncientSpaceship , owl:NamedIndividual ;
+    rdfs:label "Destiny"^^xsd:string ;
+    :isTravelingIn :DistantCornerOfTheUniverse .
+
+:Ancient a :Thing , owl:NamedIndividual ;
+    rdfs:label "Ancient"^^xsd:string .
+
+:Stargate a :StargateDevice , owl:NamedIndividual ;
+    rdfs:label "Stargate"^^xsd:string .
+
+:NinthChevron a :Chevron , owl:NamedIndividual ;
+    rdfs:label "ninth chevron"^^xsd:string ;
+    :chevronOf :Stargate .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:Canada a :Country , owl:NamedIndividual ;
+    rdfs:label "Canada"^^xsd:string .
+
+:Air a :PilotEpisode , owl:NamedIndividual ;
+    rdfs:label "Air"^^xsd:string ;
+    :firstBroadcastInYear :Year2009 ;
+    :firstBroadcastInCountry :UnitedStates , :Canada .
+
+:Year2009 a :Year , owl:NamedIndividual ;
+    rdfs:label "2009"^^xsd:string .
+
+:PresentDayMultinationalExplorationTeam a :MultinationalExplorationTeam , owl:NamedIndividual ;
+    rdfs:label "present - day , multinational exploration team"^^xsd:string ;
+    :unableToReturnTo :Earth ;
+    :afterEvacuationTo :Destiny ;
+    :causedByEvent :EvacuationEvent .
+
+:PresentDay a :PresentDaySetting , owl:NamedIndividual ;
+    rdfs:label "present - day"^^xsd:string .
+
+:DistantCornerOfTheUniverse a :CornerOfUniverse , owl:NamedIndividual ;
+    rdfs:label "distant corner of the universe"^^xsd:string .
+
+:FarAwayGalaxy a :Galaxy , owl:NamedIndividual ;
+    rdfs:label "far - away galaxy"^^xsd:string .
+
+:Machiavellian a :Thing , owl:NamedIndividual ;
+    rdfs:label "machiavellian"^^xsd:string .
+
+:RushLifesWork a :LifesWork , owl:NamedIndividual ;
+    rdfs:label "life 's work"^^xsd:string ;
+    :workConcernsMystery :MysteriesBehindTheNinthChevron ;
+    :leadsTo :FarAwayGalaxy .
+
+:MysteriesBehindTheNinthChevron a :Mystery , owl:NamedIndividual ;
+    rdfs:label "mysteries behind the ninth chevron of the Stargate"^^xsd:string ;
+    :behindChevronOf :NinthChevron .
+
+:TravelThroughTheStargateToFarAwayGalaxy a :TravelEvent , owl:NamedIndividual ;
+    rdfs:label "leads him and personnel from the Icarus Base through the Stargate to a far - away galaxy"^^xsd:string ;
+    :involvesPerson :DrNicholasRush ;
+    :involvesGroupFrom :IcarusBase ;
+    :leadsFrom :IcarusBase ;
+    :leadsThrough :Stargate ;
+    :leadsTo :FarAwayGalaxy .
+
+:OwnSurvivalChallenge a :SurvivalChallenge , owl:NamedIndividual ;
+    rdfs:label "their own survival"^^xsd:string .
+
+:RushFirstAppearance a :FirstAppearance , owl:NamedIndividual ;
+    rdfs:label "first appearance"^^xsd:string ;
+    :involvesPerson :DrNicholasRush ;
+    :leadsTo :Air .
+
+:EvacuationEvent a :Evacuation , owl:NamedIndividual ;
+    rdfs:label "evacuation"^^xsd:string ;
+    :leadsTo :Destiny .
+
+:MilitaryScienceFictionGenre a :MilitaryScienceFiction , owl:NamedIndividual ;
+    rdfs:label "military science fiction"^^xsd:string .
+
+:SerialDramaGenre a :SerialDrama , owl:NamedIndividual ;
+    rdfs:label "serial drama"^^xsd:string .
+
+:DrNicholasRush :memberOf :PresentDayMultinationalExplorationTeam .
+:TravelThroughTheStargateToFarAwayGalaxy :causedByEvent :MysteriesBehindTheNinthChevron .
+:RushLifesWork :leadsThrough :Stargate .

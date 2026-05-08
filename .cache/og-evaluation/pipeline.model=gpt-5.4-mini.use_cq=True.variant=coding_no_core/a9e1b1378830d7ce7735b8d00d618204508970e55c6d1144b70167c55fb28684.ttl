@@ -1,0 +1,256 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:MyVisionChallengesInTheRaceForExcellenceBook a owl:NamedIndividual,
+        ns1:Book ;
+    rdfs:label "My Vision — Challenges in the Race for Excellence"^^xsd:string ;
+    ns1:authoredBy ns1:HisHighnessSheikhMohammedBinRashidPerson ;
+    ns1:coAuthoredBy ns1:MohammedBinRashidAlMaktoumPerson ;
+    ns1:containsPreviouslyUnpublishedPersonalImages true ;
+    ns1:hasArabicTitle ns1:ArabicTitleRuyati ;
+    ns1:hasPageCount 223 ;
+    ns1:hasPartCount 5 ;
+    ns1:hasPhotographSetCount 2 ;
+    ns1:hasPhysicalSize "medium size"^^xsd:string ;
+    ns1:hasTitle ns1:MyVisionChallengesInTheRaceForExcellenceQuotedTitle,
+        ns1:MyVisionChallengesInTheRaceForExcellenceTitle ;
+    ns1:mentionsRegion ns1:DubaiEmirate,
+        ns1:UAECountry,
+        ns1:UnitedArabEmiratesCountry .
+
+ns1:containsPreviouslyUnpublishedPersonalImages a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:boolean .
+
+ns1:hasPageCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:integer .
+
+ns1:hasPartCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:integer .
+
+ns1:hasPhotographSetCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:integer .
+
+ns1:hasPhysicalSize a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range xsd:string .
+
+ns1:hasPosition a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Position .
+
+ns1:primeMinisterOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Country .
+
+ns1:rulerOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Emirate .
+
+ns1:vicePresidentOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Country .
+
+ns1:ArabicTitleRuyati a owl:NamedIndividual,
+        ns1:Title ;
+    rdfs:label "رؤيتي .. التحديات في سباق التميز"^^xsd:string .
+
+ns1:HisHighnessSheikhMohammedBinRashidPerson a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "His Highness Sheikh Mohammed bin Rashid"^^xsd:string ;
+    ns1:hasPosition ns1:PrimeMinisterOfTheUnitedArabEmiratesPosition,
+        ns1:RulerOfDubaiCapitalizedPosition,
+        ns1:VicePresidentOfTheUnitedArabEmiratesPlainPosition ;
+    ns1:primeMinisterOf ns1:UAECountry,
+        ns1:UnitedArabEmiratesCountry ;
+    ns1:rulerOf ns1:DubaiEmirate ;
+    ns1:vicePresidentOf ns1:UAECountry,
+        ns1:UnitedArabEmiratesCountry .
+
+ns1:MohammedBinRashidAlMaktoumPerson a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Mohammed bin Rashid Al Maktoum"^^xsd:string ;
+    ns1:hasPosition ns1:RulerOfDubaiLowerPosition,
+        ns1:VicePresidentOfTheUnitedArabEmiratesHyphenatedPosition ;
+    ns1:rulerOf ns1:DubaiEmirate ;
+    ns1:vicePresidentOf ns1:UAECountry,
+        ns1:UnitedArabEmiratesCountry .
+
+ns1:MyVisionChallengesInTheRaceForExcellenceQuotedTitle a owl:NamedIndividual,
+        ns1:Title ;
+    rdfs:label "My vision .. Challenges in the Race for Excellence"^^xsd:string .
+
+ns1:MyVisionChallengesInTheRaceForExcellenceTitle a owl:NamedIndividual,
+        ns1:Title ;
+    rdfs:label "My Vision — Challenges in the Race for Excellence"^^xsd:string .
+
+ns1:PersonalPhotograph a owl:Class ;
+    rdfs:subClassOf ns1:Photograph .
+
+ns1:PersonalPhotographSet a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:containsPhotograph ;
+            owl:someValuesFrom ns1:PersonalPhotograph ] .
+
+ns1:PrimeMinisterOfTheUnitedArabEmiratesPosition a owl:NamedIndividual,
+        ns1:Position ;
+    rdfs:label "Prime Minister of the United Arab Emirates"^^xsd:string .
+
+ns1:PublicPhotograph a owl:Class ;
+    rdfs:subClassOf ns1:Photograph .
+
+ns1:PublicPhotographSet a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:containsPhotograph ;
+            owl:someValuesFrom ns1:PublicPhotograph ] .
+
+ns1:RulerOfDubaiCapitalizedPosition a owl:NamedIndividual,
+        ns1:Position ;
+    rdfs:label "Ruler of Dubai"^^xsd:string .
+
+ns1:RulerOfDubaiLowerPosition a owl:NamedIndividual,
+        ns1:Position ;
+    rdfs:label "ruler of Dubai"^^xsd:string .
+
+ns1:VicePresidentOfTheUnitedArabEmiratesHyphenatedPosition a owl:NamedIndividual,
+        ns1:Position ;
+    rdfs:label "Vice - President of the United Arab Emirates"^^xsd:string .
+
+ns1:VicePresidentOfTheUnitedArabEmiratesPlainPosition a owl:NamedIndividual,
+        ns1:Position ;
+    rdfs:label "Vice President of the United Arab Emirates"^^xsd:string .
+
+ns1:aboutDevelopmentExperience a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:DevelopmentExperience .
+
+ns1:authoredBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:Person .
+
+ns1:coAuthoredBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:Person .
+
+ns1:hasArabicTitle a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:Title .
+
+ns1:hasTitle a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:Title .
+
+ns1:includesPart a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:BookPart .
+
+ns1:presentsVision a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:Vision .
+
+ns1:BookPart a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:DevelopmentExperience a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PhotographSet a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Vision a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:containsPhotograph a owl:ObjectProperty ;
+    rdfs:domain ns1:PhotographSet ;
+    rdfs:range ns1:Photograph .
+
+ns1:includesPhotographSet a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:PhotographSet .
+
+ns1:mentionsRegion a owl:ObjectProperty ;
+    rdfs:domain ns1:Book ;
+    rdfs:range ns1:Region .
+
+ns1:DubaiEmirate a owl:NamedIndividual,
+        ns1:Emirate ;
+    rdfs:label "Dubai"^^xsd:string .
+
+ns1:Emirate a owl:Class ;
+    rdfs:subClassOf ns1:Region .
+
+ns1:Photograph a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:UAECountry a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "UAE"^^xsd:string .
+
+ns1:UnitedArabEmiratesCountry a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United Arab Emirates"^^xsd:string .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Region .
+
+ns1:Position a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Title a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Book a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasTitle ;
+            owl:someValuesFrom ns1:Title ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:authoredBy ;
+            owl:someValuesFrom ns1:Person ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:includesPart ;
+            owl:someValuesFrom ns1:BookPart ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:coAuthoredBy ;
+            owl:someValuesFrom ns1:Person ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:mentionsRegion ;
+            owl:someValuesFrom ns1:Emirate ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:presentsVision ;
+            owl:someValuesFrom ns1:Vision ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:mentionsRegion ;
+            owl:someValuesFrom ns1:Country ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:includesPhotographSet ;
+            owl:someValuesFrom ns1:PublicPhotographSet ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasArabicTitle ;
+            owl:someValuesFrom ns1:Title ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:aboutDevelopmentExperience ;
+            owl:someValuesFrom ns1:DevelopmentExperience ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:includesPhotographSet ;
+            owl:someValuesFrom ns1:PersonalPhotographSet ] .

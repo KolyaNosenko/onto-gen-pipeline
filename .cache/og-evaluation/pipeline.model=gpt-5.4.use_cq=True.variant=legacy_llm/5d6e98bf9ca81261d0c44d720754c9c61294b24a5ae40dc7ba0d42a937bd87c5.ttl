@@ -1,0 +1,433 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Thing a owl:Class .
+
+:Place a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:State a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Region a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Reservation a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:WaterBody a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:River a owl:Class ;
+    rdfs:subClassOf :WaterBody .
+
+:Reservoir a owl:Class ;
+    rdfs:subClassOf :WaterBody .
+
+:Organisation a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:GovernmentAgency a owl:Class ;
+    rdfs:subClassOf :Organisation .
+
+:Government a owl:Class ;
+    rdfs:subClassOf :Organisation .
+
+:Tribe a owl:Class ;
+    rdfs:subClassOf :Organisation .
+
+:NativeAmericanTribe a owl:Class ;
+    rdfs:subClassOf :Tribe .
+
+:Facility a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:SharedFacility a owl:Class ;
+    rdfs:subClassOf :Facility .
+
+:Dam a owl:Class ;
+    rdfs:subClassOf :Facility ,
+        [ a owl:Restriction ;
+            owl:onProperty :across ;
+            owl:someValuesFrom :River
+        ] .
+
+:ConcreteArchDam a owl:Class ;
+    rdfs:subClassOf :Dam .
+
+:Project a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Negotiation a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:Construction a owl:Class ;
+    rdfs:subClassOf :Process .
+
+:Groundbreaking a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:Authorization a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:Completion a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:Sale a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:Controversy a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:WaterAllocationControversy a owl:Class ;
+    rdfs:subClassOf :Controversy .
+
+:EcologicalDamage a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:Process a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Event a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Purpose a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:IrrigationPurpose a owl:Class ;
+    rdfs:subClassOf :Purpose .
+
+:HydroelectricPowerGenerationPurpose a owl:Class ;
+    rdfs:subClassOf :Purpose .
+
+:RecreationPurpose a owl:Class ;
+    rdfs:subClassOf :Purpose .
+
+:ProfitProvision a owl:Class ;
+    rdfs:subClassOf :Purpose .
+
+:Benefit a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:HydroelectricPower a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:TimeInterval a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:DatePoint a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:Duration a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:Era a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:DirectionalPlacePart a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:RiverSection a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:TroutStream a owl:Class ;
+    rdfs:subClassOf :RiverSection .
+
+:owns a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Thing .
+
+:ownedBy a owl:ObjectProperty ;
+    owl:inverseOf :owns ;
+    rdfs:domain :Thing ;
+    rdfs:range :Organisation .
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Place .
+
+:across a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :River .
+
+:servesTo a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Purpose .
+
+:regulatesFlowOf a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :River .
+
+:generates a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :HydroelectricPower .
+
+:hasReservoir a owl:ObjectProperty ;
+    rdfs:domain :Dam ;
+    rdfs:range :Reservoir .
+
+:resultOf a owl:ObjectProperty ;
+    rdfs:domain :Project ;
+    rdfs:range :Negotiation .
+
+:betweenParties a owl:ObjectProperty ;
+    rdfs:domain :Negotiation ;
+    rdfs:range :Organisation .
+
+:involvedParty a owl:ObjectProperty ;
+    rdfs:domain :Project ;
+    rdfs:range :Organisation .
+
+:livedOn a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Reservation .
+
+:originallyEnvisionedAs a owl:ObjectProperty ;
+    rdfs:domain :Project ;
+    rdfs:range :Facility .
+
+:wouldProvide a owl:ObjectProperty ;
+    rdfs:domain :Facility ;
+    rdfs:range :Purpose .
+
+:benefitsFor a owl:ObjectProperty ;
+    rdfs:domain :Purpose ;
+    rdfs:range :Organisation .
+
+:soldTo a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Organisation .
+
+:extendsInto a owl:ObjectProperty ;
+    rdfs:domain :Reservoir ;
+    rdfs:range :State .
+
+:liesIn a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Place .
+
+:authorizedIn a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :DatePoint .
+
+:hasGroundbreakingIn a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :DatePoint .
+
+:completedIn a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :DatePoint .
+
+:hasConstructionDuration a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Duration .
+
+:constructionPeriodEra a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Era .
+
+:servesFor a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Purpose .
+
+:aboveStructureOf a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Facility .
+
+:belowStructureOf a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Facility .
+
+:providedByRegulationOf a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Dam .
+
+:transformedInto a owl:ObjectProperty ;
+    rdfs:domain :RiverSection ;
+    rdfs:range :RiverSection .
+
+:hasControversy a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Controversy .
+
+:aboutAllocationOfWaterIn a owl:ObjectProperty ;
+    rdfs:domain :WaterAllocationControversy ;
+    rdfs:range :Reservoir .
+
+:betweenStates a owl:ObjectProperty ;
+    rdfs:domain :Controversy ;
+    rdfs:range :State .
+
+:wroughtOn a owl:ObjectProperty ;
+    rdfs:domain :EcologicalDamage ;
+    rdfs:range :Place .
+
+:associatedWith a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Thing .
+
+:partOf a owl:ObjectProperty ,
+        owl:TransitiveProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Thing .
+
+:surrounding a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Place .
+
+:rdfsLabel a owl:DatatypeProperty .
+
+:yearValue a owl:DatatypeProperty ;
+    rdfs:domain :DatePoint ;
+    rdfs:range xsd:gYear .
+
+:durationYearsValue a owl:DatatypeProperty ;
+    rdfs:domain :Duration ;
+    rdfs:range xsd:decimal .
+
+:YellowtailDam a :ConcreteArchDam , owl:NamedIndividual ;
+    rdfs:label "Yellowtail Dam"^^xsd:string ;
+    :across :BighornRiver ;
+    :locatedIn :SouthCentralMontana , :Montana , :UnitedStates ;
+    :constructionPeriodEra :Mid1960s ;
+    :servesTo :FlowRegulationForIrrigation , :HydroelectricPowerGeneration ;
+    :regulatesFlowOf :BighornRiver ;
+    :generates :HydroelectricPower ;
+    :hasReservoir :BighornLake ;
+    :ownedBy :UsBureauOfReclamation ;
+    :authorizedIn :Year1944 ;
+    :hasGroundbreakingIn :Year1961 ;
+    :completedIn :Year1967 ;
+    :hasConstructionDuration :SixYears ;
+    :servesFor :Recreation ;
+    :hasControversy :WaterAllocationControversyBetweenMontanaAndWyoming , :EcologicalDamageAboveAndBelowTheDam ;
+    :associatedWith :YellowtailDamProject .
+
+:BighornRiver a :River , owl:NamedIndividual ;
+    rdfs:label "Bighorn River"^^xsd:string .
+
+:SouthCentralMontana a :Region , owl:NamedIndividual ;
+    rdfs:label "south central Montana"^^xsd:string ;
+    :partOf :Montana .
+
+:Montana a :State , owl:NamedIndividual ;
+    rdfs:label "Montana"^^xsd:string ;
+    :partOf :UnitedStates .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:Mid1960s a :Era , owl:NamedIndividual ;
+    rdfs:label "mid-1960s"^^xsd:string .
+
+:BighornLake a :Reservoir , owl:NamedIndividual ;
+    rdfs:label "Bighorn Lake"^^xsd:string ;
+    :ownedBy :UsBureauOfReclamation ;
+    :extendsInto :Wyoming ;
+    :liesIn :CrowIndianReservation ;
+    :associatedWith :YellowtailDam .
+
+:UsBureauOfReclamation a :GovernmentAgency , owl:NamedIndividual ;
+    rdfs:label "U.S. Bureau of Reclamation"^^xsd:string .
+
+:YellowtailDamProject a :Project , owl:NamedIndividual ;
+    rdfs:label "The project"^^xsd:string ;
+    :resultOf :NegotiationsBetweenFederalGovernmentAndCrowNation ;
+    :involvedParty :FederalGovernment , :CrowNation ;
+    :originallyEnvisionedAs :SharedFacility ;
+    :associatedWith :YellowtailDam .
+
+:NegotiationsBetweenFederalGovernmentAndCrowNation a :Negotiation , owl:NamedIndividual ;
+    rdfs:label "negotiations"^^xsd:string ;
+    :betweenParties :FederalGovernment , :CrowNation .
+
+:FederalGovernment a :Government , owl:NamedIndividual ;
+    rdfs:label "federal government"^^xsd:string .
+
+:CrowNation a :NativeAmericanTribe , owl:NamedIndividual ;
+    rdfs:label "Crow Nation"^^xsd:string ;
+    :livedOn :CrowIndianReservation .
+
+:CrowIndianReservation a :Reservation , owl:NamedIndividual ;
+    rdfs:label "Crow Indian Reservation"^^xsd:string .
+
+:SharedFacility a :SharedFacility , owl:NamedIndividual ;
+    rdfs:label "shared facility"^^xsd:string ;
+    :wouldProvide :ProfitsForBothSides .
+
+:ProfitsForBothSides a :ProfitProvision , owl:NamedIndividual ;
+    rdfs:label "profits for both sides"^^xsd:string ;
+    :benefitsFor :FederalGovernment , :CrowNation .
+
+:Reclamation a :GovernmentAgency , owl:NamedIndividual ;
+    rdfs:label "Reclamation"^^xsd:string .
+
+:Wyoming a :State , owl:NamedIndividual ;
+    rdfs:label "Wyoming"^^xsd:string ;
+    :partOf :UnitedStates .
+
+:Year1944 a :DatePoint , owl:NamedIndividual ;
+    rdfs:label "1944"^^xsd:string ;
+    :yearValue "1944"^^xsd:gYear .
+
+:Year1961 a :DatePoint , owl:NamedIndividual ;
+    rdfs:label "1961"^^xsd:string ;
+    :yearValue "1961"^^xsd:gYear .
+
+:Year1967 a :DatePoint , owl:NamedIndividual ;
+    rdfs:label "1967"^^xsd:string ;
+    :yearValue "1967"^^xsd:gYear .
+
+:SixYears a :Duration , owl:NamedIndividual ;
+    rdfs:label "six years"^^xsd:string ;
+    :durationYearsValue "6"^^xsd:decimal .
+
+:FlowRegulationForIrrigation a :IrrigationPurpose , owl:NamedIndividual ;
+    rdfs:label "regulate the flow of the Bighorn for irrigation purposes"^^xsd:string .
+
+:HydroelectricPowerGeneration a :HydroelectricPowerGenerationPurpose , owl:NamedIndividual ;
+    rdfs:label "generate hydroelectric power"^^xsd:string .
+
+:HydroelectricPower a :HydroelectricPower , owl:NamedIndividual ;
+    rdfs:label "hydroelectric power"^^xsd:string .
+
+:Recreation a :RecreationPurpose , owl:NamedIndividual ;
+    rdfs:label "recreation"^^xsd:string .
+
+:LowerRiver a :RiverSection , owl:NamedIndividual ;
+    rdfs:label "the lower river"^^xsd:string ;
+    :providedByRegulationOf :YellowtailDam ;
+    :transformedInto :MontanasPremierTroutStreams ;
+    :partOf :BighornRiver .
+
+:MontanasPremierTroutStreams a :TroutStream , owl:NamedIndividual ;
+    rdfs:label "one of Montana's premier trout streams"^^xsd:string ;
+    :partOf :Montana .
+
+:WaterAllocationControversyBetweenMontanaAndWyoming a :WaterAllocationControversy , owl:NamedIndividual ;
+    rdfs:label "significant controversy surrounding the allocation of water in the reservoir between Montana and Wyoming"^^xsd:string ;
+    :aboutAllocationOfWaterIn :BighornLake ;
+    :betweenStates :Montana , :Wyoming .
+
+:EcologicalDamageAboveAndBelowTheDam a :EcologicalDamage , owl:NamedIndividual ;
+    rdfs:label "the ecological damage wrought on of river both above and below the dam"^^xsd:string ;
+    :wroughtOn :RiverAboveTheDam , :RiverBelowTheDam ;
+    :associatedWith :YellowtailDam .
+
+:RiverAboveTheDam a :DirectionalPlacePart , owl:NamedIndividual ;
+    rdfs:label "above the dam"^^xsd:string ;
+    :aboveStructureOf :YellowtailDam ;
+    :partOf :BighornRiver .
+
+:RiverBelowTheDam a :DirectionalPlacePart , owl:NamedIndividual ;
+    rdfs:label "below the dam"^^xsd:string ;
+    :belowStructureOf :YellowtailDam ;
+    :partOf :BighornRiver .

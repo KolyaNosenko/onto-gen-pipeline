@@ -1,0 +1,745 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:Accomplishment a owl:Class ;
+    rdfs:label "Accomplishment"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty ns1:temporallyLocatedAt ;
+                    owl:someValuesFrom ns1:Atom ] ],
+        ns1:Event ;
+    owl:disjointWith ns1:Achievement .
+
+ns1:AmountOfMatter a owl:Class ;
+    rdfs:label "Amount of Matter"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointWith ns1:Feature,
+        ns1:PhysicalObject .
+
+ns1:JoosVanCleve_Individual a owl:NamedIndividual,
+        ns1:Painter ;
+    rdfs:label "Joos van Cleve"^^xsd:string ;
+    ns1:activeDuring ns1:Around1511To1540 ;
+    ns1:activeDuringTrend ns1:SixteenthCenturyNorthernRenaissancePaintings ;
+    ns1:activeIn ns1:Antwerp_City ;
+    ns1:alsoKnownAs ns1:JoosVanDerBeke_Name ;
+    ns1:amongFirstToIntroduce ns1:BroadLandscapes ;
+    ns1:bornDuring ns1:Circa1485 ;
+    ns1:characterizedBy ns1:SensitivityToColor,
+        ns1:UniqueSolidarityOfFigures ;
+    ns1:combinesTechnique ns1:TraditionalNetherlandishPaintingTechniques ;
+    ns1:diedDuring ns1:Death1540Or1541 ;
+    ns1:fatherOf ns1:CornelisVanCleve_Individual ;
+    ns1:hasProfessionalAttribute ns1:SkilledTechnician ;
+    ns1:heldGuildRole ns1:CoDeaconRole ;
+    ns1:influencedByStyle ns1:MoreContemporaryRenaissancePaintingStyles ;
+    ns1:knownForArtworkGenre ns1:PortraitsOfRoyalty,
+        ns1:ReligiousWorks ;
+    ns1:memberOfGuild ns1:GuildOfSaintLukeOfAntwerp .
+
+ns1:MentalObject a owl:Class ;
+    rdfs:label "Mental Object"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:specificallyDependsOn ;
+            owl:someValuesFrom ns1:AgentivePhysicalObject ],
+        ns1:NonPhysicalObject ;
+    owl:disjointWith ns1:SocialObject .
+
+ns1:Process a owl:Class ;
+    rdfs:label "Process"^^xsd:string ;
+    rdfs:subClassOf ns1:Stative ;
+    owl:disjointWith ns1:State .
+
+ns1:SocialAgent a owl:Class ;
+    rdfs:label "Social Agent"^^xsd:string ;
+    rdfs:subClassOf ns1:AgentiveSocialObject ;
+    owl:disjointWith ns1:Society .
+
+ns1:activeDuring a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:TimeInterval .
+
+ns1:activeDuringTrend a owl:ObjectProperty ;
+    rdfs:domain ns1:Painter ;
+    rdfs:range ns1:ArtisticTrend .
+
+ns1:activeIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Place .
+
+ns1:alsoKnownAs a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:PersonalName .
+
+ns1:amongFirstToIntroduce a owl:ObjectProperty ;
+    rdfs:domain ns1:Painter ;
+    rdfs:range ns1:CompositionalTechnique .
+
+ns1:atomicPartOf a owl:ObjectProperty ;
+    rdfs:label "atomic part of"^^xsd:string ;
+    rdfs:domain ns1:Atom ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:becameMentallyIllDuringResidenceIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Place .
+
+ns1:becamePopularTechniqueIn a owl:ObjectProperty ;
+    rdfs:domain ns1:CompositionalTechnique ;
+    rdfs:range ns1:ArtisticTrend .
+
+ns1:bornDuring a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:TimeInterval .
+
+ns1:characterizedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Painter ;
+    rdfs:range ns1:ArtisticQuality .
+
+ns1:combinesTechnique a owl:ObjectProperty ;
+    rdfs:domain ns1:Painter ;
+    rdfs:range ns1:PaintingTechnique .
+
+ns1:diedDuring a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:TimeInterval .
+
+ns1:fatherOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Person .
+
+ns1:hasMentalHealthCondition a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:MentalHealthCondition .
+
+ns1:hasProfessionalAttribute a owl:ObjectProperty ;
+    rdfs:domain ns1:Painter ;
+    rdfs:range ns1:ProfessionalAttribute .
+
+ns1:heldGuildRole a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:GuildRole .
+
+ns1:influencedByStyle a owl:ObjectProperty ;
+    rdfs:domain ns1:Painter ;
+    rdfs:range ns1:PaintingStyle .
+
+ns1:knownForArtworkGenre a owl:ObjectProperty ;
+    rdfs:domain ns1:Painter ;
+    rdfs:range ns1:ArtworkGenre .
+
+ns1:memberOfGuild a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Guild .
+
+ns1:nicknameMeaning a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Nickname ;
+    rdfs:range xsd:string .
+
+ns1:reasonForNickname a owl:ObjectProperty ;
+    rdfs:domain ns1:Nickname ;
+    rdfs:range ns1:MentalHealthCondition .
+
+ns1:referredToAs a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Nickname .
+
+ns1:residedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Place .
+
+ns1:roleInGuild a owl:ObjectProperty ;
+    rdfs:domain ns1:GuildRole ;
+    rdfs:range ns1:Guild .
+
+ns1:temporalPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "temporal part of"^^xsd:string ;
+    rdfs:domain ns1:Perdurant ;
+    rdfs:range ns1:Perdurant ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:usedInPaintingPart a owl:ObjectProperty ;
+    rdfs:domain ns1:CompositionalTechnique ;
+    rdfs:range ns1:PaintingPart .
+
+ns1:Achievement a owl:Class ;
+    rdfs:label "Achievement"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:Atom ],
+        ns1:Event .
+
+ns1:AlternativeName a owl:Class ;
+    rdfs:subClassOf ns1:PersonalName .
+
+ns1:Antwerp_City a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Antwerp"^^xsd:string .
+
+ns1:ArbitrarySum a owl:Class ;
+    rdfs:label "Arbitrary Sum"^^xsd:string ;
+    rdfs:subClassOf ns1:Endurant .
+
+ns1:Around1511To1540 a owl:NamedIndividual,
+        ns1:DateRange ;
+    rdfs:label "around 1511 to 1540"^^xsd:string .
+
+ns1:BackgroundsOfHisPaintings a owl:NamedIndividual,
+        ns1:PaintingPart ;
+    rdfs:label "backgrounds of his paintings"^^xsd:string .
+
+ns1:BroadLandscapes a owl:NamedIndividual,
+        ns1:CompositionalTechnique ;
+    rdfs:label "broad landscapes"^^xsd:string ;
+    ns1:becamePopularTechniqueIn ns1:SixteenthCenturyNorthernRenaissancePaintings ;
+    ns1:usedInPaintingPart ns1:BackgroundsOfHisPaintings .
+
+ns1:Circa1485 a owl:NamedIndividual,
+        ns1:ApproximateDate ;
+    rdfs:label "c. 1485"^^xsd:string .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:CoDeaconRole a owl:NamedIndividual,
+        ns1:GuildRole ;
+    rdfs:label "co - deacon"^^xsd:string ;
+    ns1:roleInGuild ns1:GuildOfSaintLukeOfAntwerp .
+
+ns1:ConstantAtom a owl:Class ;
+    rdfs:label "Constant Atom"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty [ owl:inverseOf ns1:constantProperPartOf ] ;
+                    owl:someValuesFrom ns1:Particular ] ],
+        ns1:Endurant .
+
+ns1:CornelisVanCleve_Individual a owl:NamedIndividual,
+        ns1:Painter ;
+    rdfs:label "Cornelis van Cleve"^^xsd:string ;
+    ns1:becameMentallyIllDuringResidenceIn ns1:England_Country ;
+    ns1:bornDuring ns1:Year1520 ;
+    ns1:diedDuring ns1:Year1567 ;
+    ns1:hasMentalHealthCondition ns1:MentallyIll ;
+    ns1:referredToAs ns1:SotteCleef_Nickname ;
+    ns1:residedIn ns1:England_Country .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Death1540Or1541 a owl:NamedIndividual,
+        ns1:DateRange ;
+    rdfs:label "1540/1541"^^xsd:string .
+
+ns1:Feature a owl:Class ;
+    rdfs:label "Feature"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointWith ns1:PhysicalObject .
+
+ns1:JoosVanDerBeke_Name a owl:NamedIndividual,
+        ns1:AlternativeName ;
+    rdfs:label "Joos van der Beke"^^xsd:string .
+
+ns1:MoreContemporaryRenaissancePaintingStyles a owl:NamedIndividual,
+        ns1:PaintingStyle ;
+    rdfs:label "more contemporary Renaissance painting styles"^^xsd:string .
+
+ns1:NonAgentivePhysicalObject a owl:Class ;
+    rdfs:label "Non-Agentive Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalObject .
+
+ns1:PortraitsOfRoyalty a owl:NamedIndividual,
+        ns1:ArtworkGenre ;
+    rdfs:label "portraits of royalty"^^xsd:string .
+
+ns1:ReligiousWorks a owl:NamedIndividual,
+        ns1:ArtworkGenre ;
+    rdfs:label "religious works"^^xsd:string .
+
+ns1:SensitivityToColor a owl:NamedIndividual,
+        ns1:ArtisticQuality ;
+    rdfs:label "sensitivity to color"^^xsd:string .
+
+ns1:SkilledTechnician a owl:NamedIndividual,
+        ns1:ProfessionalAttribute ;
+    rdfs:label "skilled technician"^^xsd:string .
+
+ns1:SotteCleef_Nickname a owl:NamedIndividual,
+        ns1:Nickname ;
+    rdfs:label "Sotte Cleef"^^xsd:string ;
+    ns1:nicknameMeaning "mad Cleef"^^xsd:string ;
+    ns1:reasonForNickname ns1:MentallyIll .
+
+ns1:TemporalLocation a owl:Class ;
+    rdfs:label "Temporal Location"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:qualeOf ] ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:TemporalQuality .
+
+ns1:TraditionalNetherlandishPaintingTechniques a owl:NamedIndividual,
+        ns1:PaintingTechnique ;
+    rdfs:label "traditional Netherlandish painting techniques"^^xsd:string .
+
+ns1:UniqueSolidarityOfFigures a owl:NamedIndividual,
+        ns1:ArtisticQuality ;
+    rdfs:label "unique solidarity of figures"^^xsd:string .
+
+ns1:Year1520 a owl:NamedIndividual,
+        ns1:ApproximateDate ;
+    rdfs:label "1520"^^xsd:string .
+
+ns1:Year1567 a owl:NamedIndividual,
+        ns1:ApproximateDate ;
+    rdfs:label "1567"^^xsd:string .
+
+ns1:constantAtomicPartOf a owl:ObjectProperty ;
+    rdfs:label "constant atomic part of"^^xsd:string ;
+    rdfs:domain ns1:ConstantAtom ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantPartOf .
+
+ns1:constantParticipantOf a owl:ObjectProperty ;
+    rdfs:label "constant participation of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Perdurant ;
+    rdfs:subPropertyOf [ owl:inverseOf ns1:specificallyDependsOn ] .
+
+ns1:properPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "proper part of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:DateRange a owl:Class ;
+    rdfs:subClassOf ns1:TimeInterval .
+
+ns1:England_Country a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "England"^^xsd:string .
+
+ns1:Event a owl:Class ;
+    rdfs:label "Event"^^xsd:string ;
+    rdfs:subClassOf ns1:Perdurant ;
+    owl:disjointWith ns1:Stative .
+
+ns1:GuildOfSaintLukeOfAntwerp a owl:NamedIndividual,
+        ns1:Guild ;
+    rdfs:label "Guild of Saint Luke of Antwerp"^^xsd:string .
+
+ns1:MentallyIll a owl:NamedIndividual,
+        ns1:MentalHealthCondition ;
+    rdfs:label "mentally ill"^^xsd:string .
+
+ns1:NonPhysicalObject a owl:Class ;
+    rdfs:label "Non-Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalEndurant .
+
+ns1:PaintingPart a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:PaintingStyle a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:PaintingTechnique a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:ProfessionalAttribute a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:SixteenthCenturyNorthernRenaissancePaintings a owl:NamedIndividual,
+        ns1:ArtisticTrend ;
+    rdfs:label "sixteenth century northern Renaissance paintings"^^xsd:string .
+
+ns1:Society a owl:Class ;
+    rdfs:label "Society"^^xsd:string ;
+    rdfs:subClassOf ns1:AgentiveSocialObject .
+
+ns1:SpatialLocation a owl:Class ;
+    rdfs:label "Spatial Location"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalQuality .
+
+ns1:State a owl:Class ;
+    rdfs:label "State"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:State ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Stative .
+
+ns1:constantProperPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant proper part of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantPartOf .
+
+ns1:constantlyOverlaps a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "constantly overlaps"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    owl:propertyChainAxiom ( [ owl:inverseOf ns1:constantPartOf ] ns1:constantPartOf ) .
+
+ns1:qualeOf a owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "quale of"^^xsd:string ;
+    rdfs:domain ns1:TemporalRegion ;
+    rdfs:range ns1:TemporalQuality .
+
+ns1:AgentivePhysicalObject a owl:Class ;
+    rdfs:label "Agentive Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalObject .
+
+ns1:AgentiveSocialObject a owl:Class ;
+    rdfs:label "Agentive Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:ApproximateDate a owl:Class ;
+    rdfs:subClassOf ns1:TimeInterval .
+
+ns1:ArtisticQuality a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:ArtisticTrend a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:ArtworkGenre a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:Atom a owl:Class ;
+    rdfs:label "Atom"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ],
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty [ owl:inverseOf ns1:properPartOf ] ;
+                    owl:someValuesFrom ns1:Particular ] ],
+        ns1:Particular .
+
+ns1:Guild a owl:Class ;
+    rdfs:subClassOf ns1:Society .
+
+ns1:GuildRole a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:MentalHealthCondition a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:PersonalName a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:Region a owl:Class ;
+    rdfs:label "Region"^^xsd:string ;
+    rdfs:subClassOf ns1:Abstract ;
+    owl:disjointUnionOf ( ns1:AbstractRegion ns1:PhysicalRegion ns1:TemporalRegion ) .
+
+ns1:SocialObject a owl:Class ;
+    rdfs:label "Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalObject ;
+    owl:disjointUnionOf ( ns1:AgentiveSocialObject ns1:NonAgentiveSocialObject ) .
+
+ns1:SpaceRegion a owl:Class ;
+    rdfs:label "Space Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpatialLocation ;
+            owl:onProperty ns1:constantQualeOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpaceRegion ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpaceRegion ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:PhysicalRegion .
+
+ns1:Stative a owl:Class ;
+    rdfs:label "Stative"^^xsd:string ;
+    rdfs:subClassOf ns1:Perdurant .
+
+ns1:TemporalRegion a owl:Class ;
+    rdfs:label "Temporal Region"^^xsd:string ;
+    rdfs:subClassOf ns1:Region .
+
+ns1:overlaps a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "overlaps"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    owl:propertyChainAxiom ( [ owl:inverseOf ns1:partOf ] ns1:partOf ),
+        ( [ owl:inverseOf ns1:presentAt ] ns1:temporallyLocatedAt ) .
+
+ns1:AbstractQuality a owl:Class ;
+    rdfs:label "Abstract Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty [ owl:inverseOf ns1:constantQualeOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:CompositionalTechnique a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:Nickname a owl:Class ;
+    rdfs:subClassOf ns1:PersonalName .
+
+ns1:PhysicalObject a owl:Class ;
+    rdfs:label "Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointUnionOf ( ns1:AgentivePhysicalObject ns1:NonAgentivePhysicalObject ) .
+
+ns1:PhysicalRegion a owl:Class ;
+    rdfs:label "Physical Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalQuality ;
+            owl:onProperty ns1:constantQualeOf ],
+        ns1:Region .
+
+ns1:TemporalQuality a owl:Class ;
+    rdfs:label "Temporal Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:qualeOf ] ;
+            owl:someValuesFrom ns1:Particular ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:AbstractRegion a owl:Class ;
+    rdfs:label "Abstract Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractQuality ;
+            owl:onProperty ns1:constantQualeOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Region .
+
+ns1:PhysicalQuality a owl:Class ;
+    rdfs:label "Physical Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalRegion ;
+            owl:onProperty [ owl:inverseOf ns1:constantQualeOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf ns1:SpaceRegion .
+
+ns1:constantQualeOf a owl:ObjectProperty ;
+    rdfs:label "constant quale of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:AbstractRegion ns1:PhysicalRegion ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:AbstractQuality ns1:PhysicalQuality ) ] .
+
+ns1:specificallyDependsOn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "specifically depends on"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] .
+
+ns1:temporallyLocatedAt a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "temporally located at"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range ns1:TimeInterval ;
+    rdfs:subPropertyOf ns1:presentAt .
+
+ns1:constantConstituentOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant constituent of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:NonPhysicalEndurant ns1:Perdurant ns1:PhysicalEndurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:NonPhysicalEndurant ns1:Perdurant ns1:PhysicalEndurant ) ] ;
+    rdfs:subPropertyOf [ owl:inverseOf ns1:specificallyDependsOn ] .
+
+ns1:constantPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant part of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantlyOverlaps .
+
+ns1:NonPhysicalEndurant a owl:Class ;
+    rdfs:label "Non-Physical Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty ns1:constantlyOverlaps ;
+                    owl:someValuesFrom ns1:PhysicalEndurant ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantPartOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        ns1:Endurant .
+
+ns1:Painter a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Particular a owl:Class ;
+    rdfs:label "Particular"^^xsd:string ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ns1:Abstract ns1:Endurant ns1:Perdurant ns1:Quality ) .
+
+ns1:Quality a owl:Class ;
+    rdfs:label "Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:directQualityOf ;
+            owl:someValuesFrom ns1:Particular ],
+        ns1:Particular ;
+    owl:disjointUnionOf ( ns1:AbstractQuality ns1:PhysicalQuality ns1:TemporalQuality ) .
+
+ns1:PhysicalEndurant a owl:Class ;
+    rdfs:label "Physical Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ;
+            owl:someValuesFrom ns1:SpatialLocation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantPartOf ] ],
+        ns1:Endurant .
+
+ns1:directQualityOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "direct quality of"^^xsd:string ;
+    rdfs:domain ns1:Quality ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:specificallyDependsOn .
+
+ns1:NonAgentiveSocialObject a owl:Class ;
+    rdfs:label "Non-Agentive Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:TimeInterval ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:TemporalRegion .
+
+ns1:presentAt a owl:ObjectProperty ;
+    rdfs:label "present at"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range ns1:TimeInterval ;
+    owl:propertyChainAxiom ( ns1:constantAtomicPartOf ns1:presentAt ),
+        ( ns1:constantConstituentOf ns1:presentAt ),
+        ( ns1:constantPartOf ns1:presentAt ),
+        ( ns1:constantParticipantOf ns1:presentAt ),
+        ( ns1:constantProperPartOf ns1:presentAt ),
+        ( ns1:directQualityOf ns1:presentAt ),
+        ( ns1:presentAt [ owl:inverseOf ns1:partOf ] ),
+        ( [ owl:inverseOf ns1:directQualityOf ] ns1:presentAt ),
+        ( [ owl:inverseOf ns1:partOf ] ns1:presentAt ),
+        ( [ owl:inverseOf ns1:specificallyDependsOn ] ns1:presentAt ) .
+
+ns1:Abstract a owl:Class ;
+    rdfs:label "Abstract"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty ns1:overlaps ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Particular .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf ns1:AgentivePhysicalObject .
+
+ns1:partOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "part of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:overlaps .
+
+ns1:Endurant a owl:Class ;
+    rdfs:label "Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:Particular ;
+    owl:disjointUnionOf ( ns1:ArbitrarySum ns1:NonPhysicalEndurant ns1:PhysicalEndurant ) .
+
+ns1:Perdurant a owl:Class ;
+    rdfs:label "Perdurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:overlaps ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:TemporalQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ;
+            owl:someValuesFrom ns1:TemporalLocation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:Particular .

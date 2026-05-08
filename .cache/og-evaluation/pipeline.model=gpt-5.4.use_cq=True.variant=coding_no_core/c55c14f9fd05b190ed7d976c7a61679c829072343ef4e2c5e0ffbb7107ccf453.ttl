@@ -1,0 +1,262 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:IkesWeeWee a owl:NamedIndividual,
+        ns1:TelevisionEpisode ;
+    rdfs:label "Ike's Wee Wee"^^xsd:string ;
+    ns1:backstoryDescription "Ike is an adopted Canadian child"^^xsd:string ;
+    ns1:criticalResponse "positive responses from critics"^^xsd:string ;
+    ns1:directedBy ns1:TreyParker ;
+    ns1:episodeNumberInSeason 4 ;
+    ns1:exploredTheme "whether family can only mean those who are related by blood"^^xsd:string ;
+    ns1:firstAirDate ns1:May271998 ;
+    ns1:firstAiredInCountry ns1:UnitedStates ;
+    ns1:firstAiredOnNetwork ns1:ComedyCentral ;
+    ns1:introducedBackstoryFor ns1:Ike ;
+    ns1:misunderstoodProcedure "circumcision"^^xsd:string ;
+    ns1:overallEpisodeNumber 18 ;
+    ns1:partOfSeries ns1:SouthPark ;
+    ns1:praisedFor "its touching moments"^^xsd:string ;
+    ns1:rescueTarget ns1:Ike ;
+    ns1:satirizedAttitude "certain attitudes towards drug users"^^xsd:string ;
+    ns1:seasonNumber 2 ;
+    ns1:title "Ike's Wee Wee"^^xsd:string ;
+    ns1:writtenBy ns1:TreyParker .
+
+ns1:MrMackey a owl:NamedIndividual,
+        ns1:SchoolCounselor ;
+    rdfs:label "Mr. Mackey"^^xsd:string ;
+    ns1:employmentStatus "fired"^^xsd:string ;
+    ns1:turnsToSubstance "drugs"^^xsd:string ;
+    ns1:turnsToSubstanceBecause "being fired"^^xsd:string .
+
+ns1:backstoryDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range xsd:string .
+
+ns1:coCreatorOf a owl:ObjectProperty ;
+    rdfs:domain ns1:SeriesCoCreator ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:criticalResponse a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range xsd:string .
+
+ns1:directedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range ns1:Person .
+
+ns1:employmentStatus a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:string .
+
+ns1:episodeNumberInSeason a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range xsd:integer .
+
+ns1:exploredTheme a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range xsd:string .
+
+ns1:firstAirDate a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range ns1:Date .
+
+ns1:firstAiredInCountry a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range ns1:Country .
+
+ns1:firstAiredOnNetwork a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range ns1:TelevisionNetwork .
+
+ns1:genre a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range xsd:string .
+
+ns1:introducedBackstoryFor a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range ns1:Child .
+
+ns1:isAdopted a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Child ;
+    rdfs:range xsd:boolean .
+
+ns1:isCanadian a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Child ;
+    rdfs:range xsd:boolean .
+
+ns1:misunderstoodProcedure a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range xsd:string .
+
+ns1:originCountry a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:Country .
+
+ns1:overallEpisodeNumber a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range xsd:integer .
+
+ns1:partOfSeries a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:praisedFor a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range xsd:string .
+
+ns1:rescueTarget a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range ns1:Child .
+
+ns1:satirizedAttitude a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range xsd:string .
+
+ns1:seasonNumber a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range xsd:integer .
+
+ns1:title a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:CreativeWork ;
+    rdfs:range xsd:string .
+
+ns1:turnsToSubstance a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:string .
+
+ns1:turnsToSubstanceBecause a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:string .
+
+ns1:upcomingEventDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Child ;
+    rdfs:range xsd:string .
+
+ns1:writtenBy a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range ns1:Person .
+
+ns1:youngerBrotherOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Child ;
+    rdfs:range ns1:Person .
+
+ns1:AdoptedCanadianChild a owl:Class ;
+    rdfs:subClassOf ns1:AdoptedChild,
+        ns1:CanadianChild .
+
+ns1:AdoptedChild a owl:Class ;
+    rdfs:subClassOf ns1:Child .
+
+ns1:AnimatedTelevisionSeries a owl:Class ;
+    rdfs:subClassOf ns1:TelevisionSeries .
+
+ns1:Boy a owl:Class ;
+    rdfs:subClassOf ns1:Child .
+
+ns1:CanadianChild a owl:Class ;
+    rdfs:subClassOf ns1:Child .
+
+ns1:ComedyCentral a owl:NamedIndividual,
+        ns1:TelevisionNetwork ;
+    rdfs:label "Comedy Central"^^xsd:string .
+
+ns1:Kyle a owl:NamedIndividual,
+        ns1:Boy ;
+    rdfs:label "Kyle"^^xsd:string .
+
+ns1:May271998 a owl:NamedIndividual,
+        ns1:Date ;
+    rdfs:label "May 27, 1998"^^xsd:string .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SchoolCounselor a owl:Class ;
+    rdfs:subClassOf ns1:Character .
+
+ns1:TemporalEntity a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Character a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Date a owl:Class ;
+    rdfs:subClassOf ns1:TemporalEntity .
+
+ns1:Ike a owl:NamedIndividual,
+        ns1:AdoptedCanadianChild ;
+    rdfs:label "Ike"^^xsd:string ;
+    ns1:isAdopted true ;
+    ns1:isCanadian true ;
+    ns1:upcomingEventDescription "bris"^^xsd:string ;
+    ns1:youngerBrotherOf ns1:Kyle .
+
+ns1:SeriesCoCreator a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:SouthPark a owl:NamedIndividual,
+        ns1:AnimatedTelevisionSeries ;
+    rdfs:label "South Park"^^xsd:string ;
+    ns1:genre "animated television series"^^xsd:string ;
+    ns1:originCountry ns1:UnitedStates ;
+    ns1:title "South Park"^^xsd:string .
+
+ns1:TelevisionNetwork a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:TreyParker a owl:NamedIndividual,
+        ns1:SeriesCoCreator ;
+    rdfs:label "Trey Parker"^^xsd:string ;
+    ns1:coCreatorOf ns1:SouthPark .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United States"^^xsd:string .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:CreativeWork a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TelevisionSeries a owl:Class ;
+    rdfs:subClassOf ns1:CreativeWork .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Child a owl:Class ;
+    rdfs:subClassOf ns1:Character .
+
+ns1:TelevisionEpisode a owl:Class ;
+    rdfs:subClassOf ns1:CreativeWork .

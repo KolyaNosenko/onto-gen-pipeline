@@ -1,0 +1,352 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Thing a owl:Class .
+
+:Place a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:ProtectedArea a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:NationalPark a owl:Class ;
+    rdfs:subClassOf :ProtectedArea .
+
+:AdministrativeRegion a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:State a owl:Class ;
+    rdfs:subClassOf :AdministrativeRegion .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :AdministrativeRegion .
+
+:Region a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Area a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Land a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:TraditionalLand a owl:Class ;
+    rdfs:subClassOf :Land .
+
+:VegetationType a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:ForestRemnant a owl:Class ;
+    rdfs:subClassOf :VegetationType .
+
+:Forest a owl:Class ;
+    rdfs:subClassOf :VegetationType .
+
+:ScrubbyForest a owl:Class ;
+    rdfs:subClassOf :Forest .
+
+:PlantSpecies a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:BirdSpecies a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Wildlife a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Habitat a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:RefugeForWildlife a owl:Class ;
+    rdfs:subClassOf :Habitat .
+
+:Landform a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Depression a owl:Class ;
+    rdfs:subClassOf :Landform .
+
+:Gilgai a owl:Class ;
+    rdfs:subClassOf :Depression .
+
+:SoilType a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:ClaySoil a owl:Class ;
+    rdfs:subClassOf :SoilType .
+
+:Process a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:WettingAndDrying a owl:Class ;
+    rdfs:subClassOf :Process .
+
+:PeopleGroup a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:SettlerGroup a owl:Class ;
+    rdfs:subClassOf :PeopleGroup .
+
+:Person a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Explorer a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:AliasName a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Direction a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:DistanceQuantity a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:SpeciesCountQuantity a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:TimeInterval a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Year a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:NationalParkDesignation a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Place .
+
+:westOf a owl:ObjectProperty , owl:AsymmetricProperty , owl:IrreflexiveProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Place .
+
+:hasDistanceFrom a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :DistanceQuantity .
+
+:hasDirectionFrom a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Direction .
+
+:conserves a owl:ObjectProperty ;
+    rdfs:domain :ProtectedArea ;
+    rdfs:range :VegetationType .
+
+:onRegion a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Region .
+
+:growsIn a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Place .
+
+:commonThroughout a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Region .
+
+:hasPart a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Thing .
+
+:providesHabitat a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Habitat .
+
+:isRefugeFor a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Thing .
+
+:hasObservedBirdSpeciesCount a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :SpeciesCountQuantity .
+
+:hasBeenSeenIn a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Place .
+
+:closeToInlandLimitOfRangeIn a owl:ObjectProperty ;
+    rdfs:domain :BirdSpecies ;
+    rdfs:range :Place .
+
+:scatteredThrough a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Place .
+
+:formedBy a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :Process .
+
+:inSoilType a owl:ObjectProperty ;
+    rdfs:domain :Process ;
+    rdfs:range :SoilType .
+
+:traditionalLandOf a owl:ObjectProperty ;
+    rdfs:domain :Land ;
+    rdfs:range :PeopleGroup .
+
+:passedThrough a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Place .
+
+:slowToAttract a owl:ObjectProperty ;
+    rdfs:domain :Area ;
+    rdfs:range :PeopleGroup .
+
+:formerlyKnownAs a owl:ObjectProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range :AliasName .
+
+:becameNationalParkInYear a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :Year .
+
+:hasNumericValue a owl:DatatypeProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range xsd:decimal .
+
+:hasUnit a owl:DatatypeProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range xsd:string .
+
+:hasQualifier a owl:DatatypeProperty ;
+    rdfs:domain :Thing ;
+    rdfs:range xsd:string .
+
+:Southwood a :NationalPark , owl:NamedIndividual ;
+    rdfs:label "Southwood"^^xsd:string ;
+    :locatedIn :Queensland ;
+    :locatedIn :Australia ;
+    :westOf :Brisbane ;
+    :hasDistanceFrom :Distance288Km ;
+    :hasDirectionFrom :West ;
+    :conserves :BrigalowBelahForestRemnants ;
+    :hasPart :SouthwoodsScrubbyForests ;
+    :isRefugeFor :Wildlife ;
+    :hasObservedBirdSpeciesCount :MoreThan92SpeciesOfBirds ;
+    :hasPart :Gilgais ;
+    :locatedIn :TraditionalLandOfTheBigambulPeople ;
+    :formerlyKnownAs :WildHorseParadise ;
+    :becameNationalParkInYear :Year1970 .
+
+:Queensland a :State , owl:NamedIndividual ;
+    rdfs:label "Queensland"^^xsd:string ;
+    :locatedIn :Australia .
+
+:Australia a :Country , owl:NamedIndividual ;
+    rdfs:label "Australia"^^xsd:string .
+
+:Brisbane a :Place , owl:NamedIndividual ;
+    rdfs:label "Brisbane"^^xsd:string .
+
+:BrigalowBelahForestRemnants a :ForestRemnant , owl:NamedIndividual ;
+    rdfs:label "Brigalow - belah forest remnants"^^xsd:string ;
+    :onRegion :WesternDarlingDowns .
+
+:WesternDarlingDowns a :Region , owl:NamedIndividual ;
+    rdfs:label "the western Darling Downs"^^xsd:string .
+
+:TheDowns a :Region , owl:NamedIndividual ;
+    rdfs:label "the Downs"^^xsd:string .
+
+:CypressPine a :PlantSpecies , owl:NamedIndividual ;
+    rdfs:label "Cypress pine"^^xsd:string ;
+    :growsIn :Southwood ;
+    :commonThroughout :SemiAridLands .
+
+:PoplarBox a :PlantSpecies , owl:NamedIndividual ;
+    rdfs:label "poplar box"^^xsd:string ;
+    :growsIn :Southwood ;
+    :commonThroughout :SemiAridLands .
+
+:WilgaBush a :PlantSpecies , owl:NamedIndividual ;
+    rdfs:label "wilga bush"^^xsd:string ;
+    :growsIn :Southwood ;
+    :commonThroughout :SemiAridLands .
+
+:FalseSandalwood a :PlantSpecies , owl:NamedIndividual ;
+    rdfs:label "false sandalwood"^^xsd:string ;
+    :growsIn :Southwood ;
+    :commonThroughout :SemiAridLands .
+
+:WesternTeatree a :PlantSpecies , owl:NamedIndividual ;
+    rdfs:label "western teatree"^^xsd:string ;
+    :growsIn :Southwood ;
+    :commonThroughout :SemiAridLands .
+
+:SemiAridLands a :Region , owl:NamedIndividual ;
+    rdfs:label "the semi - arid lands"^^xsd:string .
+
+:SouthwoodsScrubbyForests a :ScrubbyForest , owl:NamedIndividual ;
+    rdfs:label "Southwood ’s scrubby forests"^^xsd:string ;
+    :providesHabitat :RefugeForWildlifeHabitat .
+
+:RefugeForWildlifeHabitat a :RefugeForWildlife , owl:NamedIndividual ;
+    rdfs:label "a refuge for wildlife"^^xsd:string .
+
+:Wildlife a :Wildlife , owl:NamedIndividual ;
+    rdfs:label "wildlife"^^xsd:string .
+
+:MoreThan92SpeciesOfBirds a :SpeciesCountQuantity , owl:NamedIndividual ;
+    rdfs:label "More than 92 species of birds"^^xsd:string ;
+    :hasNumericValue "92"^^xsd:decimal ;
+    :hasQualifier "more than"^^xsd:string .
+
+:WongaPigeon a :BirdSpecies , owl:NamedIndividual ;
+    rdfs:label "the wonga pigeon"^^xsd:string ;
+    :hasBeenSeenIn :Southwood ;
+    :closeToInlandLimitOfRangeIn :Southwood .
+
+:Gilgais a :Gilgai , owl:NamedIndividual ;
+    rdfs:label "gilgais"^^xsd:string ;
+    :scatteredThrough :Southwood ;
+    :formedBy :ConstantWettingAndDrying .
+
+:ConstantWettingAndDrying a :WettingAndDrying , owl:NamedIndividual ;
+    rdfs:label "constant wetting and drying"^^xsd:string ;
+    :inSoilType :HeavyClaySoils .
+
+:HeavyClaySoils a :ClaySoil , owl:NamedIndividual ;
+    rdfs:label "the heavy clay soils"^^xsd:string .
+
+:BigambulPeople a :PeopleGroup , owl:NamedIndividual ;
+    rdfs:label "the Bigambul people"^^xsd:string .
+
+:TraditionalLandOfTheBigambulPeople a :TraditionalLand , owl:NamedIndividual ;
+    rdfs:label "the traditional land of the Bigambul people"^^xsd:string ;
+    :traditionalLandOf :BigambulPeople .
+
+:AllanCunningham a :Explorer , owl:NamedIndividual ;
+    rdfs:label "Allan Cunningham"^^xsd:string ;
+    :passedThrough :SouthwoodArea .
+
+:ThomasMitchell a :Explorer , owl:NamedIndividual ;
+    rdfs:label "Thomas Mitchell"^^xsd:string ;
+    :passedThrough :SouthwoodArea .
+
+:SouthwoodArea a :Area , owl:NamedIndividual ;
+    rdfs:label "the surrounding area"^^xsd:string ;
+    :slowToAttract :Settlers .
+
+:Settlers a :SettlerGroup , owl:NamedIndividual ;
+    rdfs:label "settlers"^^xsd:string .
+
+:WildHorseParadise a :AliasName , owl:NamedIndividual ;
+    rdfs:label "Wild Horse Paradise"^^xsd:string .
+
+:Year1970 a :Year , owl:NamedIndividual ;
+    rdfs:label "1970"^^xsd:string .
+
+:West a :Direction , owl:NamedIndividual ;
+    rdfs:label "west"^^xsd:string .
+
+:Distance288Km a :DistanceQuantity , owl:NamedIndividual ;
+    rdfs:label "288   km"^^xsd:string ;
+    :hasNumericValue "288"^^xsd:decimal ;
+    :hasUnit "km"^^xsd:string .

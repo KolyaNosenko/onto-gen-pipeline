@@ -1,0 +1,132 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:Bank a owl:Class ;
+    rdfs:subClassOf ns1:Institution .
+
+ns1:CollinsStreet a owl:NamedIndividual,
+        ns1:Street ;
+    rdfs:label "Collins Street"^^xsd:string ;
+    ns1:hasArea ns1:ParisEnd ;
+    ns1:laidOutIn ns1:HoddleGrid ;
+    ns1:locatedIn ns1:Melbourne ;
+    ns1:namedAfter ns1:DavidCollins .
+
+ns1:InsuranceCompany a owl:Class ;
+    rdfs:subClassOf ns1:Institution .
+
+ns1:QueenStreet a owl:NamedIndividual,
+        ns1:Street ;
+    rdfs:label "Queen Street"^^xsd:string .
+
+ns1:characterizedBy a owl:DatatypeProperty ;
+    rdfs:domain ns1:StreetArea ;
+    rdfs:range xsd:string .
+
+ns1:establishedSettlement a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Settlement .
+
+ns1:hasArea a owl:ObjectProperty ;
+    rdfs:domain ns1:Street ;
+    rdfs:range ns1:StreetArea .
+
+ns1:knownSince a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:StreetArea ;
+    rdfs:range xsd:integer .
+
+ns1:laidOutIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Street ;
+    rdfs:range ns1:UrbanSurvey .
+
+ns1:locatedIn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:City,
+        ns1:Region,
+        ns1:Street ;
+    rdfs:range ns1:City,
+        ns1:Country,
+        ns1:Region .
+
+ns1:namedAfter a owl:ObjectProperty ;
+    rdfs:domain ns1:Street ;
+    rdfs:range ns1:Person .
+
+ns1:year a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Settlement,
+        ns1:UrbanSurvey ;
+    rdfs:range xsd:integer .
+
+ns1:Australia a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Australia"^^xsd:string .
+
+ns1:DavidCollins a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "David Collins"^^xsd:string,
+        "Lieutenant-Governor David Collins"^^xsd:string ;
+    ns1:establishedSettlement ns1:Sorrento .
+
+ns1:HoddleGrid a owl:NamedIndividual,
+        ns1:UrbanSurvey ;
+    rdfs:label "Hoddle Grid"^^xsd:string ;
+    ns1:year 1837 .
+
+ns1:Melbourne a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Melbourne"^^xsd:string ;
+    ns1:locatedIn ns1:Victoria .
+
+ns1:ParisEnd a owl:NamedIndividual,
+        ns1:StreetArea ;
+    rdfs:label "Paris End"^^xsd:string ;
+    ns1:characterizedBy "heritage buildings"^^xsd:string,
+        "high-end shopping boutiques"^^xsd:string,
+        "old street trees"^^xsd:string,
+        "sidewalk cafes"^^xsd:string ;
+    ns1:knownSince 1950 .
+
+ns1:Sorrento a owl:NamedIndividual,
+        ns1:Settlement ;
+    rdfs:label "Sorrento"^^xsd:string ;
+    ns1:year 1803 .
+
+ns1:Victoria a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "Victoria"^^xsd:string ;
+    ns1:locatedIn ns1:Australia .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Institution a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Settlement a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:UrbanSurvey a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:StreetArea a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Street a owl:Class ;
+    rdfs:subClassOf owl:Thing .

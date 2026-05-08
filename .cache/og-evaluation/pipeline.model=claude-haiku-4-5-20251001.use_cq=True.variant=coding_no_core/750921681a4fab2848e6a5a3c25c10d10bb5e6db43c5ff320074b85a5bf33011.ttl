@@ -1,0 +1,141 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:FalckGroup a owl:NamedIndividual,
+        ns1:Company ;
+    rdfs:label "Falck Group"^^xsd:string ;
+    ns1:foundedBy ns1:GiorgioEnricoFalck ;
+    ns1:foundedIn ns1:Milan ;
+    ns1:foundedYear 1906 ;
+    ns1:hasPlant ns1:FirstPlants ;
+    ns1:hasSubsidiary ns1:FalckRenewables ;
+    ns1:industry "renewable energy"^^xsd:string,
+        "steel industry"^^xsd:string ;
+    ns1:lastFurnaceClosureYear 1995 ;
+    ns1:locatedIn ns1:SestoSanGiovanni ;
+    ns1:nameChangedYear 1931 ;
+    ns1:newName "Acciaiere e Ferriere Lombarde Falck"^^xsd:string ;
+    ns1:originalName "Società anonima Acciaierie e Ferriere Lombarde"^^xsd:string ;
+    ns1:producedProduct "processed products"^^xsd:string,
+        "semi-finished products"^^xsd:string,
+        "steel"^^xsd:string ;
+    ns1:productionDurationYears 70 ;
+    ns1:runBy ns1:FalckFamily ;
+    ns1:transitionYear 1998 .
+
+ns1:foundedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:Person .
+
+ns1:foundedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:Location .
+
+ns1:foundedYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range xsd:integer .
+
+ns1:hasPlant a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:ManufacturingPlant .
+
+ns1:hasSubsidiary a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:Company .
+
+ns1:industry a owl:DatatypeProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range xsd:string .
+
+ns1:lastFurnaceClosureYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range xsd:integer .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:Location .
+
+ns1:nameChangedYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range xsd:integer .
+
+ns1:newName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range xsd:string .
+
+ns1:originalName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range xsd:string .
+
+ns1:plantLocation a owl:ObjectProperty ;
+    rdfs:domain ns1:ManufacturingPlant ;
+    rdfs:range ns1:Location .
+
+ns1:producedProduct a owl:DatatypeProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range xsd:string .
+
+ns1:productionDurationYears a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range xsd:integer .
+
+ns1:runBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:Family .
+
+ns1:transitionYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range xsd:integer .
+
+ns1:FalckFamily a owl:NamedIndividual,
+        ns1:Family ;
+    rdfs:label "Falck family"^^xsd:string .
+
+ns1:FalckRenewables a owl:NamedIndividual,
+        ns1:Company ;
+    rdfs:label "Falck Renewables"^^xsd:string .
+
+ns1:FirstPlants a owl:NamedIndividual,
+        ns1:ManufacturingPlant ;
+    rdfs:label "first industrial plants"^^xsd:string ;
+    ns1:plantLocation ns1:SestoSanGiovanni .
+
+ns1:GiorgioEnricoFalck a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Giorgio Enrico Falck"^^xsd:string .
+
+ns1:Milan a owl:NamedIndividual,
+        ns1:Location ;
+    rdfs:label "Milan"^^xsd:string .
+
+ns1:Family a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SestoSanGiovanni a owl:NamedIndividual,
+        ns1:Location ;
+    rdfs:label "Sesto San Giovanni"^^xsd:string .
+
+ns1:ManufacturingPlant a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Location a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Company a owl:Class ;
+    rdfs:subClassOf owl:Thing .

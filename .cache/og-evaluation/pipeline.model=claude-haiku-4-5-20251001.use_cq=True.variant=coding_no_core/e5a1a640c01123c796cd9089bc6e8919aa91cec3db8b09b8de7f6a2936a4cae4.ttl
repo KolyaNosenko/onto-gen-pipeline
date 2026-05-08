@@ -1,0 +1,209 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:Dragonfall a owl:NamedIndividual,
+        ns1:VideoGame ;
+    rdfs:label "Dragonfall"^^xsd:string .
+
+ns1:ShadowrunHongKongKickstarter a owl:NamedIndividual,
+        ns1:KickstarterCampaign ;
+    rdfs:label "Kickstarter campaign"^^xsd:string ;
+    ns1:fundingCampaignFor ns1:ShadowrunHongKong ;
+    ns1:fundingGoal "US$ 100,000"^^xsd:string ;
+    ns1:fundingReceived "over $ 1.2 million"^^xsd:string ;
+    ns1:launchDate "January 2015"^^xsd:string ;
+    ns1:launchedBy ns1:HarebrainedSchemes .
+
+ns1:developedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Company .
+
+ns1:developedFor a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Platform .
+
+ns1:editionReleaseDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:GameEdition ;
+    rdfs:range xsd:string .
+
+ns1:fundingCampaignFor a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:KickstarterCampaign ;
+    rdfs:range ns1:VideoGame .
+
+ns1:fundingGoal a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:KickstarterCampaign ;
+    rdfs:range xsd:string .
+
+ns1:fundingReceived a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:KickstarterCampaign ;
+    rdfs:range xsd:string .
+
+ns1:gameType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:string .
+
+ns1:hasBugFixes a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:GameEdition ;
+    rdfs:range xsd:boolean .
+
+ns1:hasDeveloperCommentary a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:GameEdition ;
+    rdfs:range xsd:boolean .
+
+ns1:hasExtendedEdition a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:GameEdition .
+
+ns1:hasFeature a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:GameFeature .
+
+ns1:hasNewCampaign a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:GameEdition ;
+    rdfs:range xsd:boolean .
+
+ns1:isFreeUpdate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:GameEdition ;
+    rdfs:range xsd:boolean .
+
+ns1:launchDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:KickstarterCampaign ;
+    rdfs:range xsd:string .
+
+ns1:launchedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:KickstarterCampaign ;
+    rdfs:range ns1:Company .
+
+ns1:platformChoiceReason a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:string .
+
+ns1:previouslyDeveloped a owl:ObjectProperty ;
+    rdfs:domain ns1:Company ;
+    rdfs:range ns1:VideoGame .
+
+ns1:publishedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Company .
+
+ns1:releaseDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:string .
+
+ns1:universeName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:string .
+
+ns1:usesGameEngine a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:GameEngine .
+
+ns1:Campaign a owl:Class ;
+    rdfs:subClassOf ns1:GameFeature .
+
+ns1:LevelEditor a owl:Class ;
+    rdfs:subClassOf ns1:GameFeature .
+
+ns1:Linux a owl:NamedIndividual,
+        ns1:Platform ;
+    rdfs:label "Linux"^^xsd:string .
+
+ns1:MicrosoftWindows a owl:NamedIndividual,
+        ns1:Platform ;
+    rdfs:label "Microsoft Windows"^^xsd:string .
+
+ns1:OSX a owl:NamedIndividual,
+        ns1:Platform ;
+    rdfs:label "OS X"^^xsd:string .
+
+ns1:ShadowrunGameEngine a owl:NamedIndividual,
+        ns1:GameEngine ;
+    rdfs:label "engine"^^xsd:string .
+
+ns1:ShadowrunHongKong a owl:NamedIndividual,
+        ns1:VideoGame ;
+    rdfs:label "Shadowrun : Hong Kong"^^xsd:string ;
+    ns1:developedBy ns1:HarebrainedSchemes ;
+    ns1:developedFor ns1:Linux,
+        ns1:MicrosoftWindows,
+        ns1:OSX ;
+    ns1:gameType "turn-based tactical role-playing video game"^^xsd:string ;
+    ns1:hasExtendedEdition ns1:ShadowrunHongKongExtendedEdition ;
+    ns1:hasFeature ns1:ShadowrunHongKongCampaign,
+        ns1:ShadowrunHongKongLevelEditor ;
+    ns1:platformChoiceReason "to avoid hardware limitations of tablets"^^xsd:string ;
+    ns1:publishedBy ns1:HarebrainedSchemes ;
+    ns1:releaseDate "August 2015"^^xsd:string ;
+    ns1:universeName "Shadowrun"^^xsd:string ;
+    ns1:usesGameEngine ns1:ShadowrunGameEngine .
+
+ns1:ShadowrunHongKongCampaign a owl:NamedIndividual,
+        ns1:Campaign ;
+    rdfs:label "single-player campaign"^^xsd:string .
+
+ns1:ShadowrunHongKongExtendedEdition a owl:NamedIndividual,
+        ns1:GameEdition ;
+    rdfs:label "extended edition"^^xsd:string ;
+    ns1:editionReleaseDate "February 2016"^^xsd:string ;
+    ns1:hasBugFixes true ;
+    ns1:hasDeveloperCommentary true ;
+    ns1:hasNewCampaign true ;
+    ns1:isFreeUpdate true .
+
+ns1:ShadowrunHongKongLevelEditor a owl:NamedIndividual,
+        ns1:LevelEditor ;
+    rdfs:label "level editor"^^xsd:string .
+
+ns1:ShadowrunReturns a owl:NamedIndividual,
+        ns1:VideoGame ;
+    rdfs:label "Shadowrun Returns"^^xsd:string .
+
+ns1:GameEngine a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:GameFeature a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:HarebrainedSchemes a owl:NamedIndividual,
+        ns1:Company ;
+    rdfs:label "Harebrained Schemes"^^xsd:string ;
+    ns1:previouslyDeveloped ns1:ShadowrunReturns .
+
+ns1:Platform a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Company a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:KickstarterCampaign a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:GameEdition a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:VideoGame a owl:Class ;
+    rdfs:subClassOf owl:Thing .

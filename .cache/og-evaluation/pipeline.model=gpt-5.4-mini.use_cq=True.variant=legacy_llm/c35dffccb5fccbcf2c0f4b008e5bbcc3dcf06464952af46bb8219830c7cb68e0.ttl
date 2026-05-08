@@ -1,0 +1,215 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:MilitaryReform a owl:Class .
+:PoliticalReform a owl:Class .
+:MilitaryEstablishment a owl:Class .
+:Army a owl:Class .
+:CitizenArmy a owl:Class .
+:CitizenInfantry a owl:Class .
+:MilitaryDiscipline a owl:Class .
+:RomanLegionDiscipline a owl:Class .
+:FieldingCapability a owl:Class .
+:System a owl:Class .
+:ReadinessState a owl:Class .
+:Republic a owl:Class .
+:RepublicOfFlorence a owl:Class .
+:FlorentineRepublic a owl:Class .
+:Person a owl:Class .
+:Politician a owl:Class .
+:PoliticalTheorist a owl:Class .
+:Leader a owl:Class .
+:Priest a owl:Class .
+:HistoricalFigure a owl:Class .
+:City a owl:Class .
+:AncientCity a owl:Class .
+:MilitaryModel a owl:Class .
+:RomanMilitaryModel a owl:Class .
+:RomanLegions a owl:Class .
+:MilitaryForce a owl:Class .
+:Condottieri a owl:Class .
+:ItalianCondottieri a owl:Class .
+:ForeignInvasion a owl:Class .
+:SeriesOfReforms a owl:Class .
+:TimeInterval a owl:Class .
+:Year a owl:Class .
+:Quantity a owl:Class .
+:StateOfReadiness a owl:Class .
+:RepublicanSpirit a owl:Class .
+:Peninsula a owl:Class .
+
+:MilitaryReform rdfs:subClassOf :PoliticalReform .
+:CitizenArmy rdfs:subClassOf :Army .
+:CitizenInfantry rdfs:subClassOf :Army .
+:RepublicOfFlorence rdfs:subClassOf :Republic .
+:FlorentineRepublic rdfs:subClassOf :Republic .
+:Politician rdfs:subClassOf :Person .
+:PoliticalTheorist rdfs:subClassOf :Person .
+:Leader rdfs:subClassOf :Person .
+:Priest rdfs:subClassOf :Person .
+:ItalianCondottieri rdfs:subClassOf :Condottieri .
+:AncientCity rdfs:subClassOf :City .
+:RomanLegionDiscipline rdfs:subClassOf :MilitaryDiscipline .
+
+:initiatedBy a owl:ObjectProperty .
+:tookPlaceDuring a owl:ObjectProperty .
+:underLeader a owl:ObjectProperty .
+:seeksToEstablish a owl:ObjectProperty .
+:similarTo a owl:ObjectProperty .
+:focusedUpon a owl:ObjectProperty .
+:possessedWith a owl:ObjectProperty .
+:capableOf a owl:ObjectProperty .
+:against a owl:ObjectProperty .
+:largelyTerrorized a owl:ObjectProperty .
+:occurredDuring a owl:ObjectProperty .
+:institute a owl:ObjectProperty .
+:wouldCreate a owl:ObjectProperty .
+:establishSystemFor a owl:ObjectProperty .
+:keepInStateOfReadiness a owl:ObjectProperty .
+:ofYear a owl:ObjectProperty .
+:hasQuantity a owl:ObjectProperty .
+:hasState a owl:ObjectProperty .
+:pervaded a owl:ObjectProperty .
+:inThePursuitOf a owl:ObjectProperty .
+:timeOf a owl:ObjectProperty .
+
+:MilitaryReform rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :initiatedBy ;
+  owl:someValuesFrom :Person
+] .
+:MilitaryReform rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :tookPlaceDuring ;
+  owl:someValuesFrom :Republic
+] .
+:MilitaryReform rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :underLeader ;
+  owl:someValuesFrom :Leader
+] .
+
+:MilitaryEstablishment rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :similarTo ;
+  owl:someValuesFrom :MilitaryModel
+] .
+:MilitaryEstablishment rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :focusedUpon ;
+  owl:someValuesFrom :MilitaryDiscipline
+] .
+:CitizenInfantry rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :capableOf ;
+  owl:someValuesFrom :FieldingCapability
+] .
+:CitizenArmy rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :hasQuantity ;
+  owl:someValuesFrom :Quantity
+] .
+:System rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :keepInStateOfReadiness ;
+  owl:someValuesFrom :Army
+] .
+
+:FlorentineRepublic a :Republic , owl:NamedIndividual ;
+  rdfs:label "Florentine Republic"^^xsd:string .
+
+:RepublicOfFlorence a :Republic , owl:NamedIndividual ;
+  rdfs:label "Republic of Florence"^^xsd:string .
+
+:Machiavelli a :Politician , :PoliticalTheorist , owl:NamedIndividual ;
+  rdfs:label "Machiavelli"^^xsd:string ;
+  :initiatedBy :MilitaryReformsOfTheFlorentineRepublic .
+
+:NiccoloMachiavelli a :Politician , :PoliticalTheorist , owl:NamedIndividual ;
+  rdfs:label "Niccolò Machiavelli"^^xsd:string .
+
+:GirolamoSavonarola a :Priest , :Leader , owl:NamedIndividual ;
+  rdfs:label "Girolamo Savonarola"^^xsd:string .
+
+:Florence a :City , owl:NamedIndividual ;
+  rdfs:label "Florence"^^xsd:string .
+
+:Rome a :AncientCity , owl:NamedIndividual ;
+  rdfs:label "Rome"^^xsd:string .
+
+:AncientRome a :MilitaryModel , owl:NamedIndividual ;
+  rdfs:label "ancient Rome"^^xsd:string .
+
+:RomanLegions a :RomanLegions , owl:NamedIndividual ;
+  rdfs:label "Roman legions"^^xsd:string .
+
+:ItalianCondottieri a :ItalianCondottieri , owl:NamedIndividual ;
+  rdfs:label "Italian Condottieri"^^xsd:string .
+
+:Peninsula a :Peninsula , owl:NamedIndividual ;
+  rdfs:label "peninsula"^^xsd:string .
+
+:MilitaryReformsOfTheFlorentineRepublic a :MilitaryReform , owl:NamedIndividual ;
+  rdfs:label "military reforms of the Florentine Republic"^^xsd:string ;
+  :initiatedBy :NiccoloMachiavelli ;
+  :tookPlaceDuring :RepublicOfFlorence ;
+  :underLeader :GirolamoSavonarola .
+
+:RepublicOfFlorence1498To1512 a :TimeInterval , owl:NamedIndividual ;
+  rdfs:label "1498 to 1512"^^xsd:string .
+
+:RepublicOfFlorence1498To1512UnderGirolamoSavonarola a :Republic , owl:NamedIndividual ;
+  rdfs:label "the short-lived Republic of Florence that lasted from 1498 to 1512 under the priest Girolamo Savonarola"^^xsd:string ;
+  :underLeader :GirolamoSavonarola .
+
+:RepublicanSpirit a :RepublicanSpirit , owl:NamedIndividual ;
+  rdfs:label "the republican spirit"^^xsd:string ;
+  :pervaded :Florence .
+
+:MilitaryEstablishmentOfFlorence a :MilitaryEstablishment , owl:NamedIndividual ;
+  rdfs:label "a military establishment"^^xsd:string ;
+  :similarTo :AncientRome ;
+  :focusedUpon :RomanLegionDiscipline .
+
+:ArmyPossessedWithTheDisciplineOfTheRomanLegions a :Army , owl:NamedIndividual ;
+  rdfs:label "an army possessed with the discipline of the Roman legions"^^xsd:string ;
+  :possessedWith :RomanLegionDiscipline .
+
+:CitizenInfantryOfFlorence a :CitizenInfantry , owl:NamedIndividual ;
+  rdfs:label "a citizen-infantry"^^xsd:string ;
+  :capableOf :AgainstItalianCondottieriAndForeignInvasions .
+
+:AgainstItalianCondottieriAndForeignInvasions a :FieldingCapability , owl:NamedIndividual ;
+  rdfs:label "taking the field against the Italian Condottieri of the day, who largely terrorized the peninsula, in addition to the chronic foreign invasions"^^xsd:string ;
+  :against :ItalianCondottieri ;
+  :against :ChronicForeignInvasions .
+
+:ChronicForeignInvasions a :ForeignInvasion , owl:NamedIndividual ;
+  rdfs:label "the chronic foreign invasions"^^xsd:string .
+
+:SeriesOfReforms1506 a :SeriesOfReforms , owl:NamedIndividual ;
+  rdfs:label "a series of reforms in 1506"^^xsd:string ;
+  :ofYear :Year1506 ;
+  :wouldCreate :CitizenArmyOf20000Men ;
+  :establishSystemFor :CitizenArmyOf20000Men .
+
+:Year1506 a :Year , owl:NamedIndividual ;
+  rdfs:label "1506"^^xsd:string .
+
+:CitizenArmyOf20000Men a :CitizenArmy , owl:NamedIndividual ;
+  rdfs:label "a citizen army of 20,000 men"^^xsd:string ;
+  :hasQuantity :TwentyThousandMen ;
+  :hasState :StateOfReadiness .
+
+:TwentyThousandMen a :Quantity , owl:NamedIndividual ;
+  rdfs:label "20,000 men"^^xsd:string .
+
+:StateOfReadiness a :StateOfReadiness , owl:NamedIndividual ;
+  rdfs:label "a state of readiness"^^xsd:string .
+
+:SystemThatWouldKeepThisCitizenArmyInAStateOfReadiness a :System , owl:NamedIndividual ;
+  rdfs:label "a system that would keep this citizen army in a state of readiness"^^xsd:string ;
+  :keepInStateOfReadiness :CitizenArmyOf20000Men .

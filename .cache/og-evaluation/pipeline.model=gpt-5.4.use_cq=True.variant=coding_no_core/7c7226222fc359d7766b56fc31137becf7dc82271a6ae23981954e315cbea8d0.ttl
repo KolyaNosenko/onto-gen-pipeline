@@ -1,0 +1,269 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:BoomBloxBashParty a owl:NamedIndividual,
+        ns1:PhysicsBasedPuzzleVideoGame ;
+    rdfs:label "Boom Blox Bash Party"^^xsd:string ;
+    ns1:countsAsOneOfThreeOriginalProperties false ;
+    ns1:createdAsPartOfDeal true ;
+    ns1:createdAsPartOfDealWith ns1:ElectronicArts,
+        ns1:StevenSpielberg ;
+    ns1:dealOriginalPropertyCount 3 ;
+    ns1:dealPurposeDescription "make three original properties"^^xsd:string ;
+    ns1:designedBy ns1:StevenSpielberg ;
+    ns1:developedBy ns1:AmblinEntertainment,
+        ns1:EALosAngeles ;
+    ns1:developmentBeganAfterCompletionOf ns1:BoomBlox ;
+    ns1:developmentBeganAfterPredecessorCompletion true ;
+    ns1:formallyAnnouncedOn ns1:Date28January2009 ;
+    ns1:gameplayResembles ns1:BoomBlox ;
+    ns1:hasNewGameplayMechanics true ;
+    ns1:hasNonEnglishTitle ns1:BoomBloxSmashParty ;
+    ns1:isSequelTo ns1:BoomBlox ;
+    ns1:levelCountDescription "more than 400"^^xsd:string ;
+    ns1:onlineServersShutDown true ;
+    ns1:onlineServersShutDownAsOf ns1:April2012Date ;
+    ns1:onlineServersShutDownBy ns1:ElectronicArts ;
+    ns1:playersCanDownloadNewLevels true ;
+    ns1:playersCanDownloadUserCreatedGamesAfterShutdown false ;
+    ns1:playersCanShareCustomCreatedLevelsOnline true ;
+    ns1:playersCanUploadCustomCreatedLevels true ;
+    ns1:playersCanUploadUserCreatedGamesAfterShutdown false ;
+    ns1:publishedBy ns1:ElectronicArts ;
+    ns1:releasedFor ns1:WiiConsole ;
+    ns1:releasedInEuropeOn ns1:Date29May2009 ;
+    ns1:releasedInNorthAmericaOn ns1:Date19May2009 ;
+    ns1:releasedInRegion ns1:EuropeRegion,
+        ns1:NorthAmerica ;
+    ns1:shootingModeDeveloperComment "the shooting mode was the developers' least favorite mode of play in Boom Blox"^^xsd:string ;
+    ns1:shootingModeEmphasisDescription "less emphasis on the shooting mode"^^xsd:string .
+
+ns1:SequelVideoGame a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:isSequelTo ;
+            owl:someValuesFrom ns1:VideoGame ],
+        ns1:VideoGame .
+
+ns1:countsAsOneOfThreeOriginalProperties a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:boolean .
+
+ns1:createdAsPartOfDeal a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:boolean .
+
+ns1:createdAsPartOfDealWith a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Organization,
+        ns1:Person .
+
+ns1:dealOriginalPropertyCount a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:integer .
+
+ns1:dealPurposeDescription a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:string .
+
+ns1:designedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Person .
+
+ns1:developedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Organization .
+
+ns1:developmentBeganAfterCompletionOf a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:VideoGame .
+
+ns1:developmentBeganAfterPredecessorCompletion a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:boolean .
+
+ns1:formallyAnnouncedOn a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:DatePoint .
+
+ns1:gameplayResembles a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:VideoGame .
+
+ns1:hasNewGameplayMechanics a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:boolean .
+
+ns1:hasNonEnglishTitle a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:GameTitle .
+
+ns1:hasShortName a owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:OrganizationName .
+
+ns1:levelCountDescription a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:string .
+
+ns1:onlineServersShutDown a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:boolean .
+
+ns1:onlineServersShutDownAsOf a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:DatePoint .
+
+ns1:onlineServersShutDownBy a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Organization .
+
+ns1:playersCanDownloadNewLevels a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:boolean .
+
+ns1:playersCanDownloadUserCreatedGamesAfterShutdown a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:boolean .
+
+ns1:playersCanShareCustomCreatedLevelsOnline a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:boolean .
+
+ns1:playersCanUploadCustomCreatedLevels a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:boolean .
+
+ns1:playersCanUploadUserCreatedGamesAfterShutdown a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:boolean .
+
+ns1:publishedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Organization .
+
+ns1:releasedFor a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:VideoGameConsole .
+
+ns1:releasedInEuropeOn a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:DatePoint .
+
+ns1:releasedInNorthAmericaOn a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:DatePoint .
+
+ns1:releasedInRegion a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:Region .
+
+ns1:shootingModeDeveloperComment a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:string .
+
+ns1:shootingModeEmphasisDescription a owl:DatatypeProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range xsd:string .
+
+ns1:AmblinEntertainment a owl:NamedIndividual,
+        ns1:Organization ;
+    rdfs:label "Amblin Entertainment"^^xsd:string .
+
+ns1:April2012Date a owl:NamedIndividual,
+        ns1:DatePoint ;
+    rdfs:label "April 2012"^^xsd:string .
+
+ns1:BoomBloxSmashParty a owl:NamedIndividual,
+        ns1:GameTitle ;
+    rdfs:label "Boom Blox Smash Party"^^xsd:string .
+
+ns1:CreativeWork a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Date19May2009 a owl:NamedIndividual,
+        ns1:DatePoint ;
+    rdfs:label "19 May 2009"^^xsd:string .
+
+ns1:Date28January2009 a owl:NamedIndividual,
+        ns1:DatePoint ;
+    rdfs:label "28 January 2009"^^xsd:string .
+
+ns1:Date29May2009 a owl:NamedIndividual,
+        ns1:DatePoint ;
+    rdfs:label "29 May 2009"^^xsd:string .
+
+ns1:EAAbbreviation a owl:NamedIndividual,
+        ns1:OrganizationName ;
+    rdfs:label "EA"^^xsd:string .
+
+ns1:EALosAngeles a owl:NamedIndividual,
+        ns1:Organization ;
+    rdfs:label "EA Los Angeles"^^xsd:string .
+
+ns1:EuropeRegion a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "Europe"^^xsd:string .
+
+ns1:FilmDirector a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:NorthAmerica a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "North America"^^xsd:string .
+
+ns1:PhysicsBasedPuzzleVideoGame a owl:Class ;
+    rdfs:subClassOf ns1:PuzzleVideoGame .
+
+ns1:PuzzleVideoGame a owl:Class ;
+    rdfs:subClassOf ns1:VideoGame .
+
+ns1:WiiConsole a owl:NamedIndividual,
+        ns1:VideoGameConsole ;
+    rdfs:label "Wii"^^xsd:string .
+
+ns1:isSequelTo a owl:ObjectProperty ;
+    rdfs:domain ns1:VideoGame ;
+    rdfs:range ns1:VideoGame .
+
+ns1:GameTitle a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:OrganizationName a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:StevenSpielberg a owl:NamedIndividual,
+        ns1:FilmDirector ;
+    rdfs:label "Steven Spielberg"^^xsd:string .
+
+ns1:VideoGameConsole a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:BoomBlox a owl:NamedIndividual,
+        ns1:VideoGame ;
+    rdfs:label "Boom Blox"^^xsd:string .
+
+ns1:ElectronicArts a owl:NamedIndividual,
+        ns1:Organization ;
+    rdfs:label "Electronic Arts"^^xsd:string ;
+    ns1:hasShortName ns1:EAAbbreviation .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:DatePoint a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:VideoGame a owl:Class ;
+    rdfs:subClassOf ns1:CreativeWork .

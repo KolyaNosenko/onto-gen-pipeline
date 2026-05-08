@@ -1,0 +1,206 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:Montgomery a owl:NamedIndividual,
+        ns1:City ;
+    ns1:capitalOf ns1:Alabama .
+
+ns1:ResidentialBuilding a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:Verbena a owl:NamedIndividual,
+        ns1:UnincorporatedCommunity ;
+    rdfs:label "Summerfield"^^xsd:string,
+        "Verbena"^^xsd:string ;
+    ns1:builtBeside ns1:VerbenaRailroad ;
+    ns1:developedDuring "late 19th and early 20th centuries"^^xsd:string ;
+    ns1:developedForVisitors "more affluent citizenry of Montgomery"^^xsd:string ;
+    ns1:hasBuilding ns1:VerbenaUnitedMethodistChurch,
+        ns1:bank1,
+        ns1:generalstore1,
+        ns1:hotel1,
+        ns1:hotel2,
+        ns1:postoffice1 ;
+    ns1:hasResidences "many stately homes, some of which have undergone recent renovation and restoration"^^xsd:string ;
+    ns1:isLargestInCounty ns1:ChiltonCounty ;
+    ns1:locatedInCounty ns1:ChiltonCounty ;
+    ns1:namedFor ns1:VerbenaFlower ;
+    ns1:populationIn 756 .
+
+ns1:builtBeside a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:Railroad .
+
+ns1:capitalOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:City ;
+    rdfs:range ns1:State .
+
+ns1:currentCondition a owl:DatatypeProperty ;
+    rdfs:domain ns1:Building ;
+    rdfs:range xsd:string .
+
+ns1:developedDuring a owl:DatatypeProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range xsd:string .
+
+ns1:developedForVisitors a owl:DatatypeProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range xsd:string .
+
+ns1:hasBuilding a owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:Building .
+
+ns1:hasResidences a owl:DatatypeProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range xsd:string .
+
+ns1:isLargestInCounty a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:County .
+
+ns1:locatedInCountry a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range ns1:Country .
+
+ns1:locatedInCounty a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:County .
+
+ns1:locatedInState a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:County ;
+    rdfs:range ns1:State .
+
+ns1:locatedOn a owl:ObjectProperty ;
+    rdfs:domain ns1:Building ;
+    rdfs:range ns1:Road .
+
+ns1:namedFor a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range ns1:Flower .
+
+ns1:ownedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Railroad ;
+    rdfs:range ns1:TransportationCompany .
+
+ns1:populationIn a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Community ;
+    rdfs:range xsd:integer .
+
+ns1:Bank a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:CSXTransportation a owl:NamedIndividual,
+        ns1:TransportationCompany ;
+    rdfs:label "CSX Transportation"^^xsd:string .
+
+ns1:Church a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:CountyRoad59 a owl:NamedIndividual,
+        ns1:Road ;
+    rdfs:label "County Road 59"^^xsd:string .
+
+ns1:GeneralStore a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:PostOffice a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:UnincorporatedCommunity a owl:Class ;
+    rdfs:subClassOf ns1:Community .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United States"^^xsd:string .
+
+ns1:VerbenaFlower a owl:NamedIndividual,
+        ns1:Flower ;
+    rdfs:label "Verbena"^^xsd:string .
+
+ns1:VerbenaRailroad a owl:NamedIndividual,
+        ns1:Railroad ;
+    ns1:ownedBy ns1:CSXTransportation .
+
+ns1:VerbenaUnitedMethodistChurch a owl:NamedIndividual,
+        ns1:Church ;
+    rdfs:label "Verbena United Methodist Church"^^xsd:string ;
+    ns1:currentCondition "still stands"^^xsd:string ;
+    ns1:locatedOn ns1:CountyRoad59 .
+
+ns1:bank1 a owl:NamedIndividual,
+        ns1:Bank ;
+    ns1:currentCondition "gone or boarded up"^^xsd:string .
+
+ns1:generalstore1 a owl:NamedIndividual,
+        ns1:GeneralStore ;
+    ns1:currentCondition "gone or boarded up"^^xsd:string .
+
+ns1:hotel1 a owl:NamedIndividual,
+        ns1:Hotel ;
+    ns1:currentCondition "gone or boarded up"^^xsd:string .
+
+ns1:hotel2 a owl:NamedIndividual,
+        ns1:Hotel ;
+    ns1:currentCondition "gone or boarded up"^^xsd:string .
+
+ns1:postoffice1 a owl:NamedIndividual,
+        ns1:PostOffice ;
+    ns1:currentCondition "gone or boarded up"^^xsd:string .
+
+ns1:Alabama a owl:NamedIndividual,
+        ns1:State ;
+    ns1:locatedInCountry ns1:UnitedStates .
+
+ns1:ChiltonCounty a owl:NamedIndividual,
+        ns1:County ;
+    rdfs:label "Chilton County"^^xsd:string ;
+    ns1:locatedInState ns1:Alabama .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Flower a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Hotel a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:Road a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TransportationCompany a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Railroad a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:County a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Building a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Community a owl:Class ;
+    rdfs:subClassOf owl:Thing .

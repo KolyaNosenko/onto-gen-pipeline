@@ -1,0 +1,505 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Ontology declaration
+#################################################################
+
+: a owl:Ontology .
+
+#################################################################
+# Classes
+#################################################################
+
+:Neuron a owl:Class ;
+    rdfs:label "Neuron"^^xsd:string .
+
+:GridCell a owl:Class ;
+    rdfs:subClassOf :Neuron ;
+    rdfs:label "Grid Cell"^^xsd:string .
+
+:PlaceCell a owl:Class ;
+    rdfs:subClassOf :Neuron ;
+    rdfs:label "Place Cell"^^xsd:string .
+
+:SpatiallyFiringCell a owl:Class ;
+    rdfs:subClassOf :Neuron ;
+    rdfs:label "Spatially Firing Cell"^^xsd:string .
+
+:GridCell rdfs:subClassOf :SpatiallyFiringCell .
+:PlaceCell rdfs:subClassOf :SpatiallyFiringCell .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:Researcher a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Researcher"^^xsd:string .
+
+:Student a owl:Class ;
+    rdfs:subClassOf :Researcher ;
+    rdfs:label "Student"^^xsd:string .
+
+:Organisation a owl:Class ;
+    rdfs:label "Organisation"^^xsd:string .
+
+:ResearchInstitution a owl:Class ;
+    rdfs:subClassOf :Organisation ;
+    rdfs:label "Research Institution"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string .
+
+:Discovery a owl:Class ;
+    rdfs:label "Discovery"^^xsd:string .
+
+:Award a owl:Class ;
+    rdfs:label "Award"^^xsd:string .
+
+:NobelPrize a owl:Class ;
+    rdfs:subClassOf :Award ;
+    rdfs:label "Nobel Prize"^^xsd:string .
+
+:Year a owl:Class ;
+    rdfs:label "Year"^^xsd:string .
+
+:BrainRegion a owl:Class ;
+    rdfs:label "Brain Region"^^xsd:string .
+
+:CerebralCortex a owl:Class ;
+    rdfs:subClassOf :BrainRegion ;
+    rdfs:label "Cerebral Cortex"^^xsd:string .
+
+:Hippocampus a owl:Class ;
+    rdfs:subClassOf :BrainRegion ;
+    rdfs:label "Hippocampus"^^xsd:string .
+
+:EntorhinalCortex a owl:Class ;
+    rdfs:subClassOf :CerebralCortex ;
+    rdfs:label "Entorhinal Cortex"^^xsd:string .
+
+:Species a owl:Class ;
+    rdfs:label "Species"^^xsd:string .
+
+:Animal a owl:Class ;
+    rdfs:label "Animal"^^xsd:string .
+
+:Electrode a owl:Class ;
+    rdfs:label "Electrode"^^xsd:string .
+
+:ExperimentalArena a owl:Class ;
+    rdfs:label "Experimental Arena"^^xsd:string .
+
+:FiringField a owl:Class ;
+    rdfs:label "Firing Field"^^xsd:string .
+
+:PlaceField a owl:Class ;
+    rdfs:subClassOf :FiringField ;
+    rdfs:label "Place Field"^^xsd:string .
+
+:FiringPattern a owl:Class ;
+    rdfs:label "Firing Pattern"^^xsd:string .
+
+:TriangularFiringPattern a owl:Class ;
+    rdfs:subClassOf :FiringPattern ;
+    rdfs:label "Triangular Firing Pattern"^^xsd:string .
+
+:GeometricShape a owl:Class ;
+    rdfs:label "Geometric Shape"^^xsd:string .
+
+:EquilateralTriangle a owl:Class ;
+    rdfs:subClassOf :GeometricShape ;
+    rdfs:label "Equilateral Triangle"^^xsd:string .
+
+:Grid a owl:Class ;
+    rdfs:subClassOf :GeometricShape ;
+    rdfs:label "Grid"^^xsd:string .
+
+:Cluster a owl:Class ;
+    rdfs:label "Cluster"^^xsd:string .
+
+:Hypothesis a owl:Class ;
+    rdfs:label "Hypothesis"^^xsd:string .
+
+:Mechanism a owl:Class ;
+    rdfs:label "Mechanism"^^xsd:string .
+
+:CognitiveRepresentation a owl:Class ;
+    rdfs:label "Cognitive Representation"^^xsd:string .
+
+:Space a owl:Class ;
+    rdfs:label "Space"^^xsd:string .
+
+:EuclideanSpace a owl:Class ;
+    rdfs:subClassOf :Space ;
+    rdfs:label "Euclidean Space"^^xsd:string .
+
+:ActionPotential a owl:Class ;
+    rdfs:label "Action Potential"^^xsd:string .
+
+:PositioningSystem a owl:Class ;
+    rdfs:label "Positioning System"^^xsd:string .
+
+:Information a owl:Class ;
+    rdfs:label "Information"^^xsd:string .
+
+:PositionInformation a owl:Class ;
+    rdfs:subClassOf :Information ;
+    rdfs:label "Position Information"^^xsd:string .
+
+:DirectionInformation a owl:Class ;
+    rdfs:subClassOf :Information ;
+    rdfs:label "Direction Information"^^xsd:string .
+
+:Visualization a owl:Class ;
+    rdfs:label "Visualization"^^xsd:string .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:isTypeOf a owl:ObjectProperty ;
+    rdfs:label "isTypeOf"^^xsd:string ;
+    rdfs:domain :GridCell ;
+    rdfs:range :Neuron .
+
+:discoveredBy a owl:ObjectProperty ;
+    rdfs:label "discoveredBy"^^xsd:string ;
+    rdfs:domain :Discovery ;
+    rdfs:range :Researcher .
+
+:madeAt a owl:ObjectProperty ;
+    rdfs:label "madeAt"^^xsd:string ;
+    rdfs:domain :Discovery ;
+    rdfs:range :Organisation .
+
+:madeIn a owl:ObjectProperty ;
+    rdfs:label "madeIn"^^xsd:string ;
+    rdfs:domain :Discovery ;
+    rdfs:range :Country .
+
+:hasDiscoveryYear a owl:ObjectProperty ;
+    rdfs:label "hasDiscoveryYear"^^xsd:string ;
+    rdfs:domain :Discovery ;
+    rdfs:range :Year .
+
+:awardedFor a owl:ObjectProperty ;
+    rdfs:label "awardedFor"^^xsd:string ;
+    rdfs:domain :Award ;
+    rdfs:range :Discovery .
+
+:awardedTo a owl:ObjectProperty ;
+    rdfs:label "awardedTo"^^xsd:string ;
+    rdfs:domain :Award ;
+    rdfs:range :Researcher .
+
+:hasAwardYear a owl:ObjectProperty ;
+    rdfs:label "hasAwardYear"^^xsd:string ;
+    rdfs:domain :Award ;
+    rdfs:range :Year .
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:label "locatedIn"^^xsd:string .
+
+:isPartOf a owl:ObjectProperty ;
+    rdfs:label "isPartOf"^^xsd:string ;
+    owl:transitive true .
+
+:hasStudent a owl:ObjectProperty ;
+    rdfs:label "hasStudent"^^xsd:string ;
+    rdfs:domain :Researcher ;
+    rdfs:range :Student .
+
+:foundIn a owl:ObjectProperty ;
+    rdfs:label "foundIn"^^xsd:string ;
+    rdfs:domain :Neuron ;
+    rdfs:range :BrainRegion .
+
+:recordedIn a owl:ObjectProperty ;
+    rdfs:label "recordedIn"^^xsd:string ;
+    rdfs:domain :Neuron ;
+    rdfs:range :BrainRegion .
+
+:recordedFrom a owl:ObjectProperty ;
+    rdfs:label "recordedFrom"^^xsd:string ;
+    rdfs:domain :Electrode ;
+    rdfs:range :Neuron .
+
+:implantedIn a owl:ObjectProperty ;
+    rdfs:label "implantedIn"^^xsd:string ;
+    rdfs:domain :Electrode ;
+    rdfs:range :BrainRegion .
+
+:usedIn a owl:ObjectProperty ;
+    rdfs:label "usedIn"^^xsd:string .
+
+:hasFiringPattern a owl:ObjectProperty ;
+    rdfs:label "hasFiringPattern"^^xsd:string ;
+    rdfs:domain :Neuron ;
+    rdfs:range :FiringPattern .
+
+:formsClustersArrangedAs a owl:ObjectProperty ;
+    rdfs:label "formsClustersArrangedAs"^^xsd:string ;
+    rdfs:domain :FiringPattern ;
+    rdfs:range :GeometricShape .
+
+:hasVertex a owl:ObjectProperty ;
+    rdfs:label "hasVertex"^^xsd:string ;
+    rdfs:domain :Grid ;
+    rdfs:range :Cluster .
+
+:suggestedHypothesis a owl:ObjectProperty ;
+    rdfs:label "suggestedHypothesis"^^xsd:string ;
+    rdfs:domain :Discovery ;
+    rdfs:range :Hypothesis .
+
+:suggestedMechanism a owl:ObjectProperty ;
+    rdfs:label "suggestedMechanism"^^xsd:string ;
+    rdfs:domain :Discovery ;
+    rdfs:range :Mechanism .
+
+:encodes a owl:ObjectProperty ;
+    rdfs:label "encodes"^^xsd:string ;
+    rdfs:domain :GridCell ;
+    rdfs:range :CognitiveRepresentation .
+
+:encodesRepresentationOf a owl:ObjectProperty ;
+    rdfs:label "encodesRepresentationOf"^^xsd:string ;
+    rdfs:domain :CognitiveRepresentation ;
+    rdfs:range :Space .
+
+:constitutes a owl:ObjectProperty ;
+    rdfs:label "constitutes"^^xsd:string ;
+    rdfs:domain :Neuron ;
+    rdfs:range :PositioningSystem .
+
+:basedOn a owl:ObjectProperty ;
+    rdfs:label "basedOn"^^xsd:string ;
+    rdfs:domain :Mechanism ;
+    rdfs:range :Information .
+
+:emits a owl:ObjectProperty ;
+    rdfs:label "emits"^^xsd:string ;
+    rdfs:domain :Neuron ;
+    rdfs:range :ActionPotential .
+
+:hasPlaceField a owl:ObjectProperty ;
+    rdfs:label "hasPlaceField"^^xsd:string ;
+    rdfs:domain :PlaceCell ;
+    rdfs:range :PlaceField .
+
+:distinguishedFrom a owl:ObjectProperty ;
+    rdfs:label "distinguishedFrom"^^xsd:string ;
+    rdfs:domain :GridCell ;
+    rdfs:range :PlaceCell .
+
+:conductedOn a owl:ObjectProperty ;
+    rdfs:label "conductedOn"^^xsd:string ;
+    rdfs:domain :Discovery ;
+    rdfs:range :Animal .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:hasYearValue a owl:DatatypeProperty ;
+    rdfs:label "hasYearValue"^^xsd:string ;
+    rdfs:domain :Year ;
+    rdfs:range xsd:integer .
+
+:hasLabel a owl:DatatypeProperty ;
+    rdfs:label "hasLabel"^^xsd:string ;
+    rdfs:range xsd:string .
+
+#################################################################
+# Class restrictions
+#################################################################
+
+:GridCell rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :hasFiringPattern ;
+      owl:someValuesFrom :TriangularFiringPattern ] .
+
+:PlaceCell rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :foundIn ;
+      owl:someValuesFrom :Hippocampus ] .
+
+:GridCell rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :recordedIn ;
+      owl:someValuesFrom :EntorhinalCortex ] .
+
+:Discovery rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :discoveredBy ;
+      owl:someValuesFrom :Researcher ] .
+
+:Award rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :awardedTo ;
+      owl:someValuesFrom :Researcher ] .
+
+#################################################################
+# Named Individuals
+#################################################################
+
+:GridCellNeuron a :GridCell , owl:NamedIndividual ;
+    rdfs:label "grid cell"^^xsd:string ;
+    :isTypeOf :NeuronIndividual .
+
+:NeuronIndividual a :Neuron , owl:NamedIndividual ;
+    rdfs:label "neuron"^^xsd:string .
+
+:EdvardMoser a :Researcher , owl:NamedIndividual ;
+    rdfs:label "Edvard Moser"^^xsd:string ;
+    :hasStudent :TorkelHafting ;
+    :hasStudent :MarianneFyhn ;
+    :hasStudent :SturlaMolden .
+
+:MayBrittMoser a :Researcher , owl:NamedIndividual ;
+    rdfs:label "May-Britt Moser"^^xsd:string ;
+    :hasStudent :TorkelHafting ;
+    :hasStudent :MarianneFyhn ;
+    :hasStudent :SturlaMolden .
+
+:TorkelHafting a :Student , owl:NamedIndividual ;
+    rdfs:label "Torkel Hafting"^^xsd:string .
+
+:MarianneFyhn a :Student , owl:NamedIndividual ;
+    rdfs:label "Marianne Fyhn"^^xsd:string .
+
+:SturlaMolden a :Student , owl:NamedIndividual ;
+    rdfs:label "Sturla Molden"^^xsd:string .
+
+:JohnOKeefe a :Researcher , owl:NamedIndividual ;
+    rdfs:label "John O'Keefe"^^xsd:string .
+
+:CentreForTheBiologyOfMemory a :ResearchInstitution , owl:NamedIndividual ;
+    rdfs:label "Centre for the Biology of Memory"^^xsd:string ;
+    :locatedIn :Norway .
+
+:CBM a :ResearchInstitution , owl:NamedIndividual ;
+    rdfs:label "CBM"^^xsd:string ;
+    owl:sameAs :CentreForTheBiologyOfMemory .
+
+:Norway a :Country , owl:NamedIndividual ;
+    rdfs:label "Norway"^^xsd:string .
+
+:Year2005 a :Year , owl:NamedIndividual ;
+    rdfs:label "2005"^^xsd:string ;
+    :hasYearValue 2005 .
+
+:Year2014 a :Year , owl:NamedIndividual ;
+    rdfs:label "2014"^^xsd:string ;
+    :hasYearValue 2014 .
+
+:DiscoveryOfGridCells a :Discovery , owl:NamedIndividual ;
+    rdfs:label "discovery of grid cells"^^xsd:string ;
+    :discoveredBy :EdvardMoser ;
+    :discoveredBy :MayBrittMoser ;
+    :discoveredBy :TorkelHafting ;
+    :discoveredBy :MarianneFyhn ;
+    :discoveredBy :SturlaMolden ;
+    :madeAt :CentreForTheBiologyOfMemory ;
+    :madeIn :Norway ;
+    :hasDiscoveryYear :Year2005 ;
+    :suggestedHypothesis :CognitiveRepresentationHypothesis ;
+    :suggestedMechanism :SelfPositionComputationMechanism ;
+    :conductedOn :Rat .
+
+:DiscoveryOfPositioningCells a :Discovery , owl:NamedIndividual ;
+    rdfs:label "discoveries of cells that constitute a positioning system in the brain"^^xsd:string .
+
+:NobelPrizePhysiologyMedicine2014 a :NobelPrize , owl:NamedIndividual ;
+    rdfs:label "2014 Nobel Prize in Physiology or Medicine"^^xsd:string ;
+    :hasAwardYear :Year2014 ;
+    :awardedTo :EdvardMoser ;
+    :awardedTo :MayBrittMoser ;
+    :awardedTo :JohnOKeefe ;
+    :awardedFor :DiscoveryOfPositioningCells .
+
+:CognitiveRepresentationHypothesis a :Hypothesis , owl:NamedIndividual ;
+    rdfs:label "hypothesis that these cells encode a cognitive representation of Euclidean space"^^xsd:string .
+
+:EuclideanSpaceRepresentation a :CognitiveRepresentation , owl:NamedIndividual ;
+    rdfs:label "cognitive representation of Euclidean space"^^xsd:string ;
+    :encodesRepresentationOf :EuclideanSpaceIndividual .
+
+:EuclideanSpaceIndividual a :EuclideanSpace , owl:NamedIndividual ;
+    rdfs:label "Euclidean space"^^xsd:string .
+
+:SelfPositionComputationMechanism a :Mechanism , owl:NamedIndividual ;
+    rdfs:label "mechanism for dynamic computation of self-position"^^xsd:string ;
+    :basedOn :PositionInformationIndividual ;
+    :basedOn :DirectionInformationIndividual .
+
+:PositionInformationIndividual a :PositionInformation , owl:NamedIndividual ;
+    rdfs:label "position information"^^xsd:string .
+
+:DirectionInformationIndividual a :DirectionInformation , owl:NamedIndividual ;
+    rdfs:label "direction information"^^xsd:string .
+
+:DorsomedialEntorhinalCortex a :EntorhinalCortex , owl:NamedIndividual ;
+    rdfs:label "dorsomedial entorhinal cortex"^^xsd:string ;
+    :isPartOf :CerebralCortexIndividual .
+
+:CerebralCortexIndividual a :CerebralCortex , owl:NamedIndividual ;
+    rdfs:label "cerebral cortex"^^xsd:string .
+
+:RatHippocampus a :Hippocampus , owl:NamedIndividual ;
+    rdfs:label "rat hippocampus"^^xsd:string .
+
+:Rat a :Animal , owl:NamedIndividual ;
+    rdfs:label "rat"^^xsd:string .
+
+:OpenArena a :ExperimentalArena , owl:NamedIndividual ;
+    rdfs:label "open arena"^^xsd:string .
+
+:ElectrodeIndividual a :Electrode , owl:NamedIndividual ;
+    rdfs:label "electrode"^^xsd:string ;
+    :implantedIn :DorsomedialEntorhinalCortex ;
+    :recordedFrom :GridCellNeuron .
+
+:GridOfEquilateralTriangles a :Grid , owl:NamedIndividual ;
+    rdfs:label "grid of equilateral triangles"^^xsd:string .
+
+:EquilateralTriangleShape a :EquilateralTriangle , owl:NamedIndividual ;
+    rdfs:label "equilateral triangles"^^xsd:string .
+
+:TriangularGridFiringPattern a :TriangularFiringPattern , owl:NamedIndividual ;
+    rdfs:label "regular triangle-pattern"^^xsd:string ;
+    :formsClustersArrangedAs :GridOfEquilateralTriangles .
+
+:PlaceFieldIndividual a :PlaceField , owl:NamedIndividual ;
+    rdfs:label "place field"^^xsd:string .
+
+:PlaceCellIndividual a :PlaceCell , owl:NamedIndividual ;
+    rdfs:label "place cell"^^xsd:string ;
+    :foundIn :RatHippocampus ;
+    :hasPlaceField :PlaceFieldIndividual .
+
+:PositioningSystemInBrain a :PositioningSystem , owl:NamedIndividual ;
+    rdfs:label "positioning system in the brain"^^xsd:string .
+
+:ActionPotentialIndividual a :ActionPotential , owl:NamedIndividual ;
+    rdfs:label "action potential"^^xsd:string .
+
+#################################################################
+# Additional axiom assertions on individuals
+#################################################################
+
+:GridCellNeuron
+    :hasFiringPattern :TriangularGridFiringPattern ;
+    :encodes :EuclideanSpaceRepresentation ;
+    :constitutes :PositioningSystemInBrain ;
+    :recordedIn :DorsomedialEntorhinalCortex ;
+    :emits :ActionPotentialIndividual ;
+    :distinguishedFrom :PlaceCellIndividual .
+
+:DiscoveryOfGridCells
+    :suggestedHypothesis :CognitiveRepresentationHypothesis ;
+    :suggestedMechanism :SelfPositionComputationMechanism .

@@ -1,0 +1,389 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Organization a owl:Class .
+:NaturistOrganization a owl:Class ;
+    rdfs:subClassOf :Organization .
+:Association a owl:Class ;
+    rdfs:subClassOf :Organization .
+:PersonGroup a owl:Class .
+:Resort a owl:Class .
+:Club a owl:Class .
+:Business a owl:Class .
+:Member a owl:Class .
+:Country a owl:Class .
+:Territory a owl:Class .
+:Place a owl:Class .
+:CityLikePlace a owl:Class ;
+    rdfs:subClassOf :Place .
+:Region a owl:Class ;
+    rdfs:subClassOf :Place .
+:Continent a owl:Class ;
+    rdfs:subClassOf :Region .
+:Event a owl:Class .
+:FoundingEvent a owl:Class ;
+    rdfs:subClassOf :Event .
+:Name a owl:Class .
+:Date a owl:Class .
+:Year a owl:Class ;
+    rdfs:subClassOf :Date .
+:Quantity a owl:Class .
+:ApproximateQuantity a owl:Class ;
+    rdfs:subClassOf :Quantity .
+:Benefit a owl:Class .
+:Right a owl:Class .
+:Setting a owl:Class .
+:Beach a owl:Class ;
+    rdfs:subClassOf :Place .
+:Land a owl:Class ;
+    rdfs:subClassOf :Place .
+:Home a owl:Class ;
+    rdfs:subClassOf :Place .
+:Backyard a owl:Class ;
+    rdfs:subClassOf :Place .
+:Campground a owl:Class ;
+    rdfs:subClassOf :Place .
+:Government a owl:Class .
+:Campaign a owl:Class .
+:Lobbying a owl:Class .
+:Nudism a owl:Class .
+:NudeRecreation a owl:Class .
+:FamilyRecreation a owl:Class .
+:MembershipFee a owl:Class .
+:NaturalistActivity a owl:Class .
+
+:hasAcronym a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Name .
+:basedIn a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Place .
+:foundedIn a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Date .
+:hasPreviousName a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Name .
+:hasSizeRank a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Quantity .
+:hasAffiliatedOrganization a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Organization .
+:servesMember a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Member .
+:servesInPlace a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Place .
+:promotes a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Benefit .
+:worksToProtect a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Right .
+:supportsNudismIn a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Setting .
+:settingType a owl:ObjectProperty ;
+    rdfs:domain :Setting ;
+    rdfs:range :Place .
+:usesPortionOf a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :MembershipFee .
+:usesFor a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Campaign .
+:usesForLobbying a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Lobbying .
+:campaignsIn a owl:ObjectProperty ;
+    rdfs:domain :Campaign ;
+    rdfs:range :Country .
+:lobbiesIn a owl:ObjectProperty ;
+    rdfs:domain :Lobbying ;
+    rdfs:range :Country .
+:allowsNudismIn a owl:ObjectProperty ;
+    rdfs:domain :Government ;
+    rdfs:range :Country .
+
+:AmericanAssociationForNudeRecreation a :NaturistOrganization , owl:NamedIndividual ;
+    rdfs:label "American Association for Nude Recreation"^^xsd:string ;
+    :hasAcronym :AANR ;
+    :basedIn :UnitedStates ;
+    :foundedIn :Year1931 ;
+    :hasPreviousName :AmericanSunbathingAssociation ;
+    :hasSizeRank :Largest ;
+    :hasSizeRank :LongestEstablished ;
+    :hasAffiliatedOrganization :NudistResort1 , :NudistResort2 , :NudistResort3 , :NudistResort4 , :NudistResort5 , :NudistResort6 , :NudistResort7 , :NudistResort8 , :NudistResort9 , :NudistResort10 , :NudistResort11 , :NudistResort12 , :NudistResort13 , :NudistResort14 , :NudistResort15 , :NudistResort16 , :NudistResort17 , :NudistResort18 , :NudistResort19 , :NudistResort20 , :NudistResort21 , :NudistResort22 , :NudistResort23 , :NudistResort24 , :NudistResort25 , :NudistResort26 , :NudistResort27 , :NudistResort28 , :NudistResort29 , :NudistResort30 , :NudistResort31 , :NudistResort32 , :NudistResort33 , :NudistResort34 , :NudistResort35 , :NudistResort36 , :NudistResort37 , :NudistResort38 , :NudistResort39 , :NudistResort40 , :NudistResort41 , :NudistResort42 , :NudistResort43 , :NudistResort44 , :NudistResort45 , :NudistResort46 , :NudistResort47 , :NudistResort48 , :NudistResort49 , :NudistResort50 , :NudistResort51 , :NudistResort52 , :NudistResort53 , :NudistResort54 , :NudistResort55 , :NudistResort56 , :NudistResort57 , :NudistResort58 , :NudistResort59 , :NudistResort60 , :NudistResort61 , :NudistResort62 , :NudistResort63 , :NudistResort64 , :NudistResort65 , :NudistResort66 , :NudistResort67 , :NudistResort68 , :NudistResort69 , :NudistResort70 , :NudistResort71 , :NudistResort72 , :NudistResort73 , :NudistResort74 , :NudistResort75 , :NudistResort76 , :NudistResort77 , :NudistResort78 , :NudistResort79 , :NudistResort80 , :NudistResort81 , :NudistResort82 , :NudistResort83 , :NudistResort84 , :NudistResort85 , :NudistResort86 , :NudistResort87 , :NudistResort88 , :NudistResort89 , :NudistResort90 , :NudistResort91 , :NudistResort92 , :NudistResort93 , :NudistResort94 , :NudistResort95 , :NudistResort96 , :NudistResort97 , :NudistResort98 , :NudistResort99 , :NudistResort100 , :NudistResort101 , :NudistResort102 , :NudistResort103 , :NudistResort104 , :NudistResort105 , :NudistResort106 , :NudistResort107 , :NudistResort108 , :NudistResort109 , :NudistResort110 , :NudistResort111 , :NudistResort112 , :NudistResort113 , :NudistResort114 , :NudistResort115 , :NudistResort116 , :NudistResort117 , :NudistResort118 , :NudistResort119 , :NudistResort120 , :NudistResort121 , :NudistResort122 , :NudistResort123 , :NudistResort124 , :NudistResort125 , :NudistResort126 , :NudistResort127 , :NudistResort128 , :NudistResort129 , :NudistResort130 , :NudistResort131 , :NudistResort132 , :NudistResort133 , :NudistResort134 , :NudistResort135 , :NudistResort136 , :NudistResort137 , :NudistResort138 , :NudistResort139 , :NudistResort140 , :NudistResort141 , :NudistResort142 , :NudistResort143 , :NudistResort144 , :NudistResort145 , :NudistResort146 , :NudistResort147 , :NudistResort148 , :NudistResort149 , :NudistResort150 , :NudistResort151 , :NudistResort152 , :NudistResort153 , :NudistResort154 , :NudistResort155 , :NudistResort156 , :NudistResort157 , :NudistResort158 , :NudistResort159 , :NudistResort160 , :NudistResort161 , :NudistResort162 , :NudistResort163 , :NudistResort164 , :NudistResort165 , :NudistResort166 , :NudistResort167 , :NudistResort168 , :NudistResort169 , :NudistResort170 , :NudistResort171 , :NudistResort172 , :NudistResort173 , :NudistResort174 , :NudistResort175 , :NudistResort176 , :NudistResort177 , :NudistResort178 , :NudistResort179 , :NudistResort180 , :NudistResort181 , :NudistResort182 , :NudistResort183 , :NudistResort184 , :NudistResort185 , :NudistResort186 , :NudistResort187 , :NudistResort188 , :NudistResort189 , :NudistResort190 , :NudistResort191 , :NudistResort192 , :NudistResort193 , :NudistResort194 , :NudistResort195 , :NudistResort196 , :NudistResort197 , :NudistResort198 , :NudistResort199 , :NudistResort200 ;
+    :servesMember :MemberCount30000 ;
+    :servesInPlace :UnitedStates , :Canada , :Mexico , :FrenchWestIndies , :VirginIslands , :StMartin ;
+    :promotes :WholesomeNudeFamilyRecreation ;
+    :worksToProtect :RightsOfNudists ;
+    :supportsNudismIn :SanctionedNudeBeachesSetting , :PublicLandsSetAsideForThatUseSetting , :HomesSetting , :PrivateBackyardsSetting , :AANRAffiliatedClubsSetting , :CampgroundsSetting , :ResortsSetting ;
+    :usesPortionOf :CollectedMembershipFees ;
+    :usesFor :Campaigning ;
+    :usesForLobbying :LobbyingForAllowingNudism .
+
+:AANR a :Name , owl:NamedIndividual ;
+    rdfs:label "AANR"^^xsd:string .
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "the United States"^^xsd:string .
+:Year1931 a :Year , owl:NamedIndividual ;
+    rdfs:label "1931"^^xsd:string .
+:AmericanSunbathingAssociation a :Name , owl:NamedIndividual ;
+    rdfs:label "American Sunbathing Association"^^xsd:string .
+:Largest a :Quantity , owl:NamedIndividual ;
+    rdfs:label "largest"^^xsd:string .
+:LongestEstablished a :Quantity , owl:NamedIndividual ;
+    rdfs:label "longest-established"^^xsd:string .
+:MemberCount30000 a :ApproximateQuantity , owl:NamedIndividual ;
+    rdfs:label "over 30,000"^^xsd:string .
+:FrenchWestIndies a :Territory , owl:NamedIndividual ;
+    rdfs:label "French West Indies"^^xsd:string .
+:VirginIslands a :Territory , owl:NamedIndividual ;
+    rdfs:label "Virgin Islands"^^xsd:string .
+:StMartin a :Territory , owl:NamedIndividual ;
+    rdfs:label "St. Martin"^^xsd:string .
+:Canada a :Country , owl:NamedIndividual ;
+    rdfs:label "Canada"^^xsd:string .
+:Mexico a :Country , owl:NamedIndividual ;
+    rdfs:label "Mexico"^^xsd:string .
+
+:WholesomeNudeFamilyRecreation a :NudeRecreation , :FamilyRecreation , owl:NamedIndividual ;
+    rdfs:label "wholesome nude family recreation"^^xsd:string .
+:RightsOfNudists a :Right , owl:NamedIndividual ;
+    rdfs:label "the rights of nudists"^^xsd:string .
+:SanctionedNudeBeachesSetting a :Setting , owl:NamedIndividual ;
+    rdfs:label "sanctioned nude beaches"^^xsd:string ;
+    :settingType :Beach .
+:PublicLandsSetAsideForThatUseSetting a :Setting , owl:NamedIndividual ;
+    rdfs:label "public lands set aside for that use"^^xsd:string ;
+    :settingType :Land .
+:HomesSetting a :Setting , owl:NamedIndividual ;
+    rdfs:label "homes"^^xsd:string ;
+    :settingType :Home .
+:PrivateBackyardsSetting a :Setting , owl:NamedIndividual ;
+    rdfs:label "private backyards"^^xsd:string ;
+    :settingType :Backyard .
+:AANRAffiliatedClubsSetting a :Setting , owl:NamedIndividual ;
+    rdfs:label "AANR-affiliated clubs"^^xsd:string ;
+    :settingType :Club .
+:CampgroundsSetting a :Setting , owl:NamedIndividual ;
+    rdfs:label "campgrounds"^^xsd:string ;
+    :settingType :Campground .
+:ResortsSetting a :Setting , owl:NamedIndividual ;
+    rdfs:label "resorts"^^xsd:string ;
+    :settingType :Resort .
+:CollectedMembershipFees a :MembershipFee , owl:NamedIndividual ;
+    rdfs:label "its collected membership fees"^^xsd:string .
+:Campaigning a :Campaign , owl:NamedIndividual ;
+    rdfs:label "campaigning"^^xsd:string ;
+    :campaignsIn :UnitedStates , :Canada .
+:LobbyingForAllowingNudism a :Lobbying , owl:NamedIndividual ;
+    rdfs:label "lobbying governments fighting to allow nudism"^^xsd:string ;
+    :lobbiesIn :UnitedStates , :Canada .
+
+:NudistResort1 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort2 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort3 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort4 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort5 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort6 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort7 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort8 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort9 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort10 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort11 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort12 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort13 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort14 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort15 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort16 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort17 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort18 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort19 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort20 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort21 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort22 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort23 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort24 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort25 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort26 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort27 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort28 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort29 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort30 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort31 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort32 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort33 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort34 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort35 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort36 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort37 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort38 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort39 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort40 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort41 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort42 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort43 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort44 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort45 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort46 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort47 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort48 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort49 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort50 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort51 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort52 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort53 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort54 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort55 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort56 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort57 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort58 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort59 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort60 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort61 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort62 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort63 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort64 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort65 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort66 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort67 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort68 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort69 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort70 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort71 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort72 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort73 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort74 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort75 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort76 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort77 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort78 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort79 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort80 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort81 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort82 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort83 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort84 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort85 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort86 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort87 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort88 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort89 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort90 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort91 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort92 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort93 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort94 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort95 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort96 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort97 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort98 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort99 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort100 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort101 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort102 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort103 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort104 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort105 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort106 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort107 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort108 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort109 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort110 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort111 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort112 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort113 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort114 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort115 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort116 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort117 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort118 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort119 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort120 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort121 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort122 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort123 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort124 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort125 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort126 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort127 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort128 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort129 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort130 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort131 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort132 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort133 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort134 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort135 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort136 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort137 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort138 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort139 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort140 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort141 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort142 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort143 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort144 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort145 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort146 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort147 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort148 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort149 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort150 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort151 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort152 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort153 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort154 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort155 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort156 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort157 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort158 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort159 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort160 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort161 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort162 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort163 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort164 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort165 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort166 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort167 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort168 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort169 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort170 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort171 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort172 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort173 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort174 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort175 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort176 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort177 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort178 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort179 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort180 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort181 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort182 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort183 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort184 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort185 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort186 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort187 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort188 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort189 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort190 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort191 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort192 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort193 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort194 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort195 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort196 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort197 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort198 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort199 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .
+:NudistResort200 a :Resort , owl:NamedIndividual ; rdfs:label "nudist resorts"^^xsd:string .

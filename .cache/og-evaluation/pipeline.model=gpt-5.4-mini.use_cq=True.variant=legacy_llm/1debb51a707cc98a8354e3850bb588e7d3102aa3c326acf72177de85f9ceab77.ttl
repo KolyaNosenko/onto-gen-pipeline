@@ -1,0 +1,141 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:VideoGame a owl:Class .
+:PhysicsBasedPuzzleVideoGame a owl:Class ;
+    rdfs:subClassOf :VideoGame .
+:Company a owl:Class .
+:GameDeveloper a owl:Class ;
+    rdfs:subClassOf :Company .
+:GamePublisher a owl:Class ;
+    rdfs:subClassOf :Company .
+:VideoGameConsole a owl:Class .
+:Person a owl:Class .
+:FilmDirector a owl:Class ;
+    rdfs:subClassOf :Person .
+:GameSequence a owl:Class .
+:GameRelease a owl:Class .
+:Place a owl:Class .
+:Continent a owl:Class ;
+    rdfs:subClassOf :Place .
+:Date a owl:Class .
+:GameFeature a owl:Class .
+:Level a owl:Class .
+:GameplayMechanic a owl:Class .
+:GameplayMode a owl:Class .
+:DevelopmentDeal a owl:Class .
+:Property a owl:Class .
+:OnlineServiceStatus a owl:Class .
+:Server a owl:Class .
+:UserCreatedGame a owl:Class .
+:Territory a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:developedBy a owl:ObjectProperty .
+:publishedBy a owl:ObjectProperty .
+:releasedFor a owl:ObjectProperty .
+:sequelTo a owl:ObjectProperty .
+:releasedIn a owl:ObjectProperty .
+:releasedOn a owl:ObjectProperty .
+:featuresLevelCount a owl:DatatypeProperty .
+:featuresMoreThanLevelCount a owl:DatatypeProperty .
+:canDownload a owl:ObjectProperty .
+:canUpload a owl:ObjectProperty .
+:designedBy a owl:ObjectProperty .
+:resembles a owl:ObjectProperty .
+:featuresMechanic a owl:ObjectProperty .
+:hasLessEmphasisOn a owl:ObjectProperty .
+:createdAsPartOfDeal a owl:ObjectProperty .
+:countsAs a owl:ObjectProperty .
+:hasOnlineServerStatus a owl:ObjectProperty .
+:serverFor a owl:ObjectProperty .
+:allowsAction a owl:ObjectProperty .
+
+:EALosAngeles a :GameDeveloper , owl:NamedIndividual ;
+    rdfs:label "EA Los Angeles"^^xsd:string .
+
+:AmblinEntertainment a :Company , owl:NamedIndividual ;
+    rdfs:label "Amblin Entertainment"^^xsd:string .
+
+:ElectronicArts a :GamePublisher , owl:NamedIndividual ;
+    rdfs:label "Electronic Arts"^^xsd:string .
+
+:Wii a :VideoGameConsole , owl:NamedIndividual ;
+    rdfs:label "Wii"^^xsd:string .
+
+:BoomBloxBashParty a :PhysicsBasedPuzzleVideoGame , owl:NamedIndividual ;
+    rdfs:label "Boom Blox Bash Party"^^xsd:string ;
+    :developedBy :EALosAngeles , :AmblinEntertainment ;
+    :publishedBy :ElectronicArts ;
+    :releasedFor :Wii ;
+    :sequelTo :BoomBlox ;
+    :releasedOn :May192009NorthAmerica , :May292009Europe ;
+    :featuresMoreThanLevelCount :LevelCount400 ;
+    :designedBy :StevenSpielberg ;
+    :resembles :BoomBlox ;
+    :featuresMechanic :NewMechanics ;
+    :hasLessEmphasisOn :ShootingMode ;
+    :createdAsPartOfDeal :ElectronicArtsStevenSpielbergDeal ;
+    :countsAs :NotOneOfThreeOriginalProperties ;
+    :hasOnlineServerStatus :OfflineServerStatus .
+
+:BoomBloxSmashParty a :PhysicsBasedPuzzleVideoGame , owl:NamedIndividual ;
+    rdfs:label "Boom Blox Smash Party"^^xsd:string .
+
+:BoomBlox a :VideoGame , owl:NamedIndividual ;
+    rdfs:label "Boom Blox"^^xsd:string .
+
+:StevenSpielberg a :FilmDirector , owl:NamedIndividual ;
+    rdfs:label "Steven Spielberg"^^xsd:string .
+
+:May192009NorthAmerica a :Date , owl:NamedIndividual ;
+    rdfs:label "19 May 2009"^^xsd:string ;
+    :releasedIn :NorthAmerica .
+
+:May292009Europe a :Date , owl:NamedIndividual ;
+    rdfs:label "29 May 2009"^^xsd:string ;
+    :releasedIn :Europe .
+
+:NorthAmerica a :Continent , owl:NamedIndividual ;
+    rdfs:label "North America"^^xsd:string .
+
+:Europe a :Continent , owl:NamedIndividual ;
+    rdfs:label "Europe"^^xsd:string .
+
+:LevelCount400 a owl:NamedIndividual ;
+    rdfs:label "more than 400"^^xsd:string .
+
+:NewLevels a :Level , owl:NamedIndividual ;
+    rdfs:label "new levels"^^xsd:string .
+
+:CustomCreatedLevels a :Level , owl:NamedIndividual ;
+    rdfs:label "custom-created levels"^^xsd:string .
+
+:NewMechanics a :GameplayMechanic , owl:NamedIndividual ;
+    rdfs:label "new mechanics"^^xsd:string .
+
+:ShootingMode a :GameplayMode , owl:NamedIndividual ;
+    rdfs:label "shooting mode"^^xsd:string .
+
+:ElectronicArtsStevenSpielbergDeal a :DevelopmentDeal , owl:NamedIndividual ;
+    rdfs:label "a deal between Electronic Arts and Steven Spielberg to make three original properties"^^xsd:string ;
+    :createdAsPartOfDeal :BoomBloxBashParty .
+
+:ThreeOriginalProperties a :Property , owl:NamedIndividual ;
+    rdfs:label "three original properties"^^xsd:string .
+
+:NotOneOfThreeOriginalProperties a :Property , owl:NamedIndividual ;
+    rdfs:label "does not count as one of the three original properties"^^xsd:string .
+
+:OfflineServerStatus a :OnlineServiceStatus , owl:NamedIndividual ;
+    rdfs:label "shut down the online servers"^^xsd:string .
+
+:OnlineServers a :Server , owl:NamedIndividual ;
+    rdfs:label "online servers"^^xsd:string ;
+    :serverFor :BoomBloxBashParty .
+
+:UserCreatedGames a :UserCreatedGame , owl:NamedIndividual ;
+    rdfs:label "user created games"^^xsd:string .

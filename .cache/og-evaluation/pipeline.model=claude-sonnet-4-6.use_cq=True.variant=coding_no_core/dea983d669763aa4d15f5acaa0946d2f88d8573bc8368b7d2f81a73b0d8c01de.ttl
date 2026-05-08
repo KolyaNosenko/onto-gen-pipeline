@@ -1,0 +1,222 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:AncientRome a owl:NamedIndividual,
+        ns1:AncientState ;
+    rdfs:label "ancient Rome"^^xsd:string .
+
+ns1:ItalianPeninsula a owl:NamedIndividual,
+        ns1:GeographicalEntity ;
+    rdfs:label "Italian peninsula"^^xsd:string ;
+    ns1:terrorizedBy ns1:ItalianCondottieri .
+
+ns1:aimedToEstablish a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:MilitaryForce .
+
+ns1:armySize a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:CitizenArmy ;
+    rdfs:range xsd:integer .
+
+ns1:createdBy a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryForce ;
+    rdfs:range ns1:MilitaryReform .
+
+ns1:endYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Republic ;
+    rdfs:range xsd:integer .
+
+ns1:establishedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:ReadinessSystem ;
+    rdfs:range ns1:Person .
+
+ns1:initiatedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range ns1:Person .
+
+ns1:inspiredByDisciplineOf a owl:ObjectProperty ;
+    rdfs:domain ns1:CitizenArmy ;
+    rdfs:range ns1:MilitaryLegion .
+
+ns1:intendedToCounter a owl:ObjectProperty ;
+    rdfs:domain ns1:CitizenArmy ;
+    rdfs:range ns1:MilitaryThreat .
+
+ns1:ledBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Republic ;
+    rdfs:range ns1:Person .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Republic ;
+    rdfs:range ns1:City .
+
+ns1:maintainedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:CitizenArmy ;
+    rdfs:range ns1:ReadinessSystem .
+
+ns1:motivatedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range ns1:PoliticalIdeology .
+
+ns1:occurredDuring a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range ns1:Republic .
+
+ns1:reformYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range xsd:integer .
+
+ns1:soughtToEmulate a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:MilitaryForce .
+
+ns1:startYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Republic ;
+    rdfs:range xsd:integer .
+
+ns1:terrorizedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:GeographicalEntity ;
+    rdfs:range ns1:MercenaryForce .
+
+ns1:AncientState a owl:Class ;
+    rdfs:subClassOf ns1:State .
+
+ns1:ChronicForeignInvasions a owl:NamedIndividual,
+        ns1:ForeignInvasion ;
+    rdfs:label "foreign invasions"^^xsd:string .
+
+ns1:CitizenInfantry a owl:Class ;
+    rdfs:subClassOf ns1:CitizenArmy .
+
+ns1:FlorenceCity a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Florence"^^xsd:string .
+
+ns1:FlorentineCitizenArmy a owl:NamedIndividual,
+        ns1:CitizenArmy ;
+    rdfs:label "citizen army"^^xsd:string ;
+    ns1:armySize 20000 ;
+    ns1:createdBy ns1:FlorentineRepublicMilitaryReforms ;
+    ns1:inspiredByDisciplineOf ns1:RomanLegions ;
+    ns1:intendedToCounter ns1:ChronicForeignInvasions,
+        ns1:ItalianCondottieri ;
+    ns1:maintainedBy ns1:ReadinessSystemInst .
+
+ns1:FlorentineCitizenInfantry a owl:NamedIndividual,
+        ns1:CitizenInfantry ;
+    rdfs:label "citizen-infantry"^^xsd:string ;
+    ns1:createdBy ns1:FlorentineRepublicMilitaryReforms .
+
+ns1:ForeignInvasion a owl:Class ;
+    rdfs:subClassOf ns1:MilitaryThreat .
+
+ns1:GirolamoSavonarola a owl:NamedIndividual,
+        ns1:Priest ;
+    rdfs:label "Girolamo Savonarola"^^xsd:string .
+
+ns1:MercenaryThreat a owl:Class ;
+    rdfs:subClassOf ns1:MercenaryForce,
+        ns1:MilitaryThreat .
+
+ns1:PoliticalEntity a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PoliticalTheorist a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Politician a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Priest a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:ReadinessSystemInst a owl:NamedIndividual,
+        ns1:ReadinessSystem ;
+    rdfs:label "system of readiness"^^xsd:string ;
+    ns1:establishedBy ns1:NiccoloMachiavelli .
+
+ns1:RepublicOfFlorence a owl:NamedIndividual,
+        ns1:Republic ;
+    rdfs:label "Republic of Florence"^^xsd:string ;
+    ns1:endYear 1512 ;
+    ns1:ledBy ns1:GirolamoSavonarola ;
+    ns1:locatedIn ns1:FlorenceCity ;
+    ns1:startYear 1498 .
+
+ns1:RepublicanSpiritInst a owl:NamedIndividual,
+        ns1:PoliticalIdeology ;
+    rdfs:label "republican spirit"^^xsd:string .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf ns1:GeographicalEntity .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:GeographicalEntity .
+
+ns1:FlorentineRepublicMilitaryReforms a owl:NamedIndividual,
+        ns1:MilitaryReform ;
+    rdfs:label "military reforms of the Florentine Republic"^^xsd:string ;
+    ns1:initiatedBy ns1:NiccoloMachiavelli ;
+    ns1:motivatedBy ns1:RepublicanSpiritInst ;
+    ns1:occurredDuring ns1:RepublicOfFlorence ;
+    ns1:reformYear 1506 .
+
+ns1:ItalianCondottieri a owl:NamedIndividual,
+        ns1:MercenaryThreat ;
+    rdfs:label "Italian Condottieri"^^xsd:string .
+
+ns1:MercenaryForce a owl:Class ;
+    rdfs:subClassOf ns1:MilitaryForce .
+
+ns1:MilitaryLegion a owl:Class ;
+    rdfs:subClassOf ns1:MilitaryForce .
+
+ns1:NiccoloMachiavelli a owl:NamedIndividual,
+        ns1:PoliticalTheorist,
+        ns1:Politician ;
+    rdfs:label "Niccolò Machiavelli"^^xsd:string ;
+    ns1:aimedToEstablish ns1:FlorentineCitizenArmy,
+        ns1:FlorentineCitizenInfantry ;
+    ns1:soughtToEmulate ns1:RomanLegions .
+
+ns1:PoliticalIdeology a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:RomanLegions a owl:NamedIndividual,
+        ns1:MilitaryLegion ;
+    rdfs:label "Roman legions"^^xsd:string .
+
+ns1:MilitaryThreat a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ReadinessSystem a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:GeographicalEntity a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CitizenArmy a owl:Class ;
+    rdfs:subClassOf ns1:MilitaryForce .
+
+ns1:MilitaryForce a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MilitaryReform a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Republic a owl:Class ;
+    rdfs:subClassOf ns1:PoliticalEntity .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .

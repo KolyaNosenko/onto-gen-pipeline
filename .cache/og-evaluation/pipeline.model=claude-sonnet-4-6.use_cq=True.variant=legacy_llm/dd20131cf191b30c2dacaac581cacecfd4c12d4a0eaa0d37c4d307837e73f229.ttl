@@ -1,0 +1,337 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Ontology declaration
+#################################################################
+
+: a owl:Ontology .
+
+#################################################################
+# Classes
+#################################################################
+
+:City a owl:Class ;
+    rdfs:label "City"^^xsd:string .
+
+:County a owl:Class ;
+    rdfs:label "County"^^xsd:string .
+
+:State a owl:Class ;
+    rdfs:label "State"^^xsd:string .
+
+:Republic a owl:Class ;
+    rdfs:label "Republic"^^xsd:string .
+
+:CapitalCity a owl:Class ;
+    rdfs:subClassOf :City ;
+    rdfs:label "Capital City"^^xsd:string .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:PoliticalOffice a owl:Class ;
+    rdfs:label "Political Office"^^xsd:string .
+
+:GovernmentRole a owl:Class ;
+    rdfs:label "Government Role"^^xsd:string .
+
+:VicePresidency a owl:Class ;
+    rdfs:subClassOf :PoliticalOffice ;
+    rdfs:label "Vice Presidency"^^xsd:string .
+
+:SecretaryOfState a owl:Class ;
+    rdfs:subClassOf :GovernmentRole ;
+    rdfs:label "Secretary of State"^^xsd:string .
+
+:Activity a owl:Class ;
+    rdfs:label "Activity"^^xsd:string .
+
+:HuntingExpedition a owl:Class ;
+    rdfs:subClassOf :Activity ;
+    rdfs:label "Hunting Expedition"^^xsd:string .
+
+:River a owl:Class ;
+    rdfs:label "River"^^xsd:string .
+
+:RiverBank a owl:Class ;
+    rdfs:label "River Bank"^^xsd:string .
+
+:Bridge a owl:Class ;
+    rdfs:label "Bridge"^^xsd:string .
+
+:Avenue a owl:Class ;
+    rdfs:label "Avenue"^^xsd:string .
+
+:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string .
+
+:Year a owl:Class ;
+    rdfs:subClassOf :TimeInterval ;
+    rdfs:label "Year"^^xsd:string .
+
+:Name a owl:Class ;
+    rdfs:label "Name"^^xsd:string .
+
+:Title a owl:Class ;
+    rdfs:label "Title"^^xsd:string .
+
+:Nickname a owl:Class ;
+    rdfs:subClassOf :Title ;
+    rdfs:label "Nickname"^^xsd:string .
+
+:CapitalLocation a owl:Class ;
+    rdfs:label "Capital Location"^^xsd:string .
+
+:OrdinalPosition a owl:Class ;
+    rdfs:label "Ordinal Position"^^xsd:string .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:label "locatedIn"^^xsd:string ;
+    rdfs:domain :City ;
+    rdfs:range :County .
+
+:locatedInState a owl:ObjectProperty ;
+    rdfs:label "locatedInState"^^xsd:string ;
+    rdfs:domain :City ;
+    rdfs:range :State .
+
+:originallyNamedWith a owl:ObjectProperty ;
+    rdfs:label "originallyNamedWith"^^xsd:string ;
+    rdfs:domain :City ;
+    rdfs:range :Name .
+
+:renamedTo a owl:ObjectProperty ;
+    rdfs:label "renamedTo"^^xsd:string ;
+    rdfs:domain :City ;
+    rdfs:range :Name .
+
+:renamedInHonorOf a owl:ObjectProperty ;
+    rdfs:label "renamedInHonorOf"^^xsd:string ;
+    rdfs:domain :City ;
+    rdfs:range :Person .
+
+:proposedBy a owl:ObjectProperty ;
+    rdfs:label "proposedBy"^^xsd:string ;
+    rdfs:domain :CapitalCity ;
+    rdfs:range :Person .
+
+:heldOffice a owl:ObjectProperty ;
+    rdfs:label "heldOffice"^^xsd:string ;
+    rdfs:domain :Person ;
+    rdfs:range :PoliticalOffice .
+
+:heldRole a owl:ObjectProperty ;
+    rdfs:label "heldRole"^^xsd:string ;
+    rdfs:domain :Person ;
+    rdfs:range :GovernmentRole .
+
+:officeIn a owl:ObjectProperty ;
+    rdfs:label "officeIn"^^xsd:string ;
+    rdfs:domain :PoliticalOffice ;
+    rdfs:range :Republic .
+
+:roleIn a owl:ObjectProperty ;
+    rdfs:label "roleIn"^^xsd:string ;
+    rdfs:domain :GovernmentRole ;
+    rdfs:range :Republic .
+
+:engagedIn a owl:ObjectProperty ;
+    rdfs:label "engagedIn"^^xsd:string ;
+    rdfs:domain :Person ;
+    rdfs:range :Activity .
+
+:visitedDuring a owl:ObjectProperty ;
+    rdfs:label "visitedDuring"^^xsd:string ;
+    rdfs:domain :Person ;
+    rdfs:range :TimeInterval .
+
+:situatedOnBankOf a owl:ObjectProperty ;
+    rdfs:label "situatedOnBankOf"^^xsd:string ;
+    rdfs:domain :CapitalCity ;
+    rdfs:range :River .
+
+:situatedOnBank a owl:ObjectProperty ;
+    rdfs:label "situatedOnBank"^^xsd:string ;
+    rdfs:domain :CapitalCity ;
+    rdfs:range :RiverBank .
+
+:nearBridge a owl:ObjectProperty ;
+    rdfs:label "nearBridge"^^xsd:string ;
+    rdfs:domain :CapitalCity ;
+    rdfs:range :Bridge .
+
+:capitalOf a owl:ObjectProperty ;
+    rdfs:label "capitalOf"^^xsd:string ;
+    rdfs:domain :CapitalCity ;
+    rdfs:range :Republic .
+
+:previousCapital a owl:ObjectProperty ;
+    rdfs:label "previousCapital"^^xsd:string ;
+    rdfs:domain :Republic ;
+    rdfs:range :City .
+
+:officiallyChosenIn a owl:ObjectProperty ;
+    rdfs:label "officiallyChosenIn"^^xsd:string ;
+    rdfs:domain :CapitalCity ;
+    rdfs:range :Year .
+
+:incorporatedUnderName a owl:ObjectProperty ;
+    rdfs:label "incorporatedUnderName"^^xsd:string ;
+    rdfs:domain :City ;
+    rdfs:range :Name .
+
+:hasNickname a owl:ObjectProperty ;
+    rdfs:label "hasNickname"^^xsd:string ;
+    rdfs:domain :Person ;
+    rdfs:range :Nickname .
+
+:hasCapitalLocationNumber a owl:ObjectProperty ;
+    rdfs:label "hasCapitalLocationNumber"^^xsd:string ;
+    rdfs:domain :CapitalCity ;
+    rdfs:range :OrdinalPosition .
+
+:huntingTarget a owl:ObjectProperty ;
+    rdfs:label "huntingTarget"^^xsd:string ;
+    rdfs:domain :HuntingExpedition .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:hasName a owl:DatatypeProperty ;
+    rdfs:label "hasName"^^xsd:string ;
+    rdfs:range xsd:string .
+
+:bankSide a owl:DatatypeProperty ;
+    rdfs:label "bankSide"^^xsd:string ;
+    rdfs:domain :RiverBank ;
+    rdfs:range xsd:string .
+
+:yearValue a owl:DatatypeProperty ;
+    rdfs:label "yearValue"^^xsd:string ;
+    rdfs:domain :Year ;
+    rdfs:range xsd:gYear .
+
+:ordinalValue a owl:DatatypeProperty ;
+    rdfs:label "ordinalValue"^^xsd:string ;
+    rdfs:domain :OrdinalPosition ;
+    rdfs:range xsd:integer .
+
+:intervalStart a owl:DatatypeProperty ;
+    rdfs:label "intervalStart"^^xsd:string ;
+    rdfs:domain :TimeInterval ;
+    rdfs:range xsd:gYear .
+
+:intervalEnd a owl:DatatypeProperty ;
+    rdfs:label "intervalEnd"^^xsd:string ;
+    rdfs:domain :TimeInterval ;
+    rdfs:range xsd:gYear .
+
+#################################################################
+# Class Restrictions
+#################################################################
+
+:CapitalCity a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty :capitalOf ;
+        owl:someValuesFrom :Republic
+    ] .
+
+:HuntingExpedition a owl:Class ;
+    rdfs:subClassOf :Activity .
+
+#################################################################
+# Named Individuals
+#################################################################
+
+:Austin a :CapitalCity , owl:NamedIndividual ;
+    rdfs:label "Austin"^^xsd:string ;
+    :locatedIn :TravisCounty ;
+    :locatedInState :Texas ;
+    :originallyNamedWith :WaterlooName ;
+    :incorporatedUnderName :WaterlooName ;
+    :renamedTo :AustinName ;
+    :renamedInHonorOf :StephenFAustin ;
+    :proposedBy :MirabeauBLamar ;
+    :situatedOnBank :NorthBankColoradoRiver ;
+    :situatedOnBankOf :ColoradoRiver ;
+    :nearBridge :AnnWRichardsCongressAvenueBridge ;
+    :capitalOf :RepublicOfTexas ;
+    :officiallyChosenIn :Year1839 ;
+    :hasCapitalLocationNumber :SeventhAndFinalLocation .
+
+:TravisCounty a :County , owl:NamedIndividual ;
+    rdfs:label "Travis County"^^xsd:string .
+
+:Texas a :State , owl:NamedIndividual ;
+    rdfs:label "Texas"^^xsd:string .
+
+:RepublicOfTexas a :Republic , owl:NamedIndividual ;
+    rdfs:label "Republic of Texas"^^xsd:string ;
+    :previousCapital :Houston .
+
+:MirabeauBLamar a :Person , owl:NamedIndividual ;
+    rdfs:label "Mirabeau B. Lamar"^^xsd:string ;
+    :heldOffice :VicePresidentOfRepublicOfTexas ;
+    :engagedIn :BuffaloHuntingExpedition ;
+    :visitedDuring :Interval1837To1838 .
+
+:VicePresidentOfRepublicOfTexas a :VicePresidency , owl:NamedIndividual ;
+    rdfs:label "Vice President"^^xsd:string ;
+    :officeIn :RepublicOfTexas .
+
+:StephenFAustin a :Person , owl:NamedIndividual ;
+    rdfs:label "Stephen F. Austin"^^xsd:string ;
+    :heldRole :FirstSecretaryOfState ;
+    :hasNickname :FatherOfTexas .
+
+:FirstSecretaryOfState a :SecretaryOfState , owl:NamedIndividual ;
+    rdfs:label "first secretary of state"^^xsd:string ;
+    :roleIn :RepublicOfTexas .
+
+:FatherOfTexas a :Nickname , owl:NamedIndividual ;
+    rdfs:label "Father of Texas"^^xsd:string .
+
+:Houston a :City , owl:NamedIndividual ;
+    rdfs:label "Houston"^^xsd:string .
+
+:ColoradoRiver a :River , owl:NamedIndividual ;
+    rdfs:label "Colorado River"^^xsd:string .
+
+:NorthBankColoradoRiver a :RiverBank , owl:NamedIndividual ;
+    rdfs:label "north bank"^^xsd:string ;
+    :bankSide "north"^^xsd:string .
+
+:AnnWRichardsCongressAvenueBridge a :Bridge , owl:NamedIndividual ;
+    rdfs:label "Ann W. Richards Congress Avenue Bridge"^^xsd:string .
+
+:BuffaloHuntingExpedition a :HuntingExpedition , owl:NamedIndividual ;
+    rdfs:label "buffalo-hunting expedition"^^xsd:string .
+
+:Interval1837To1838 a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "between 1837 and 1838"^^xsd:string ;
+    :intervalStart "1837"^^xsd:gYear ;
+    :intervalEnd "1838"^^xsd:gYear .
+
+:Year1839 a :Year , owl:NamedIndividual ;
+    rdfs:label "1839"^^xsd:string ;
+    :yearValue "1839"^^xsd:gYear .
+
+:WaterlooName a :Name , owl:NamedIndividual ;
+    rdfs:label "Waterloo"^^xsd:string .
+
+:AustinName a :Name , owl:NamedIndividual ;
+    rdfs:label "Austin"^^xsd:string .
+
+:SeventhAndFinalLocation a :OrdinalPosition , owl:NamedIndividual ;
+    rdfs:label "seventh and final location"^^xsd:string ;
+    :ordinalValue 7 .

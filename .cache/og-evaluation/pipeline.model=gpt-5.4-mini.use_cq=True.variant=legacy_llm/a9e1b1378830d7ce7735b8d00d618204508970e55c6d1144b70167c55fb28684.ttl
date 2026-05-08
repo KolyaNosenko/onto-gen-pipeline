@@ -1,0 +1,217 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Book a owl:Class .
+:Vision a owl:Class .
+:Theme a owl:Class .
+:Person a owl:Class .
+:Author a owl:Class ;
+    rdfs:subClassOf :Person .
+:Ruler a owl:Class ;
+    rdfs:subClassOf :Person .
+:Official a owl:Class ;
+    rdfs:subClassOf :Person .
+:Country a owl:Class .
+:City a owl:Class .
+:Organization a owl:Class .
+:Position a owl:Class .
+:Title a owl:Class .
+:DevelopmentExperience a owl:Class .
+:Role a owl:Class .
+:EconomicRole a owl:Class ;
+    rdfs:subClassOf :Role .
+:PhysicalBookAttribute a owl:Class .
+:PageCount a owl:Class .
+:Size a owl:Class .
+:PhotographSet a owl:Class .
+:Image a owl:Class .
+:PersonalImage a owl:Class ;
+    rdfs:subClassOf :Image .
+:PublicImage a owl:Class ;
+    rdfs:subClassOf :Image .
+:Part a owl:Class .
+:Story a owl:Class .
+:DevelopmentStory a owl:Class ;
+    rdfs:subClassOf :Story .
+:Content a owl:Class .
+:Document a owl:Class .
+
+:coAuthoredBy a owl:ObjectProperty .
+:authorOf a owl:ObjectProperty .
+:hasArabicTitle a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Title .
+:hasFullTitle a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Title .
+:holdsPosition a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Position .
+:associatedWithCity a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :City .
+:mentionedCountry a owl:ObjectProperty ;
+    rdfs:domain :Document ;
+    rdfs:range :Country .
+:hasVision a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Vision .
+:describesExperience a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :DevelopmentExperience .
+:hasRole a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :Role .
+:hasPageCount a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :PageCount .
+:hasSize a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Size .
+:includesPhotographSet a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :PhotographSet .
+:relatesTo a owl:ObjectProperty .
+:hasPublicImage a owl:ObjectProperty ;
+    rdfs:domain :PhotographSet ;
+    rdfs:range :PublicImage .
+:hasPersonalImage a owl:ObjectProperty ;
+    rdfs:domain :PhotographSet ;
+    rdfs:range :PersonalImage .
+:publishedForTheFirstTime a owl:DatatypeProperty ;
+    rdfs:domain :Image ;
+    rdfs:range xsd:boolean .
+:includesPart a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Part .
+:hasSubject a owl:ObjectProperty ;
+    rdfs:domain :Part ;
+    rdfs:range :Content .
+:joinsContentOf a owl:ObjectProperty ;
+    rdfs:domain :Image ;
+    rdfs:range :Content .
+:tellsStoryOf a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Story .
+:beforeDevelopmentInExcellence a owl:ObjectProperty ;
+    rdfs:domain :Role ;
+    rdfs:range :Theme .
+
+:MyVisionChallengesInTheRaceForExcellence a :Book , owl:NamedIndividual ;
+    rdfs:label "My Vision — Challenges in the Race for Excellence"^^xsd:string ;
+    :hasArabicTitle :ArabicTitleMyVisionChallengesInTheRaceForExcellence ;
+    :coAuthoredBy :MohammedBinRashidAlMaktoum ;
+    :authorOf :MohammedBinRashidAlMaktoum ;
+    :hasFullTitle :FullTitleMyVisionChallengesInTheRaceForExcellence ;
+    :hasVision :ExcellenceVision ;
+    :describesExperience :DevelopmentExperienceOfTheUAEAndDubai ;
+    :hasPageCount :Pages223 ;
+    :hasSize :MediumSize ;
+    :includesPhotographSet :PhotographSet1 ,
+        :PhotographSet2 ;
+    :includesPart :Part1 ,
+        :Part2 ,
+        :Part3 ,
+        :Part4 ,
+        :Part5 ;
+    :tellsStoryOf :DevelopmentStoryOfExcellenceInDubai .
+
+:ArabicTitleMyVisionChallengesInTheRaceForExcellence a :Title , owl:NamedIndividual ;
+    rdfs:label "رؤيتي .. التحديات في سباق التميز"^^xsd:string .
+
+:FullTitleMyVisionChallengesInTheRaceForExcellence a :Title , owl:NamedIndividual ;
+    rdfs:label "My vision .. Challenges in the Race for Excellence"^^xsd:string .
+
+:ExcellenceVision a :Vision , owl:NamedIndividual ;
+    rdfs:label "the vision of His Highness"^^xsd:string .
+
+:DevelopmentExperienceOfTheUAEAndDubai a :DevelopmentExperience , owl:NamedIndividual ;
+    rdfs:label "the experience of development"^^xsd:string ;
+    :relatesTo :Excellence ,
+        :UAE ,
+        :Dubai .
+
+:Excellence a :Theme , owl:NamedIndividual ;
+    rdfs:label "excellence"^^xsd:string .
+
+:MohammedBinRashidAlMaktoum a :Author , :Ruler , :Official , owl:NamedIndividual ;
+    rdfs:label "Mohammed bin Rashid Al Maktoum"^^xsd:string ;
+    :holdsPosition :RulerOfDubai ,
+        :VicePresidentOfTheUnitedArabEmirates ,
+        :PrimeMinisterOfTheUnitedArabEmirates ;
+    :associatedWithCity :Dubai .
+
+:RulerOfDubai a :Position , owl:NamedIndividual ;
+    rdfs:label "ruler of Dubai"^^xsd:string .
+
+:VicePresidentOfTheUnitedArabEmirates a :Position , owl:NamedIndividual ;
+    rdfs:label "Vice-President of the United Arab Emirates"^^xsd:string .
+
+:PrimeMinisterOfTheUnitedArabEmirates a :Position , owl:NamedIndividual ;
+    rdfs:label "Prime Minister of the United Arab Emirates"^^xsd:string .
+
+:UAE a :Country , owl:NamedIndividual ;
+    rdfs:label "United Arab Emirates"^^xsd:string .
+
+:Dubai a :City , owl:NamedIndividual ;
+    rdfs:label "Dubai"^^xsd:string ;
+    :hasRole :RegionalEconomicRole .
+
+:RegionalEconomicRole a :EconomicRole , owl:NamedIndividual ;
+    rdfs:label "regional economic"^^xsd:string ;
+    :beforeDevelopmentInExcellence :Excellence .
+
+:Pages223 a :PageCount , owl:NamedIndividual ;
+    rdfs:label "223 pages"^^xsd:string .
+
+:MediumSize a :Size , owl:NamedIndividual ;
+    rdfs:label "medium size"^^xsd:string .
+
+:PhotographSet1 a :PhotographSet , owl:NamedIndividual ;
+    rdfs:label "two sets of photographs"^^xsd:string ;
+    :relatesTo :BookContent ;
+    :hasPublicImage :PublicImage1 .
+
+:PhotographSet2 a :PhotographSet , owl:NamedIndividual ;
+    rdfs:label "two sets of photographs"^^xsd:string ;
+    :relatesTo :BookContent ;
+    :hasPersonalImage :PersonalImage1 .
+
+:BookContent a :Content , owl:NamedIndividual ;
+    rdfs:label "content of the book"^^xsd:string .
+
+:PublicImage1 a :PublicImage , owl:NamedIndividual ;
+    rdfs:label "public images"^^xsd:string ;
+    :publishedForTheFirstTime false^^xsd:boolean .
+
+:PersonalImage1 a :PersonalImage , owl:NamedIndividual ;
+    rdfs:label "personal writer"^^xsd:string ;
+    :publishedForTheFirstTime true^^xsd:boolean .
+
+:Part1 a :Part , owl:NamedIndividual ;
+    rdfs:label "five parts"^^xsd:string ;
+    :hasSubject :DevelopmentOfExcellenceInDubai .
+
+:Part2 a :Part , owl:NamedIndividual ;
+    rdfs:label "five parts"^^xsd:string ;
+    :hasSubject :DevelopmentOfExcellenceInDubai .
+
+:Part3 a :Part , owl:NamedIndividual ;
+    rdfs:label "five parts"^^xsd:string ;
+    :hasSubject :DevelopmentOfExcellenceInDubai .
+
+:Part4 a :Part , owl:NamedIndividual ;
+    rdfs:label "five parts"^^xsd:string ;
+    :hasSubject :DevelopmentOfExcellenceInDubai .
+
+:Part5 a :Part , owl:NamedIndividual ;
+    rdfs:label "five parts"^^xsd:string ;
+    :hasSubject :DevelopmentOfExcellenceInDubai .
+
+:DevelopmentOfExcellenceInDubai a :DevelopmentStory , owl:NamedIndividual ;
+    rdfs:label "the whole story development of excellence in Dubai"^^xsd:string ;
+    :relatesTo :Excellence ,
+        :Dubai .

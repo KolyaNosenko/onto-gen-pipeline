@@ -1,0 +1,211 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:City a owl:Class .
+:Person a owl:Class .
+:County a owl:Class .
+:Region a owl:Class .
+:Country a owl:Class .
+:River a owl:Class .
+:Bridge a owl:Class .
+:Expedition a owl:Class .
+:GovernmentalPosition a owl:Class .
+:CapitalRelocation a owl:Class .
+:GeographicalFeature a owl:Class .
+:TimeInterval a owl:Class .
+:IncorporationEvent a owl:Class .
+:RenameEvent a owl:Class .
+
+:River rdfs:subClassOf :GeographicalFeature .
+:Bridge rdfs:subClassOf :GeographicalFeature .
+
+# Object Properties
+:hasOriginalName a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :CityName .
+
+:locatedInCounty a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :County .
+
+:locatedInRegion a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :Region .
+
+:proposedBy a owl:ObjectProperty ;
+    rdfs:domain :CapitalRelocation ;
+    rdfs:range :Person .
+
+:visitedArea a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :City .
+
+:duringExpedition a owl:ObjectProperty ;
+    rdfs:domain :Visit ;
+    rdfs:range :Expedition .
+
+:expeditionPurpose a owl:ObjectProperty ;
+    rdfs:domain :Expedition ;
+    rdfs:range :Activity .
+
+:previousCapital a owl:ObjectProperty ;
+    rdfs:domain :CapitalRelocation ;
+    rdfs:range :City .
+
+:newCapital a owl:ObjectProperty ;
+    rdfs:domain :CapitalRelocation ;
+    rdfs:range :City .
+
+:locatedOnRiver a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :River .
+
+:nearGeographicalFeature a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :GeographicalFeature .
+
+:chosenAsCapitalIn a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :TimePoint .
+
+:incorporatedUnderName a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :CityName .
+
+:renamedTo a owl:ObjectProperty ;
+    rdfs:domain :City ;
+    rdfs:range :CityName .
+
+:renamedInHonorOf a owl:ObjectProperty ;
+    rdfs:domain :RenameEvent ;
+    rdfs:range :Person .
+
+:isFirstSecretaryOfState a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Country .
+
+:isVicePresidentOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Country .
+
+:fatherOfTerritory a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Country .
+
+:capitalLocationOrder a owl:DatatypeProperty ;
+    rdfs:domain :City ;
+    rdfs:range xsd:integer .
+
+:hasStartYear a owl:DatatypeProperty ;
+    rdfs:domain :TimeInterval ;
+    rdfs:range xsd:integer .
+
+:hasEndYear a owl:DatatypeProperty ;
+    rdfs:domain :TimeInterval ;
+    rdfs:range xsd:integer .
+
+:hasYear a owl:DatatypeProperty ;
+    rdfs:domain :TimePoint ;
+    rdfs:range xsd:integer .
+
+# Data Properties
+:nameString a owl:DatatypeProperty ;
+    rdfs:domain :CityName ;
+    rdfs:range xsd:string .
+
+# Named Individuals
+
+:Austin a :City , owl:NamedIndividual ;
+    rdfs:label "Austin"^^xsd:string .
+
+:Waterloo a :CityName , owl:NamedIndividual ;
+    rdfs:label "Waterloo"^^xsd:string .
+
+:AustinCityName a :CityName , owl:NamedIndividual ;
+    rdfs:label "Austin"^^xsd:string .
+
+:Texas a :Region , owl:NamedIndividual ;
+    rdfs:label "Texas"^^xsd:string .
+
+:TravisCounty a :County , owl:NamedIndividual ;
+    rdfs:label "Travis County"^^xsd:string .
+
+:MiribeauBLamar a :Person , owl:NamedIndividual ;
+    rdfs:label "Mirabeau B. Lamar"^^xsd:string .
+
+:StephenFAustin a :Person , owl:NamedIndividual ;
+    rdfs:label "Stephen F. Austin"^^xsd:string .
+
+:RepublicOfTexas a :Country , owl:NamedIndividual ;
+    rdfs:label "Republic of Texas"^^xsd:string .
+
+:Houston a :City , owl:NamedIndividual ;
+    rdfs:label "Houston"^^xsd:string .
+
+:ColoradoRiver a :River , owl:NamedIndividual ;
+    rdfs:label "Colorado River"^^xsd:string .
+
+:AnnWRichardsCongress_AvenueBridge a :Bridge , owl:NamedIndividual ;
+    rdfs:label "Ann W. Richards Congress Avenue Bridge"^^xsd:string .
+
+:BuffaloHuntingExpedition a :Expedition , owl:NamedIndividual ;
+    rdfs:label "buffalo-hunting expedition"^^xsd:string .
+
+:ExpeditionTimeInterval a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "1837 to 1838"^^xsd:string ;
+    :hasStartYear 1837 ;
+    :hasEndYear 1838 .
+
+:Year1839 a :TimePoint , owl:NamedIndividual ;
+    rdfs:label "1839"^^xsd:string ;
+    :hasYear 1839 .
+
+:CapitalOfRepublicOfTexasRelocation a :CapitalRelocation , owl:NamedIndividual ;
+    rdfs:label "relocation of capital of Republic of Texas to Austin"^^xsd:string ;
+    :proposedBy :MiribeauBLamar ;
+    :previousCapital :Houston ;
+    :newCapital :Austin ;
+    :chosenAsCapitalIn :Year1839 .
+
+# Statements answering competency questions
+
+:Austin :hasOriginalName :Waterloo ;
+    :locatedInCounty :TravisCounty ;
+    :locatedInRegion :Texas ;
+    :locatedOnRiver :ColoradoRiver ;
+    :nearGeographicalFeature :AnnWRichardsCongress_AvenueBridge ;
+    :chosenAsCapitalIn :Year1839 ;
+    :capitalLocationOrder 7 ;
+    :incorporatedUnderName :Waterloo ;
+    :renamedTo :AustinCityName .
+
+:MiribeauBLamar :isVicePresidentOf :RepublicOfTexas ;
+    :visitedArea :Austin ;
+    :duringExpedition :BuffaloHuntingExpedition .
+
+:BuffaloHuntingExpedition :hasStartYear 1837 ;
+    :hasEndYear 1838 .
+
+:StephenFAustin :fatherOfTerritory :RepublicOfTexas ;
+    :isFirstSecretaryOfState :RepublicOfTexas .
+
+# City Name Class
+:CityName a owl:Class .
+
+# Activity Class for expedition purpose
+:Activity a owl:Class .
+
+:BuffaloHunting a :Activity , owl:NamedIndividual ;
+    rdfs:label "buffalo hunting"^^xsd:string .
+
+:BuffaloHuntingExpedition :expeditionPurpose :BuffaloHunting .
+
+# Visit class
+:Visit a owl:Class .
+
+# TimePoint class
+:TimePoint a owl:Class .

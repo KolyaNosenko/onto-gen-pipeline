@@ -1,0 +1,267 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Ontology declaration
+#################################################################
+
+: a owl:Ontology .
+
+#################################################################
+# Classes
+#################################################################
+
+:Book a owl:Class ;
+    rdfs:label "Book"^^xsd:string .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:Ruler a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Ruler"^^xsd:string .
+
+:VicePresident a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Vice President"^^xsd:string .
+
+:PrimeMinister a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Prime Minister"^^xsd:string .
+
+:PoliticalLeader a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Political Leader"^^xsd:string ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:unionOf ( :Ruler :VicePresident :PrimeMinister )
+    ] .
+
+:Place a owl:Class ;
+    rdfs:label "Place"^^xsd:string .
+
+:City a owl:Class ;
+    rdfs:subClassOf :Place ;
+    rdfs:label "City"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Place ;
+    rdfs:label "Country"^^xsd:string .
+
+:Region a owl:Class ;
+    rdfs:subClassOf :Place ;
+    rdfs:label "Region"^^xsd:string .
+
+:Title a owl:Class ;
+    rdfs:label "Title"^^xsd:string .
+
+:ArabicTitle a owl:Class ;
+    rdfs:subClassOf :Title ;
+    rdfs:label "Arabic Title"^^xsd:string .
+
+:PhotographSet a owl:Class ;
+    rdfs:label "Photograph Set"^^xsd:string .
+
+:PublicPhotographSet a owl:Class ;
+    rdfs:subClassOf :PhotographSet ;
+    rdfs:label "Public Photograph Set"^^xsd:string .
+
+:PersonalPhotographSet a owl:Class ;
+    rdfs:subClassOf :PhotographSet ;
+    rdfs:label "Personal Photograph Set"^^xsd:string .
+
+:Photograph a owl:Class ;
+    rdfs:label "Photograph"^^xsd:string .
+
+:FirstPublishedPhotograph a owl:Class ;
+    rdfs:subClassOf :Photograph ;
+    rdfs:label "First Published Photograph"^^xsd:string .
+
+:BookPart a owl:Class ;
+    rdfs:label "Book Part"^^xsd:string .
+
+:PageCount a owl:Class ;
+    rdfs:label "Page Count"^^xsd:string .
+
+:SizeClassification a owl:Class ;
+    rdfs:label "Size Classification"^^xsd:string .
+
+:DevelopmentVision a owl:Class ;
+    rdfs:label "Development Vision"^^xsd:string .
+
+:Theme a owl:Class ;
+    rdfs:label "Theme"^^xsd:string .
+
+:EconomicRole a owl:Class ;
+    rdfs:label "Economic Role"^^xsd:string .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:coAuthoredBy a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Person ;
+    rdfs:label "co-authored by"^^xsd:string .
+
+:hasArabicTitle a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :ArabicTitle ;
+    rdfs:label "has Arabic title"^^xsd:string .
+
+:hasRoleAsRulerOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Place ;
+    rdfs:label "has role as ruler of"^^xsd:string .
+
+:hasRoleAsVicePresidentOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Country ;
+    rdfs:label "has role as vice president of"^^xsd:string .
+
+:hasRoleAsPrimeMinisterOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Country ;
+    rdfs:label "has role as prime minister of"^^xsd:string .
+
+:containsPhotographSet a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :PhotographSet ;
+    rdfs:label "contains photograph set"^^xsd:string .
+
+:containsPart a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :BookPart ;
+    rdfs:label "contains part"^^xsd:string .
+
+:hasPageCount a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :PageCount ;
+    rdfs:label "has page count"^^xsd:string .
+
+:hasSizeClassification a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :SizeClassification ;
+    rdfs:label "has size classification"^^xsd:string .
+
+:presentsVision a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :DevelopmentVision ;
+    rdfs:label "presents vision"^^xsd:string .
+
+:hasTheme a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Theme ;
+    rdfs:label "has theme"^^xsd:string .
+
+:referencesPlace a owl:ObjectProperty ;
+    rdfs:domain :DevelopmentVision ;
+    rdfs:range :Place ;
+    rdfs:label "references place"^^xsd:string .
+
+:includesPhotograph a owl:ObjectProperty ;
+    rdfs:domain :PhotographSet ;
+    rdfs:range :Photograph ;
+    rdfs:label "includes photograph"^^xsd:string .
+
+:authorOf a owl:ObjectProperty ;
+    owl:inverseOf :coAuthoredBy ;
+    rdfs:domain :Person ;
+    rdfs:range :Book ;
+    rdfs:label "author of"^^xsd:string .
+
+:hasEconomicRole a owl:ObjectProperty ;
+    rdfs:domain :Place ;
+    rdfs:range :EconomicRole ;
+    rdfs:label "has economic role"^^xsd:string .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:pageCountValue a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Book ;
+    rdfs:range xsd:integer ;
+    rdfs:label "page count value"^^xsd:string .
+
+:partCountValue a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Book ;
+    rdfs:range xsd:integer ;
+    rdfs:label "part count value"^^xsd:string .
+
+:photographSetCountValue a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Book ;
+    rdfs:range xsd:integer ;
+    rdfs:label "photograph set count value"^^xsd:string .
+
+:titleText a owl:DatatypeProperty ;
+    rdfs:domain :Title ;
+    rdfs:range xsd:string ;
+    rdfs:label "title text"^^xsd:string .
+
+:publishedForFirstTime a owl:DatatypeProperty ;
+    rdfs:domain :Photograph ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "published for first time"^^xsd:string .
+
+#################################################################
+# Named Individuals
+#################################################################
+
+:MyVisionBook a :Book , owl:NamedIndividual ;
+    rdfs:label "My Vision — Challenges in the Race for Excellence"^^xsd:string ;
+    :coAuthoredBy :MohammedBinRashidAlMaktoum ;
+    :hasArabicTitle :ArabicTitleMyVision ;
+    :pageCountValue "223"^^xsd:integer ;
+    :partCountValue "5"^^xsd:integer ;
+    :photographSetCountValue "2"^^xsd:integer ;
+    :containsPhotographSet :PublicPhotographSetInstance ;
+    :containsPhotographSet :PersonalPhotographSetInstance ;
+    :hasSizeClassification :MediumSize ;
+    :presentsVision :DevelopmentVisionDubaiUAE ;
+    :hasTheme :ExcellenceTheme .
+
+:MohammedBinRashidAlMaktoum a :Person , :Ruler , :VicePresident , :PrimeMinister , owl:NamedIndividual ;
+    rdfs:label "Mohammed bin Rashid Al Maktoum"^^xsd:string ;
+    :hasRoleAsRulerOf :Dubai ;
+    :hasRoleAsVicePresidentOf :UnitedArabEmirates ;
+    :hasRoleAsPrimeMinisterOf :UnitedArabEmirates .
+
+:Dubai a :City , owl:NamedIndividual ;
+    rdfs:label "Dubai"^^xsd:string ;
+    :hasEconomicRole :RegionalEconomicRole .
+
+:UnitedArabEmirates a :Country , owl:NamedIndividual ;
+    rdfs:label "United Arab Emirates"^^xsd:string .
+
+:ArabicTitleMyVision a :ArabicTitle , owl:NamedIndividual ;
+    rdfs:label "رؤيتي .. التحديات في سباق التميز"^^xsd:string ;
+    :titleText "رؤيتي .. التحديات في سباق التميز"^^xsd:string .
+
+:PublicPhotographSetInstance a :PublicPhotographSet , owl:NamedIndividual ;
+    rdfs:label "Public Photograph Set"^^xsd:string .
+
+:PersonalPhotographSetInstance a :PersonalPhotographSet , owl:NamedIndividual ;
+    rdfs:label "Personal Photograph Set"^^xsd:string ;
+    :includesPhotograph :FirstTimePublishedPhotographs .
+
+:FirstTimePublishedPhotographs a :FirstPublishedPhotograph , owl:NamedIndividual ;
+    rdfs:label "photographs published for the first time"^^xsd:string ;
+    :publishedForFirstTime "true"^^xsd:boolean .
+
+:MediumSize a :SizeClassification , owl:NamedIndividual ;
+    rdfs:label "medium size"^^xsd:string .
+
+:DevelopmentVisionDubaiUAE a :DevelopmentVision , owl:NamedIndividual ;
+    rdfs:label "development vision of excellence in UAE and Dubai"^^xsd:string ;
+    :referencesPlace :Dubai ;
+    :referencesPlace :UnitedArabEmirates .
+
+:ExcellenceTheme a :Theme , owl:NamedIndividual ;
+    rdfs:label "excellence and development"^^xsd:string .
+
+:RegionalEconomicRole a :EconomicRole , owl:NamedIndividual ;
+    rdfs:label "regional economic role"^^xsd:string .

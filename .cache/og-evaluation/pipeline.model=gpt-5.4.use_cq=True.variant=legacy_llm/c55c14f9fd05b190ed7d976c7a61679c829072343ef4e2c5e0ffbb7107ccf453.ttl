@@ -1,0 +1,393 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Thing a owl:Class .
+
+:CreativeWork a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:TelevisionSeries a owl:Class ;
+    rdfs:subClassOf :CreativeWork .
+
+:AnimatedTelevisionSeries a owl:Class ;
+    rdfs:subClassOf :TelevisionSeries .
+
+:AmericanAnimatedTelevisionSeries a owl:Class ;
+    rdfs:subClassOf :AnimatedTelevisionSeries .
+
+:TelevisionEpisode a owl:Class ;
+    rdfs:subClassOf :CreativeWork ,
+        [ a owl:Restriction ;
+            owl:onProperty :partOfSeries ;
+            owl:someValuesFrom :TelevisionSeries
+        ] .
+
+:Season a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Person a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:FictionalCharacter a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:GroupOfPeople a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Organisation a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:TelevisionNetwork a owl:Class ;
+    rdfs:subClassOf :Organisation .
+
+:Place a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Event a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:AiringEvent a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:Bris a owl:Class ;
+    rdfs:subClassOf :Event .
+
+:Action a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Firing a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:DrugUse a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:AttemptToSave a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:Misconstruing a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:Writing a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:Directing a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:Introduction a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:Satirizing a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:Exploration a owl:Class ;
+    rdfs:subClassOf :Action .
+
+:Reception a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:CriticalResponse a owl:Class ;
+    rdfs:subClassOf :Reception .
+
+:Attribute a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Backstory a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:Attitude a owl:Class ;
+    rdfs:subClassOf :Attribute .
+
+:Question a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:FamilyQuestion a owl:Class ;
+    rdfs:subClassOf :Question .
+
+:MomentQuality a owl:Class ;
+    rdfs:subClassOf :Attribute .
+
+:Nationality a owl:Class ;
+    rdfs:subClassOf :Attribute .
+
+:Status a owl:Class ;
+    rdfs:subClassOf :Attribute .
+
+:OrdinalEpisodeNumber a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:OverallSeriesEpisodeNumber a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:SeasonNumber a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:CalendarDate a owl:Class ;
+    rdfs:subClassOf :Thing .
+
+:partOfSeries a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :TelevisionSeries .
+
+:inSeason a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :Season .
+
+:hasEpisodeNumberInSeason a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :OrdinalEpisodeNumber .
+
+:hasOverallSeriesEpisodeNumber a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :OverallSeriesEpisodeNumber .
+
+:hasSeasonNumber a owl:ObjectProperty ;
+    rdfs:domain :Season ;
+    rdfs:range :SeasonNumber .
+
+:firstAiredOn a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :CalendarDate .
+
+:firstAiredOnNetwork a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :TelevisionNetwork .
+
+:firstAiredInPlace a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :Place .
+
+:hasGenreDescription a owl:DatatypeProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range xsd:string .
+
+:writtenBy a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :Person .
+
+:directedBy a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :Person .
+
+:coCreated a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :TelevisionSeries .
+
+:featuresCharacter a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :FictionalCharacter .
+
+:hasYoungerBrother a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person .
+
+:involvesAction a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :Action .
+
+:hasActorParticipant a owl:ObjectProperty ;
+    rdfs:domain :Action ;
+    rdfs:range :Thing .
+
+:hasTargetParticipant a owl:ObjectProperty ;
+    rdfs:domain :Action ;
+    rdfs:range :Thing .
+
+:turnsTo a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Thing .
+
+:isFiredInEpisode a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :TelevisionEpisode .
+
+:misconstruesInEpisode a owl:ObjectProperty ;
+    rdfs:domain :GroupOfPeople ;
+    rdfs:range :Thing .
+
+:triesToSaveInEpisode a owl:ObjectProperty ;
+    rdfs:domain :GroupOfPeople ;
+    rdfs:range :Person .
+
+:fromUpcomingEvent a owl:ObjectProperty ;
+    rdfs:domain :AttemptToSave ;
+    rdfs:range :Event .
+
+:hasUpcomingEvent a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Event .
+
+:satirizes a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :Thing .
+
+:explores a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :Thing .
+
+:introducesBackstory a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :Backstory .
+
+:backstoryOf a owl:ObjectProperty ;
+    rdfs:domain :Backstory ;
+    rdfs:range :Person .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Nationality .
+
+:hasAdoptionStatus a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Status .
+
+:receivedCriticalResponse a owl:ObjectProperty ;
+    rdfs:domain :TelevisionEpisode ;
+    rdfs:range :CriticalResponse .
+
+:praisedFor a owl:ObjectProperty ;
+    rdfs:domain :CriticalResponse ;
+    rdfs:range :Attribute .
+
+:hasValenceDescription a owl:DatatypeProperty ;
+    rdfs:domain :CriticalResponse ;
+    rdfs:range xsd:string .
+
+:questionText a owl:DatatypeProperty ;
+    rdfs:domain :Question ;
+    rdfs:range xsd:string .
+
+:descriptionText a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+:IkesWeeWee a :TelevisionEpisode , owl:NamedIndividual ;
+    rdfs:label "\" Ike 's Wee Wee \""^^xsd:string ;
+    :partOfSeries :SouthPark ;
+    :inSeason :SecondSeason ;
+    :hasEpisodeNumberInSeason :FourthEpisodeNumber ;
+    :hasOverallSeriesEpisodeNumber :EighteenthEpisodeNumber ;
+    :firstAiredOn :May271998 ;
+    :firstAiredOnNetwork :ComedyCentral ;
+    :firstAiredInPlace :UnitedStates ;
+    :writtenBy :TreyParker ;
+    :directedBy :TreyParker ;
+    :featuresCharacter :MrMackey , :Kyle , :Ike ;
+    :involvesAction :MrMackeyFiringInIkesWeeWee ,
+        :MrMackeyTurnsToDrugsInIkesWeeWee ,
+        :BoysMisconstrueCircumcisionInIkesWeeWee ,
+        :BoysTryToSaveIkeInIkesWeeWee ;
+    :satirizes :CertainAttitudesTowardsDrugUsers ;
+    :explores :WhetherFamilyCanOnlyMeanThoseWhoAreRelatedByBlood ;
+    :introducesBackstory :IkesAdoptedCanadianChildBackstory ;
+    :receivedCriticalResponse :PositiveResponsesFromCritics .
+
+:SouthPark a :AmericanAnimatedTelevisionSeries , owl:NamedIndividual ;
+    rdfs:label "South Park"^^xsd:string ;
+    :hasGenreDescription "American animated television series"^^xsd:string .
+
+:ComedyCentral a :TelevisionNetwork , owl:NamedIndividual ;
+    rdfs:label "Comedy Central"^^xsd:string .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "the United States"^^xsd:string .
+
+:May271998 a :CalendarDate , owl:NamedIndividual ;
+    rdfs:label "May 27 , 1998"^^xsd:string .
+
+:TreyParker a :Person , owl:NamedIndividual ;
+    rdfs:label "Trey Parker"^^xsd:string ;
+    :coCreated :SouthPark .
+
+:MrMackey a :FictionalCharacter , owl:NamedIndividual ;
+    rdfs:label "Mr. Mackey"^^xsd:string ;
+    :isFiredInEpisode :IkesWeeWee ;
+    :turnsTo :Drugs .
+
+:Kyle a :FictionalCharacter , owl:NamedIndividual ;
+    rdfs:label "Kyle"^^xsd:string ;
+    :hasYoungerBrother :Ike .
+
+:Ike a :FictionalCharacter , owl:NamedIndividual ;
+    rdfs:label "Ike"^^xsd:string ;
+    :hasUpcomingEvent :UpcomingBris ;
+    :hasAdoptionStatus :AdoptedStatus ;
+    :hasNationality :CanadianNationality .
+
+:SecondSeason a :Season , owl:NamedIndividual ;
+    rdfs:label "the second season"^^xsd:string ;
+    :hasSeasonNumber :SeasonNumber2 .
+
+:FourthEpisodeNumber a :OrdinalEpisodeNumber , owl:NamedIndividual ;
+    rdfs:label "the fourth episode"^^xsd:string .
+
+:EighteenthEpisodeNumber a :OverallSeriesEpisodeNumber , owl:NamedIndividual ;
+    rdfs:label "The 18th episode of the series overall"^^xsd:string .
+
+:SeasonNumber2 a :SeasonNumber , owl:NamedIndividual ;
+    rdfs:label "second"^^xsd:string .
+
+:Boys a :GroupOfPeople , owl:NamedIndividual ;
+    rdfs:label "the boys"^^xsd:string ;
+    :misconstruesInEpisode :WhatCircumcisionEntails ;
+    :triesToSaveInEpisode :Ike .
+
+:Drugs a :Thing , owl:NamedIndividual ;
+    rdfs:label "drugs"^^xsd:string .
+
+:UpcomingBris a :Bris , owl:NamedIndividual ;
+    rdfs:label "his upcoming bris"^^xsd:string .
+
+:WhatCircumcisionEntails a :Thing , owl:NamedIndividual ;
+    rdfs:label "what circumcision entails"^^xsd:string .
+
+:CertainAttitudesTowardsDrugUsers a :Attitude , owl:NamedIndividual ;
+    rdfs:label "certain attitudes towards drug users"^^xsd:string .
+
+:WhetherFamilyCanOnlyMeanThoseWhoAreRelatedByBlood a :FamilyQuestion , owl:NamedIndividual ;
+    rdfs:label "whether family can only mean those who are related by blood"^^xsd:string ;
+    :questionText "whether family can only mean those who are related by blood"^^xsd:string .
+
+:IkesAdoptedCanadianChildBackstory a :Backstory , owl:NamedIndividual ;
+    rdfs:label "Ike 's backstory as an adopted Canadian child"^^xsd:string ;
+    :backstoryOf :Ike .
+
+:AdoptedStatus a :Status , owl:NamedIndividual ;
+    rdfs:label "adopted"^^xsd:string .
+
+:CanadianNationality a :Nationality , owl:NamedIndividual ;
+    rdfs:label "Canadian"^^xsd:string .
+
+:PositiveResponsesFromCritics a :CriticalResponse , owl:NamedIndividual ;
+    rdfs:label "positive responses from critics"^^xsd:string ;
+    :hasValenceDescription "positive"^^xsd:string ;
+    :praisedFor :TouchingMoments .
+
+:TouchingMoments a :MomentQuality , owl:NamedIndividual ;
+    rdfs:label "its touching moments"^^xsd:string .
+
+:MrMackeyFiringInIkesWeeWee a :Firing , owl:NamedIndividual ;
+    rdfs:label "Mr. Mackey is fired"^^xsd:string ;
+    :hasTargetParticipant :MrMackey .
+
+:MrMackeyTurnsToDrugsInIkesWeeWee a :DrugUse , owl:NamedIndividual ;
+    rdfs:label "turns to drugs"^^xsd:string ;
+    :hasActorParticipant :MrMackey ;
+    :hasTargetParticipant :Drugs .
+
+:BoysMisconstrueCircumcisionInIkesWeeWee a :Misconstruing , owl:NamedIndividual ;
+    rdfs:label "the boys misconstrue what circumcision entails"^^xsd:string ;
+    :hasActorParticipant :Boys ;
+    :hasTargetParticipant :WhatCircumcisionEntails .
+
+:BoysTryToSaveIkeInIkesWeeWee a :AttemptToSave , owl:NamedIndividual ;
+    rdfs:label "try to save Kyle 's younger brother Ike from his upcoming bris"^^xsd:string ;
+    :hasActorParticipant :Boys ;
+    :hasTargetParticipant :Ike ;
+    :fromUpcomingEvent :UpcomingBris .

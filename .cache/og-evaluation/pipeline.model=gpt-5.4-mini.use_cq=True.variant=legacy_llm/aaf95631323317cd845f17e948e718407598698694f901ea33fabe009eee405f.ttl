@@ -1,0 +1,213 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Company a owl:Class .
+:Brand a owl:Class .
+:LuxuryWatchmaker a owl:Class .
+:Watchmaker a owl:Class .
+:Person a owl:Class .
+:Place a owl:Class .
+:Country a owl:Class .
+:City a owl:Class .
+:Market a owl:Class .
+:Product a owl:Class .
+:Watch a owl:Class .
+:PocketWatch a owl:Class .
+:ArtisticWatch a owl:Class .
+:HighEndWatch a owl:Class .
+:Dial a owl:Class .
+:Model a owl:Class .
+:Complication a owl:Class .
+:Style a owl:Class .
+:Feature a owl:Class .
+:MovementDisplayFeature a owl:Class .
+:Movement a owl:Class .
+:Artisan a owl:Class .
+:WomanArtisan a owl:Class .
+:TraditionalWatchmakingCompany a owl:Class .
+:CompanyTradition a owl:Class .
+:Chartering a owl:Class .
+:Ownership a owl:Class .
+:PriceRange a owl:Class .
+:TimeInterval a owl:Class .
+:Century a owl:Class .
+
+:SwissBrand a owl:Class ;
+    rdfs:subClassOf :Brand .
+
+:LuxuryWatchmaker a owl:Class ;
+    rdfs:subClassOf :Watchmaker, :Company .
+
+:PocketWatch rdfs:subClassOf :Watch .
+:ArtisticWatch rdfs:subClassOf :Watch .
+:HighEndWatch rdfs:subClassOf :Watch .
+:WomanArtisan rdfs:subClassOf :Artisan .
+:TraditionalWatchmakingCompany rdfs:subClassOf :Company .
+:CompanyTradition rdfs:subClassOf :Feature .
+:Chartering rdfs:subClassOf owl:Thing .
+:Ownership rdfs:subClassOf owl:Thing .
+
+:hasFounder a owl:ObjectProperty .
+:wasCharteredIn a owl:ObjectProperty .
+:wasCharteredAt a owl:ObjectProperty .
+:wasCharteredOn a owl:ObjectProperty .
+:hasBrandOriginCountry a owl:ObjectProperty .
+:isNotedFor a owl:ObjectProperty .
+:manufacturedFor a owl:ObjectProperty .
+:produces a owl:ObjectProperty .
+:hasPriceRange a owl:ObjectProperty .
+:hasStyle a owl:ObjectProperty .
+:isKnownFor a owl:ObjectProperty .
+:exampleOf a owl:ObjectProperty .
+:hasComplication a owl:ObjectProperty .
+:hasDesignCharacteristic a owl:ObjectProperty .
+:hasFeature a owl:ObjectProperty .
+:emphasizes a owl:ObjectProperty .
+:includesFeature a owl:ObjectProperty .
+:hasTradition a owl:ObjectProperty .
+:employs a owl:ObjectProperty .
+:isRareFor a owl:ObjectProperty .
+:hasCurrentOwner a owl:ObjectProperty .
+:charteredBy a owl:ObjectProperty .
+:charteringOf a owl:ObjectProperty ;
+    owl:inverseOf :hasChartering .
+:hasChartering a owl:ObjectProperty .
+:currentOwnerOf a owl:ObjectProperty ;
+    owl:inverseOf :hasCurrentOwner .
+:hasCurrentOwner a owl:ObjectProperty .
+:foundedBy a owl:ObjectProperty .
+:foundedOn a owl:ObjectProperty .
+:foundedIn a owl:ObjectProperty .
+
+:hasFounder rdfs:subPropertyOf :foundedBy .
+:wasCharteredIn rdfs:subPropertyOf :foundedIn .
+:wasCharteredAt rdfs:subPropertyOf :foundedIn .
+:wasCharteredOn rdfs:subPropertyOf :foundedOn .
+:charteredBy rdfs:subPropertyOf :foundedBy .
+
+:Company rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasFounder ;
+    owl:someValuesFrom :Person
+] .
+
+:Chartering rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :charteredBy ;
+    owl:someValuesFrom :Person
+] ;
+    rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :wasCharteredOn ;
+    owl:someValuesFrom xsd:date
+] ;
+    rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :wasCharteredIn ;
+    owl:someValuesFrom :Place
+] .
+
+:BovetFleurierSA a :SwissBrand, :LuxuryWatchmaker, :Company, owl:NamedIndividual ;
+    rdfs:label "Bovet Fleurier SA"^^xsd:string ;
+    :hasBrandOriginCountry :Switzerland ;
+    :isNotedFor :PocketWatchesForChineseMarket ;
+    :produces :HighEndArtisticWatches ;
+    :hasStyle :StyleThatReferencesItsHistory ;
+    :isKnownFor :HighQualityDials, :Engraving, :SevenDayTourbillon, :SkeletonizedViews, :HighlyDecorativeMovements ;
+    :hasTradition :EmployingWomenArtisans ;
+    :hasCurrentOwner :PascalRaffy ;
+    :foundedBy :EdouardBovet .
+
+:EdouardBovet a :Person, owl:NamedIndividual ;
+    rdfs:label "Édouard Bovet"^^xsd:string .
+
+:PascalRaffy a :Person, owl:NamedIndividual ;
+    rdfs:label "Pascal Raffy"^^xsd:string .
+
+:Switzerland a :Country, owl:NamedIndividual ;
+    rdfs:label "Swiss"^^xsd:string .
+
+:London a :City, owl:NamedIndividual ;
+    rdfs:label "London"^^xsd:string .
+
+:UK a :Country, owl:NamedIndividual ;
+    rdfs:label "U.K."^^xsd:string .
+
+:May1_1822 a :TimeInterval, owl:NamedIndividual ;
+    rdfs:label "May 1 , 1822"^^xsd:string .
+
+:19thCentury a :Century, :TimeInterval, owl:NamedIndividual ;
+    rdfs:label "19th century"^^xsd:string .
+
+:ChineseMarket a :Market, owl:NamedIndividual ;
+    rdfs:label "Chinese market"^^xsd:string .
+
+:HighEndArtisticWatches a :HighEndWatch, :ArtisticWatch, owl:NamedIndividual ;
+    rdfs:label "high - end artistic watches"^^xsd:string ;
+    :hasPriceRange :PriceRange18kTo2_5M .
+
+:PriceRange18kTo2_5M a :PriceRange, owl:NamedIndividual ;
+    rdfs:label "US$ 18,000 and $ 2.5 million"^^xsd:string .
+
+:StyleThatReferencesItsHistory a :Style, owl:NamedIndividual ;
+    rdfs:label "a style that references its history"^^xsd:string .
+
+:HighQualityDials a :Dial, owl:NamedIndividual ;
+    rdfs:label "high - quality dials"^^xsd:string .
+
+:FleurierMiniaturePaintingModels a :Model, :Dial, owl:NamedIndividual ;
+    rdfs:label "the Fleurier Miniature Painting models"^^xsd:string ;
+    :exampleOf :HighQualityDials .
+
+:Engraving a :Feature, owl:NamedIndividual ;
+    rdfs:label "engraving"^^xsd:string .
+
+:SevenDayTourbillon a :Complication, owl:NamedIndividual ;
+    rdfs:label "its seven - day tourbillon"^^xsd:string .
+
+:SkeletonizedViews a :MovementDisplayFeature, owl:NamedIndividual ;
+    rdfs:label "skeletonized views"^^xsd:string .
+
+:HighlyDecorativeMovements a :Movement, owl:NamedIndividual ;
+    rdfs:label "highly decorative movements"^^xsd:string .
+
+:SecondHand a :MovementDisplayFeature, owl:NamedIndividual ;
+    rdfs:label "a second hand"^^xsd:string .
+
+:EmployingWomenArtisans a :CompanyTradition, owl:NamedIndividual ;
+    rdfs:label "a tradition of employing women artisans"^^xsd:string ;
+    :employs :WomenArtisans .
+
+:WomenArtisans a :WomanArtisan, owl:NamedIndividual ;
+    rdfs:label "women artisans"^^xsd:string .
+
+:Europe a :Place, owl:NamedIndividual ;
+    rdfs:label "Europe"^^xsd:string .
+
+:TraditionalWatchmakingCompaniesInEurope a :TraditionalWatchmakingCompany, owl:NamedIndividual ;
+    rdfs:label "traditional watch making companies in Europe"^^xsd:string ;
+    :hasBrandOriginCountry :Europe .
+
+:PocketWatchesForChineseMarket a :PocketWatch, owl:NamedIndividual ;
+    rdfs:label "pocket watches manufactured for the Chinese market"^^xsd:string ;
+    :manufacturedFor :ChineseMarket ;
+    :isNotedFor :19thCentury .
+
+:BovetWatches a :Watch, owl:NamedIndividual ;
+    rdfs:label "Bovet watches"^^xsd:string ;
+    :hasDesignCharacteristic :SkeletonizedViews, :HighlyDecorativeMovements, :SecondHand .
+
+:OriginalBovetWatches a :Watch, owl:NamedIndividual ;
+    rdfs:label "The original Bovet watches"^^xsd:string ;
+    :hasDesignCharacteristic :SkeletonizedViews, :HighlyDecorativeMovements, :SecondHand .
+
+:BovetFleurierSA :wasCharteredOn :May1_1822 ;
+    :wasCharteredIn :London ;
+    :wasCharteredAt :London , :UK ;
+    :hasFounder :EdouardBovet ;
+    :hasCurrentOwner :PascalRaffy .
+
+:London :charteringOf :BovetFleurierSA .

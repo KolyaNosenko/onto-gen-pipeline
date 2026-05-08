@@ -1,0 +1,901 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:AmountOfMatter a owl:Class ;
+    rdfs:label "Amount of Matter"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointWith ns1:Feature,
+        ns1:PhysicalObject .
+
+ns1:MentalObject a owl:Class ;
+    rdfs:label "Mental Object"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:specificallyDependsOn ;
+            owl:someValuesFrom ns1:AgentivePhysicalObject ],
+        ns1:NonPhysicalObject ;
+    owl:disjointWith ns1:SocialObject .
+
+ns1:PlaceCell a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:locatedInBrainRegion ;
+            owl:someValuesFrom ns1:Hippocampus ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasCharacteristicPattern ;
+            owl:someValuesFrom ns1:IrregularPlaceFieldArrangement ],
+        ns1:Neuron .
+
+ns1:Process a owl:Class ;
+    rdfs:label "Process"^^xsd:string ;
+    rdfs:subClassOf ns1:Stative ;
+    owl:disjointWith ns1:State .
+
+ns1:SocialAgent a owl:Class ;
+    rdfs:label "Social Agent"^^xsd:string ;
+    rdfs:subClassOf ns1:AgentiveSocialObject ;
+    owl:disjointWith ns1:Society .
+
+ns1:TypicalGridCellExperiment a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:usesInstrument ;
+            owl:someValuesFrom ns1:Electrode ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:studiesCellType ;
+            owl:someValuesFrom ns1:GridCell ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:performedOnAnimalType ;
+            owl:someValuesFrom ns1:Rat ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasImplantationSite ;
+            owl:someValuesFrom ns1:DorsomedialEntorhinalCortex ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:conductedInEnvironmentType ;
+            owl:someValuesFrom ns1:OpenArena ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:recordsSignalType ;
+            owl:someValuesFrom ns1:ActionPotential ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:producesPattern ;
+            owl:someValuesFrom ns1:GridOfEquilateralTriangles ],
+        [ a owl:Restriction ;
+            owl:hasValue "an electrode capable of recording the activity of an individual neuron is implanted in the cerebral cortex of a rat , in a section called the dorsomedial entorhinal cortex , and a dot is placed at the location of the rat 's head every time the neuron emits an action potential as the rat moves around freely in an open arena"^^xsd:string ;
+            owl:onProperty ns1:experimentProcedureDescription ],
+        ns1:ExperimentalStudy .
+
+ns1:atomicPartOf a owl:ObjectProperty ;
+    rdfs:label "atomic part of"^^xsd:string ;
+    rdfs:domain ns1:Atom ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:awardCitation a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:ScientificPrizeAward ;
+    rdfs:range xsd:string .
+
+ns1:awardedTo a owl:ObjectProperty ;
+    rdfs:domain ns1:ScientificPrizeAward ;
+    rdfs:range ns1:Researcher .
+
+ns1:locatedInCountry a owl:ObjectProperty ;
+    rdfs:domain ns1:ResearchCenter ;
+    rdfs:range ns1:Country ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:studiedUnder a owl:ObjectProperty ;
+    rdfs:domain ns1:StudentResearcher ;
+    rdfs:range ns1:Researcher .
+
+ns1:temporalPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "temporal part of"^^xsd:string ;
+    rdfs:domain ns1:Perdurant ;
+    rdfs:range ns1:Perdurant ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:Accomplishment a owl:Class ;
+    rdfs:label "Accomplishment"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty ns1:temporallyLocatedAt ;
+                    owl:someValuesFrom ns1:Atom ] ],
+        ns1:Event ;
+    owl:disjointWith ns1:Achievement .
+
+ns1:ArbitrarySum a owl:Class ;
+    rdfs:label "Arbitrary Sum"^^xsd:string ;
+    rdfs:subClassOf ns1:Endurant .
+
+ns1:Brain a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentivePhysicalObject .
+
+ns1:CentreForTheBiologyOfMemoryCBM a [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:discoveredAtResearchCenter ] ;
+            owl:someValuesFrom ns1:GridCell ],
+        owl:NamedIndividual,
+        ns1:ResearchCenter ;
+    rdfs:label "Centre for the Biology of Memory ( CBM )"^^xsd:string ;
+    ns1:locatedInCountry ns1:Norway .
+
+ns1:CerebralCortex a owl:Class ;
+    rdfs:subClassOf ns1:BrainRegion .
+
+ns1:ConstantAtom a owl:Class ;
+    rdfs:label "Constant Atom"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty [ owl:inverseOf ns1:constantProperPartOf ] ;
+                    owl:someValuesFrom ns1:Particular ] ],
+        ns1:Endurant .
+
+ns1:DirectionInformation a owl:Class ;
+    rdfs:subClassOf ns1:InformationType .
+
+ns1:DynamicSelfPositionComputationMechanism a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:usesUpdatedInformation ;
+            owl:someValuesFrom ns1:DirectionInformation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:usesUpdatedInformation ;
+            owl:someValuesFrom ns1:PositionInformation ],
+        [ a owl:Restriction ;
+            owl:hasValue "dynamic computation of self - position based on continuously updated information about position and direction"^^xsd:string ;
+            owl:onProperty ns1:computationDescription ],
+        ns1:ComputationMechanism .
+
+ns1:Feature a owl:Class ;
+    rdfs:label "Feature"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointWith ns1:PhysicalObject .
+
+ns1:Hippocampus a owl:Class ;
+    rdfs:subClassOf ns1:BrainRegion .
+
+ns1:IrregularPlaceFieldArrangement a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:hasValue "the dots build up to form small clusters"^^xsd:string ;
+            owl:onProperty ns1:patternDescription ],
+        [ a owl:Restriction ;
+            owl:hasValue "frequently there is only one cluster ( one \" place field \" ) in a given environment"^^xsd:string ;
+            owl:onProperty ns1:clusterCountDescription ],
+        [ a owl:Restriction ;
+            owl:hasValue "even when multiple clusters are seen , there is no perceptible regularity in their arrangement"^^xsd:string ;
+            owl:onProperty ns1:arrangementRegularityDescription ],
+        ns1:SpatialFiringPattern .
+
+ns1:JohnOKeefe a owl:NamedIndividual,
+        ns1:Researcher ;
+    rdfs:label "John O'Keefe"^^xsd:string .
+
+ns1:MarianneFyhn a [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:discoveredBy ] ;
+            owl:someValuesFrom ns1:GridCell ],
+        owl:NamedIndividual,
+        ns1:StudentResearcher ;
+    rdfs:label "Marianne Fyhn"^^xsd:string ;
+    ns1:studiedUnder ns1:EdvardMoser,
+        ns1:MayBrittMoser .
+
+ns1:NobelPrizeInPhysiologyOrMedicine2014 a [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:recognizedByPrize ] ;
+            owl:someValuesFrom ns1:GridCell ],
+        owl:NamedIndividual,
+        ns1:ScientificPrizeAward ;
+    rdfs:label "2014 Nobel Prize in Physiology or Medicine"^^xsd:string ;
+    ns1:awardCitation "their discoveries of cells that constitute a positioning system in the brain"^^xsd:string ;
+    ns1:awardedTo ns1:EdvardMoser,
+        ns1:JohnOKeefe,
+        ns1:MayBrittMoser ;
+    ns1:temporallyLocatedAt ns1:Year2014 .
+
+ns1:NonAgentiveSocialObject a owl:Class ;
+    rdfs:label "Non-Agentive Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:Norway a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Norway"^^xsd:string .
+
+ns1:OpenArena a owl:Class ;
+    rdfs:subClassOf ns1:ExperimentalEnvironment .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf ns1:AgentivePhysicalObject .
+
+ns1:PositionInformation a owl:Class ;
+    rdfs:subClassOf ns1:InformationType .
+
+ns1:Rat a owl:Class ;
+    rdfs:subClassOf ns1:Organism .
+
+ns1:SturlaMolden a [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:discoveredBy ] ;
+            owl:someValuesFrom ns1:GridCell ],
+        owl:NamedIndividual,
+        ns1:StudentResearcher ;
+    rdfs:label "Sturla Molden"^^xsd:string ;
+    ns1:studiedUnder ns1:EdvardMoser,
+        ns1:MayBrittMoser .
+
+ns1:TemporalLocation a owl:Class ;
+    rdfs:label "Temporal Location"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:qualeOf ] ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:TemporalQuality .
+
+ns1:TorkelHafting a [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:discoveredBy ] ;
+            owl:someValuesFrom ns1:GridCell ],
+        owl:NamedIndividual,
+        ns1:StudentResearcher ;
+    rdfs:label "Torkel Hafting"^^xsd:string ;
+    ns1:studiedUnder ns1:EdvardMoser,
+        ns1:MayBrittMoser .
+
+ns1:Year2005 a [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:discoveredInYear ] ;
+            owl:someValuesFrom ns1:GridCell ],
+        owl:NamedIndividual,
+        ns1:TimeInterval ;
+    rdfs:label "2005"^^xsd:string .
+
+ns1:Year2014 a owl:NamedIndividual,
+        ns1:TimeInterval ;
+    rdfs:label "2014"^^xsd:string .
+
+ns1:clusterCountDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:SpatialFiringPattern ;
+    rdfs:range xsd:string .
+
+ns1:computationDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:ComputationMechanism ;
+    rdfs:range xsd:string .
+
+ns1:conductedInEnvironmentType a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:ExperimentalEnvironment .
+
+ns1:constantAtomicPartOf a owl:ObjectProperty ;
+    rdfs:label "constant atomic part of"^^xsd:string ;
+    rdfs:domain ns1:ConstantAtom ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantPartOf .
+
+ns1:constantParticipantOf a owl:ObjectProperty ;
+    rdfs:label "constant participation of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Perdurant ;
+    rdfs:subPropertyOf [ owl:inverseOf ns1:specificallyDependsOn ] .
+
+ns1:constitutesPositioningSystem a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:PositioningSystem .
+
+ns1:enablesUnderstandingOf a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:SpatialPositionUnderstanding .
+
+ns1:encodesRepresentation a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:CognitiveRepresentation .
+
+ns1:experimentProcedureDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range xsd:string .
+
+ns1:foundInSpecies a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:Species .
+
+ns1:hasImplantationSite a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:BrainRegion .
+
+ns1:performedOnAnimalType a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:Organism .
+
+ns1:producesPattern a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:SpatialFiringPattern .
+
+ns1:properPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "proper part of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:recordsSignalType a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:ActionPotential .
+
+ns1:studiesCellType a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:Neuron .
+
+ns1:suggestsMechanism a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:ComputationMechanism .
+
+ns1:supportsHypothesis a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:ScientificHypothesis .
+
+ns1:usesInstrument a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:Electrode .
+
+ns1:ActionPotential a owl:Class ;
+    rdfs:subClassOf ns1:Achievement .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Society .
+
+ns1:DorsomedialEntorhinalCortex a owl:Class ;
+    rdfs:subClassOf ns1:CerebralCortex .
+
+ns1:Electrode a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentivePhysicalObject .
+
+ns1:EuclideanSpaceEncodingHypothesis a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:hasValue ns1:EuclideanSpaceEntity ;
+            owl:onProperty ns1:representsSpace ],
+        ns1:ScientificHypothesis .
+
+ns1:EuclideanSpaceEntity a [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:representsSpace ] ;
+            owl:someValuesFrom ns1:EuclideanSpaceEncodingHypothesis ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:representsSpace ] ;
+            owl:someValuesFrom ns1:EuclideanSpaceRepresentation ],
+        owl:NamedIndividual,
+        ns1:GeometricSpace ;
+    rdfs:label "Euclidean space"^^xsd:string .
+
+ns1:EuclideanSpaceRepresentation a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:hasValue ns1:EuclideanSpaceEntity ;
+            owl:onProperty ns1:representsSpace ],
+        ns1:CognitiveRepresentation .
+
+ns1:Event a owl:Class ;
+    rdfs:label "Event"^^xsd:string ;
+    rdfs:subClassOf ns1:Perdurant ;
+    owl:disjointWith ns1:Stative .
+
+ns1:ExperimentalEnvironment a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentivePhysicalObject .
+
+ns1:GeometricSpace a owl:Class ;
+    rdfs:subClassOf ns1:AbstractRegion .
+
+ns1:GridOfEquilateralTriangles a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:hasValue "these dots build up over time to form a set of small clusters , and the clusters form the vertices of a grid of equilateral triangles"^^xsd:string ;
+            owl:onProperty ns1:patternDescription ],
+        [ a owl:Restriction ;
+            owl:hasValue "This regular triangle - pattern is what distinguishes grid cells from other types of cells that show spatial firing ."^^xsd:string ;
+            owl:onProperty ns1:arrangementRegularityDescription ],
+        ns1:SpatialFiringPattern .
+
+ns1:NonPhysicalObject a owl:Class ;
+    rdfs:label "Non-Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalEndurant .
+
+ns1:Organism a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentivePhysicalObject .
+
+ns1:PositioningSystem a owl:Class ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:SpaceRegion a owl:Class ;
+    rdfs:label "Space Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpatialLocation ;
+            owl:onProperty ns1:constantQualeOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpaceRegion ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpaceRegion ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:PhysicalRegion .
+
+ns1:SpatialLocation a owl:Class ;
+    rdfs:label "Spatial Location"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalQuality .
+
+ns1:SpatialPositionUnderstanding a owl:Class ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:Species a owl:Class ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:State a owl:Class ;
+    rdfs:label "State"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:State ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Stative .
+
+ns1:arrangementRegularityDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:SpatialFiringPattern ;
+    rdfs:range xsd:string .
+
+ns1:constantProperPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant proper part of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantPartOf .
+
+ns1:constantlyOverlaps a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "constantly overlaps"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    owl:propertyChainAxiom ( [ owl:inverseOf ns1:constantPartOf ] ns1:constantPartOf ) .
+
+ns1:discoveredAtResearchCenter a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:ResearchCenter .
+
+ns1:discoveredInYear a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:TimeInterval .
+
+ns1:hasCharacteristicPattern a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:SpatialFiringPattern .
+
+ns1:locatedInBrainRegion a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:BrainRegion ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:patternDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:SpatialFiringPattern ;
+    rdfs:range xsd:string .
+
+ns1:qualeOf a owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "quale of"^^xsd:string ;
+    rdfs:domain ns1:TemporalRegion ;
+    rdfs:range ns1:TemporalQuality .
+
+ns1:recognizedByPrize a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:ScientificPrizeAward .
+
+ns1:usesUpdatedInformation a owl:ObjectProperty ;
+    rdfs:domain ns1:ComputationMechanism ;
+    rdfs:range ns1:InformationType .
+
+ns1:Achievement a owl:Class ;
+    rdfs:label "Achievement"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:Atom ],
+        ns1:Event .
+
+ns1:AgentivePhysicalObject a owl:Class ;
+    rdfs:label "Agentive Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalObject .
+
+ns1:AgentiveSocialObject a owl:Class ;
+    rdfs:label "Agentive Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:Atom a owl:Class ;
+    rdfs:label "Atom"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ],
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty [ owl:inverseOf ns1:properPartOf ] ;
+                    owl:someValuesFrom ns1:Particular ] ],
+        ns1:Particular .
+
+ns1:CognitiveRepresentation a owl:Class ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:InformationType a owl:Class ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:Region a owl:Class ;
+    rdfs:label "Region"^^xsd:string ;
+    rdfs:subClassOf ns1:Abstract ;
+    owl:disjointUnionOf ( ns1:AbstractRegion ns1:PhysicalRegion ns1:TemporalRegion ) .
+
+ns1:ResearchCenter a owl:Class ;
+    rdfs:subClassOf ns1:Society .
+
+ns1:ScientificHypothesis a owl:Class ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:Society a owl:Class ;
+    rdfs:label "Society"^^xsd:string ;
+    rdfs:subClassOf ns1:AgentiveSocialObject .
+
+ns1:Stative a owl:Class ;
+    rdfs:label "Stative"^^xsd:string ;
+    rdfs:subClassOf ns1:Perdurant .
+
+ns1:TemporalRegion a owl:Class ;
+    rdfs:label "Temporal Region"^^xsd:string ;
+    rdfs:subClassOf ns1:Region .
+
+ns1:overlaps a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "overlaps"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    owl:propertyChainAxiom ( [ owl:inverseOf ns1:partOf ] ns1:partOf ),
+        ( [ owl:inverseOf ns1:presentAt ] ns1:temporallyLocatedAt ) .
+
+ns1:AbstractQuality a owl:Class ;
+    rdfs:label "Abstract Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty [ owl:inverseOf ns1:constantQualeOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:BrainRegion a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:partOf ;
+            owl:someValuesFrom ns1:Brain ],
+        ns1:NonAgentivePhysicalObject .
+
+ns1:ComputationMechanism a owl:Class ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:PhysicalObject a owl:Class ;
+    rdfs:label "Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointUnionOf ( ns1:AgentivePhysicalObject ns1:NonAgentivePhysicalObject ) .
+
+ns1:PhysicalRegion a owl:Class ;
+    rdfs:label "Physical Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalQuality ;
+            owl:onProperty ns1:constantQualeOf ],
+        ns1:Region .
+
+ns1:ScientificPrizeAward a owl:Class ;
+    rdfs:subClassOf ns1:Achievement .
+
+ns1:StudentResearcher a owl:Class ;
+    rdfs:subClassOf ns1:Researcher .
+
+ns1:TemporalQuality a owl:Class ;
+    rdfs:label "Temporal Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:qualeOf ] ;
+            owl:someValuesFrom ns1:Particular ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:representsSpace a owl:ObjectProperty ;
+    rdfs:domain ns1:CognitiveRepresentation,
+        ns1:ScientificHypothesis ;
+    rdfs:range ns1:GeometricSpace .
+
+ns1:EdvardMoser a [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:discoveredBy ] ;
+            owl:someValuesFrom ns1:GridCell ],
+        owl:NamedIndividual,
+        ns1:Researcher ;
+    rdfs:label "Edvard Moser"^^xsd:string .
+
+ns1:MayBrittMoser a [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:discoveredBy ] ;
+            owl:someValuesFrom ns1:GridCell ],
+        owl:NamedIndividual,
+        ns1:Researcher ;
+    rdfs:label "May - Britt Moser"^^xsd:string .
+
+ns1:PhysicalQuality a owl:Class ;
+    rdfs:label "Physical Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalRegion ;
+            owl:onProperty [ owl:inverseOf ns1:constantQualeOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:constantQualeOf a owl:ObjectProperty ;
+    rdfs:label "constant quale of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:AbstractRegion ns1:PhysicalRegion ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:AbstractQuality ns1:PhysicalQuality ) ] .
+
+ns1:specificallyDependsOn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "specifically depends on"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] .
+
+ns1:AbstractRegion a owl:Class ;
+    rdfs:label "Abstract Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractQuality ;
+            owl:onProperty ns1:constantQualeOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Region .
+
+ns1:Neuron a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentivePhysicalObject .
+
+ns1:temporallyLocatedAt a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "temporally located at"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range ns1:TimeInterval ;
+    rdfs:subPropertyOf ns1:presentAt .
+
+ns1:NonAgentivePhysicalObject a owl:Class ;
+    rdfs:label "Non-Agentive Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalObject .
+
+ns1:Researcher a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:SpatialFiringPattern a owl:Class ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:constantConstituentOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant constituent of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:NonPhysicalEndurant ns1:Perdurant ns1:PhysicalEndurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:NonPhysicalEndurant ns1:Perdurant ns1:PhysicalEndurant ) ] ;
+    rdfs:subPropertyOf [ owl:inverseOf ns1:specificallyDependsOn ] .
+
+ns1:constantPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant part of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantlyOverlaps .
+
+ns1:NonPhysicalEndurant a owl:Class ;
+    rdfs:label "Non-Physical Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty ns1:constantlyOverlaps ;
+                    owl:someValuesFrom ns1:PhysicalEndurant ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantPartOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        ns1:Endurant .
+
+ns1:ExperimentalStudy a owl:Class ;
+    rdfs:subClassOf ns1:Accomplishment .
+
+ns1:Particular a owl:Class ;
+    rdfs:label "Particular"^^xsd:string ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ns1:Abstract ns1:Endurant ns1:Perdurant ns1:Quality ) .
+
+ns1:Quality a owl:Class ;
+    rdfs:label "Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:directQualityOf ;
+            owl:someValuesFrom ns1:Particular ],
+        ns1:Particular ;
+    owl:disjointUnionOf ( ns1:AbstractQuality ns1:PhysicalQuality ns1:TemporalQuality ) .
+
+ns1:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:TimeInterval ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:TemporalRegion .
+
+ns1:discoveredBy a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:Researcher .
+
+ns1:PhysicalEndurant a owl:Class ;
+    rdfs:label "Physical Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ;
+            owl:someValuesFrom ns1:SpatialLocation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantPartOf ] ],
+        ns1:Endurant .
+
+ns1:SocialObject a owl:Class ;
+    rdfs:label "Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalObject ;
+    owl:disjointUnionOf ( ns1:AgentiveSocialObject ns1:NonAgentiveSocialObject ) .
+
+ns1:directQualityOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "direct quality of"^^xsd:string ;
+    rdfs:domain ns1:Quality ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:specificallyDependsOn .
+
+ns1:presentAt a owl:ObjectProperty ;
+    rdfs:label "present at"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range ns1:TimeInterval ;
+    owl:propertyChainAxiom ( ns1:constantAtomicPartOf ns1:presentAt ),
+        ( ns1:constantConstituentOf ns1:presentAt ),
+        ( ns1:constantPartOf ns1:presentAt ),
+        ( ns1:constantParticipantOf ns1:presentAt ),
+        ( ns1:constantProperPartOf ns1:presentAt ),
+        ( ns1:directQualityOf ns1:presentAt ),
+        ( ns1:presentAt [ owl:inverseOf ns1:partOf ] ),
+        ( [ owl:inverseOf ns1:directQualityOf ] ns1:presentAt ),
+        ( [ owl:inverseOf ns1:partOf ] ns1:presentAt ),
+        ( [ owl:inverseOf ns1:specificallyDependsOn ] ns1:presentAt ) .
+
+ns1:Abstract a owl:Class ;
+    rdfs:label "Abstract"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty ns1:overlaps ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Particular .
+
+ns1:Endurant a owl:Class ;
+    rdfs:label "Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:Particular ;
+    owl:disjointUnionOf ( ns1:ArbitrarySum ns1:NonPhysicalEndurant ns1:PhysicalEndurant ) .
+
+ns1:GridCell a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:foundInSpecies ;
+            owl:someValuesFrom ns1:Species ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:locatedInBrainRegion ;
+            owl:someValuesFrom ns1:DorsomedialEntorhinalCortex ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:enablesUnderstandingOf ;
+            owl:someValuesFrom ns1:SpatialPositionUnderstanding ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:SturlaMolden ;
+            owl:onProperty ns1:discoveredBy ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:TorkelHafting ;
+            owl:onProperty ns1:discoveredBy ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:MarianneFyhn ;
+            owl:onProperty ns1:discoveredBy ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:MayBrittMoser ;
+            owl:onProperty ns1:discoveredBy ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:EdvardMoser ;
+            owl:onProperty ns1:discoveredBy ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:Year2005 ;
+            owl:onProperty ns1:discoveredInYear ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:CentreForTheBiologyOfMemoryCBM ;
+            owl:onProperty ns1:discoveredAtResearchCenter ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:NobelPrizeInPhysiologyOrMedicine2014 ;
+            owl:onProperty ns1:recognizedByPrize ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:constitutesPositioningSystem ;
+            owl:someValuesFrom ns1:PositioningSystem ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasCharacteristicPattern ;
+            owl:someValuesFrom ns1:GridOfEquilateralTriangles ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:supportsHypothesis ;
+            owl:someValuesFrom ns1:EuclideanSpaceEncodingHypothesis ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:encodesRepresentation ;
+            owl:someValuesFrom ns1:EuclideanSpaceRepresentation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:suggestsMechanism ;
+            owl:someValuesFrom ns1:DynamicSelfPositionComputationMechanism ],
+        ns1:Neuron .
+
+ns1:partOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "part of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:overlaps .
+
+ns1:Perdurant a owl:Class ;
+    rdfs:label "Perdurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:overlaps ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:TemporalQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ;
+            owl:someValuesFrom ns1:TemporalLocation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:Particular .

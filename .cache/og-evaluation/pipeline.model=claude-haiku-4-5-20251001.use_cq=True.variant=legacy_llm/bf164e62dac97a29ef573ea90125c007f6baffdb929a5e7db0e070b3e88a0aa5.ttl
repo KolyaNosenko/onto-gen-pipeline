@@ -1,0 +1,263 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:NationalPark a owl:Class ;
+    rdfs:label "National Park"^^xsd:string .
+
+:GeographicLocation a owl:Class ;
+    rdfs:label "Geographic Location"^^xsd:string .
+
+:Region a owl:Class ;
+    rdfs:label "Region"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string .
+
+:VegetationType a owl:Class ;
+    rdfs:label "Vegetation Type"^^xsd:string .
+
+:PlantSpecies a owl:Class ;
+    rdfs:label "Plant Species"^^xsd:string .
+
+:BirdSpecies a owl:Class ;
+    rdfs:label "Bird Species"^^xsd:string .
+
+:WildlifeSpecies a owl:Class ;
+    rdfs:label "Wildlife Species"^^xsd:string .
+
+:GeologicalFormation a owl:Class ;
+    rdfs:label "Geological Formation"^^xsd:string .
+
+:Soil a owl:Class ;
+    rdfs:label "Soil"^^xsd:string .
+
+:IndigenousPeople a owl:Class ;
+    rdfs:label "Indigenous People"^^xsd:string .
+
+:Explorer a owl:Class ;
+    rdfs:label "Explorer"^^xsd:string .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:Forest a owl:Class ;
+    rdfs:label "Forest"^^xsd:string .
+
+:ScrubbyForest a owl:Class ;
+    rdfs:subClassOf :Forest ;
+    rdfs:label "Scrubby Forest"^^xsd:string .
+
+:TimePoint a owl:Class ;
+    rdfs:label "Time Point"^^xsd:string .
+
+:FormerName a owl:Class ;
+    rdfs:label "Former Name"^^xsd:string .
+
+:Quantity a owl:Class ;
+    rdfs:label "Quantity"^^xsd:string .
+
+:Distance a owl:Class ;
+    rdfs:subClassOf :Quantity ;
+    rdfs:label "Distance"^^xsd:string .
+
+:BirdSpeciesCount a owl:Class ;
+    rdfs:subClassOf :Quantity ;
+    rdfs:label "Bird Species Count"^^xsd:string .
+
+# Object Properties
+:locatedIn a owl:ObjectProperty ;
+    rdfs:label "located in"^^xsd:string .
+
+:westOf a owl:ObjectProperty ;
+    rdfs:label "west of"^^xsd:string ;
+    owl:AsymmetricProperty owl:AsymmetricProperty .
+
+:conservedIn a owl:ObjectProperty ;
+    rdfs:label "conserved in"^^xsd:string .
+
+:locatedOn a owl:ObjectProperty ;
+    rdfs:label "located on"^^xsd:string .
+
+:foundIn a owl:ObjectProperty ;
+    rdfs:label "found in"^^xsd:string .
+
+:growsIn a owl:ObjectProperty ;
+    rdfs:label "grows in"^^xsd:string .
+
+:observedIn a owl:ObjectProperty ;
+    rdfs:label "observed in"^^xsd:string .
+
+:rangeLimit a owl:ObjectProperty ;
+    rdfs:label "range limit"^^xsd:string .
+
+:scatteredThrough a owl:ObjectProperty ;
+    rdfs:label "scattered through"^^xsd:string .
+
+:formedBy a owl:ObjectProperty ;
+    rdfs:label "formed by"^^xsd:string .
+
+:traditionallHabitedBy a owl:ObjectProperty ;
+    rdfs:label "traditionally inhabited by"^^xsd:string .
+
+:passedThrough a owl:ObjectProperty ;
+    rdfs:label "passed through"^^xsd:string .
+
+:formerlyKnownAs a owl:ObjectProperty ;
+    rdfs:label "formerly known as"^^xsd:string .
+
+:becameNationalParkIn a owl:ObjectProperty ;
+    rdfs:label "became national park in"^^xsd:string ;
+    owl:FunctionalProperty owl:FunctionalProperty .
+
+:refugeFor a owl:ObjectProperty ;
+    rdfs:label "refuge for"^^xsd:string .
+
+:hasVegetationType a owl:ObjectProperty ;
+    rdfs:label "has vegetation type"^^xsd:string .
+
+:partOf a owl:ObjectProperty ;
+    rdfs:label "part of"^^xsd:string ;
+    owl:TransitiveProperty owl:TransitiveProperty .
+
+:affectedByProcess a owl:ObjectProperty ;
+    rdfs:label "affected by process"^^xsd:string .
+
+# Data Properties
+:distance a owl:DatatypeProperty ;
+    rdfs:label "distance"^^xsd:string ;
+    rdfs:range xsd:string .
+
+:speciesCount a owl:DatatypeProperty ;
+    rdfs:label "species count"^^xsd:string ;
+    rdfs:range xsd:integer .
+
+:year a owl:DatatypeProperty ;
+    rdfs:label "year"^^xsd:string ;
+    rdfs:range xsd:gYear .
+
+:label a owl:DatatypeProperty ;
+    rdfs:label "label"^^xsd:string ;
+    rdfs:range xsd:string .
+
+# Individuals
+
+# Geographic Locations
+:Southwood a :NationalPark , owl:NamedIndividual ;
+    rdfs:label "Southwood"^^xsd:string ;
+    :locatedIn :Queensland ;
+    :locatedIn :Australia ;
+    :westOf :Brisbane ;
+    :distance "288 km"^^xsd:string ;
+    :locatedOn :DarlingDowns ;
+    :conservedIn :BrigalowBelahForestRemnants ;
+    :refug :WildlifeRefuge ;
+    :becameNationalParkIn :Year1970 ;
+    :formerlyKnownAs :WildHorseParadise ;
+    :traditionallHabitedBy :BigambulPeople ;
+    :hasVegetationType :BrigalowBelahForestType ;
+    :hasVegetationType :CypressPinePoplarBoxVegetation .
+
+:Brisbane a :GeographicLocation , owl:NamedIndividual ;
+    rdfs:label "Brisbane"^^xsd:string .
+
+:Queensland a :Region , owl:NamedIndividual ;
+    rdfs:label "Queensland"^^xsd:string ;
+    :locatedIn :Australia .
+
+:Australia a :Country , owl:NamedIndividual ;
+    rdfs:label "Australia"^^xsd:string .
+
+:DarlingDowns a :Region , owl:NamedIndividual ;
+    rdfs:label "Darling Downs"^^xsd:string ;
+    :locatedIn :Queensland .
+
+# Vegetation and Plant Species
+:BrigalowBelahForestType a :VegetationType , owl:NamedIndividual ;
+    rdfs:label "Brigalow-belah forest"^^xsd:string .
+
+:BrigalowBelahForestRemnants a :Forest , owl:NamedIndividual ;
+    rdfs:label "Brigalow-belah forest remnants"^^xsd:string ;
+    :locatedIn :Southwood .
+
+:CypressPinePoplarBoxVegetation a :VegetationType , owl:NamedIndividual ;
+    rdfs:label "Cypress pine and poplar box vegetation"^^xsd:string .
+
+:CypressPine a :PlantSpecies , owl:NamedIndividual ;
+    rdfs:label "Cypress pine"^^xsd:string ;
+    :growsIn :Southwood .
+
+:PoplarBox a :PlantSpecies , owl:NamedIndividual ;
+    rdfs:label "Poplar box"^^xsd:string ;
+    :growsIn :Southwood .
+
+:WilgaBush a :PlantSpecies , owl:NamedIndividual ;
+    rdfs:label "Wilga bush"^^xsd:string ;
+    :growsIn :Southwood .
+
+:FalseSandalwood a :PlantSpecies , owl:NamedIndividual ;
+    rdfs:label "False sandalwood"^^xsd:string ;
+    :growsIn :Southwood .
+
+:WesternTeatree a :PlantSpecies , owl:NamedIndividual ;
+    rdfs:label "Western teatree"^^xsd:string ;
+    :growsIn :Southwood .
+
+# Bird Species
+:WongaPigeon a :BirdSpecies , owl:NamedIndividual ;
+    rdfs:label "Wonga pigeon"^^xsd:string ;
+    :observedIn :Southwood ;
+    :rangeLimit :InlandLimit .
+
+:InlandLimit a :GeographicLocation , owl:NamedIndividual ;
+    rdfs:label "inland limit"^^xsd:string ;
+    :locatedIn :Southwood .
+
+:NinetytwoSpecies a :BirdSpeciesCount , owl:NamedIndividual ;
+    rdfs:label "92 species of birds"^^xsd:string ;
+    :speciesCount 92 ;
+    :observedIn :Southwood .
+
+# Geological Formations
+:Gilgai a :GeologicalFormation , owl:NamedIndividual ;
+    rdfs:label "Gilgai"^^xsd:string ;
+    :scatteredThrough :Southwood ;
+    :formedBy :WettingAndDryingProcess .
+
+:WettingAndDryingProcess a owl:Class , owl:NamedIndividual ;
+    rdfs:label "Wetting and drying process"^^xsd:string ;
+    :affectsSubstance :HeavyClaysoil .
+
+:HeavyClaysoil a :Soil , owl:NamedIndividual ;
+    rdfs:label "Heavy clay soils"^^xsd:string ;
+    :locatedIn :Southwood .
+
+# Indigenous Peoples
+:BigambulPeople a :IndigenousPeople , owl:NamedIndividual ;
+    rdfs:label "Bigambul people"^^xsd:string .
+
+# Explorers
+:AllanCunningham a :Explorer , :Person , owl:NamedIndividual ;
+    rdfs:label "Allan Cunningham"^^xsd:string ;
+    :passedThrough :Southwood .
+
+:ThomasMitchell a :Explorer , :Person , owl:NamedIndividual ;
+    rdfs:label "Thomas Mitchell"^^xsd:string ;
+    :passedThrough :Southwood .
+
+# Former Names
+:WildHorseParadise a :FormerName , owl:NamedIndividual ;
+    rdfs:label "Wild Horse Paradise"^^xsd:string .
+
+# Time Points
+:Year1970 a :TimePoint , owl:NamedIndividual ;
+    rdfs:label "1970"^^xsd:string ;
+    :year "1970"^^xsd:gYear .
+
+# Wildlife Refuge
+:WildlifeRefuge a owl:Class , owl:NamedIndividual ;
+    rdfs:label "Wildlife refuge"^^xsd:string ;
+    :locatedIn :Southwood .

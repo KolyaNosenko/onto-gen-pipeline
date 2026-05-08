@@ -1,0 +1,184 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Town a owl:Class .
+:Region a owl:Class .
+:Country a owl:Class .
+:LocalGovernmentArea a owl:Class .
+:District a owl:Class .
+:CommercialCentre a owl:Class .
+:Person a owl:Class .
+:Property a owl:Class .
+:Century a owl:Class .
+:Highway a owl:Class .
+:Traveller a owl:Class .
+:StoppingPlace a owl:Class .
+:Resurgence a owl:Class .
+:Industry a owl:Class .
+:Influx a owl:Class .
+:Resident a owl:Class .
+:SearchangeSeeking a owl:Class .
+:HousingEstate a owl:Class .
+:VillageFringe a owl:Class .
+:Business a owl:Class .
+:BoutiqueStore a owl:Class .
+:Cafe a owl:Class .
+:BedAndBreakfastBusiness a owl:Class .
+:PopulationCount a owl:Class .
+:FoundedEvent a owl:Class .
+:NamedAfterRelation a owl:ObjectProperty .
+:locatedIn a owl:ObjectProperty .
+:within a owl:ObjectProperty .
+:partOf a owl:ObjectProperty , owl:TransitiveProperty .
+:foundedOn a owl:ObjectProperty .
+:became a owl:ObjectProperty .
+:hasPopulation a owl:ObjectProperty .
+:popularStoppingPlaceFor a owl:ObjectProperty .
+:runsThrough a owl:ObjectProperty .
+:influencedBy a owl:ObjectProperty .
+:hasInfluxOf a owl:ObjectProperty .
+:seeking a owl:ObjectProperty .
+:developedOn a owl:ObjectProperty .
+:locatedOn a owl:ObjectProperty .
+:hasBusinessType a owl:ObjectProperty .
+:hasCommercialCentre a owl:ObjectProperty .
+:hasMainCommercialCentre a owl:ObjectProperty .
+:hasNamedAfterPerson a owl:ObjectProperty .
+:hasValue a owl:DatatypeProperty .
+
+:Town rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :locatedIn ;
+    owl:someValuesFrom :Region
+] , [
+    a owl:Restriction ;
+    owl:onProperty :within ;
+    owl:someValuesFrom :LocalGovernmentArea
+] .
+
+:CommercialCentre rdfs:subClassOf :Town .
+:Highway rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :runsThrough ;
+    owl:someValuesFrom :Town
+] .
+:StoppingPlace rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :popularStoppingPlaceFor ;
+    owl:someValuesFrom :Traveller
+] .
+:Resurgence rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :influencedBy ;
+    owl:someValuesFrom :Industry
+] , [
+    a owl:Restriction ;
+    owl:onProperty :influencedBy ;
+    owl:someValuesFrom :Influx
+] .
+:Influx rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasInfluxOf ;
+    owl:someValuesFrom :Resident
+] .
+:HousingEstate rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :developedOn ;
+    owl:someValuesFrom :VillageFringe
+] .
+:Business rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :locatedIn ;
+    owl:someValuesFrom :Town
+] .
+
+:Milton a :Town , owl:NamedIndividual ;
+    rdfs:label "Milton"^^xsd:string ;
+    :locatedIn :SouthCoastRegion , :NewSouthWales , :Australia ;
+    :within :CityOfShoalhaven ;
+    :foundedOn :Year1860 ;
+    :namedAfter :GeorgeKnightProperty ;
+    :became :ImportantRegionalCentre ;
+    :hasPopulation :Population1663 ;
+    :hasCommercialCentre :MiltonUlladullaDistrict ;
+    :hasMainCommercialCentre :MiltonUlladullaDistrict ;
+    :popularStoppingPlaceFor :Travellers ;
+    :runsThrough :PrincesHighway ;
+    :influencedBy :LocalTourismIndustry , :InfluxOfResidents ;
+    :locatedIn :SouthCoastRegion ;
+    :locatedIn :Australia .
+
+:SouthCoastRegion a :Region , owl:NamedIndividual ;
+    rdfs:label "South Coast region"^^xsd:string .
+
+:NewSouthWales a :Country , owl:NamedIndividual ;
+    rdfs:label "New South Wales"^^xsd:string .
+
+:Australia a :Country , owl:NamedIndividual ;
+    rdfs:label "Australia"^^xsd:string .
+
+:CityOfShoalhaven a :LocalGovernmentArea , owl:NamedIndividual ;
+    rdfs:label "City of Shoalhaven"^^xsd:string .
+
+:GeorgeKnight a :Person , owl:NamedIndividual ;
+    rdfs:label "George Knight"^^xsd:string .
+
+:GeorgeKnightProperty a :Property , owl:NamedIndividual ;
+    rdfs:label "the property of post master George Knight"^^xsd:string ;
+    :hasNamedAfterPerson :GeorgeKnight .
+
+:Year1860 a :FoundedEvent , owl:NamedIndividual ;
+    rdfs:label "1860"^^xsd:string ;
+    :hasValue "1860"^^xsd:gYear .
+
+:ImportantRegionalCentre a :CommercialCentre , owl:NamedIndividual ;
+    rdfs:label "an important regional centre"^^xsd:string .
+
+:MiltonUlladullaDistrict a :District , owl:NamedIndividual ;
+    rdfs:label "Milton-Ulladulla district"^^xsd:string .
+
+:Population1663 a :PopulationCount , owl:NamedIndividual ;
+    rdfs:label "1,663"^^xsd:string ;
+    :hasValue "1663"^^xsd:integer .
+
+:PrincesHighway a :Highway , owl:NamedIndividual ;
+    rdfs:label "Princes Highway"^^xsd:string .
+
+:Travellers a :Traveller , owl:NamedIndividual ;
+    rdfs:label "travellers"^^xsd:string .
+
+:LocalTourismIndustry a :Industry , owl:NamedIndividual ;
+    rdfs:label "the local tourism industry"^^xsd:string .
+
+:InfluxOfResidents a :Influx , owl:NamedIndividual ;
+    rdfs:label "an influx of residents"^^xsd:string ;
+    :hasInfluxOf :ResidentsToTheDistrict .
+
+:ResidentsToTheDistrict a :Resident , owl:NamedIndividual ;
+    rdfs:label "residents to the district"^^xsd:string ;
+    :seeking :Searchange .
+
+:Searchange a :SearchangeSeeking , owl:NamedIndividual ;
+    rdfs:label "a seachange"^^xsd:string .
+
+:HousingEstates a :HousingEstate , owl:NamedIndividual ;
+    rdfs:label "new housing estates"^^xsd:string ;
+    :developedOn :FringesOfTheVillage .
+
+:FringesOfTheVillage a :VillageFringe , owl:NamedIndividual ;
+    rdfs:label "the fringes of the village"^^xsd:string .
+
+:BoutiqueStores a :BoutiqueStore , owl:NamedIndividual ;
+    rdfs:label "new boutique stores"^^xsd:string ;
+    :locatedIn :Milton .
+
+:Cafes a :Cafe , owl:NamedIndividual ;
+    rdfs:label "cafes"^^xsd:string ;
+    :locatedIn :Milton .
+
+:BedAndBreakfastTypeBusinesses a :BedAndBreakfastBusiness , owl:NamedIndividual ;
+    rdfs:label "bed and breakfast type businesses"^^xsd:string ;
+    :locatedIn :Milton .

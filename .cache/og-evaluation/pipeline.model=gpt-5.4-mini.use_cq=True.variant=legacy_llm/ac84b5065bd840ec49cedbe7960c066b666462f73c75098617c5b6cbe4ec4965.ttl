@@ -1,0 +1,211 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Monarchy a owl:Class .
+:OceaniaMonarchy a owl:Class .
+:ConstitutionalMonarchy a owl:Class .
+:SovereignState a owl:Class .
+:SelfGoverningSovereignState a owl:Class .
+:IndependentState a owl:Class .
+:HereditaryHeadOfState a owl:Class .
+:HereditaryHead a owl:Class .
+:HeadOfState a owl:Class .
+:Individual a owl:Class .
+:Monarch a owl:Class .
+:Office a owl:Class .
+:Power a owl:Class .
+:Law a owl:Class .
+:Custom a owl:Class .
+:CommonwealthRealm a owl:Class .
+:CommonwealthOfNationsMember a owl:Class .
+:State a owl:Class .
+:Country a owl:Class .
+:Dependency a owl:Class .
+:Region a owl:Class .
+:NonSovereignConstituentMonarch a owl:Class .
+:ConstituentMonarch a owl:Class .
+:GlobalGrouping a owl:Class .
+:NamedQuantity a owl:Class .
+
+:OceaniaMonarchy rdfs:subClassOf :Monarchy .
+:ConstitutionalMonarchy rdfs:subClassOf :Monarchy .
+:SelfGoverningSovereignState rdfs:subClassOf :SovereignState .
+:IndependentState rdfs:subClassOf :SovereignState .
+:HereditaryHeadOfState rdfs:subClassOf :HeadOfState .
+:HereditaryHeadOfState rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :headedBy ;
+  owl:someValuesFrom :HereditaryHead
+] .
+:HereditaryHead rdfs:subClassOf :Individual .
+:Monarch rdfs:subClassOf :Individual .
+:Office rdfs:subClassOf :Individual .
+:Power rdfs:subClassOf :Individual .
+:Law rdfs:subClassOf :Individual .
+:Custom rdfs:subClassOf :Individual .
+:CommonwealthRealm rdfs:subClassOf :GlobalGrouping .
+:CommonwealthOfNationsMember rdfs:subClassOf :Individual .
+:Dependency rdfs:subClassOf :Individual .
+:Region rdfs:subClassOf :Individual .
+:NonSovereignConstituentMonarch rdfs:subClassOf :ConstituentMonarch .
+:ConstituentMonarch rdfs:subClassOf :Monarch .
+:NamedQuantity rdfs:subClassOf :owl:Thing .
+
+:hasHeadOfState a owl:ObjectProperty .
+:sharesMonarchWith a owl:ObjectProperty ;
+  a owl:SymmetricProperty .
+:isPartOf a owl:ObjectProperty .
+:memberOf a owl:ObjectProperty .
+:recognizedBy a owl:ObjectProperty .
+:withinRegion a owl:ObjectProperty .
+:outsideRegion a owl:ObjectProperty .
+:hasDependency a owl:ObjectProperty .
+:hasOffice a owl:ObjectProperty .
+:inheritsOfficeBy a owl:ObjectProperty .
+:keepsOfficeUntil a owl:ObjectProperty .
+:isBoundBy a owl:ObjectProperty .
+:hasPower a owl:ObjectProperty .
+:residesWith a owl:ObjectProperty .
+:isHeadOfStateOf a owl:ObjectProperty .
+:partOfGrouping a owl:ObjectProperty .
+:headedBy a owl:ObjectProperty .
+:hasCount a owl:DatatypeProperty .
+
+:ConstitutionalMonarchy rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :inheritsOfficeBy ;
+  owl:someValuesFrom :HereditarySuccession
+] , [
+  a owl:Restriction ;
+  owl:onProperty :keepsOfficeUntil ;
+  owl:someValuesFrom :DeathOrAbdication
+] , [
+  a owl:Restriction ;
+  owl:onProperty :isBoundBy ;
+  owl:someValuesFrom [
+    a owl:Class ;
+    owl:unionOf ( :Law :Custom )
+  ]
+] .
+
+:HereditarySuccession a owl:Class .
+:DeathOrAbdication a owl:Class .
+
+:Oceania a :Region , owl:NamedIndividual ;
+  rdfs:label "Oceania"^^xsd:string .
+
+:QueenElizabethII a :Monarch , owl:NamedIndividual ;
+  rdfs:label "Queen Elizabeth II"^^xsd:string .
+
+:CommonwealthRealms a :GlobalGrouping , owl:NamedIndividual ;
+  rdfs:label "Commonwealth realms"^^xsd:string .
+
+:CommonwealthOfNations a :GlobalGrouping , owl:NamedIndividual ;
+  rdfs:label "Commonwealth of Nations"^^xsd:string .
+
+:Tonga a :IndependentState , :SovereignState , :Monarchy , :OceaniaMonarchy , :ConstitutionalMonarchy , owl:NamedIndividual ;
+  rdfs:label "Tonga"^^xsd:string ;
+  :isPartOf :Oceania ;
+  :memberOf :CommonwealthOfNations .
+
+:Australia a :Country , owl:NamedIndividual ;
+  rdfs:label "Australia"^^xsd:string ;
+  :hasDependency :AustraliaDependency ;
+  :isPartOf :Oceania .
+
+:NewZealand a :Country , owl:NamedIndividual ;
+  rdfs:label "New Zealand"^^xsd:string ;
+  :hasDependency :NewZealandDependency ;
+  :isPartOf :Oceania ;
+  :recognizedBy :France .
+
+:PapuaNewGuinea a :Country , owl:NamedIndividual ;
+  rdfs:label "Papua New Guinea"^^xsd:string ;
+  :recognizedBy :NewZealand , :France .
+
+:France a :Country , owl:NamedIndividual ;
+  rdfs:label "France"^^xsd:string .
+
+:AustraliaDependency a :Dependency , owl:NamedIndividual ;
+  rdfs:label "dependency"^^xsd:string ;
+  :withinRegion :Oceania .
+
+:NewZealandDependency a :Dependency , owl:NamedIndividual ;
+  rdfs:label "dependency"^^xsd:string ;
+  :withinRegion :Oceania .
+
+:MonarchyCountInOceania a :NamedQuantity , owl:NamedIndividual ;
+  rdfs:label "six"^^xsd:string ;
+  :hasCount "6"^^xsd:integer .
+
+:Five a :NamedQuantity , owl:NamedIndividual ;
+  rdfs:label "Five"^^xsd:string ;
+  :hasCount "5"^^xsd:integer .
+
+:FiveNonSovereignConstituentMonarchs a :NamedQuantity , owl:NamedIndividual ;
+  rdfs:label "five"^^xsd:string ;
+  :hasCount "5"^^xsd:integer .
+
+:OceaniaMonarch1 a :OceaniaMonarchy , :Monarchy , :SelfGoverningSovereignState , :SovereignState , :IndependentState , :ConstitutionalMonarchy , owl:NamedIndividual ;
+  :isPartOf :Oceania ;
+  :memberOf :CommonwealthOfNations ;
+  :partOfGrouping :CommonwealthRealms ;
+  :sharesMonarchWith :QueenElizabethII ;
+  :hasHeadOfState :QueenElizabethII .
+
+:OceaniaMonarch2 a :OceaniaMonarchy , :Monarchy , :SelfGoverningSovereignState , :SovereignState , :IndependentState , :ConstitutionalMonarchy , owl:NamedIndividual ;
+  :isPartOf :Oceania ;
+  :memberOf :CommonwealthOfNations ;
+  :partOfGrouping :CommonwealthRealms ;
+  :sharesMonarchWith :QueenElizabethII ;
+  :hasHeadOfState :QueenElizabethII .
+
+:OceaniaMonarch3 a :OceaniaMonarchy , :Monarchy , :SelfGoverningSovereignState , :SovereignState , :IndependentState , :ConstitutionalMonarchy , owl:NamedIndividual ;
+  :isPartOf :Oceania ;
+  :memberOf :CommonwealthOfNations ;
+  :partOfGrouping :CommonwealthRealms ;
+  :sharesMonarchWith :QueenElizabethII ;
+  :hasHeadOfState :QueenElizabethII .
+
+:OceaniaMonarch4 a :OceaniaMonarchy , :Monarchy , :SelfGoverningSovereignState , :SovereignState , :IndependentState , :ConstitutionalMonarchy , owl:NamedIndividual ;
+  :isPartOf :Oceania ;
+  :memberOf :CommonwealthOfNations ;
+  :partOfGrouping :CommonwealthRealms ;
+  :sharesMonarchWith :QueenElizabethII ;
+  :hasHeadOfState :QueenElizabethII .
+
+:OceaniaMonarch5 a :OceaniaMonarchy , :Monarchy , :SelfGoverningSovereignState , :SovereignState , :IndependentState , :ConstitutionalMonarchy , owl:NamedIndividual ;
+  :isPartOf :Oceania ;
+  :memberOf :CommonwealthOfNations ;
+  :partOfGrouping :CommonwealthRealms ;
+  :sharesMonarchWith :QueenElizabethII ;
+  :hasHeadOfState :QueenElizabethII .
+
+:OceaniaMonarch6 a :OceaniaMonarchy , :Monarchy , :SelfGoverningSovereignState , :SovereignState , :IndependentState , :ConstitutionalMonarchy , owl:NamedIndividual ;
+  :isPartOf :Oceania ;
+  :memberOf :CommonwealthOfNations .
+
+:ConstitutionalMonarchy rdfs:subClassOf :Monarchy ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasHeadOfState ;
+    owl:someValuesFrom :HereditaryHeadOfState
+  ] ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasHeadOfState ;
+    owl:allValuesFrom :HereditaryHeadOfState
+  ] .
+
+:OceaniaMonarchy rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :isPartOf ;
+  owl:hasValue :Oceania
+] , [
+  a owl:Restriction ;
+  owl:onProperty :memberOf ;
+  owl:hasValue :CommonwealthOfNations
+] .

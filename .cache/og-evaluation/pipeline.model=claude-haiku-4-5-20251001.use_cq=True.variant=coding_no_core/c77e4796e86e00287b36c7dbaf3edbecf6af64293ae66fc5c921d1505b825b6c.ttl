@@ -1,0 +1,185 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:AANR a owl:NamedIndividual,
+        ns1:NaturistOrganization ;
+    rdfs:label "American Association for Nude Recreation (AANR)"^^xsd:string ;
+    ns1:affiliatedEntitiesCount 200 ;
+    ns1:engagesInPoliticalActivity ns1:Campaigning,
+        ns1:Lobbying ;
+    ns1:formerName "American Sunbathing Association"^^xsd:string ;
+    ns1:foundingYear 1931 ;
+    ns1:isLargestOfItsKindIn ns1:NorthAmerica ;
+    ns1:isLongestEstablishedOfItsKindIn ns1:NorthAmerica ;
+    ns1:memberCount 30000 ;
+    ns1:operatesIn ns1:Canada,
+        ns1:FrenchWestIndies,
+        ns1:Mexico,
+        ns1:StMartin,
+        ns1:UnitedStates,
+        ns1:VirginIslands ;
+    ns1:promotes ns1:WholesomeNudeRecreation ;
+    ns1:protectsRights ns1:RightsOfNudists ;
+    ns1:recognizesVenueType ns1:AffiliatedClubs,
+        ns1:Campgrounds,
+        ns1:Homes,
+        ns1:NudistBeaches,
+        ns1:PrivateBackyards,
+        ns1:PublicLands,
+        ns1:Resorts .
+
+ns1:affiliatedEntitiesCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range xsd:integer .
+
+ns1:engagesInPoliticalActivity a owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:PoliticalActivity .
+
+ns1:formerName a owl:DatatypeProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range xsd:string .
+
+ns1:foundingYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range xsd:integer .
+
+ns1:isLargestOfItsKindIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:GeographicRegion .
+
+ns1:isLongestEstablishedOfItsKindIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:GeographicRegion .
+
+ns1:memberCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range xsd:integer .
+
+ns1:operatesIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:Country,
+        ns1:GeographicRegion,
+        ns1:Territory .
+
+ns1:promotes a owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:Recreation .
+
+ns1:protectsRights a owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:NudistRights .
+
+ns1:recognizesVenueType a owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:VenueType .
+
+ns1:AffiliatedClubs a owl:NamedIndividual,
+        ns1:VenueType ;
+    rdfs:label "AANR-affiliated clubs"^^xsd:string .
+
+ns1:Campaigning a owl:NamedIndividual,
+        ns1:PoliticalActivity ;
+    rdfs:label "Campaigning to allow nudism in the US and Canada"^^xsd:string .
+
+ns1:Campgrounds a owl:NamedIndividual,
+        ns1:VenueType ;
+    rdfs:label "Campgrounds"^^xsd:string .
+
+ns1:Canada a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Canada"^^xsd:string .
+
+ns1:FrenchWestIndies a owl:NamedIndividual,
+        ns1:Territory ;
+    rdfs:label "French West Indies"^^xsd:string .
+
+ns1:Homes a owl:NamedIndividual,
+        ns1:VenueType ;
+    rdfs:label "Homes"^^xsd:string .
+
+ns1:Lobbying a owl:NamedIndividual,
+        ns1:PoliticalActivity ;
+    rdfs:label "Lobbying governments"^^xsd:string .
+
+ns1:Mexico a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Mexico"^^xsd:string .
+
+ns1:NaturistOrganization a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:NudistBeaches a owl:NamedIndividual,
+        ns1:VenueType ;
+    rdfs:label "Sanctioned nude beaches"^^xsd:string .
+
+ns1:PrivateBackyards a owl:NamedIndividual,
+        ns1:VenueType ;
+    rdfs:label "Private backyards"^^xsd:string .
+
+ns1:PublicLands a owl:NamedIndividual,
+        ns1:VenueType ;
+    rdfs:label "Public lands set aside for nude recreation"^^xsd:string .
+
+ns1:Resorts a owl:NamedIndividual,
+        ns1:VenueType ;
+    rdfs:label "Resorts"^^xsd:string .
+
+ns1:RightsOfNudists a owl:NamedIndividual,
+        ns1:NudistRights ;
+    rdfs:label "Rights of nudists"^^xsd:string .
+
+ns1:StMartin a owl:NamedIndividual,
+        ns1:Territory ;
+    rdfs:label "St. Martin"^^xsd:string .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United States"^^xsd:string .
+
+ns1:VirginIslands a owl:NamedIndividual,
+        ns1:Territory ;
+    rdfs:label "Virgin Islands"^^xsd:string .
+
+ns1:WholesomeNudeRecreation a owl:NamedIndividual,
+        ns1:Recreation ;
+    rdfs:label "Wholesome nude family recreation"^^xsd:string .
+
+ns1:NorthAmerica a owl:NamedIndividual,
+        ns1:GeographicRegion ;
+    rdfs:label "North America"^^xsd:string .
+
+ns1:NudistRights a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Recreation a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PoliticalActivity a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:GeographicRegion a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Territory a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:VenueType a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .

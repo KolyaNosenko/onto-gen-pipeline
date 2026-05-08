@@ -1,0 +1,262 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:accessibleBy a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:LighthouseSite ;
+    rdfs:range xsd:string .
+
+ns1:appearsOnCoatOfArms a owl:ObjectProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range ns1:CoatOfArms .
+
+ns1:availableToRent a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Accommodation ;
+    rdfs:range xsd:boolean .
+
+ns1:builtInYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range xsd:integer .
+
+ns1:builtWithSameSpecifications a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range xsd:boolean .
+
+ns1:coatOfArmsOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:CoatOfArms ;
+    rdfs:range ns1:Municipality .
+
+ns1:hasAccommodation a owl:ObjectProperty ;
+    rdfs:domain ns1:LighthouseSite ;
+    rdfs:range ns1:Accommodation .
+
+ns1:hasSite a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range ns1:LighthouseSite .
+
+ns1:hasTower a owl:ObjectProperty ;
+    rdfs:domain ns1:LighthouseSite ;
+    rdfs:range ns1:Tower .
+
+ns1:isInUse a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range xsd:boolean .
+
+ns1:isStillStanding a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range xsd:boolean .
+
+ns1:locatedInCountry a owl:ObjectProperty ;
+    rdfs:domain ns1:AdministrativeDivision ;
+    rdfs:range ns1:Country .
+
+ns1:locatedInCounty a owl:ObjectProperty ;
+    rdfs:domain ns1:AdministrativeDivision ;
+    rdfs:range ns1:County .
+
+ns1:locatedInMunicipality a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:Municipality .
+
+ns1:locatedOnIsland a owl:ObjectProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range ns1:Island .
+
+ns1:marksEntranceFrom a owl:ObjectProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range ns1:BodyOfWater .
+
+ns1:marksEntranceTo a owl:ObjectProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range ns1:Town .
+
+ns1:nearbyLighthouse a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range ns1:Lighthouse .
+
+ns1:openDuringSeason a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:Season .
+
+ns1:openToPublic a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:boolean .
+
+ns1:twinsWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range ns1:Lighthouse .
+
+ns1:wasReplaced a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Lighthouse ;
+    rdfs:range xsd:boolean .
+
+ns1:HeraldrySymbol a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:LighthouseKeepersHouse a owl:Class ;
+    rdfs:subClassOf ns1:Accommodation .
+
+ns1:LighthouseKeepers_House a owl:NamedIndividual,
+        ns1:LighthouseKeepersHouse ;
+    rdfs:label "lighthouse keepers house"^^xsd:string ;
+    ns1:availableToRent true .
+
+ns1:Norway_Country a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Norway"^^xsd:string .
+
+ns1:Settlement a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Site a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:StoreTorungen_Island a owl:NamedIndividual,
+        ns1:Island ;
+    rdfs:label "Store Torungen"^^xsd:string ;
+    ns1:locatedInMunicipality ns1:Arendal_Municipality ;
+    ns1:openToPublic true .
+
+ns1:StoreTorungen_Site a owl:NamedIndividual,
+        ns1:LighthouseSite ;
+    rdfs:label "Store Torungen Lighthouse site"^^xsd:string ;
+    ns1:accessibleBy "boat"^^xsd:string ;
+    ns1:hasAccommodation ns1:LighthouseKeepers_House ;
+    ns1:hasTower ns1:StoreTorungen_Tower ;
+    ns1:openToPublic true .
+
+ns1:StoreTorungen_Tower a owl:NamedIndividual,
+        ns1:Tower ;
+    rdfs:label "Store Torungen Lighthouse tower"^^xsd:string ;
+    ns1:openDuringSeason ns1:SummerSeason ;
+    ns1:openToPublic true .
+
+ns1:SummerSeason a owl:NamedIndividual,
+        ns1:Season ;
+    rdfs:label "summer"^^xsd:string .
+
+ns1:Arendal_Municipality a owl:NamedIndividual,
+        ns1:Municipality ;
+    rdfs:label "Arendal"^^xsd:string ;
+    ns1:locatedInCounty ns1:AustAgder_County .
+
+ns1:Arendal_Town a owl:NamedIndividual,
+        ns1:Town ;
+    rdfs:label "Arendal"^^xsd:string .
+
+ns1:AustAgder_County a owl:NamedIndividual,
+        ns1:County ;
+    rdfs:label "Aust-Agder"^^xsd:string ;
+    ns1:locatedInCountry ns1:Norway_Country .
+
+ns1:BodyOfWater a owl:Class ;
+    rdfs:subClassOf ns1:GeographicFeature .
+
+ns1:CoastalLighthouse a owl:Class ;
+    rdfs:subClassOf ns1:Lighthouse .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:AdministrativeDivision .
+
+ns1:County a owl:Class ;
+    rdfs:subClassOf ns1:AdministrativeDivision .
+
+ns1:GeographicFeature a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Hisoey_CoatOfArms a owl:NamedIndividual,
+        ns1:CoatOfArms ;
+    rdfs:label "Hisøy coat of arms"^^xsd:string ;
+    ns1:coatOfArmsOf ns1:Hisoey_Municipality .
+
+ns1:Island a owl:Class ;
+    rdfs:subClassOf ns1:GeographicFeature .
+
+ns1:LilleTorungen_LH a owl:NamedIndividual,
+        ns1:CoastalLighthouse ;
+    rdfs:label "Lille Torungen Lighthouse"^^xsd:string ;
+    ns1:appearsOnCoatOfArms ns1:Hisoey_CoatOfArms ;
+    ns1:builtInYear 1844 ;
+    ns1:builtWithSameSpecifications true ;
+    ns1:isInUse false ;
+    ns1:isStillStanding true ;
+    ns1:locatedInMunicipality ns1:Hisoey_Municipality ;
+    ns1:marksEntranceFrom ns1:Skaggerak_Water ;
+    ns1:marksEntranceTo ns1:Arendal_Town ;
+    ns1:nearbyLighthouse ns1:StoreTorungen_LH ;
+    ns1:twinsWith ns1:StoreTorungen_LH ;
+    ns1:wasReplaced true .
+
+ns1:Season a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Skaggerak_Water a owl:NamedIndividual,
+        ns1:BodyOfWater ;
+    rdfs:label "Skaggerak"^^xsd:string .
+
+ns1:StoreTorungen_LH a owl:NamedIndividual,
+        ns1:CoastalLighthouse ;
+    rdfs:label "Store Torungen Lighthouse"^^xsd:string ;
+    ns1:appearsOnCoatOfArms ns1:Hisoey_CoatOfArms ;
+    ns1:builtInYear 1844 ;
+    ns1:builtWithSameSpecifications true ;
+    ns1:hasSite ns1:StoreTorungen_Site ;
+    ns1:isInUse false ;
+    ns1:isStillStanding false ;
+    ns1:locatedInMunicipality ns1:Arendal_Municipality,
+        ns1:Hisoey_Municipality ;
+    ns1:locatedOnIsland ns1:StoreTorungen_Island ;
+    ns1:marksEntranceFrom ns1:Skaggerak_Water ;
+    ns1:marksEntranceTo ns1:Arendal_Town ;
+    ns1:nearbyLighthouse ns1:LilleTorungen_LH ;
+    ns1:twinsWith ns1:LilleTorungen_LH ;
+    ns1:wasReplaced true .
+
+ns1:Structure a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Tower a owl:Class ;
+    rdfs:subClassOf ns1:Structure .
+
+ns1:Town a owl:Class ;
+    rdfs:subClassOf ns1:Settlement .
+
+ns1:Accommodation a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CoatOfArms a owl:Class ;
+    rdfs:subClassOf ns1:HeraldrySymbol .
+
+ns1:Hisoey_Municipality a owl:NamedIndividual,
+        ns1:Municipality ;
+    rdfs:label "Hisøy"^^xsd:string ;
+    ns1:locatedInCounty ns1:AustAgder_County .
+
+ns1:Municipality a owl:Class ;
+    rdfs:subClassOf ns1:AdministrativeDivision .
+
+ns1:AdministrativeDivision a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:LighthouseSite a owl:Class ;
+    rdfs:subClassOf ns1:Site .
+
+ns1:Lighthouse a owl:Class ;
+    rdfs:subClassOf ns1:Structure .

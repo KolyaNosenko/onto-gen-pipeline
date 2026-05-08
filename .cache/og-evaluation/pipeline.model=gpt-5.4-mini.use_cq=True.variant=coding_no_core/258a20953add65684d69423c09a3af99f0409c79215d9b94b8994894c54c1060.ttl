@@ -1,0 +1,185 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:Album a owl:Class ;
+    rdfs:subClassOf ns1:MusicalRelease .
+
+ns1:EP a owl:Class ;
+    rdfs:subClassOf ns1:MusicalRelease .
+
+ns1:beganSoloCareerYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Artist ;
+    rdfs:range xsd:integer .
+
+ns1:fromPlace a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Place .
+
+ns1:grewUpIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Place .
+
+ns1:hasBirthDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:date .
+
+ns1:knownFor a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:string .
+
+ns1:leadSingerOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Band .
+
+ns1:musicComparedToArtist a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Artist .
+
+ns1:previousSpouse a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Person .
+
+ns1:recordsAndProducesIn a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:string .
+
+ns1:recordsVoiceAndGuitarTogetherOn a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:string .
+
+ns1:releasedEPsCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Artist ;
+    rdfs:range xsd:integer .
+
+ns1:releasedFullLengthAlbumsCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Artist ;
+    rdfs:range xsd:integer .
+
+ns1:stageName a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:StageName .
+
+ns1:wroteMusicFor a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Film .
+
+ns1:AmandaBergman a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Amanda Bergman"^^xsd:string ;
+    ns1:previousSpouse ns1:KristianMatsson ;
+    ns1:stageName ns1:IdiotWind ;
+    ns1:wroteMusicFor ns1:OnceAYear .
+
+ns1:BobDylan a owl:NamedIndividual,
+        ns1:Artist ;
+    rdfs:label "Bob Dylan"^^xsd:string .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Dalarna a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "Dalarna"^^xsd:string .
+
+ns1:DramaFilm a owl:Class ;
+    rdfs:subClassOf ns1:Film .
+
+ns1:IdiotWind a owl:NamedIndividual,
+        ns1:StageName ;
+    rdfs:label "Idiot Wind"^^xsd:string .
+
+ns1:IndieBand a owl:Class ;
+    rdfs:subClassOf ns1:Band .
+
+ns1:KristianMatsson a owl:NamedIndividual,
+        ns1:SingerSongwriter ;
+    rdfs:label "Kristian Matsson"^^xsd:string ;
+    ns1:beganSoloCareerYear 2006 ;
+    ns1:fromPlace ns1:Dalarna,
+        ns1:Sweden ;
+    ns1:grewUpIn ns1:Leksand ;
+    ns1:hasBirthDate "1983-04-30"^^xsd:date ;
+    ns1:knownFor "charismatic stage presence"^^xsd:string ;
+    ns1:leadSingerOf ns1:Montezumas ;
+    ns1:musicComparedToArtist ns1:BobDylan ;
+    ns1:previousSpouse ns1:AmandaBergman ;
+    ns1:recordsAndProducesIn "his home"^^xsd:string ;
+    ns1:recordsVoiceAndGuitarTogetherOn "one track"^^xsd:string ;
+    ns1:releasedEPsCount 2 ;
+    ns1:releasedFullLengthAlbumsCount 4 ;
+    ns1:stageName ns1:TheTallestManOnEarth ;
+    ns1:wroteMusicFor ns1:OnceAYear .
+
+ns1:Leksand a owl:NamedIndividual,
+        ns1:Locality ;
+    rdfs:label "Leksand"^^xsd:string .
+
+ns1:Locality a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Montezumas a owl:NamedIndividual,
+        ns1:IndieBand ;
+    rdfs:label "Montezumas"^^xsd:string .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Singer a owl:Class ;
+    rdfs:subClassOf ns1:Artist .
+
+ns1:SingerSongwriter a owl:Class ;
+    rdfs:subClassOf ns1:Artist ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( ns1:Singer ns1:Songwriter ) ] .
+
+ns1:Songwriter a owl:Class ;
+    rdfs:subClassOf ns1:Artist .
+
+ns1:Sweden a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Sweden"^^xsd:string .
+
+ns1:TheTallestManOnEarth a owl:NamedIndividual,
+        ns1:StageName ;
+    rdfs:label "The Tallest Man on Earth"^^xsd:string .
+
+ns1:Band a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Film a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MusicalRelease a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:OnceAYear a owl:NamedIndividual,
+        ns1:DramaFilm ;
+    rdfs:label "Once a Year"^^xsd:string .
+
+ns1:StageName a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Artist a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .

@@ -1,0 +1,156 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Skyscraper a owl:Class .
+:Building a owl:Class .
+:Structure a owl:Class .
+:Location a owl:Class .
+:District a owl:Class .
+:City a owl:Class .
+:State a owl:Class .
+:Country a owl:Class .
+:River a owl:Class .
+:Complex a owl:Class .
+:Development a owl:Class .
+:Component a owl:Class .
+:HotelComponent a owl:Class .
+:UseType a owl:Class .
+:HotelUse a owl:Class .
+:RetailUse a owl:Class .
+:ObservationDeckUse a owl:Class .
+:ShoppingMallUse a owl:Class .
+:OfficeUse a owl:Class .
+:OfficeSpace a owl:Class .
+:HotelRoom a owl:Class .
+:RoomSuiteCount a owl:Class .
+:CostAmount a owl:Class .
+:HeightRanking a owl:Class .
+:HeightDifference a owl:Class .
+:Impact a owl:Class .
+:Plan a owl:Class .
+
+:Skyscraper rdfs:subClassOf :Building .
+:Building rdfs:subClassOf :Structure .
+:HotelUse rdfs:subClassOf :UseType .
+:RetailUse rdfs:subClassOf :UseType .
+:ObservationDeckUse rdfs:subClassOf :UseType .
+:ShoppingMallUse rdfs:subClassOf :UseType .
+:OfficeUse rdfs:subClassOf :UseType .
+:HotelComponent rdfs:subClassOf :Component .
+
+:locatedIn a owl:ObjectProperty .
+:partOf a owl:ObjectProperty , owl:TransitiveProperty .
+:isTallerThan a owl:ObjectProperty .
+:hasHeightDifferenceFrom a owl:ObjectProperty .
+:includesUse a owl:ObjectProperty .
+:hasDevelopmentCost a owl:ObjectProperty .
+:hasPlannedRetailUnits a owl:ObjectProperty .
+:hasPlannedOfficeSpace a owl:ObjectProperty .
+:hasPlannedHotelRooms a owl:ObjectProperty .
+:hasHotelComponent a owl:ObjectProperty .
+:comprises a owl:ObjectProperty .
+:expectedToRevitalize a owl:ObjectProperty .
+:surrounding a owl:ObjectProperty .
+
+:plannedRetailUnits a owl:DatatypeProperty .
+:plannedOfficeSpace a owl:DatatypeProperty .
+:plannedHotelRooms a owl:DatatypeProperty .
+:comprisesRoomAndSuiteCount a owl:DatatypeProperty .
+:estimatedCost a owl:DatatypeProperty .
+:heightRankingInLosAngeles a owl:DatatypeProperty .
+:heightRankingInCalifornia a owl:DatatypeProperty .
+:heightRankingWestOfMississippiRiver a owl:DatatypeProperty .
+:heightRankingInUnitedStates a owl:DatatypeProperty .
+:hasHeightDifferenceValue a owl:DatatypeProperty .
+
+:WilshireGrandCenter a :Skyscraper , owl:NamedIndividual ;
+    rdfs:label "Wilshire Grand Center"^^xsd:string ;
+    :locatedIn :FinancialDistrict , :DowntownLosAngeles , :California ;
+    :isTallerThan :USBankTower ;
+    :hasHeightDifferenceFrom :USBankTower ;
+    :includesUse :HotelUse , :RetailUse , :ObservationDeckUse , :ShoppingMallUse , :OfficeUse ;
+    :hasDevelopmentCost :DevelopmentCost12Billion ;
+    :hasPlannedRetailUnits "retail"^^xsd:string ;
+    :hasPlannedOfficeSpace :ClassAOfficeSpace ;
+    :hasPlannedHotelRooms :HotelRooms900 ;
+    :hasHotelComponent :InterContinental ;
+    :expectedToRevitalize :DowntownLosAngeles , :AreaSurroundingTheBuilding ;
+    :heightRankingInLosAngeles "tallest"^^xsd:string ;
+    :heightRankingInCalifornia "tallest"^^xsd:string ;
+    :heightRankingWestOfMississippiRiver "tallest"^^xsd:string ;
+    :heightRankingInUnitedStates "11th tallest"^^xsd:string .
+
+:FinancialDistrict a :District , owl:NamedIndividual ;
+    rdfs:label "Financial District"^^xsd:string ;
+    :partOf :DowntownLosAngeles .
+
+:DowntownLosAngeles a :Location , :City , owl:NamedIndividual ;
+    rdfs:label "Downtown Los Angeles"^^xsd:string ;
+    :locatedIn :LosAngeles .
+
+:California a :State , owl:NamedIndividual ;
+    rdfs:label "California"^^xsd:string ;
+    :locatedIn :UnitedStates .
+
+:LosAngeles a :City , owl:NamedIndividual ;
+    rdfs:label "Los Angeles"^^xsd:string ;
+    :locatedIn :California .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:MississippiRiver a :River , owl:NamedIndividual ;
+    rdfs:label "Mississippi River"^^xsd:string .
+
+:NewYorkCity a :City , owl:NamedIndividual ;
+    rdfs:label "New York City"^^xsd:string ;
+    :locatedIn :UnitedStates .
+
+:Chicago a :City , owl:NamedIndividual ;
+    rdfs:label "Chicago"^^xsd:string ;
+    :locatedIn :UnitedStates .
+
+:Philadelphia a :City , owl:NamedIndividual ;
+    rdfs:label "Philadelphia"^^xsd:string ;
+    :locatedIn :UnitedStates .
+
+:USBankTower a :Building , owl:NamedIndividual ;
+    rdfs:label "U.S. Bank Tower"^^xsd:string .
+
+:MixedUseHotelRetailObservationDecksShoppingMallAndOfficeComplex a :Complex , owl:NamedIndividual ;
+    rdfs:label "mixed-use hotel, retail, observation decks, shopping mall, and office complex"^^xsd:string ;
+    :includesUse :HotelUse , :RetailUse , :ObservationDeckUse , :ShoppingMallUse , :OfficeUse .
+
+:DevelopmentOfTheComplex a :Development , owl:NamedIndividual ;
+    rdfs:label "development of the complex"^^xsd:string ;
+    :hasDevelopmentCost :DevelopmentCost12Billion .
+
+:DevelopmentCost12Billion a :CostAmount , owl:NamedIndividual ;
+    rdfs:label "$1.2 billion"^^xsd:string ;
+    :estimatedCost "1200000000"^^xsd:decimal .
+
+:ClassAOfficeSpace a :OfficeSpace , owl:NamedIndividual ;
+    rdfs:label "Class A office space"^^xsd:string .
+
+:HotelRooms900 a :HotelRoom , owl:NamedIndividual ;
+    rdfs:label "900 hotel rooms"^^xsd:string ;
+    :plannedHotelRooms "900"^^xsd:integer .
+
+:InterContinental a :HotelComponent , owl:NamedIndividual ;
+    rdfs:label "InterContinental"^^xsd:string ;
+    :comprises :RoomsAndSuites900 ;
+    :comprisesRoomAndSuiteCount "900"^^xsd:integer .
+
+:RoomsAndSuites900 a :RoomSuiteCount , owl:NamedIndividual ;
+    rdfs:label "900 rooms and suites"^^xsd:string .
+
+:AreaSurroundingTheBuilding a :Location , owl:NamedIndividual ;
+    rdfs:label "the area surrounding the building"^^xsd:string .
+
+:HeightDifferenceUnknown a :HeightDifference , owl:NamedIndividual ;
+    rdfs:label "by"^^xsd:string .
+
+:WilshireGrandCenter :hasHeightDifferenceFrom :USBankTower .

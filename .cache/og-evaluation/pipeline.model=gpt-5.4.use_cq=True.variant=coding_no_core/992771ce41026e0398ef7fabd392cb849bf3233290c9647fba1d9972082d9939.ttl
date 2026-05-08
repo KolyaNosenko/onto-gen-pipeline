@@ -1,0 +1,584 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:NobelPrize2014 a owl:NamedIndividual,
+        ns1:NobelPrizeInPhysiologyOrMedicine ;
+    rdfs:label "2014 Nobel Prize in Physiology or Medicine"^^xsd:string ;
+    ns1:awardedFor ns1:PositioningSystemDiscovery ;
+    ns1:awardedInYear ns1:Year2014 ;
+    ns1:awardedTo ns1:EdvardMoser,
+        ns1:JohnOKeefe,
+        ns1:MayBrittMoser .
+
+ns1:TypicalExperimentalStudy a owl:NamedIndividual,
+        ns1:ExperimentalStudy ;
+    rdfs:label "a typical experimental study"^^xsd:string ;
+    ns1:hasBehavioralCondition ns1:MovesAroundFreely ;
+    ns1:performedOn ns1:RatSubject ;
+    ns1:recordsInBrainRegion ns1:DorsomedialEntorhinalCortexMention ;
+    ns1:takesPlaceIn ns1:OpenArena ;
+    ns1:usesDevice ns1:RecordingElectrode .
+
+ns1:awardedFor a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Prize ;
+    rdfs:range ns1:Discovery .
+
+ns1:awardedInYear a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Prize ;
+    rdfs:range ns1:Year .
+
+ns1:awardedTo a owl:ObjectProperty ;
+    rdfs:domain ns1:Prize ;
+    rdfs:range ns1:Person .
+
+ns1:basedOnUpdatedInformationAbout a owl:ObjectProperty ;
+    rdfs:domain ns1:Mechanism ;
+    rdfs:range ns1:InformationType .
+
+ns1:canExhibitMultipleClusters a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:PlaceCell ;
+    rdfs:range xsd:boolean .
+
+ns1:concernsCellType a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:Neuron .
+
+ns1:contributedToDiscovery a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Discovery .
+
+ns1:discoveredAtInstitution a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Discovery ;
+    rdfs:range ns1:Institution .
+
+ns1:discoveredBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Discovery ;
+    rdfs:range ns1:Person .
+
+ns1:discoveredInYear a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Discovery ;
+    rdfs:range ns1:Year .
+
+ns1:emits a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:ActionPotential .
+
+ns1:formsClusters a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:Cluster .
+
+ns1:formsVerticesOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Cluster ;
+    rdfs:range ns1:GeometricPattern .
+
+ns1:frequentlyHasPlaceFieldCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:PlaceCell ;
+    rdfs:range xsd:integer .
+
+ns1:hasEqualDistancesFromNeighbors a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:GeometricPattern ;
+    rdfs:range xsd:boolean .
+
+ns1:hasPerceptibleRegularity a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:GeometricPattern ;
+    rdfs:range xsd:boolean .
+
+ns1:implantedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Device ;
+    rdfs:range ns1:BrainRegion .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:observedInEnvironment a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:Environment .
+
+ns1:partOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:representsSpace a owl:ObjectProperty ;
+    rdfs:domain ns1:CognitiveRepresentation ;
+    rdfs:range ns1:Space .
+
+ns1:studentOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Student ;
+    rdfs:range ns1:Researcher .
+
+ns1:suggestsHypothesis a owl:ObjectProperty ;
+    rdfs:domain ns1:Discovery ;
+    rdfs:range ns1:Hypothesis .
+
+ns1:suggestsMechanism a owl:ObjectProperty ;
+    rdfs:domain ns1:Discovery ;
+    rdfs:range ns1:Mechanism .
+
+ns1:typicallyRecordedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:BrainRegion .
+
+ns1:visualizedByPlotting a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:VisualizationMethod .
+
+ns1:BrainPositioningSystemInTheBrain a owl:NamedIndividual,
+        ns1:BrainPositioningSystem ;
+    rdfs:label "a positioning system in the brain"^^xsd:string .
+
+ns1:CentreForTheBiologyOfMemory a owl:NamedIndividual,
+        ns1:ResearchCentre ;
+    rdfs:label "CBM"^^xsd:string,
+        "Centre for the Biology of Memory"^^xsd:string,
+        "Centre for the Biology of Memory ( CBM )"^^xsd:string ;
+    ns1:locatedIn ns1:Norway .
+
+ns1:CerebralCortex a owl:Class ;
+    rdfs:subClassOf ns1:BrainRegion .
+
+ns1:CognitiveRepresentationOfEuclideanSpace a owl:NamedIndividual,
+        ns1:CognitiveRepresentation ;
+    rdfs:label "a cognitive representation of Euclidean space"^^xsd:string ;
+    ns1:representsSpace ns1:EuclideanSpaceMention .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:DirectionInformation a owl:Class ;
+    rdfs:subClassOf ns1:InformationType .
+
+ns1:DirectionInformationMention a owl:NamedIndividual,
+        ns1:DirectionInformation ;
+    rdfs:label "direction"^^xsd:string .
+
+ns1:DynamicComputationMechanism a owl:NamedIndividual,
+        ns1:Mechanism ;
+    rdfs:label "dynamic computation of self - position based on continuously updated information about position and direction"^^xsd:string ;
+    ns1:basedOnUpdatedInformationAbout ns1:DirectionInformationMention,
+        ns1:PositionInformationMention .
+
+ns1:EntorhinalCortex a owl:Class ;
+    rdfs:subClassOf ns1:BrainRegion .
+
+ns1:EuclideanSpace a owl:Class ;
+    rdfs:subClassOf ns1:Space .
+
+ns1:EuclideanSpaceMention a owl:NamedIndividual,
+        ns1:EuclideanSpace ;
+    rdfs:label "Euclidean space"^^xsd:string .
+
+ns1:GivenEnvironment a owl:NamedIndividual,
+        ns1:Environment ;
+    rdfs:label "a given environment"^^xsd:string .
+
+ns1:GridCellEuclideanSpaceHypothesis a owl:NamedIndividual,
+        ns1:Hypothesis ;
+    rdfs:label "these cells encode a cognitive representation of Euclidean space"^^xsd:string ;
+    ns1:concernsCellType ns1:GridCellMention .
+
+ns1:GridCellSpatialFiringFields a owl:NamedIndividual,
+        ns1:SpatialFiringField ;
+    rdfs:label "spatial firing fields"^^xsd:string .
+
+ns1:GridOfEquilateralTriangles a owl:Class ;
+    rdfs:subClassOf ns1:GeometricPattern .
+
+ns1:Hippocampus a owl:Class ;
+    rdfs:subClassOf ns1:BrainRegion .
+
+ns1:JohnOKeefe a owl:NamedIndividual,
+        ns1:Researcher ;
+    rdfs:label "John O'Keefe"^^xsd:string ;
+    ns1:contributedToDiscovery ns1:PositioningSystemDiscovery .
+
+ns1:ManySpecies a owl:NamedIndividual,
+        ns1:SpeciesGroup ;
+    rdfs:label "many species"^^xsd:string .
+
+ns1:MarianneFyhn a owl:NamedIndividual,
+        ns1:Student ;
+    rdfs:label "Marianne Fyhn"^^xsd:string ;
+    ns1:contributedToDiscovery ns1:GridCellDiscovery ;
+    ns1:studentOf ns1:EdvardMoser,
+        ns1:MayBrittMoser .
+
+ns1:MovesAroundFreely a owl:NamedIndividual,
+        ns1:BehavioralCondition ;
+    rdfs:label "moves around freely"^^xsd:string .
+
+ns1:MultipleClusters a owl:NamedIndividual,
+        ns1:Cluster ;
+    rdfs:label "multiple clusters"^^xsd:string .
+
+ns1:NoPerceptibleRegularity a owl:NamedIndividual,
+        ns1:GeometricPattern ;
+    rdfs:label "no perceptible regularity in their arrangement"^^xsd:string ;
+    ns1:hasPerceptibleRegularity false .
+
+ns1:NobelPrizeInPhysiologyOrMedicine a owl:Class ;
+    rdfs:subClassOf ns1:Prize .
+
+ns1:Norway a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Norway"^^xsd:string .
+
+ns1:OpenArena a owl:NamedIndividual,
+        ns1:Arena ;
+    rdfs:label "open arena"^^xsd:string .
+
+ns1:PlaceCellMention a owl:NamedIndividual,
+        ns1:PlaceCell ;
+    rdfs:label "place cell"^^xsd:string ;
+    ns1:canExhibitMultipleClusters true ;
+    ns1:emits ns1:ActionPotentialMention ;
+    ns1:formsClusters ns1:MultipleClusters,
+        ns1:SmallClusters ;
+    ns1:frequentlyHasPlaceFieldCount 1 ;
+    ns1:hasFiringPattern ns1:NoPerceptibleRegularity ;
+    ns1:hasSpatialFiringField ns1:PlaceFieldMention ;
+    ns1:observedInEnvironment ns1:GivenEnvironment ;
+    ns1:partOf ns1:RatHippocampus ;
+    ns1:visualizedByPlotting ns1:RatHeadDotPlot .
+
+ns1:PlaceFieldMention a owl:NamedIndividual,
+        ns1:PlaceField ;
+    rdfs:label "one \" place field \""^^xsd:string .
+
+ns1:PositionInSpace a owl:NamedIndividual,
+        ns1:SpatialPosition ;
+    rdfs:label "position in space"^^xsd:string .
+
+ns1:PositionInformation a owl:Class ;
+    rdfs:subClassOf ns1:InformationType .
+
+ns1:PositionInformationMention a owl:NamedIndividual,
+        ns1:PositionInformation ;
+    rdfs:label "position"^^xsd:string .
+
+ns1:PositioningSystem a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:RatHippocampus a owl:NamedIndividual,
+        ns1:Hippocampus ;
+    rdfs:label "rat hippocampus"^^xsd:string .
+
+ns1:RatSubject a owl:NamedIndividual,
+        ns1:Rat ;
+    rdfs:label "rat"^^xsd:string .
+
+ns1:RecordingElectrode a owl:NamedIndividual,
+        ns1:Electrode ;
+    rdfs:label "an electrode capable of recording the activity of an individual neuron"^^xsd:string ;
+    ns1:implantedIn ns1:CerebralCortexMention .
+
+ns1:RegularTrianglePatternMention a owl:NamedIndividual,
+        ns1:RegularTrianglePattern ;
+    rdfs:label "This regular triangle - pattern"^^xsd:string ;
+    ns1:hasEqualDistancesFromNeighbors true ;
+    ns1:hasPerceptibleRegularity true .
+
+ns1:Representation a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ResearchCentre a owl:Class ;
+    rdfs:subClassOf ns1:Institution .
+
+ns1:SturlaMolden a owl:NamedIndividual,
+        ns1:Student ;
+    rdfs:label "Sturla Molden"^^xsd:string ;
+    ns1:contributedToDiscovery ns1:GridCellDiscovery ;
+    ns1:studentOf ns1:EdvardMoser,
+        ns1:MayBrittMoser .
+
+ns1:TorkelHafting a owl:NamedIndividual,
+        ns1:Student ;
+    rdfs:label "Torkel Hafting"^^xsd:string ;
+    ns1:contributedToDiscovery ns1:GridCellDiscovery ;
+    ns1:studentOf ns1:EdvardMoser,
+        ns1:MayBrittMoser .
+
+ns1:Year2005 a owl:NamedIndividual,
+        ns1:Year ;
+    rdfs:label "2005"^^xsd:string .
+
+ns1:Year2014 a owl:NamedIndividual,
+        ns1:Year ;
+    rdfs:label "2014"^^xsd:string .
+
+ns1:allowsUnderstandingOf a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:SpatialPosition .
+
+ns1:constitutesPartOfPositioningSystem a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:BrainPositioningSystem .
+
+ns1:encodesRepresentation a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:CognitiveRepresentation .
+
+ns1:foundInSpeciesGroup a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:SpeciesGroup .
+
+ns1:hasBehavioralCondition a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:BehavioralCondition .
+
+ns1:hasFiringPattern a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:GeometricPattern .
+
+ns1:performedOn a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:Animal .
+
+ns1:recordsInBrainRegion a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:BrainRegion .
+
+ns1:takesPlaceIn a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:Arena .
+
+ns1:usesDevice a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:Device .
+
+ns1:ActionPotential a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ActionPotentialMention a owl:NamedIndividual,
+        ns1:ActionPotential ;
+    rdfs:label "an action potential"^^xsd:string .
+
+ns1:Animal a owl:Class ;
+    rdfs:subClassOf ns1:LivingThing .
+
+ns1:CerebralCortexMention a owl:NamedIndividual,
+        ns1:CerebralCortex ;
+    rdfs:label "cerebral cortex"^^xsd:string .
+
+ns1:DorsomedialEntorhinalCortex a owl:Class ;
+    rdfs:subClassOf ns1:EntorhinalCortex .
+
+ns1:DorsomedialEntorhinalCortexMention a owl:NamedIndividual,
+        ns1:DorsomedialEntorhinalCortex ;
+    rdfs:label "dorsomedial entorhinal cortex"^^xsd:string ;
+    ns1:partOf ns1:CerebralCortexMention .
+
+ns1:Electrode a owl:Class ;
+    rdfs:subClassOf ns1:Device .
+
+ns1:Environment a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:GridOfEquilateralTrianglesMention a owl:NamedIndividual,
+        ns1:GridOfEquilateralTriangles ;
+    rdfs:label "a grid of equilateral triangles"^^xsd:string ;
+    ns1:hasPerceptibleRegularity true .
+
+ns1:Hypothesis a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Institution a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:LivingThing a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PlaceField a owl:Class ;
+    rdfs:subClassOf ns1:SpatialFiringField .
+
+ns1:Rat a owl:Class ;
+    rdfs:subClassOf ns1:Animal .
+
+ns1:RatHeadDotPlot a owl:NamedIndividual,
+        ns1:VisualizationMethod ;
+    rdfs:label "a dot is placed at the location of the rat 's head every time the neuron emits an action potential"^^xsd:string .
+
+ns1:RegularTrianglePattern a owl:Class ;
+    rdfs:subClassOf ns1:GeometricPattern .
+
+ns1:SmallClusters a owl:NamedIndividual,
+        ns1:Cluster ;
+    rdfs:label "small clusters"^^xsd:string ;
+    ns1:formsVerticesOf ns1:GridOfEquilateralTrianglesMention .
+
+ns1:Space a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:VisualizationMethod a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:hasSpatialFiringField a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:SpatialFiringField .
+
+ns1:Arena a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:BehavioralCondition a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:BrainPositioningSystem a owl:Class ;
+    rdfs:subClassOf ns1:PositioningSystem .
+
+ns1:Device a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:GridCellMention a owl:NamedIndividual,
+        ns1:GridCell ;
+    rdfs:label "grid cell"^^xsd:string ;
+    ns1:allowsUnderstandingOf ns1:PositionInSpace ;
+    ns1:constitutesPartOfPositioningSystem ns1:BrainPositioningSystemInTheBrain ;
+    ns1:emits ns1:ActionPotentialMention ;
+    ns1:encodesRepresentation ns1:CognitiveRepresentationOfEuclideanSpace ;
+    ns1:formsClusters ns1:SmallClusters ;
+    ns1:foundInSpeciesGroup ns1:ManySpecies ;
+    ns1:hasFiringPattern ns1:GridOfEquilateralTrianglesMention,
+        ns1:RegularTrianglePatternMention ;
+    ns1:hasSpatialFiringField ns1:GridCellSpatialFiringFields ;
+    ns1:typicallyRecordedIn ns1:DorsomedialEntorhinalCortexMention ;
+    ns1:visualizedByPlotting ns1:RatHeadDotPlot .
+
+ns1:InformationType a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Mechanism a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PlaceCell a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasSpatialFiringField ;
+            owl:someValuesFrom ns1:PlaceField ],
+        ns1:Neuron .
+
+ns1:SpatialPosition a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SpeciesGroup a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Cluster a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CognitiveRepresentation a owl:Class ;
+    rdfs:subClassOf ns1:Representation .
+
+ns1:PositioningSystemDiscovery a owl:NamedIndividual,
+        ns1:Discovery ;
+    rdfs:label "their discoveries of cells that constitute a positioning system in the brain"^^xsd:string ;
+    ns1:concernsCellType ns1:GridCellMention,
+        ns1:PlaceCellMention .
+
+ns1:Prize a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Researcher a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:SpatialFiringField a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Student a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Year a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:EdvardMoser a owl:NamedIndividual,
+        ns1:Researcher ;
+    rdfs:label "Edvard Moser"^^xsd:string ;
+    ns1:contributedToDiscovery ns1:GridCellDiscovery,
+        ns1:PositioningSystemDiscovery .
+
+ns1:GridCell a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:foundInSpeciesGroup ;
+            owl:someValuesFrom ns1:SpeciesGroup ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:allowsUnderstandingOf ;
+            owl:someValuesFrom ns1:SpatialPosition ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:constitutesPartOfPositioningSystem ;
+            owl:someValuesFrom ns1:BrainPositioningSystem ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:encodesRepresentation ;
+            owl:someValuesFrom ns1:CognitiveRepresentation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasSpatialFiringField ;
+            owl:someValuesFrom ns1:SpatialFiringField ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasFiringPattern ;
+            owl:someValuesFrom ns1:RegularTrianglePattern ],
+        ns1:Neuron .
+
+ns1:GridCellDiscovery a owl:NamedIndividual,
+        ns1:Discovery ;
+    rdfs:label "Grid cells were discovered in 2005 by Edvard Moser , May - Britt Moser and their students Torkel Hafting , Marianne Fyhn and Sturla Molden at the Centre for the Biology of Memory ( CBM ) in Norway ."^^xsd:string ;
+    ns1:concernsCellType ns1:GridCellMention ;
+    ns1:discoveredAtInstitution ns1:CentreForTheBiologyOfMemory ;
+    ns1:discoveredBy ns1:EdvardMoser,
+        ns1:MarianneFyhn,
+        ns1:MayBrittMoser,
+        ns1:SturlaMolden,
+        ns1:TorkelHafting ;
+    ns1:discoveredInYear ns1:Year2005 ;
+    ns1:suggestsHypothesis ns1:GridCellEuclideanSpaceHypothesis ;
+    ns1:suggestsMechanism ns1:DynamicComputationMechanism .
+
+ns1:MayBrittMoser a owl:NamedIndividual,
+        ns1:Researcher ;
+    rdfs:label "May - Britt Moser"^^xsd:string ;
+    ns1:contributedToDiscovery ns1:GridCellDiscovery,
+        ns1:PositioningSystemDiscovery .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf ns1:LivingThing .
+
+ns1:BrainRegion a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ExperimentalStudy a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:recordsInBrainRegion ;
+            owl:someValuesFrom ns1:DorsomedialEntorhinalCortex ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:takesPlaceIn ;
+            owl:someValuesFrom ns1:Arena ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasBehavioralCondition ;
+            owl:someValuesFrom ns1:BehavioralCondition ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:usesDevice ;
+            owl:someValuesFrom ns1:Electrode ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:performedOn ;
+            owl:someValuesFrom ns1:Rat ],
+        owl:Thing .
+
+ns1:GeometricPattern a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Discovery a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Neuron a owl:Class ;
+    rdfs:subClassOf owl:Thing .

@@ -1,0 +1,399 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:LamarVisit a owl:NamedIndividual,
+        ns1:Visit ;
+    rdfs:label "visited the area during a buffalo - hunting expedition between 1837 and 1838"^^xsd:string ;
+    ns1:carriedOutBy ns1:MirabeauBLamar ;
+    ns1:duringExpedition ns1:BuffaloHuntingExpedition ;
+    ns1:hasTimeInterval ns1:Between1837And1838 ;
+    ns1:ledTo ns1:CapitalRelocationProposal ;
+    ns1:visitedPlace ns1:AustinTexas .
+
+ns1:bankOfRiver a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:RiverBank ;
+    rdfs:range ns1:River .
+
+ns1:carriedOutBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Event ;
+    rdfs:range ns1:Person .
+
+ns1:fromCapital a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:RelocationProposal ;
+    rdfs:range ns1:City .
+
+ns1:hasCurrentName a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:City ;
+    rdfs:range ns1:PlaceName .
+
+ns1:hasEndYear a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TimeInterval ;
+    rdfs:range ns1:Year .
+
+ns1:hasOriginalName a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:City ;
+    rdfs:range ns1:PlaceName .
+
+ns1:hasStartYear a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TimeInterval ;
+    rdfs:range ns1:Year .
+
+ns1:hasTimeInterval a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Event ;
+    rdfs:range ns1:TimeInterval .
+
+ns1:hasTitle a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:HonorificTitle .
+
+ns1:holdsOffice a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:GovernmentOffice .
+
+ns1:isFinal a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:CapitalSelection ;
+    rdfs:range xsd:boolean .
+
+ns1:ledTo a owl:ObjectProperty ;
+    rdfs:domain ns1:Event ;
+    rdfs:range ns1:Event .
+
+ns1:locatedIn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Place .
+
+ns1:namedInHonorOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:City,
+        ns1:PlaceName,
+        ns1:Renaming ;
+    rdfs:range ns1:Person .
+
+ns1:nearLandmark a owl:ObjectProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Place .
+
+ns1:officeOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:GovernmentOffice ;
+    rdfs:range ns1:PoliticalEntity .
+
+ns1:ordinalValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:OrdinalQuantity ;
+    rdfs:range xsd:integer .
+
+ns1:replacedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:PlaceName ;
+    rdfs:range ns1:PlaceName .
+
+ns1:textValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:OrdinalQuantity,
+        ns1:TimeInterval ;
+    rdfs:range xsd:string .
+
+ns1:yearValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Year ;
+    rdfs:range xsd:integer .
+
+ns1:AnnWRichardsCongressAvenueBridge a owl:NamedIndividual,
+        ns1:Bridge ;
+    rdfs:label "Ann W. Richards Congress Avenue Bridge"^^xsd:string .
+
+ns1:Between1837And1838 a owl:NamedIndividual,
+        ns1:TimeInterval ;
+    rdfs:label "between 1837 and 1838"^^xsd:string ;
+    ns1:hasEndYear ns1:Year1838 ;
+    ns1:hasStartYear ns1:Year1837 ;
+    ns1:textValue "between 1837 and 1838"^^xsd:string .
+
+ns1:Bridge a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:BuffaloHuntingExpedition a owl:NamedIndividual,
+        ns1:Expedition ;
+    rdfs:label "buffalo - hunting expedition"^^xsd:string .
+
+ns1:CapitalRelocationProposal a owl:NamedIndividual,
+        ns1:RelocationProposal ;
+    rdfs:label "he proposed that the republic 's capital , then located in Houston , be relocated to an area situated on the north bank of the Colorado River near the present - day Ann W. Richards Congress Avenue Bridge in what is now central Austin"^^xsd:string ;
+    ns1:carriedOutBy ns1:MirabeauBLamar ;
+    ns1:fromCapital ns1:Houston ;
+    ns1:ledTo ns1:CapitalSelection1839 ;
+    ns1:relocatesCapitalOf ns1:RepublicOfTexas ;
+    ns1:toPlace ns1:NorthBankOfTheColoradoRiver .
+
+ns1:CapitalSelection1839 a owl:NamedIndividual,
+        ns1:CapitalSelection ;
+    rdfs:label "the site was officially chosen as the seventh and final location for the capital of the Republic of Texas"^^xsd:string ;
+    ns1:hasCapitalLocationOrdinal ns1:SeventhAndFinalLocation ;
+    ns1:hasTimeInterval ns1:Year1839 ;
+    ns1:isFinal true ;
+    ns1:ledTo ns1:AustinRenaming,
+        ns1:WaterlooIncorporation ;
+    ns1:relocatesCapitalOf ns1:RepublicOfTexas ;
+    ns1:toPlace ns1:AustinTexas .
+
+ns1:CentralAustin a owl:NamedIndividual,
+        ns1:UrbanArea ;
+    rdfs:label "central Austin"^^xsd:string ;
+    ns1:locatedIn ns1:AustinTexas .
+
+ns1:CentralPartOfTheState a owl:NamedIndividual,
+        ns1:UrbanArea ;
+    rdfs:label "central part of the state"^^xsd:string ;
+    ns1:locatedIn ns1:Texas .
+
+ns1:ColoradoRiver a owl:NamedIndividual,
+        ns1:River ;
+    rdfs:label "Colorado River"^^xsd:string .
+
+ns1:County a owl:Class ;
+    rdfs:subClassOf ns1:AdministrativeRegion .
+
+ns1:FatherOfTexas a owl:NamedIndividual,
+        ns1:HonorificTitle ;
+    rdfs:label "Father of Texas"^^xsd:string .
+
+ns1:FirstSecretaryOfState a owl:NamedIndividual,
+        ns1:GovernmentOffice ;
+    rdfs:label "first secretary of state"^^xsd:string ;
+    ns1:officeOf ns1:RepublicOfTexas .
+
+ns1:Houston a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Houston"^^xsd:string .
+
+ns1:Name a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:NaturalFeature a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:NorthBankOfTheColoradoRiver a owl:NamedIndividual,
+        ns1:RiverBank ;
+    rdfs:label "north bank of the Colorado River"^^xsd:string ;
+    ns1:bankOfRiver ns1:ColoradoRiver ;
+    ns1:locatedIn ns1:CentralAustin ;
+    ns1:nearLandmark ns1:AnnWRichardsCongressAvenueBridge .
+
+ns1:Republic a owl:Class ;
+    rdfs:subClassOf ns1:PoliticalEntity .
+
+ns1:SeventhAndFinalLocation a owl:NamedIndividual,
+        ns1:OrdinalQuantity ;
+    rdfs:label "seventh and final location"^^xsd:string ;
+    ns1:ordinalValue 7 ;
+    ns1:textValue "seventh and final location"^^xsd:string .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf ns1:AdministrativeRegion .
+
+ns1:TravisCounty a owl:NamedIndividual,
+        ns1:County ;
+    rdfs:label "Travis County"^^xsd:string ;
+    ns1:locatedIn ns1:Texas .
+
+ns1:VicePresidentOfRepublicOfTexas a owl:NamedIndividual,
+        ns1:GovernmentOffice ;
+    rdfs:label "Republic of Texas Vice President"^^xsd:string ;
+    ns1:officeOf ns1:RepublicOfTexas .
+
+ns1:WaterlooIncorporation a owl:NamedIndividual,
+        ns1:Incorporation ;
+    rdfs:label "It was incorporated under the name \" Waterloo \""^^xsd:string ;
+    ns1:ledTo ns1:AustinRenaming ;
+    ns1:resultedInName ns1:WaterlooName ;
+    ns1:toPlace ns1:AustinTexas .
+
+ns1:Year1837 a owl:NamedIndividual,
+        ns1:Year ;
+    rdfs:label "1837"^^xsd:string ;
+    ns1:yearValue 1837 .
+
+ns1:Year1838 a owl:NamedIndividual,
+        ns1:Year ;
+    rdfs:label "1838"^^xsd:string ;
+    ns1:yearValue 1838 .
+
+ns1:Year1839 a owl:NamedIndividual,
+        ns1:Year ;
+    rdfs:label "1839"^^xsd:string ;
+    ns1:yearValue 1839 .
+
+ns1:duringExpedition a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Visit ;
+    rdfs:range ns1:Expedition .
+
+ns1:hasCapitalLocationOrdinal a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:CapitalSelection ;
+    rdfs:range ns1:OrdinalQuantity .
+
+ns1:relocatesCapitalOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:CapitalSelection,
+        ns1:RelocationProposal ;
+    rdfs:range ns1:PoliticalEntity .
+
+ns1:resultedInName a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Incorporation,
+        ns1:Renaming ;
+    rdfs:range ns1:PlaceName .
+
+ns1:toPlace a owl:ObjectProperty ;
+    rdfs:domain ns1:Event ;
+    rdfs:range ns1:Place .
+
+ns1:visitedPlace a owl:ObjectProperty ;
+    rdfs:domain ns1:Visit ;
+    rdfs:range ns1:Place .
+
+ns1:AustinRenaming a owl:NamedIndividual,
+        ns1:Renaming ;
+    rdfs:label "the name was changed to Austin in honor of Stephen F. Austin"^^xsd:string ;
+    ns1:namedInHonorOf ns1:StephenFAustin ;
+    ns1:resultedInName ns1:AustinName ;
+    ns1:toPlace ns1:AustinTexas .
+
+ns1:HonorificTitle a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Incorporation a owl:Class ;
+    rdfs:subClassOf ns1:Event .
+
+ns1:MirabeauBLamar a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Mirabeau B. Lamar"^^xsd:string ;
+    ns1:holdsOffice ns1:VicePresidentOfRepublicOfTexas .
+
+ns1:River a owl:Class ;
+    rdfs:subClassOf ns1:NaturalFeature .
+
+ns1:RiverBank a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:StephenFAustin a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Stephen F. Austin"^^xsd:string ;
+    ns1:hasTitle ns1:FatherOfTexas ;
+    ns1:holdsOffice ns1:FirstSecretaryOfState .
+
+ns1:UrbanArea a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:WaterlooName a owl:NamedIndividual,
+        ns1:PlaceName ;
+    rdfs:label "\" Waterloo \""^^xsd:string,
+        "Waterloo"^^xsd:string ;
+    ns1:replacedBy ns1:AustinName .
+
+ns1:AdministrativeRegion a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:AustinName a owl:NamedIndividual,
+        ns1:PlaceName ;
+    rdfs:label "Austin"^^xsd:string .
+
+ns1:Expedition a owl:Class ;
+    rdfs:subClassOf ns1:Event .
+
+ns1:RelocationProposal a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:relocatesCapitalOf ;
+            owl:someValuesFrom ns1:PoliticalEntity ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:toPlace ;
+            owl:someValuesFrom ns1:Place ],
+        ns1:Event .
+
+ns1:Renaming a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:resultedInName ;
+            owl:someValuesFrom ns1:PlaceName ],
+        ns1:Event .
+
+ns1:Texas a owl:NamedIndividual,
+        ns1:State ;
+    rdfs:label "Texas"^^xsd:string .
+
+ns1:Visit a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:visitedPlace ;
+            owl:someValuesFrom ns1:Place ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:duringExpedition ;
+            owl:someValuesFrom ns1:Expedition ],
+        ns1:Event .
+
+ns1:CapitalSelection a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasCapitalLocationOrdinal ;
+            owl:someValuesFrom ns1:OrdinalQuantity ],
+        ns1:Event .
+
+ns1:GovernmentOffice a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PoliticalEntity a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:RepublicOfTexas a owl:NamedIndividual,
+        ns1:Republic ;
+    rdfs:label "Republic of Texas"^^xsd:string .
+
+ns1:AustinTexas a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Austin"^^xsd:string,
+        "Austin , Texas"^^xsd:string ;
+    ns1:hasCurrentName ns1:AustinName ;
+    ns1:hasOriginalName ns1:WaterlooName ;
+    ns1:locatedIn ns1:CentralPartOfTheState,
+        ns1:Texas,
+        ns1:TravisCounty ;
+    ns1:namedInHonorOf ns1:StephenFAustin .
+
+ns1:OrdinalQuantity a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:AdministrativeRegion .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TimeInterval a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Year a owl:Class ;
+    rdfs:subClassOf ns1:TimeInterval .
+
+ns1:PlaceName a owl:Class ;
+    rdfs:subClassOf ns1:Name .
+
+ns1:Event a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .

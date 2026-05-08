@@ -1,0 +1,210 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:DestinyMission a owl:NamedIndividual,
+        ns1:ExplorationTeam ;
+    rdfs:label "exploration team"^^xsd:string ;
+    ns1:evacuatedFrom ns1:IcarusBase ;
+    ns1:usesSpaceship ns1:Destiny .
+
+ns1:Earth a owl:NamedIndividual,
+        ns1:Location ;
+    rdfs:label "Earth"^^xsd:string .
+
+ns1:FarAwayGalaxy a owl:NamedIndividual,
+        ns1:Galaxy ;
+    rdfs:label "far-away galaxy"^^xsd:string .
+
+ns1:RobertCarlyle a owl:NamedIndividual,
+        ns1:Actor ;
+    rdfs:label "Robert Carlyle"^^xsd:string ;
+    ns1:hasNationality ns1:Scotland ;
+    ns1:portrays ns1:NicholasRush .
+
+ns1:Stargate a owl:NamedIndividual,
+        ns1:StargateMechanism ;
+    rdfs:label "Stargate"^^xsd:string ;
+    ns1:hasChevron ns1:NinthChevron .
+
+ns1:appearsIn a owl:ObjectProperty ;
+    rdfs:domain ns1:FictionalCharacter ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:broadcastIn a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range ns1:Country .
+
+ns1:broadcastYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range xsd:integer .
+
+ns1:evacuatedFrom a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:ExplorationTeam ;
+    rdfs:range ns1:MilitaryBase .
+
+ns1:hasChevron a owl:ObjectProperty ;
+    rdfs:domain ns1:StargateMechanism ;
+    rdfs:range ns1:Chevron .
+
+ns1:hasGenre a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:GenreClassification .
+
+ns1:hasNationality a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Country .
+
+ns1:investigates a owl:ObjectProperty ;
+    rdfs:domain ns1:FictionalCharacter ;
+    rdfs:range owl:Thing .
+
+ns1:isPartOfSeries a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionEpisode ;
+    rdfs:range ns1:TelevisionSeries .
+
+ns1:madeFirstAppearanceIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:FictionalCharacter ;
+    rdfs:range ns1:TelevisionEpisode .
+
+ns1:portrays a owl:ObjectProperty ;
+    rdfs:domain ns1:Actor ;
+    rdfs:range ns1:FictionalCharacter .
+
+ns1:producedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionSeries ;
+    rdfs:range ns1:ProductionCompany .
+
+ns1:travels a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Spaceship ;
+    rdfs:range ns1:Location .
+
+ns1:usesSpaceship a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:ExplorationTeam ;
+    rdfs:range ns1:Spaceship .
+
+ns1:Air a owl:NamedIndividual,
+        ns1:PilotEpisode ;
+    rdfs:label "Air"^^xsd:string ;
+    ns1:broadcastIn ns1:Canada,
+        ns1:UnitedStates ;
+    ns1:broadcastYear 2009 ;
+    ns1:isPartOfSeries ns1:StargateUniverse .
+
+ns1:AncientSpaceship a owl:Class ;
+    rdfs:subClassOf ns1:Spaceship .
+
+ns1:Canada a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Canada"^^xsd:string .
+
+ns1:Destiny a owl:NamedIndividual,
+        ns1:AncientSpaceship ;
+    rdfs:label "Destiny"^^xsd:string ;
+    ns1:travels ns1:DistantCornerOfUniverse .
+
+ns1:DistantCornerOfUniverse a owl:NamedIndividual,
+        ns1:Location ;
+    rdfs:label "distant corner of the universe"^^xsd:string .
+
+ns1:Galaxy a owl:Class ;
+    rdfs:subClassOf ns1:Location .
+
+ns1:IcarusBase a owl:NamedIndividual,
+        ns1:MilitaryBase ;
+    rdfs:label "Icarus Base"^^xsd:string .
+
+ns1:MetroGoldwynMayer a owl:NamedIndividual,
+        ns1:ProductionCompany ;
+    rdfs:label "Metro - Goldwyn - Mayer"^^xsd:string .
+
+ns1:MilitarySciFiSerialDrama a owl:NamedIndividual,
+        ns1:GenreClassification ;
+    rdfs:label "military science fiction serial drama"^^xsd:string .
+
+ns1:NicholasRush a owl:NamedIndividual,
+        ns1:FictionalCharacter ;
+    rdfs:label "Dr. Nicholas Rush"^^xsd:string ;
+    ns1:appearsIn ns1:StargateUniverse ;
+    ns1:investigates ns1:NinthChevron ;
+    ns1:madeFirstAppearanceIn ns1:Air .
+
+ns1:PilotEpisode a owl:Class ;
+    rdfs:subClassOf ns1:TelevisionEpisode .
+
+ns1:Scotland a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Scotland"^^xsd:string .
+
+ns1:Syfy a owl:NamedIndividual,
+        ns1:ProductionCompany ;
+    rdfs:label "Syfy"^^xsd:string .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United States"^^xsd:string .
+
+ns1:Actor a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Chevron a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:GenreClassification a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MilitaryBase a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:NinthChevron a owl:NamedIndividual,
+        ns1:Chevron ;
+    rdfs:label "ninth chevron"^^xsd:string .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:StargateMechanism a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:StargateUniverse a owl:NamedIndividual,
+        ns1:TelevisionSeries ;
+    rdfs:label "Stargate Universe"^^xsd:string ;
+    ns1:hasGenre ns1:MilitarySciFiSerialDrama ;
+    ns1:producedBy ns1:MetroGoldwynMayer,
+        ns1:Syfy .
+
+ns1:ExplorationTeam a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ProductionCompany a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Spaceship a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Location a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:FictionalCharacter a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TelevisionEpisode a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TelevisionSeries a owl:Class ;
+    rdfs:subClassOf owl:Thing .

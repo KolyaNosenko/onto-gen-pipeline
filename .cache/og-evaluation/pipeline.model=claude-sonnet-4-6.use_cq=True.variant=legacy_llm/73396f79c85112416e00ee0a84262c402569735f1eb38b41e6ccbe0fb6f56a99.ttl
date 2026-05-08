@@ -1,0 +1,285 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Ontology Declaration
+#################################################################
+
+: a owl:Ontology .
+
+#################################################################
+# Classes
+#################################################################
+
+:Lighthouse a owl:Class ;
+    rdfs:label "Lighthouse"^^xsd:string .
+
+:CoastalLighthouse a owl:Class ;
+    rdfs:subClassOf :Lighthouse ;
+    rdfs:label "Coastal Lighthouse"^^xsd:string .
+
+:TwinLighthouse a owl:Class ;
+    rdfs:subClassOf :CoastalLighthouse ;
+    rdfs:label "Twin Lighthouse"^^xsd:string .
+
+:Island a owl:Class ;
+    rdfs:label "Island"^^xsd:string .
+
+:Municipality a owl:Class ;
+    rdfs:label "Municipality"^^xsd:string .
+
+:County a owl:Class ;
+    rdfs:label "County"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string .
+
+:Town a owl:Class ;
+    rdfs:label "Town"^^xsd:string .
+
+:Waterway a owl:Class ;
+    rdfs:label "Waterway"^^xsd:string .
+
+:CoatOfArms a owl:Class ;
+    rdfs:label "Coat of Arms"^^xsd:string .
+
+:Year a owl:Class ;
+    rdfs:label "Year"^^xsd:string .
+
+:Season a owl:Class ;
+    rdfs:label "Season"^^xsd:string .
+
+:AccessMethod a owl:Class ;
+    rdfs:label "Access Method"^^xsd:string .
+
+:Accommodation a owl:Class ;
+    rdfs:label "Accommodation"^^xsd:string .
+
+:LighthouseKeepersHouse a owl:Class ;
+    rdfs:subClassOf :Accommodation ;
+    rdfs:label "Lighthouse Keeper's House"^^xsd:string .
+
+:Specification a owl:Class ;
+    rdfs:label "Specification"^^xsd:string .
+
+:NavigationalPurpose a owl:Class ;
+    rdfs:label "Navigational Purpose"^^xsd:string .
+
+:Site a owl:Class ;
+    rdfs:label "Site"^^xsd:string .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:locatedOnIsland a owl:ObjectProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range :Island ;
+    rdfs:label "locatedOnIsland"^^xsd:string .
+
+:locatedInMunicipality a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( :Lighthouse :Island :Site ) ] ;
+    rdfs:range :Municipality ;
+    rdfs:label "locatedInMunicipality"^^xsd:string .
+
+:locatedInCounty a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( :Lighthouse :Municipality ) ] ;
+    rdfs:range :County ;
+    rdfs:label "locatedInCounty"^^xsd:string .
+
+:locatedInCountry a owl:ObjectProperty ;
+    rdfs:domain :County ;
+    rdfs:range :Country ;
+    rdfs:label "locatedInCountry"^^xsd:string .
+
+:marksEntranceTo a owl:ObjectProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range :Town ;
+    rdfs:label "marksEntranceTo"^^xsd:string .
+
+:marksEntranceFrom a owl:ObjectProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range :Waterway ;
+    rdfs:label "marksEntranceFrom"^^xsd:string .
+
+:builtInYear a owl:ObjectProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range :Year ;
+    rdfs:label "builtInYear"^^xsd:string .
+
+:sharesSpecificationsWith a owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range :Lighthouse ;
+    rdfs:label "sharesSpecificationsWith"^^xsd:string .
+
+:hasSpecification a owl:ObjectProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range :Specification ;
+    rdfs:label "hasSpecification"^^xsd:string .
+
+:featuredOnCoatOfArms a owl:ObjectProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range :CoatOfArms ;
+    rdfs:label "featuredOnCoatOfArms"^^xsd:string .
+
+:coatOfArmsOf a owl:ObjectProperty ;
+    rdfs:domain :CoatOfArms ;
+    rdfs:range :Municipality ;
+    rdfs:label "coatOfArmsOf"^^xsd:string .
+
+:hasTwinLighthouse a owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:domain :TwinLighthouse ;
+    rdfs:range :TwinLighthouse ;
+    rdfs:label "hasTwinLighthouse"^^xsd:string .
+
+:accessibleBy a owl:ObjectProperty ;
+    rdfs:domain :Site ;
+    rdfs:range :AccessMethod ;
+    rdfs:label "accessibleBy"^^xsd:string .
+
+:hasSite a owl:ObjectProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range :Site ;
+    rdfs:label "hasSite"^^xsd:string .
+
+:hasAccommodation a owl:ObjectProperty ;
+    rdfs:domain :Site ;
+    rdfs:range :Accommodation ;
+    rdfs:label "hasAccommodation"^^xsd:string .
+
+:openDuringSeason a owl:ObjectProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range :Season ;
+    rdfs:label "openDuringseason"^^xsd:string .
+
+:hasNavigationalPurpose a owl:ObjectProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range :NavigationalPurpose ;
+    rdfs:label "hasNavigationalPurpose"^^xsd:string .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:isCurrentlyInUse a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "isCurrentlyInUse"^^xsd:string .
+
+:isStillStanding a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Lighthouse ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "isStillStanding"^^xsd:string .
+
+:isOpenToPublic a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( :Island :Site ) ] ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "isOpenToPublic"^^xsd:string .
+
+:yearValue a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Year ;
+    rdfs:range xsd:integer ;
+    rdfs:label "yearValue"^^xsd:string .
+
+:isAvailableToRent a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :Accommodation ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "isAvailableToRent"^^xsd:string .
+
+:accommodationPurpose a owl:DatatypeProperty ;
+    rdfs:domain :Accommodation ;
+    rdfs:range xsd:string ;
+    rdfs:label "accommodationPurpose"^^xsd:string .
+
+#################################################################
+# Named Individuals
+#################################################################
+
+:StoreTorungen a :Island , owl:NamedIndividual ;
+    rdfs:label "Store Torungen"^^xsd:string ;
+    :isOpenToPublic "true"^^xsd:boolean .
+
+:StoreTorungenlighthouse a :TwinLighthouse , owl:NamedIndividual ;
+    rdfs:label "Store Torungen Lighthouse"^^xsd:string ;
+    :locatedOnIsland :StoreTorungen ;
+    :locatedInMunicipality :Arendal ;
+    :locatedInCounty :AustAgder ;
+    :builtInYear :Year1844 ;
+    :hasSpecification :SameSpecifications ;
+    :sharesSpecificationsWith :LilleTorungenlighthouse ;
+    :hasTwinLighthouse :LilleTorungenlighthouse ;
+    :featuredOnCoatOfArms :HisoyCoatOfArms ;
+    :marksEntranceTo :ArendalTown ;
+    :marksEntranceFrom :Skagerrak ;
+    :hasNavigationalPurpose :MarkingEntranceToArendal ;
+    :hasSite :StoreTorungenlighthouseSite ;
+    :isStillStanding "false"^^xsd:boolean ;
+    :isCurrentlyInUse "false"^^xsd:boolean .
+
+:LilleTorungenlighthouse a :TwinLighthouse , owl:NamedIndividual ;
+    rdfs:label "Lille Torungen Lighthouse"^^xsd:string ;
+    :builtInYear :Year1844 ;
+    :hasSpecification :SameSpecifications ;
+    :sharesSpecificationsWith :StoreTorungenlighthouse ;
+    :hasTwinLighthouse :StoreTorungenlighthouse ;
+    :featuredOnCoatOfArms :HisoyCoatOfArms ;
+    :marksEntranceTo :ArendalTown ;
+    :marksEntranceFrom :Skagerrak ;
+    :hasNavigationalPurpose :MarkingEntranceToArendal ;
+    :isStillStanding "true"^^xsd:boolean ;
+    :isCurrentlyInUse "false"^^xsd:boolean .
+
+:Arendal a :Municipality , owl:NamedIndividual ;
+    rdfs:label "Arendal"^^xsd:string ;
+    :locatedInCounty :AustAgder .
+
+:ArendalTown a :Town , owl:NamedIndividual ;
+    rdfs:label "Arendal"^^xsd:string .
+
+:AustAgder a :County , owl:NamedIndividual ;
+    rdfs:label "Aust-Agder"^^xsd:string ;
+    :locatedInCountry :Norway .
+
+:Norway a :Country , owl:NamedIndividual ;
+    rdfs:label "Norway"^^xsd:string .
+
+:Hisoy a :Municipality , owl:NamedIndividual ;
+    rdfs:label "Hisøy"^^xsd:string .
+
+:Skagerrak a :Waterway , owl:NamedIndividual ;
+    rdfs:label "Skaggerak"^^xsd:string .
+
+:Year1844 a :Year , owl:NamedIndividual ;
+    rdfs:label "1844"^^xsd:string ;
+    :yearValue "1844"^^xsd:integer .
+
+:HisoyCoatOfArms a :CoatOfArms , owl:NamedIndividual ;
+    rdfs:label "coat-of-arms for the local municipality of Hisøy"^^xsd:string ;
+    :coatOfArmsOf :Hisoy .
+
+:SameSpecifications a :Specification , owl:NamedIndividual ;
+    rdfs:label "same specifications"^^xsd:string .
+
+:Summer a :Season , owl:NamedIndividual ;
+    rdfs:label "summers"^^xsd:string .
+
+:ByBoat a :AccessMethod , owl:NamedIndividual ;
+    rdfs:label "boat"^^xsd:string .
+
+:StoreTorungenlighthouseSite a :Site , owl:NamedIndividual ;
+    rdfs:label "site of the Store Torungen Lighthouse"^^xsd:string ;
+    :accessibleBy :ByBoat ;
+    :isOpenToPublic "true"^^xsd:boolean ;
+    :hasAccommodation :LighthouseKeepersHouseAccommodation ;
+    :openDuringseason :Summer .
+
+:LighthouseKeepersHouseAccommodation a :LighthouseKeepersHouse , owl:NamedIndividual ;
+    rdfs:label "lighthouse keepers house"^^xsd:string ;
+    :isAvailableToRent "true"^^xsd:boolean ;
+    :accommodationPurpose "overnight accommodations"^^xsd:string .
+
+:MarkingEntranceToArendal a :NavigationalPurpose , owl:NamedIndividual ;
+    rdfs:label "mark the entrance from the Skaggerak through the outlying islands to the mainland town of Arendal"^^xsd:string .

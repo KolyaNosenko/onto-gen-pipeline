@@ -1,0 +1,398 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Entity a owl:Class .
+
+:Organisation a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:JointVenture a owl:Class ;
+    rdfs:subClassOf :Organisation .
+
+:Collaboration a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:FilmDistributor a owl:Class ;
+    rdfs:subClassOf :Organisation .
+
+:UkBasedFilmDistributor a owl:Class ;
+    rdfs:subClassOf :FilmDistributor ,
+        [
+            a owl:Restriction ;
+            owl:onProperty :basedIn ;
+            owl:someValuesFrom :Country
+        ] .
+
+:Company a owl:Class ;
+    rdfs:subClassOf :Organisation .
+
+:CinemaChain a owl:Class ;
+    rdfs:subClassOf :Organisation .
+
+:Filmmaker a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:Audience a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:ViewerGroup a owl:Class ;
+    rdfs:subClassOf :Audience .
+
+:Place a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Film a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:FilmTitle a owl:Class ;
+    rdfs:subClassOf :Film .
+
+:Release a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:TheatricalRelease a owl:Class ;
+    rdfs:subClassOf :Release .
+
+:DvdRetail a owl:Class ;
+    rdfs:subClassOf :Release .
+
+:DvdRental a owl:Class ;
+    rdfs:subClassOf :Release .
+
+:TelevisionPremiere a owl:Class ;
+    rdfs:subClassOf :Release .
+
+:DistributionChannel a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:CinemaDistributionChannel a owl:Class ;
+    rdfs:subClassOf :DistributionChannel .
+
+:HomeDistributionChannel a owl:Class ;
+    rdfs:subClassOf :DistributionChannel .
+
+:TelevisionDistributionChannel a owl:Class ;
+    rdfs:subClassOf :DistributionChannel .
+
+:DownloadService a owl:Class ;
+    rdfs:subClassOf :DistributionChannel .
+
+:TelevisionService a owl:Class ;
+    rdfs:subClassOf :TelevisionDistributionChannel .
+
+:RetailChannel a owl:Class ;
+    rdfs:subClassOf :HomeDistributionChannel .
+
+:RentalChannel a owl:Class ;
+    rdfs:subClassOf :HomeDistributionChannel .
+
+:Rights a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:TvRights a owl:Class ;
+    rdfs:subClassOf :Rights .
+
+:UkTvRights a owl:Class ;
+    rdfs:subClassOf :TvRights .
+
+:TimeInterval a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:InitialPeriod a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:Quantity a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:Plan a owl:Class ;
+    rdfs:subClassOf :Entity .
+
+:SigningPlan a owl:Class ;
+    rdfs:subClassOf :Plan ,
+        [
+            a owl:Restriction ;
+            owl:onProperty :plannedFor ;
+            owl:someValuesFrom :FilmDistributor
+        ] ,
+        [
+            a owl:Restriction ;
+            owl:onProperty :maxFilmsPerYear ;
+            owl:someValuesFrom :Quantity
+        ] .
+
+:JointVenture owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+        :Organisation
+        [
+            a owl:Restriction ;
+            owl:onProperty :hasParticipant ;
+            owl:someValuesFrom :Organisation
+        ]
+    )
+] .
+
+:Collaboration owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+        :Entity
+        [
+            a owl:Restriction ;
+            owl:onProperty :betweenOrganisations ;
+            owl:someValuesFrom :Organisation
+        ]
+    )
+] .
+
+:partOfJointVenture a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :JointVenture .
+
+:hasParticipant a owl:ObjectProperty ;
+    rdfs:domain :JointVenture ;
+    rdfs:range :Organisation .
+
+:betweenOrganisations a owl:ObjectProperty ;
+    rdfs:domain :Collaboration ;
+    rdfs:range :Organisation .
+
+:collaborationOf a owl:ObjectProperty ;
+    rdfs:domain :JointVenture ;
+    rdfs:range :Collaboration .
+
+:designedToBringToAudience a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Audience .
+
+:bringsToPlace a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Place .
+
+:actsAs a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Entity .
+
+:basedIn a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Place .
+
+:signsDirectlyFrom a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Filmmaker .
+
+:signsUpTitle a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :FilmTitle .
+
+:hasPlan a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Plan .
+
+:plannedFor a owl:ObjectProperty ;
+    rdfs:domain :Plan ;
+    rdfs:range :Organisation .
+
+:hasMaximumQuantity a owl:ObjectProperty ;
+    rdfs:domain :Plan ;
+    rdfs:range :Quantity .
+
+:forReleasePerYear a owl:ObjectProperty ;
+    rdfs:domain :Plan ;
+    rdfs:range :TimeInterval .
+
+:hasReleaseStrategy a owl:ObjectProperty ;
+    rdfs:domain :Film ;
+    rdfs:range :Release .
+
+:releasedAt a owl:ObjectProperty ;
+    rdfs:domain :Release ;
+    rdfs:range :DistributionChannel .
+
+:releasedBefore a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:domain :Release ;
+    rdfs:range :Release .
+
+:includesChannel a owl:ObjectProperty ;
+    rdfs:domain :DistributionChannel ;
+    rdfs:range :DistributionChannel .
+
+:retainsRights a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Rights .
+
+:makesAvailableAcrossService a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :DistributionChannel .
+
+:makesAvailableTo a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Audience .
+
+:beforePremiere a owl:ObjectProperty ;
+    rdfs:domain :DistributionChannel ;
+    rdfs:range :TelevisionPremiere .
+
+:premiereOn a owl:ObjectProperty ;
+    rdfs:domain :TelevisionPremiere ;
+    rdfs:range :TelevisionService .
+
+:responsibleForChannel a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :DistributionChannel .
+
+:responsibleForRights a owl:ObjectProperty ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Rights .
+
+:maxFilmsPerYear a owl:DatatypeProperty ;
+    rdfs:domain :Plan ;
+    rdfs:range xsd:integer .
+
+:OdeonSkyFilmworks a :JointVenture , owl:NamedIndividual ;
+    rdfs:label "Odeon Sky Filmworks"^^xsd:string ;
+    :hasParticipant :OdeonCinemas , :BritishSkyBroadcasting ;
+    :collaborationOf :OdeonAndSkyFilmworksCollaboration ;
+    :designedToBringToAudience :UkAudiences ;
+    :bringsToPlace :UK ;
+    :actsAs :UkBasedFilmDistributor ;
+    :signsDirectlyFrom :Filmmakers ;
+    :hasPlan :FilmworksInitialSigningPlan .
+
+:OdeonCinemas a :CinemaChain , owl:NamedIndividual ;
+    rdfs:label "Odeon Cinemas"^^xsd:string ;
+    :partOfJointVenture :OdeonSkyFilmworks ;
+    :responsibleForChannel :ODEON , :OdeonFoyerSales , :OdeonDirect .
+
+:BritishSkyBroadcasting a :Company , owl:NamedIndividual ;
+    rdfs:label "British Sky Broadcasting"^^xsd:string ;
+    :partOfJointVenture :OdeonSkyFilmworks .
+
+:OdeonAndSkyFilmworks a :JointVenture , owl:NamedIndividual ;
+    rdfs:label "Odeon and Sky Filmworks"^^xsd:string ;
+    :hasParticipant :OdeonCinemas , :BritishSkyBroadcasting ;
+    :collaborationOf :OdeonAndSkyFilmworksCollaboration ;
+    :designedToBringToAudience :UkAudiences ;
+    :bringsToPlace :UK ;
+    :actsAs :UkBasedFilmDistributor ;
+    :signsDirectlyFrom :Filmmakers ;
+    :hasPlan :FilmworksInitialSigningPlan .
+
+:FILMWORKS a :JointVenture , owl:NamedIndividual ;
+    rdfs:label "FILMWORKS"^^xsd:string ;
+    :hasParticipant :OdeonCinemas , :BritishSkyBroadcasting ;
+    :collaborationOf :OdeonAndSkyFilmworksCollaboration ;
+    :designedToBringToAudience :UkAudiences ;
+    :bringsToPlace :UK ;
+    :actsAs :UkBasedFilmDistributor ;
+    :signsDirectlyFrom :Filmmakers ;
+    :hasPlan :FilmworksInitialSigningPlan .
+
+:OdeonAndSkyFilmworksCollaboration a :Collaboration , owl:NamedIndividual ;
+    rdfs:label "the collaboration between SKY and ODEON"^^xsd:string ;
+    :betweenOrganisations :SKY , :ODEON .
+
+:SKY a :Company , owl:NamedIndividual ;
+    rdfs:label "SKY"^^xsd:string .
+
+:ODEON a :CinemaDistributionChannel , owl:NamedIndividual ;
+    rdfs:label "ODEON"^^xsd:string .
+
+:UK a :Country , owl:NamedIndividual ;
+    rdfs:label "UK"^^xsd:string .
+
+:UkAudiences a :Audience , owl:NamedIndividual ;
+    rdfs:label "UK audiences"^^xsd:string .
+
+:Filmmakers a :Filmmaker , owl:NamedIndividual ;
+    rdfs:label "filmmakers"^^xsd:string .
+
+:Filmworks a :JointVenture , owl:NamedIndividual ;
+    rdfs:label "Filmworks"^^xsd:string ;
+    :hasParticipant :OdeonCinemas , :BritishSkyBroadcasting ;
+    :collaborationOf :OdeonAndSkyFilmworksCollaboration ;
+    :designedToBringToAudience :UkAudiences ;
+    :bringsToPlace :UK ;
+    :actsAs :UkBasedFilmDistributor ;
+    :signsDirectlyFrom :Filmmakers ;
+    :hasPlan :FilmworksInitialSigningPlan .
+
+:FilmworksInitialSigningPlan a :SigningPlan , owl:NamedIndividual ;
+    rdfs:label "plans initially to sign up to six films for release per year"^^xsd:string ;
+    :plannedFor :Filmworks ;
+    :hasMaximumQuantity :SixFilms ;
+    :maxFilmsPerYear 6 ;
+    :forReleasePerYear :PerYear ;
+    :forReleasePerYear :Initially .
+
+:SixFilms a :Quantity , owl:NamedIndividual ;
+    rdfs:label "six films"^^xsd:string .
+
+:Initially a :InitialPeriod , owl:NamedIndividual ;
+    rdfs:label "initially"^^xsd:string .
+
+:PerYear a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "per year"^^xsd:string .
+
+:OtherCinemaChains a :CinemaChain , owl:NamedIndividual ;
+    rdfs:label "other cinema chains"^^xsd:string .
+
+:DvdRetailIncludingOdeonFoyerSales a :DvdRetail , owl:NamedIndividual ;
+    rdfs:label "DVD retail ( including ODEON foyer sales )"^^xsd:string ;
+    :releasedAt :OdeonFoyerSales .
+
+:OdeonFoyerSales a :RetailChannel , owl:NamedIndividual ;
+    rdfs:label "ODEON foyer sales"^^xsd:string .
+
+:DvdRentalIncludingOdeonDirect a :DvdRental , owl:NamedIndividual ;
+    rdfs:label "DVD rental ( including ODEON Direct )"^^xsd:string ;
+    :releasedAt :OdeonDirect ;
+    :releasedBefore :UkTelevisionPremiereOnSkyMovies .
+
+:OdeonDirect a :RentalChannel , owl:NamedIndividual ;
+    rdfs:label "ODEON Direct"^^xsd:string .
+
+:Sky a :Company , owl:NamedIndividual ;
+    rdfs:label "Sky"^^xsd:string ;
+    :retainsRights :AllUkTvRights ;
+    :makesAvailableTo :SkyViewers ;
+    :makesAvailableAcrossService :SkyMoviesByBroadband , :SkyBoxOffice ;
+    :responsibleForRights :AllUkTvRights .
+
+:AllUkTvRights a :UkTvRights , owl:NamedIndividual ;
+    rdfs:label "all UK TV rights"^^xsd:string .
+
+:SkyViewers a :ViewerGroup , owl:NamedIndividual ;
+    rdfs:label "Sky viewers"^^xsd:string .
+
+:SkyMoviesByBroadband a :DownloadService , owl:NamedIndividual ;
+    rdfs:label "Sky Movies By Broadband"^^xsd:string ;
+    :beforePremiere :UkTelevisionPremiereOnSkyMovies .
+
+:SkyBoxOffice a :TelevisionService , owl:NamedIndividual ;
+    rdfs:label "Sky Box Office"^^xsd:string ;
+    :beforePremiere :UkTelevisionPremiereOnSkyMovies .
+
+:UkTelevisionPremiereOnSkyMovies a :TelevisionPremiere , owl:NamedIndividual ;
+    rdfs:label "UK Television Premiere on Sky Movies"^^xsd:string ;
+    :premiereOn :SkyMovies .
+
+:SkyMovies a :TelevisionService , owl:NamedIndividual ;
+    rdfs:label "Sky Movies"^^xsd:string .
+
+:TheatricalReleaseAtOdeon a :TheatricalRelease , owl:NamedIndividual ;
+    rdfs:label "a theatrical release at ODEON"^^xsd:string ;
+    :releasedAt :ODEON ;
+    :releasedBefore :DvdRetailIncludingOdeonFoyerSales , :DvdRentalIncludingOdeonDirect .
+
+:ReleaseAtOtherCinemaChains a :TheatricalRelease , owl:NamedIndividual ;
+    rdfs:label "at other cinema chains"^^xsd:string ;
+    :releasedAt :OtherCinemaChains ;
+    :releasedBefore :DvdRetailIncludingOdeonFoyerSales , :DvdRentalIncludingOdeonDirect .

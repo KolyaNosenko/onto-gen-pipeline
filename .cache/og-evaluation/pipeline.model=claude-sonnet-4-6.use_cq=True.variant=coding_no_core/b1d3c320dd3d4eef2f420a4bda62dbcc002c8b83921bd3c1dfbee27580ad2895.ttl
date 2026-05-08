@@ -1,0 +1,199 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:WilshireGrandCenter a owl:NamedIndividual,
+        ns1:Skyscraper ;
+    rdfs:label "Wilshire Grand Center"^^xsd:string ;
+    ns1:cityWithTallerBuilding ns1:Chicago,
+        ns1:NewYorkCity,
+        ns1:Philadelphia ;
+    ns1:estimatedDevelopmentCost "$1.2 billion"^^xsd:string ;
+    ns1:expectedToRevitalize ns1:DowntownLosAngeles ;
+    ns1:includesFacility ns1:WGCHotel,
+        ns1:WGCObservationDeck,
+        ns1:WGCOfficeSpace,
+        ns1:WGCRetail,
+        ns1:WGCShoppingMall ;
+    ns1:isTallestBuildingIn ns1:California,
+        ns1:LosAngeles ;
+    ns1:isTallestBuildingWestOf ns1:MississippiRiver ;
+    ns1:locatedIn ns1:FinancialDistrict ;
+    ns1:numberOfHotelRooms 900 ;
+    ns1:surpassesInHeight ns1:USBankTower ;
+    ns1:usHeightRanking 11 .
+
+ns1:cityWithTallerBuilding a owl:ObjectProperty ;
+    rdfs:domain ns1:Skyscraper ;
+    rdfs:range ns1:City .
+
+ns1:estimatedDevelopmentCost a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Skyscraper ;
+    rdfs:range xsd:string .
+
+ns1:expectedToRevitalize a owl:ObjectProperty ;
+    rdfs:domain ns1:Skyscraper ;
+    rdfs:range ns1:Place .
+
+ns1:hotelOperatedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Hotel ;
+    rdfs:range ns1:HotelBrand .
+
+ns1:includesFacility a owl:ObjectProperty ;
+    rdfs:domain ns1:Skyscraper ;
+    rdfs:range ns1:Facility .
+
+ns1:isTallestBuildingIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Skyscraper ;
+    rdfs:range ns1:Place .
+
+ns1:isTallestBuildingWestOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Skyscraper ;
+    rdfs:range ns1:River .
+
+ns1:locatedIn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:Place .
+
+ns1:numberOfHotelRooms a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Skyscraper ;
+    rdfs:range xsd:integer .
+
+ns1:officeSpaceClass a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:OfficeSpace ;
+    rdfs:range xsd:string .
+
+ns1:surpassesInHeight a owl:ObjectProperty ;
+    rdfs:domain ns1:Skyscraper ;
+    rdfs:range ns1:Building .
+
+ns1:usHeightRanking a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Skyscraper ;
+    rdfs:range xsd:integer .
+
+ns1:Chicago a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Chicago"^^xsd:string .
+
+ns1:ClassAOfficeSpace a owl:Class ;
+    rdfs:subClassOf ns1:OfficeSpace .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:FinancialDistrict a owl:NamedIndividual,
+        ns1:District ;
+    rdfs:label "Financial District"^^xsd:string ;
+    ns1:locatedIn ns1:DowntownLosAngeles .
+
+ns1:InterContinental a owl:NamedIndividual,
+        ns1:HotelBrand ;
+    rdfs:label "InterContinental"^^xsd:string .
+
+ns1:MississippiRiver a owl:NamedIndividual,
+        ns1:River ;
+    rdfs:label "Mississippi River"^^xsd:string .
+
+ns1:NewYorkCity a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "New York City"^^xsd:string .
+
+ns1:ObservationDeck a owl:Class ;
+    rdfs:subClassOf ns1:Facility .
+
+ns1:Organisation a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Philadelphia a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Philadelphia"^^xsd:string .
+
+ns1:RetailSpace a owl:Class ;
+    rdfs:subClassOf ns1:Facility .
+
+ns1:ShoppingMall a owl:Class ;
+    rdfs:subClassOf ns1:Facility .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:USBankTower a owl:NamedIndividual,
+        ns1:Skyscraper ;
+    rdfs:label "U.S. Bank Tower"^^xsd:string .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United States"^^xsd:string .
+
+ns1:WGCHotel a owl:NamedIndividual,
+        ns1:Hotel ;
+    ns1:hotelOperatedBy ns1:InterContinental .
+
+ns1:WGCObservationDeck a owl:NamedIndividual,
+        ns1:ObservationDeck .
+
+ns1:WGCOfficeSpace a owl:NamedIndividual,
+        ns1:ClassAOfficeSpace ;
+    ns1:officeSpaceClass "Class A"^^xsd:string .
+
+ns1:WGCRetail a owl:NamedIndividual,
+        ns1:RetailSpace .
+
+ns1:WGCShoppingMall a owl:NamedIndividual,
+        ns1:ShoppingMall .
+
+ns1:Building a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:California a owl:NamedIndividual,
+        ns1:State ;
+    rdfs:label "California"^^xsd:string ;
+    ns1:locatedIn ns1:UnitedStates .
+
+ns1:District a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:DowntownLosAngeles a owl:NamedIndividual,
+        ns1:District ;
+    rdfs:label "Downtown Los Angeles"^^xsd:string ;
+    ns1:locatedIn ns1:LosAngeles .
+
+ns1:Hotel a owl:Class ;
+    rdfs:subClassOf ns1:Facility .
+
+ns1:HotelBrand a owl:Class ;
+    rdfs:subClassOf ns1:Organisation .
+
+ns1:LosAngeles a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Los Angeles"^^xsd:string ;
+    ns1:locatedIn ns1:California .
+
+ns1:OfficeSpace a owl:Class ;
+    rdfs:subClassOf ns1:Facility .
+
+ns1:River a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Facility a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Skyscraper a owl:Class ;
+    rdfs:subClassOf ns1:Building .

@@ -1,0 +1,405 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:DevelopingCountries a owl:NamedIndividual,
+        ns1:DevelopingCountry ;
+    rdfs:label "developing countries"^^xsd:string ;
+    ns1:bordering ns1:PacificOcean ;
+    ns1:dependentUpon ns1:agriculture,
+        ns1:fishing ;
+    ns1:mostAffectedBy ns1:ElNinoSouthernOscillation .
+
+ns1:ENSO a owl:NamedIndividual,
+        ns1:Acronym ;
+    rdfs:label "ENSO"^^xsd:string ;
+    ns1:abbreviates ns1:ElNinoSouthernOscillation .
+
+ns1:ElNinoDeNavidad a owl:NamedIndividual,
+        ns1:WeatherPhenomenon ;
+    rdfs:label "El Niño de Navidad"^^xsd:string ;
+    ns1:definitionText "the original name of the weather phenomenon"^^xsd:string ;
+    ns1:namedBy ns1:PeruvianFishermen ;
+    ns1:namedInReferenceTo ns1:Christ ;
+    ns1:originalNameFor ns1:ElNino .
+
+ns1:abbreviates a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Acronym ;
+    rdfs:range owl:Thing .
+
+ns1:accompaniedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:ClimatePhenomenon ;
+    rdfs:range ns1:AirPressureCondition .
+
+ns1:associatedWith a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:bordering a owl:ObjectProperty ;
+    rdfs:domain ns1:CountryGroup ;
+    rdfs:range ns1:Ocean .
+
+ns1:definitionText a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string .
+
+ns1:developsIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:OceanWaterBand ;
+    rdfs:range ns1:OceanRegion .
+
+ns1:easternBoundary a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:OceanWaterBand ;
+    rdfs:range ns1:LongitudeBoundary .
+
+ns1:hasSeaSurfaceTemperatureCondition a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:ENSOPhase ;
+    rdfs:range ns1:SeaSurfaceTemperatureCondition .
+
+ns1:inRegion a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:OceanRegion .
+
+ns1:includesRegion a owl:ObjectProperty ;
+    rdfs:domain ns1:OceanWaterBand ;
+    rdfs:range ns1:OceanRegion .
+
+ns1:literallyTranslatesTo a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string .
+
+ns1:meansText a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string .
+
+ns1:mostAffectedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:CountryGroup ;
+    rdfs:range ns1:ENSOCycle .
+
+ns1:namedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:WeatherPhenomenon ;
+    rdfs:range ns1:FishermenGroup .
+
+ns1:namedInReferenceTo a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:WeatherPhenomenon ;
+    rdfs:range owl:Thing .
+
+ns1:occursAround a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:OceanWaterBand ;
+    rdfs:range ns1:Holiday .
+
+ns1:occursIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:ENSOCycle ;
+    rdfs:range ns1:OceanRegion .
+
+ns1:oppositeOf a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:originalNameFor a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:WeatherPhenomenon ;
+    rdfs:range owl:Thing .
+
+ns1:partOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:usedInLanguage a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:Language .
+
+ns1:westernBoundary a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:OceanWaterBand ;
+    rdfs:range ns1:LongitudeBoundary .
+
+ns1:AmericanSpanish a owl:NamedIndividual,
+        ns1:Language ;
+    rdfs:label "American Spanish"^^xsd:string .
+
+ns1:BelowAverageSSTEasternPacific a owl:NamedIndividual,
+        ns1:SeaSurfaceTemperatureCondition ;
+    rdfs:label "SST in the eastern Pacific below average"^^xsd:string ;
+    ns1:inRegion ns1:EasternPacific .
+
+ns1:CentralAndEastCentralEquatorialPacific a owl:NamedIndividual,
+        ns1:OceanRegion ;
+    rdfs:label "the central and east - central equatorial Pacific"^^xsd:string ;
+    ns1:partOf ns1:PacificOcean .
+
+ns1:Christ a owl:NamedIndividual,
+        ns1:ReligiousFigure ;
+    rdfs:label "Christ"^^xsd:string .
+
+ns1:Christmas a owl:NamedIndividual,
+        ns1:Holiday ;
+    rdfs:label "Christmas"^^xsd:string .
+
+ns1:Continent a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CoolPhase a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:phaseOf ;
+            owl:someValuesFrom ns1:ENSOCycle ],
+        ns1:ENSOPhase .
+
+ns1:DevelopingCountry a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:dependentUpon ;
+            owl:someValuesFrom ns1:AgricultureSector ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:dependentUpon ;
+            owl:someValuesFrom ns1:FishingSector ],
+        ns1:CountryGroup .
+
+ns1:GeographicalBoundary a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:HighAirPressureEasternPacific a owl:NamedIndividual,
+        ns1:AirPressureCondition ;
+    rdfs:label "air pressures high in the eastern Pacific"^^xsd:string ;
+    ns1:inRegion ns1:EasternPacific .
+
+ns1:HighAirPressureWesternPacific a owl:NamedIndividual,
+        ns1:AirPressureCondition ;
+    rdfs:label "high air pressure in the western Pacific"^^xsd:string ;
+    ns1:inRegion ns1:WesternPacific .
+
+ns1:InternationalDateLine a owl:NamedIndividual,
+        ns1:LongitudeBoundary ;
+    rdfs:label "International Date Line"^^xsd:string .
+
+ns1:LaNina a owl:NamedIndividual,
+        ns1:CoolPhase ;
+    rdfs:label "La Niña"^^xsd:string ;
+    ns1:accompaniedBy ns1:HighAirPressureEasternPacific,
+        ns1:LowAirPressureWesternPacific ;
+    ns1:associatedWith ns1:ElNinoWarmBand ;
+    ns1:definitionText "the cool phase of ENSO"^^xsd:string ;
+    ns1:hasSeaSurfaceTemperatureCondition ns1:BelowAverageSSTEasternPacific ;
+    ns1:literallyTranslatesTo "the girl"^^xsd:string ;
+    ns1:oppositeOf ns1:ElNino ;
+    ns1:phaseOf ns1:ElNinoSouthernOscillation .
+
+ns1:LowAirPressureEasternPacific a owl:NamedIndividual,
+        ns1:AirPressureCondition ;
+    rdfs:label "low air pressure in the eastern Pacific"^^xsd:string ;
+    ns1:inRegion ns1:EasternPacific .
+
+ns1:LowAirPressureWesternPacific a owl:NamedIndividual,
+        ns1:AirPressureCondition ;
+    rdfs:label "low air pressure in the western Pacific"^^xsd:string ;
+    ns1:inRegion ns1:WesternPacific .
+
+ns1:Oscillation a owl:Class ;
+    rdfs:subClassOf ns1:ClimatePhenomenon .
+
+ns1:PacificCoastOfSouthAmerica a owl:NamedIndividual,
+        ns1:OceanRegion ;
+    rdfs:label "the Pacific coast of South America"^^xsd:string ;
+    ns1:partOf ns1:SouthAmerica .
+
+ns1:PeruvianFishermen a owl:NamedIndividual,
+        ns1:FishermenGroup ;
+    rdfs:label "Peruvian fishermen"^^xsd:string .
+
+ns1:RainfallChange a owl:Class ;
+    rdfs:subClassOf ns1:GlobalChange .
+
+ns1:ReligiousFigure a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SST a owl:NamedIndividual,
+        ns1:Acronym ;
+    rdfs:label "SST"^^xsd:string ;
+    ns1:abbreviates ns1:SeaSurfaceTemperature .
+
+ns1:SouthAmerica a owl:NamedIndividual,
+        ns1:Continent ;
+    rdfs:label "South America"^^xsd:string .
+
+ns1:TemperatureChange a owl:Class ;
+    rdfs:subClassOf ns1:GlobalChange .
+
+ns1:TropicalCentralAndEasternPacificOcean a owl:NamedIndividual,
+        ns1:OceanRegion ;
+    rdfs:label "the tropical central and eastern Pacific Ocean"^^xsd:string ;
+    ns1:partOf ns1:PacificOcean .
+
+ns1:WarmPhase a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:phaseOf ;
+            owl:someValuesFrom ns1:ENSOCycle ],
+        ns1:ENSOPhase .
+
+ns1:West120W a owl:NamedIndividual,
+        ns1:LongitudeBoundary ;
+    rdfs:label "120 ° W"^^xsd:string .
+
+ns1:agriculture a owl:NamedIndividual,
+        ns1:AgricultureSector ;
+    rdfs:label "agriculture"^^xsd:string .
+
+ns1:fishing a owl:NamedIndividual,
+        ns1:FishingSector ;
+    rdfs:label "fishing"^^xsd:string .
+
+ns1:measuredBy a owl:ObjectProperty ;
+    rdfs:domain ns1:ENSOCycle ;
+    rdfs:range ns1:SeaSurfaceTemperatureVariable .
+
+ns1:AgricultureSector a owl:Class ;
+    rdfs:subClassOf ns1:Sector .
+
+ns1:ElNinoWarmBand a owl:NamedIndividual,
+        ns1:OceanWaterBand ;
+    rdfs:label "a band of warm ocean water"^^xsd:string ;
+    ns1:associatedWith ns1:ElNino ;
+    ns1:definitionText "a band of warm ocean water that develops in the central and east-central equatorial Pacific"^^xsd:string ;
+    ns1:developsIn ns1:CentralAndEastCentralEquatorialPacific ;
+    ns1:easternBoundary ns1:West120W ;
+    ns1:includesRegion ns1:PacificCoastOfSouthAmerica ;
+    ns1:occursAround ns1:Christmas ;
+    ns1:westernBoundary ns1:InternationalDateLine .
+
+ns1:FishermenGroup a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:FishingSector a owl:Class ;
+    rdfs:subClassOf ns1:Sector .
+
+ns1:Holiday a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Language a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Ocean a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PacificRegion a owl:Class ;
+    rdfs:subClassOf ns1:OceanRegion .
+
+ns1:SeaSurfaceTemperature a owl:NamedIndividual,
+        ns1:SeaSurfaceTemperatureVariable ;
+    rdfs:label "sea surface temperature"^^xsd:string .
+
+ns1:SeaSurfaceTemperatureCondition a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:WesternPacific a owl:NamedIndividual,
+        ns1:PacificRegion ;
+    rdfs:label "the western Pacific"^^xsd:string ;
+    ns1:partOf ns1:PacificOcean .
+
+ns1:causes a owl:ObjectProperty ;
+    rdfs:domain ns1:ENSOCycle ;
+    rdfs:range ns1:GlobalChange .
+
+ns1:dependentUpon a owl:ObjectProperty ;
+    rdfs:domain ns1:CountryGroup ;
+    rdfs:range ns1:Sector .
+
+ns1:phaseOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:ENSOPhase ;
+    rdfs:range ns1:ENSOCycle .
+
+ns1:Acronym a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:EasternPacific a owl:NamedIndividual,
+        ns1:PacificRegion ;
+    rdfs:label "the eastern Pacific"^^xsd:string ;
+    ns1:partOf ns1:PacificOcean .
+
+ns1:ElNino a owl:NamedIndividual,
+        ns1:WarmPhase ;
+    rdfs:label "El Niño"^^xsd:string ;
+    ns1:accompaniedBy ns1:HighAirPressureWesternPacific,
+        ns1:LowAirPressureEasternPacific ;
+    ns1:associatedWith ns1:ElNinoWarmBand ;
+    ns1:definitionText "the warm phase of the El Niño Southern Oscillation (commonly called ENSO)"^^xsd:string ;
+    ns1:meansText "the boy"^^xsd:string ;
+    ns1:oppositeOf ns1:LaNina ;
+    ns1:phaseOf ns1:ElNinoSouthernOscillation ;
+    ns1:usedInLanguage ns1:AmericanSpanish .
+
+ns1:GlobalChange a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SeaSurfaceTemperatureVariable a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Sector a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ClimatePhenomenon a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CountryGroup a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ENSOPhase a owl:Class ;
+    rdfs:subClassOf ns1:ClimatePhenomenon .
+
+ns1:ElNinoSouthernOscillation a owl:NamedIndividual,
+        ns1:ENSOCycle ;
+    rdfs:label "El Niño Southern Oscillation"^^xsd:string ;
+    ns1:definitionText "the cycle of warm and cold temperatures as measured by sea surface temperature, SST, of the tropical central and eastern Pacific Ocean"^^xsd:string ;
+    ns1:measuredBy ns1:SST,
+        ns1:SeaSurfaceTemperature ;
+    ns1:occursIn ns1:TropicalCentralAndEasternPacificOcean .
+
+ns1:LongitudeBoundary a owl:Class ;
+    rdfs:subClassOf ns1:GeographicalBoundary .
+
+ns1:WeatherPhenomenon a owl:Class ;
+    rdfs:subClassOf ns1:ClimatePhenomenon .
+
+ns1:AirPressureCondition a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PacificOcean a owl:NamedIndividual,
+        ns1:Ocean ;
+    rdfs:label "Pacific Ocean"^^xsd:string .
+
+ns1:OceanWaterBand a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ENSOCycle a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:measuredBy ;
+            owl:someValuesFrom ns1:SeaSurfaceTemperatureVariable ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:causes ;
+            owl:someValuesFrom ns1:TemperatureChange ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:causes ;
+            owl:someValuesFrom ns1:RainfallChange ],
+        ns1:Oscillation .
+
+ns1:OceanRegion a owl:Class ;
+    rdfs:subClassOf owl:Thing .

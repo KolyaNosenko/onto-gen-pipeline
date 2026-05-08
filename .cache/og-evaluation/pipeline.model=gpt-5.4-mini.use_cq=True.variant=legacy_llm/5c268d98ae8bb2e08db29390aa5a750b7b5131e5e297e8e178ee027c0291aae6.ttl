@@ -1,0 +1,219 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Phenomenon a owl:Class .
+:ClimatePhase a owl:Class .
+:ClimateCycle a owl:Class .
+:Oscillation a owl:Class .
+:TemperatureCondition a owl:Class .
+:SeaSurfaceTemperatureCondition a owl:Class .
+:AtmosphericPressureCondition a owl:Class .
+:WarmWaterBand a owl:Class .
+:OceanRegion a owl:Class .
+:Ocean a owl:Class .
+:GeographicRegion a owl:Class .
+:Location a owl:Class .
+:LongitudinalBoundary a owl:Class .
+:SouthAmericanRegion a owl:Class .
+:NameMeaning a owl:Class .
+:Translation a owl:Class .
+:Language a owl:Class .
+:Term a owl:Class .
+:OriginalName a owl:Class .
+:PeopleGroup a owl:Class .
+:Fisherman a owl:Class .
+:Person a owl:Class .
+:WeatherPhenomenon a owl:Class .
+:CalendarPeriod a owl:Class .
+:Season a owl:Class .
+:Month a owl:Class .
+:GlobalClimateEffect a owl:Class .
+:TemperatureChange a owl:Class .
+:RainfallChange a owl:Class .
+:Community a owl:Class .
+:Country a owl:Class .
+:DevelopingCountry a owl:Class .
+:EconomicActivity a owl:Class .
+:Agriculture a owl:Class .
+:Fishing a owl:Class .
+:DependentOn a owl:Class .
+
+:ElNino a :ClimatePhase , :Phenomenon , owl:NamedIndividual ;
+    rdfs:label "El Niño"^^xsd:string ;
+    :warmPhaseOf :ElNinoSouthernOscillation ;
+    :associatedWith :WarmWaterBandElNino ;
+    :accompaniedBy :HighAirPressureWesternPacific , :LowAirPressureEasternPacific ;
+    :hasMeaning :TheBoyMeaning ;
+    :hasOriginalName :ElNinoDeNavidad ;
+    :namedInReferenceTo :NewbornChrist .
+
+:ElNinoSouthernOscillation a :ClimateCycle , :Oscillation , :Phenomenon , owl:NamedIndividual ;
+    rdfs:label "El Niño Southern Oscillation"^^xsd:string ;
+    :commonlyCalled :Enso ;
+    :refersTo :WarmAndColdTemperatureCycle ;
+    :describedBy :SeaSurfaceTemperatureSst ;
+    :hasCoolPhase :LaNina ;
+    :cause :GlobalTemperatureChange , :GlobalRainfallChange .
+
+:Enso a :Term , owl:NamedIndividual ;
+    rdfs:label "ENSO"^^xsd:string ;
+    :standsFor :ElNinoSouthernOscillation .
+
+:WarmAndColdTemperatureCycle a :ClimateCycle , :TemperatureCondition , owl:NamedIndividual ;
+    rdfs:label "the cycle of warm and cold temperatures"^^xsd:string .
+
+:SeaSurfaceTemperatureSst a :SeaSurfaceTemperatureCondition , owl:NamedIndividual ;
+    rdfs:label "sea surface temperature, SST"^^xsd:string ;
+    :inOcean :TropicalCentralAndEasternPacificOcean .
+
+:TropicalCentralAndEasternPacificOcean a :OceanRegion , :Ocean , owl:NamedIndividual ;
+    rdfs:label "the tropical central and eastern Pacific Ocean"^^xsd:string .
+
+:WarmWaterBandElNino a :WarmWaterBand , owl:NamedIndividual ;
+    rdfs:label "a band of warm ocean water"^^xsd:string ;
+    :developsIn :CentralAndEastCentralEquatorialPacific ;
+    :between :InternationalDateLine , :Longitude120W ;
+    :includesRegion :PacificCoastOfSouthAmerica .
+
+:CentralAndEastCentralEquatorialPacific a :OceanRegion , :Ocean , owl:NamedIndividual ;
+    rdfs:label "the central and east-central equatorial Pacific"^^xsd:string .
+
+:InternationalDateLine a :LongitudinalBoundary , :Location , owl:NamedIndividual ;
+    rdfs:label "the International Date Line"^^xsd:string .
+
+:Longitude120W a :LongitudinalBoundary , :Location , owl:NamedIndividual ;
+    rdfs:label "120° W"^^xsd:string .
+
+:PacificCoastOfSouthAmerica a :SouthAmericanRegion , :GeographicRegion , :Location , owl:NamedIndividual ;
+    rdfs:label "the Pacific coast of South America"^^xsd:string ;
+    :partOf :SouthAmerica ;
+    :borders :PacificOcean .
+
+:SouthAmerica a :GeographicRegion , :Location , owl:NamedIndividual ;
+    rdfs:label "South America"^^xsd:string .
+
+:PacificOcean a :Ocean , owl:NamedIndividual ;
+    rdfs:label "Pacific Ocean"^^xsd:string .
+
+:HighAirPressureWesternPacific a :AtmosphericPressureCondition , owl:NamedIndividual ;
+    rdfs:label "high air pressure in the western Pacific"^^xsd:string ;
+    :locatedIn :WesternPacific .
+
+:LowAirPressureEasternPacific a :AtmosphericPressureCondition , owl:NamedIndividual ;
+    rdfs:label "low air pressure in the eastern Pacific"^^xsd:string ;
+    :locatedIn :EasternPacific .
+
+:WesternPacific a :OceanRegion , :Location , owl:NamedIndividual ;
+    rdfs:label "the western Pacific"^^xsd:string .
+
+:EasternPacific a :OceanRegion , :Location , owl:NamedIndividual ;
+    rdfs:label "the eastern Pacific"^^xsd:string .
+
+:LaNina a :ClimatePhase , :Phenomenon , owl:NamedIndividual ;
+    rdfs:label "La Niña"^^xsd:string ;
+    :coolPhaseOf :ElNinoSouthernOscillation ;
+    :hasSstCondition :BelowAverageSstEasternPacific ;
+    :accompaniedBy :HighAirPressureEasternPacific , :HighAirPressureEasternPacific , :LowAirPressureWesternPacific ;
+    :chosenAsOppositeOf :ElNino ;
+    :literalTranslation :TheGirlMeaning .
+
+:BelowAverageSstEasternPacific a :SeaSurfaceTemperatureCondition , owl:NamedIndividual ;
+    rdfs:label "SST in the eastern Pacific below average"^^xsd:string ;
+    :inOcean :EasternPacific .
+
+:HighAirPressureEasternPacific a :AtmosphericPressureCondition , owl:NamedIndividual ;
+    rdfs:label "air pressures high in the eastern Pacific"^^xsd:string ;
+    :locatedIn :EasternPacific .
+
+:LowAirPressureWesternPacific a :AtmosphericPressureCondition , owl:NamedIndividual ;
+    rdfs:label "low in western Pacific"^^xsd:string ;
+    :locatedIn :WesternPacific .
+
+:GlobalTemperatureChange a :GlobalClimateEffect , :TemperatureChange , owl:NamedIndividual ;
+    rdfs:label "global changes of both temperatures"^^xsd:string .
+
+:GlobalRainfallChange a :GlobalClimateEffect , :RainfallChange , owl:NamedIndividual ;
+    rdfs:label "global changes of ... rainfall"^^xsd:string .
+
+:DevelopingCountries a :DevelopingCountry , :Country , owl:NamedIndividual ;
+    rdfs:label "Developing countries"^^xsd:string ;
+    :dependentUpon :Agriculture , :Fishing .
+
+:Agriculture a :Agriculture , :EconomicActivity , owl:NamedIndividual ;
+    rdfs:label "agriculture"^^xsd:string .
+
+:Fishing a :Fishing , :EconomicActivity , owl:NamedIndividual ;
+    rdfs:label "fishing"^^xsd:string .
+
+:PacificBorderingCountries a :Country , owl:NamedIndividual ;
+    rdfs:label "those bordering the Pacific Ocean"^^xsd:string ;
+    :borders :PacificOcean .
+
+:AmericanSpanish a :Language , owl:NamedIndividual ;
+    rdfs:label "American Spanish"^^xsd:string .
+
+:TheBoyMeaning a :NameMeaning , owl:NamedIndividual ;
+    rdfs:label "the boy"^^xsd:string ;
+    :inLanguage :AmericanSpanish .
+
+:ElNinoDeNavidad a :OriginalName , :Term , owl:NamedIndividual ;
+    rdfs:label "El Niño de Navidad"^^xsd:string ;
+    :tracesOriginTo :PeruvianFishermen .
+
+:PeruvianFishermen a :PeopleGroup , :Fisherman , owl:NamedIndividual ;
+    rdfs:label "Peruvian fishermen"^^xsd:string ;
+    :named :ElNinoDeNavidad ;
+    :namedThePhenomenon :WeatherPhenomenonElNinoDeNavidad .
+
+:WeatherPhenomenonElNinoDeNavidad a :WeatherPhenomenon , :Phenomenon , owl:NamedIndividual ;
+    rdfs:label "the weather phenomenon"^^xsd:string ;
+    :inReferenceTo :NewbornChrist .
+
+:NewbornChrist a :Person , owl:NamedIndividual ;
+    rdfs:label "the newborn Christ"^^xsd:string .
+
+:TheGirlMeaning a :NameMeaning , owl:NamedIndividual ;
+    rdfs:label "the girl"^^xsd:string .
+
+:Christmas a :CalendarPeriod , owl:NamedIndividual ;
+    rdfs:label "Christmas"^^xsd:string .
+
+:WarmWaterInPacificNearSouthAmerica a :WarmWaterBand , owl:NamedIndividual ;
+    rdfs:label "the pool of warm water in the Pacific near South America"^^xsd:string ;
+    :locatedIn :PacificOcean ;
+    :near :SouthAmerica ;
+    :warmestAround :Christmas .
+
+:warmPhaseOf a owl:ObjectProperty .
+:coolPhaseOf a owl:ObjectProperty .
+:associatedWith a owl:ObjectProperty .
+:commonlyCalled a owl:ObjectProperty .
+:refersTo a owl:ObjectProperty .
+:describedBy a owl:ObjectProperty .
+:hasCoolPhase a owl:ObjectProperty .
+:hasSstCondition a owl:ObjectProperty .
+:accompaniedBy a owl:ObjectProperty .
+:cause a owl:ObjectProperty .
+:developsIn a owl:ObjectProperty .
+:between a owl:ObjectProperty .
+:includesRegion a owl:ObjectProperty .
+:partOf a owl:ObjectProperty .
+:borders a owl:ObjectProperty .
+:standsFor a owl:ObjectProperty .
+:inOcean a owl:ObjectProperty .
+:locatedIn a owl:ObjectProperty .
+:hasMeaning a owl:ObjectProperty .
+:hasOriginalName a owl:ObjectProperty .
+:namedInReferenceTo a owl:ObjectProperty .
+:literalTranslation a owl:ObjectProperty .
+:chosenAsOppositeOf a owl:ObjectProperty .
+:dependentUpon a owl:ObjectProperty .
+:named a owl:ObjectProperty .
+:namedThePhenomenon a owl:ObjectProperty .
+:inReferenceTo a owl:ObjectProperty .
+:warmestAround a owl:ObjectProperty .
+:near a owl:ObjectProperty .
+:tracesOriginTo a owl:ObjectProperty .

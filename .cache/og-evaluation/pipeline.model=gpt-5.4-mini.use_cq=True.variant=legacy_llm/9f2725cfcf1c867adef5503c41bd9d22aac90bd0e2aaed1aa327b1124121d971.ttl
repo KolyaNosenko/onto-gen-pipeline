@@ -1,0 +1,129 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Company a owl:Class .
+:ItalianCompany a owl:Class ;
+    rdfs:subClassOf :Company .
+:SteelCompany a owl:Class ;
+    rdfs:subClassOf :Company .
+:CompanyName a owl:Class .
+:Person a owl:Class .
+:Family a owl:Class .
+:Location a owl:Class .
+:City a owl:Class ;
+    rdfs:subClassOf :Location .
+:Country a owl:Class ;
+    rdfs:subClassOf :Location .
+:IndustrialPlant a owl:Class .
+:Furnace a owl:Class .
+:Industry a owl:Class .
+:SteelIndustry a owl:Class ;
+    rdfs:subClassOf :Industry .
+:EnergyProduction a owl:Class .
+:RenewableEnergyProduction a owl:Class ;
+    rdfs:subClassOf :EnergyProduction .
+:Product a owl:Class .
+:SteelProduct a owl:Class ;
+    rdfs:subClassOf :Product .
+:TimeInterval a owl:Class .
+:Year a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+:Decade a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+:CenturyRange a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+:Era a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+
+:locatedIn a owl:ObjectProperty .
+:foundedIn a owl:ObjectProperty .
+:foundedBy a owl:ObjectProperty .
+:hasOriginalName a owl:ObjectProperty ;
+    rdfs:range :CompanyName .
+:changedNameTo a owl:ObjectProperty ;
+    rdfs:range :CompanyName .
+:builtIn a owl:ObjectProperty .
+:produced a owl:ObjectProperty .
+:producedUntil a owl:ObjectProperty .
+:beganToDeclineIn a owl:ObjectProperty .
+:closedIn a owl:ObjectProperty .
+:turnedToProductionOf a owl:ObjectProperty .
+:throughSubsidiary a owl:ObjectProperty .
+:runBy a owl:ObjectProperty .
+:oneOfTheOldestInIndustry a owl:ObjectProperty .
+:startedAs a owl:ObjectProperty .
+:hasIndustry a owl:ObjectProperty .
+
+:FalckGroup a :ItalianCompany , owl:NamedIndividual ;
+    rdfs:label "Falck Group"^^xsd:string ;
+    :locatedIn :SestoSanGiovanni ;
+    :foundedIn :Year1906 ;
+    :foundedBy :GiorgioEnricoFalck ;
+    :hasOriginalName :SocietaAnonimaAcciaierieEFerriereLombarde ;
+    :changedNameTo :AcciaiereEFerriereLombardeFalck ;
+    :builtIn :SestoSanGiovanni ;
+    :produced :Steel ;
+    :produced :RelatedProducts ;
+    :producedUntil :MidSeventies ;
+    :beganToDeclineIn :MidSeventies ;
+    :closedIn :Year1995 ;
+    :turnedToProductionOf :RenewableEnergyProduction ;
+    :throughSubsidiary :FalckRenewables ;
+    :runBy :FalckFamily ;
+    :oneOfTheOldestInIndustry :SteelIndustry ;
+    :startedAs :SteelCompany ;
+    :hasIndustry :SteelIndustry .
+
+:GiorgioEnricoFalck a :Person , owl:NamedIndividual ;
+    rdfs:label "Giorgio Enrico Falck"^^xsd:string .
+
+:FalckFamily a :Family , owl:NamedIndividual ;
+    rdfs:label "Falck family"^^xsd:string .
+
+:SestoSanGiovanni a :City , owl:NamedIndividual ;
+    rdfs:label "Sesto San Giovanni"^^xsd:string .
+
+:Milan a :City , owl:NamedIndividual ;
+    rdfs:label "Milan"^^xsd:string .
+
+:FalckRenewables a :Company , owl:NamedIndividual ;
+    rdfs:label "Falck Renewables"^^xsd:string .
+
+:SocietaAnonimaAcciaierieEFerriereLombarde a :CompanyName , owl:NamedIndividual ;
+    rdfs:label "Società anonima Acciaierie e Ferriere Lombarde"^^xsd:string .
+
+:AcciaiereEFerriereLombardeFalck a :CompanyName , owl:NamedIndividual ;
+    rdfs:label "Acciaiere e Ferriere Lombarde Falck"^^xsd:string .
+
+:Year1906 a :Year , owl:NamedIndividual ;
+    rdfs:label "1906"^^xsd:string .
+
+:Year1931 a :Year , owl:NamedIndividual ;
+    rdfs:label "1931"^^xsd:string .
+
+:Year1995 a :Year , owl:NamedIndividual ;
+    rdfs:label "1995"^^xsd:string .
+
+:MidSeventies a :Decade , owl:NamedIndividual ;
+    rdfs:label "mid - seventies"^^xsd:string .
+
+:1990s a :Decade , owl:NamedIndividual ;
+    rdfs:label "1990s"^^xsd:string .
+
+:EndOfTheNineties a :Decade , owl:NamedIndividual ;
+    rdfs:label "end of the nineties"^^xsd:string .
+
+:SteelIndustry a :SteelIndustry , owl:NamedIndividual ;
+    rdfs:label "steel industry"^^xsd:string .
+
+:SteelCompany a :SteelCompany , owl:NamedIndividual ;
+    rdfs:label "steel company"^^xsd:string .
+
+:Steel a :SteelProduct , owl:NamedIndividual ;
+    rdfs:label "steel"^^xsd:string .
+
+:RelatedProducts a :Product , owl:NamedIndividual ;
+    rdfs:label "related products"^^xsd:string .

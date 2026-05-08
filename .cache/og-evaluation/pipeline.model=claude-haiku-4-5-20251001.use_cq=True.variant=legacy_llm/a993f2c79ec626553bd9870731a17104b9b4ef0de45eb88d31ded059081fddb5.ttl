@@ -1,0 +1,218 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:JointVenture a owl:Class ;
+    rdfs:label "Joint Venture"^^xsd:string ;
+    rdfs:comment "A business entity formed by two or more partners"^^xsd:string .
+
+:FilmDistributor a owl:Class ;
+    rdfs:label "Film Distributor"^^xsd:string ;
+    rdfs:comment "An entity that distributes films to audiences"^^xsd:string .
+
+:Organisation a owl:Class ;
+    rdfs:label "Organisation"^^xsd:string .
+
+:CinemaChain a owl:Class ;
+    rdfs:label "Cinema Chain"^^xsd:string ;
+    rdfs:subClassOf :Organisation .
+
+:BroadcastingCompany a owl:Class ;
+    rdfs:label "Broadcasting Company"^^xsd:string ;
+    rdfs:subClassOf :Organisation .
+
+:FilmTitle a owl:Class ;
+    rdfs:label "Film Title"^^xsd:string .
+
+:Audience a owl:Class ;
+    rdfs:label "Audience"^^xsd:string .
+
+:DistributionChannel a owl:Class ;
+    rdfs:label "Distribution Channel"^^xsd:string .
+
+:TheatricalRelease a owl:Class ;
+    rdfs:label "Theatrical Release"^^xsd:string ;
+    rdfs:subClassOf :DistributionChannel .
+
+:DVDRetail a owl:Class ;
+    rdfs:label "DVD Retail"^^xsd:string ;
+    rdfs:subClassOf :DistributionChannel .
+
+:DVDRental a owl:Class ;
+    rdfs:label "DVD Rental"^^xsd:string ;
+    rdfs:subClassOf :DistributionChannel .
+
+:TelevisionService a owl:Class ;
+    rdfs:label "Television Service"^^xsd:string ;
+    rdfs:subClassOf :DistributionChannel .
+
+:DownloadService a owl:Class ;
+    rdfs:label "Download Service"^^xsd:string ;
+    rdfs:subClassOf :DistributionChannel .
+
+:GeographicRegion a owl:Class ;
+    rdfs:label "Geographic Region"^^xsd:string .
+
+:Filmmaker a owl:Class ;
+    rdfs:label "Filmmaker"^^xsd:string .
+
+:ReleaseFormat a owl:Class ;
+    rdfs:label "Release Format"^^xsd:string .
+
+:BusinessRole a owl:Class ;
+    rdfs:label "Business Role"^^xsd:string .
+
+:MediaRights a owl:Class ;
+    rdfs:label "Media Rights"^^xsd:string .
+
+:RetailLocation a owl:Class ;
+    rdfs:label "Retail Location"^^xsd:string .
+
+# Object Properties
+:hasPartner a owl:ObjectProperty ;
+    rdfs:label "has partner"^^xsd:string ;
+    rdfs:domain :JointVenture ;
+    rdfs:range :Organisation .
+
+:targetAudience a owl:ObjectProperty ;
+    rdfs:label "target audience"^^xsd:string ;
+    rdfs:range :Audience .
+
+:playsRole a owl:ObjectProperty ;
+    rdfs:label "plays role"^^xsd:string ;
+    rdfs:range :BusinessRole .
+
+:usesDistributionChannel a owl:ObjectProperty ;
+    rdfs:label "uses distribution channel"^^xsd:string ;
+    rdfs:range :DistributionChannel .
+
+:operatesIn a owl:ObjectProperty ;
+    rdfs:label "operates in"^^xsd:string ;
+    rdfs:range :GeographicRegion .
+
+:signsTitles a owl:ObjectProperty ;
+    rdfs:label "signs titles"^^xsd:string ;
+    rdfs:domain :FilmDistributor ;
+    rdfs:range :FilmTitle .
+
+:acquiresFrom a owl:ObjectProperty ;
+    rdfs:label "acquires from"^^xsd:string ;
+    rdfs:domain :FilmDistributor ;
+    rdfs:range :Filmmaker .
+
+:retainsRights a owl:ObjectProperty ;
+    rdfs:label "retains rights"^^xsd:string ;
+    rdfs:range :MediaRights .
+
+:offersTitleAt a owl:ObjectProperty ;
+    rdfs:label "offers title at"^^xsd:string ;
+    rdfs:domain :Organisation ;
+    rdfs:range :RetailLocation .
+
+:availableVia a owl:ObjectProperty ;
+    rdfs:label "available via"^^xsd:string ;
+    rdfs:domain :FilmTitle ;
+    rdfs:range :TelevisionService .
+
+:showsAt a owl:ObjectProperty ;
+    rdfs:label "shows at"^^xsd:string ;
+    rdfs:domain :FilmTitle ;
+    rdfs:range :CinemaChain .
+
+:releasesBeforeFormat a owl:ObjectProperty ;
+    rdfs:label "releases before format"^^xsd:string ;
+    rdfs:domain :ReleaseFormat ;
+    rdfs:range :ReleaseFormat ;
+    rdf:type owl:AsymmetricProperty .
+
+# Data Properties
+:numberOfFilmsPlanedPerYear a owl:DatatypeProperty ;
+    rdfs:label "number of films planned per year"^^xsd:string ;
+    rdfs:range xsd:integer .
+
+:alternativeNameAcronym a owl:DatatypeProperty ;
+    rdfs:label "alternative name acronym"^^xsd:string ;
+    rdfs:range xsd:string .
+
+# Named Individuals - Organisations
+:OdeonSkyFilmworks a :JointVenture , :FilmDistributor , owl:NamedIndividual ;
+    rdfs:label "Odeon Sky Filmworks"^^xsd:string ;
+    :alternativeNameAcronym "FILMWORKS"^^xsd:string ;
+    :hasPartner :OdeonCinemas ;
+    :hasPartner :BritishSkyBroadcasting ;
+    :numberOfFilmsPlanedPerYear 6 ;
+    :operatesIn :UnitedKingdom ;
+    :targetAudience :UKAudience ;
+    :usesDistributionChannel :TheatricalReleaseFormat ;
+    :usesDistributionChannel :DVDRetailFormat ;
+    :usesDistributionChannel :DVDRentalFormat ;
+    :usesDistributionChannel :SkyMoviesByBroadbandService ;
+    :usesDistributionChannel :SkyBoxOfficeService ;
+    :usesDistributionChannel :SkyMoviesTelevisionService .
+
+:OdeonCinemas a :CinemaChain , owl:NamedIndividual ;
+    rdfs:label "Odeon Cinemas"^^xsd:string .
+
+:BritishSkyBroadcasting a :BroadcastingCompany , owl:NamedIndividual ;
+    rdfs:label "British Sky Broadcasting"^^xsd:string ;
+    :alternativeNameAcronym "SKY"^^xsd:string ;
+    :retainsRights :UKTelevisionRights .
+
+# Named Individuals - Geographic Regions
+:UnitedKingdom a :GeographicRegion , owl:NamedIndividual ;
+    rdfs:label "UK"^^xsd:string .
+
+# Named Individuals - Audiences
+:UKAudience a :Audience , owl:NamedIndividual ;
+    rdfs:label "UK audiences"^^xsd:string .
+
+# Named Individuals - Distribution Channels and Services
+:TheatricalReleaseFormat a :TheatricalRelease , owl:NamedIndividual ;
+    rdfs:label "theatrical release"^^xsd:string ;
+    :releasesBeforeFormat :DVDRetailFormat .
+
+:DVDRetailFormat a :DVDRetail , owl:NamedIndividual ;
+    rdfs:label "DVD retail"^^xsd:string ;
+    :releasesBeforeFormat :DVDRentalFormat ;
+    :offersTitleAt :OdeonFoyerSales ;
+    :offersTitleAt :RetailLocations .
+
+:OdeonFoyerSales a :RetailLocation , owl:NamedIndividual ;
+    rdfs:label "ODEON foyer sales"^^xsd:string .
+
+:RetailLocations a :RetailLocation , owl:NamedIndividual ;
+    rdfs:label "retail locations"^^xsd:string .
+
+:DVDRentalFormat a :DVDRental , owl:NamedIndividual ;
+    rdfs:label "DVD rental"^^xsd:string ;
+    :releasesBeforeFormat :SkyMoviesByBroadbandService ;
+    :releasesBeforeFormat :SkyBoxOfficeService ;
+    :offersTitleAt :OdeonDirectService .
+
+:OdeonDirectService a :RetailLocation , owl:NamedIndividual ;
+    rdfs:label "ODEON Direct"^^xsd:string .
+
+:SkyMoviesByBroadbandService a :DownloadService , owl:NamedIndividual ;
+    rdfs:label "Sky Movies By Broadband"^^xsd:string ;
+    :releasesBeforeFormat :SkyMoviesTelevisionService .
+
+:SkyBoxOfficeService a :TelevisionService , owl:NamedIndividual ;
+    rdfs:label "Sky Box Office"^^xsd:string ;
+    :releasesBeforeFormat :SkyMoviesTelevisionService .
+
+:SkyMoviesTelevisionService a :TelevisionService , owl:NamedIndividual ;
+    rdfs:label "Sky Movies"^^xsd:string .
+
+:UKTelevisionPremiere a :ReleaseFormat , owl:NamedIndividual ;
+    rdfs:label "UK Television Premiere"^^xsd:string .
+
+# Named Individuals - Media Rights
+:UKTelevisionRights a :MediaRights , owl:NamedIndividual ;
+    rdfs:label "UK TV rights"^^xsd:string .
+
+# Business Roles
+:FilmDistributorRole a :BusinessRole , owl:NamedIndividual ;
+    rdfs:label "film distributor"^^xsd:string .

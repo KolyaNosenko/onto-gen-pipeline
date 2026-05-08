@@ -1,0 +1,221 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:TelevisionSeries a owl:Class .
+:RealityCompetitionSeries a owl:Class ;
+    rdfs:subClassOf :TelevisionSeries .
+:Variation a owl:Class .
+:Person a owl:Class .
+:RealEstateDeveloper a owl:Class ;
+    rdfs:subClassOf :Person .
+:President a owl:Class ;
+    rdfs:subClassOf :Person .
+:TelevisionHost a owl:Class ;
+    rdfs:subClassOf :Person .
+:Governor a owl:Class ;
+    rdfs:subClassOf :Person .
+:StateGovernor a owl:Class ;
+    rdfs:subClassOf :Governor .
+:Chairman a owl:Class ;
+    rdfs:subClassOf :Person .
+:Song a owl:Class .
+:MusicalGroup a owl:Class .
+:Celebrity a owl:Class ;
+    rdfs:subClassOf :Person .
+:CompetingApprentice a owl:Class .
+:Unknown a owl:Class .
+:Money a owl:Class .
+:CharitableOrganization a owl:Class .
+:Field a owl:Class .
+:MediaField a owl:Class ;
+    rdfs:subClassOf :Field .
+:Sitcom a owl:Class ;
+    rdfs:subClassOf :MediaField .
+:ProfessionalSport a owl:Class ;
+    rdfs:subClassOf :MediaField .
+:MusicIndustry a owl:Class ;
+    rdfs:subClassOf :MediaField .
+:RealityTelevision a owl:Class ;
+    rdfs:subClassOf :MediaField .
+:Radio a owl:Class ;
+    rdfs:subClassOf :MediaField .
+:Background a owl:Class .
+:Season a owl:Class .
+:SeasonRange a owl:Class .
+:TimeInterval a owl:Class .
+:Date a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+:CancellationEvent a owl:Class .
+:PublicEyeStatus a owl:Class .
+:Competition a owl:Class .
+
+:variationOf a owl:ObjectProperty .
+:hostedBy a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Person .
+:hostedFrom a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :TimeInterval .
+:saidBy a owl:ObjectProperty ;
+    rdfs:domain :CancellationEvent ;
+    rdfs:range :Person .
+:saidOn a owl:ObjectProperty ;
+    rdfs:domain :CancellationEvent ;
+    rdfs:range :Date .
+:canceledOn a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Date .
+:hasOpeningThemeSong a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Song .
+:performedBy a owl:ObjectProperty ;
+    rdfs:domain :Song ;
+    rdfs:range :MusicalGroup .
+:consistsOfApprentices a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :CompetingApprentice .
+:competesAs a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :CompetingApprentice .
+:competingFor a owl:ObjectProperty ;
+    rdfs:domain :Competition ;
+    rdfs:range :CharitableOrganization .
+:choiceOf a owl:ObjectProperty ;
+    rdfs:domain :CharitableOrganization ;
+    rdfs:range :Person .
+:comesFromField a owl:ObjectProperty ;
+    rdfs:domain :Celebrity ;
+    rdfs:range :Field .
+:linkedInSeasons a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Season .
+:consistsOfSeasons a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Season .
+:hasCompetingType a owl:ObjectProperty ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :CompetingApprentice .
+:hasStatus a owl:ObjectProperty ;
+    rdfs:domain :Celebrity ;
+    rdfs:range :PublicEyeStatus .
+
+:openedThemeSongOf a owl:ObjectProperty ;
+    owl:inverseOf :hasOpeningThemeSong .
+
+:TheCelebrityApprentice a :RealityCompetitionSeries , owl:NamedIndividual ;
+    rdfs:label "The Celebrity Apprentice"^^xsd:string ;
+    :variationOf :TheApprentice ;
+    :hostedBy :DonaldTrump , :ArnoldSchwarzenegger ;
+    :hostedFrom :Year2008To2015 , :January2017 ;
+    :canceledOn :August32017 ;
+    :hasOpeningThemeSong :ForTheLoveOfMoney ;
+    :consistsOfApprentices :CelebritiesAsCompetingApprentices ;
+    :linkedInSeasons :SeasonSeven , :SeasonEight , :SeasonNine , :SeasonEleven , :SeasonTwelve , :SeasonThirteen , :SeasonFourteen , :SeasonFifteen ;
+    :consistsOfSeasons :SeasonSeven , :SeasonEight , :SeasonNine , :SeasonEleven , :SeasonTwelve , :SeasonThirteen , :SeasonFourteen , :SeasonFifteen .
+
+:TheApprentice a :TelevisionSeries , owl:NamedIndividual ;
+    rdfs:label "The Apprentice"^^xsd:string ;
+    :hasOpeningThemeSong :ForTheLoveOfMoney ;
+    :consistsOfSeasons :SeasonOne , :SeasonTwo , :SeasonThree , :SeasonFour , :SeasonFive , :SeasonSix , :SeasonTen .
+
+:DonaldTrump a :RealEstateDeveloper , :President , :TelevisionHost , owl:NamedIndividual ;
+    rdfs:label "Donald Trump"^^xsd:string .
+
+:ArnoldSchwarzenegger a :Actor , :StateGovernor , :TelevisionHost , owl:NamedIndividual ;
+    rdfs:label "Arnold Schwarzenegger"^^xsd:string .
+
+:BobGreenblatt a :Chairman , owl:NamedIndividual ;
+    rdfs:label "Bob Greenblatt"^^xsd:string .
+
+:NbcEntertainment a owl:NamedIndividual ;
+    rdfs:label "NBC Entertainment"^^xsd:string .
+
+:ForTheLoveOfMoney a :Song , owl:NamedIndividual ;
+    rdfs:label "For the Love of Money"^^xsd:string ;
+    :performedBy :TheOJays .
+
+:TheOJays a :MusicalGroup , owl:NamedIndividual ;
+    rdfs:label "The O'Jays"^^xsd:string .
+
+:August32017 a :Date , owl:NamedIndividual ;
+    rdfs:label "August 3, 2017"^^xsd:string .
+
+:January2017 a :Date , owl:NamedIndividual ;
+    rdfs:label "January 2017"^^xsd:string .
+
+:Year2008To2015 a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "2008 to 2015"^^xsd:string .
+
+:CelebritiesAsCompetingApprentices a :CompetingApprentice , owl:NamedIndividual ;
+    rdfs:label "celebrities as competing apprentices"^^xsd:string .
+
+:Unknowns a :Unknown , owl:NamedIndividual ;
+    rdfs:label "unknowns"^^xsd:string .
+
+:CharitableOrganizationOfTheirChoice a :CharitableOrganization , owl:NamedIndividual ;
+    rdfs:label "a charitable organization of their choice"^^xsd:string .
+
+:Sitcoms a :Sitcom , owl:NamedIndividual ;
+    rdfs:label "sitcoms"^^xsd:string .
+
+:ProfessionalSports a :ProfessionalSport , owl:NamedIndividual ;
+    rdfs:label "professional sports"^^xsd:string .
+
+:MusicIndustry a :MusicIndustry , owl:NamedIndividual ;
+    rdfs:label "music industry"^^xsd:string .
+
+:RealityTelevision a :RealityTelevision , owl:NamedIndividual ;
+    rdfs:label "reality television"^^xsd:string .
+
+:Radio a :Radio , owl:NamedIndividual ;
+    rdfs:label "radio"^^xsd:string .
+
+:OtherBackgrounds a :Background , owl:NamedIndividual ;
+    rdfs:label "other backgrounds"^^xsd:string .
+
+:CurrentStatus a :PublicEyeStatus , owl:NamedIndividual ;
+    rdfs:label "relatively current"^^xsd:string .
+
+:OutOfPublicEyeStatus a :PublicEyeStatus , owl:NamedIndividual ;
+    rdfs:label "out of the public eye"^^xsd:string .
+
+:CelebrityCompetition a :Competition , owl:NamedIndividual ;
+    rdfs:label "competing to win money for a charitable organization of their choice"^^xsd:string ;
+    :competingFor :CharitableOrganizationOfTheirChoice .
+
+:SeasonOne a :Season , owl:NamedIndividual ;
+    rdfs:label "one"^^xsd:string .
+:SeasonTwo a :Season , owl:NamedIndividual ;
+    rdfs:label "two"^^xsd:string .
+:SeasonThree a :Season , owl:NamedIndividual ;
+    rdfs:label "three"^^xsd:string .
+:SeasonFour a :Season , owl:NamedIndividual ;
+    rdfs:label "four"^^xsd:string .
+:SeasonFive a :Season , owl:NamedIndividual ;
+    rdfs:label "five"^^xsd:string .
+:SeasonSix a :Season , owl:NamedIndividual ;
+    rdfs:label "six"^^xsd:string .
+:SeasonSeven a :Season , owl:NamedIndividual ;
+    rdfs:label "seven"^^xsd:string .
+:SeasonEight a :Season , owl:NamedIndividual ;
+    rdfs:label "eight"^^xsd:string .
+:SeasonNine a :Season , owl:NamedIndividual ;
+    rdfs:label "nine"^^xsd:string .
+:SeasonTen a :Season , owl:NamedIndividual ;
+    rdfs:label "ten"^^xsd:string .
+:SeasonEleven a :Season , owl:NamedIndividual ;
+    rdfs:label "eleven"^^xsd:string .
+:SeasonTwelve a :Season , owl:NamedIndividual ;
+    rdfs:label "twelve"^^xsd:string .
+:SeasonThirteen a :Season , owl:NamedIndividual ;
+    rdfs:label "thirteen"^^xsd:string .
+:SeasonFourteen a :Season , owl:NamedIndividual ;
+    rdfs:label "fourteen"^^xsd:string .
+:SeasonFifteen a :Season , owl:NamedIndividual ;
+    rdfs:label "fifteen"^^xsd:string .
+
+:Actor a owl:Class ;
+    rdfs:subClassOf :Person .

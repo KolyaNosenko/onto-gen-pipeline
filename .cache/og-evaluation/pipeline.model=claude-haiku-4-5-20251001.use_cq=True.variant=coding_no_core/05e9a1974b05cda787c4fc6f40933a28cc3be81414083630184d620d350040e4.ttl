@@ -1,0 +1,181 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:belongsTo a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Band .
+
+ns1:features a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Instrument .
+
+ns1:firstSingle a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Song .
+
+ns1:hasBasist a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Person .
+
+ns1:hasDrummer a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Person .
+
+ns1:hasGuitarist a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Person .
+
+ns1:hasLyricVideo a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Song ;
+    rdfs:range xsd:boolean .
+
+ns1:hasOfficialVideo a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Song ;
+    rdfs:range xsd:boolean .
+
+ns1:hasVocalist a owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Person .
+
+ns1:isOriginalMember a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:boolean .
+
+ns1:previousAlbum a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:Album .
+
+ns1:promotesAlbum a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Song ;
+    rdfs:range ns1:Album .
+
+ns1:recordingEndDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range xsd:date .
+
+ns1:recordingStartDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range xsd:date .
+
+ns1:releaseDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range xsd:date .
+
+ns1:releasedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range ns1:RecordLabel .
+
+ns1:singleReleaseDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Song ;
+    rdfs:range xsd:date .
+
+ns1:studioNumber a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Album ;
+    rdfs:range xsd:integer .
+
+ns1:CelestialCompletion a owl:NamedIndividual,
+        ns1:Album ;
+    rdfs:label "Celestial Completion"^^xsd:string ;
+    ns1:features ns1:Horn,
+        ns1:Sitar .
+
+ns1:ChrisHeaton a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Chris Heaton"^^xsd:string ;
+    ns1:belongsTo ns1:BecomingTheArchetype ;
+    ns1:isOriginalMember false .
+
+ns1:ChrisMcCane a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Chris McCane"^^xsd:string ;
+    ns1:belongsTo ns1:BecomingTheArchetype ;
+    ns1:isOriginalMember false .
+
+ns1:CodeyWatkins a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Codey Watkins"^^xsd:string ;
+    ns1:belongsTo ns1:BecomingTheArchetype ;
+    ns1:isOriginalMember false .
+
+ns1:Horn a owl:NamedIndividual,
+        ns1:Instrument ;
+    rdfs:label "horns"^^xsd:string .
+
+ns1:IAm a owl:NamedIndividual,
+        ns1:Album ;
+    rdfs:label "I Am"^^xsd:string ;
+    ns1:firstSingle ns1:TheTimeBender ;
+    ns1:hasBasist ns1:CodeyWatkins ;
+    ns1:hasDrummer ns1:ChrisHeaton ;
+    ns1:hasGuitarist ns1:SethHecox ;
+    ns1:hasVocalist ns1:ChrisMcCane,
+        ns1:SethHecox ;
+    ns1:previousAlbum ns1:CelestialCompletion ;
+    ns1:recordingEndDate "2012-06-17"^^xsd:date ;
+    ns1:recordingStartDate "2012-05-21"^^xsd:date ;
+    ns1:releaseDate "2012-09-18"^^xsd:date ;
+    ns1:releasedBy ns1:SolidStateRecords ;
+    ns1:studioNumber 5 .
+
+ns1:Sitar a owl:NamedIndividual,
+        ns1:Instrument ;
+    rdfs:label "sitars"^^xsd:string .
+
+ns1:SolidStateRecords a owl:NamedIndividual,
+        ns1:RecordLabel ;
+    rdfs:label "Solid State Records"^^xsd:string .
+
+ns1:TheTimeBender a owl:NamedIndividual,
+        ns1:Song ;
+    rdfs:label "The Time Bender"^^xsd:string ;
+    ns1:hasLyricVideo true ;
+    ns1:hasOfficialVideo true ;
+    ns1:promotesAlbum ns1:IAm ;
+    ns1:singleReleaseDate "2012-08-28"^^xsd:date .
+
+ns1:Band a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:RecordLabel a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SethHecox a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Seth Hecox"^^xsd:string ;
+    ns1:belongsTo ns1:BecomingTheArchetype ;
+    ns1:isOriginalMember true .
+
+ns1:Instrument a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:BecomingTheArchetype a owl:NamedIndividual,
+        ns1:Band ;
+    rdfs:label "Becoming the Archetype"^^xsd:string .
+
+ns1:Song a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Album a owl:Class ;
+    rdfs:subClassOf owl:Thing .

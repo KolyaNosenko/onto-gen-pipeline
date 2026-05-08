@@ -1,0 +1,242 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:France a owl:NamedIndividual,
+        ns1:State ;
+    rdfs:label "France"^^xsd:string ;
+    ns1:recognizesNonSovereignConstituentMonarchies true .
+
+ns1:NonSovereignConstituentMonarchy a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:locatedIn ;
+            owl:someValuesFrom ns1:Region ],
+        ns1:Monarchy .
+
+ns1:Tonga a owl:NamedIndividual,
+        ns1:OceaniaMonarchy ;
+    rdfs:label "Tonga"^^xsd:string ;
+    ns1:hasUniqueMonarchAmongOceaniaStates true ;
+    ns1:locatedIn ns1:Oceania ;
+    ns1:memberOf ns1:TheCommonwealthOfNations .
+
+ns1:hasDependenciesOutsideRegion a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range xsd:boolean .
+
+ns1:hasDependenciesWithinRegion a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range xsd:boolean .
+
+ns1:hasOutsideRegionDependency a owl:ObjectProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range ns1:Dependency .
+
+ns1:hasUniqueMonarchAmongOceaniaStates a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Monarchy ;
+    rdfs:range xsd:boolean .
+
+ns1:hasWithinRegionDependency a owl:ObjectProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range ns1:Dependency .
+
+ns1:inheritsOfficeHereditarily a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Sovereign ;
+    rdfs:range xsd:boolean .
+
+ns1:isBoundByLawsAndCustoms a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Sovereign ;
+    rdfs:range xsd:boolean .
+
+ns1:monarchyCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Region ;
+    rdfs:range xsd:integer .
+
+ns1:recognizedConstituentMonarchyCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Region ;
+    rdfs:range xsd:integer .
+
+ns1:recognizesConstituentMonarchy a owl:ObjectProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range ns1:Monarchy .
+
+ns1:recognizesNonSovereignConstituentMonarchies a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range xsd:boolean .
+
+ns1:remainsInOfficeUntilDeathOrAbdication a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Sovereign ;
+    rdfs:range xsd:boolean .
+
+ns1:sharedHeadOfStateStateCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Sovereign ;
+    rdfs:range xsd:integer .
+
+ns1:sharesMonarchWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range ns1:State .
+
+ns1:ConstitutionalMonarchy a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasSovereign ;
+            owl:someValuesFrom ns1:Sovereign ],
+        ns1:Monarchy .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SelfGoverningState a owl:Class ;
+    rdfs:subClassOf ns1:State .
+
+ns1:SovereignMonarchy a owl:Class ;
+    rdfs:subClassOf ns1:ConstitutionalMonarchy,
+        ns1:SovereignState .
+
+ns1:SovereignState a owl:Class ;
+    rdfs:subClassOf ns1:State .
+
+ns1:hasHeadOfState a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Monarchy ;
+    rdfs:range ns1:HereditaryHead .
+
+ns1:hasSovereign a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Monarchy ;
+    rdfs:range ns1:Sovereign .
+
+ns1:memberOf a owl:ObjectProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range ns1:PoliticalGrouping .
+
+ns1:supremePowerResidesWith a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Monarchy ;
+    rdfs:range ns1:HereditaryHead .
+
+ns1:Australia a owl:NamedIndividual,
+        ns1:CommonwealthRealmMonarchy ;
+    rdfs:label "Australia"^^xsd:string ;
+    ns1:hasDependenciesOutsideRegion true ;
+    ns1:hasDependenciesWithinRegion true ;
+    ns1:hasHeadOfState ns1:QueenElizabethII ;
+    ns1:hasSovereign ns1:QueenElizabethII ;
+    ns1:locatedIn ns1:Oceania ;
+    ns1:memberOf ns1:TheCommonwealthOfNations,
+        ns1:TheCommonwealthRealms ;
+    ns1:sharesMonarchWith ns1:NewZealand,
+        ns1:PapuaNewGuinea ;
+    ns1:supremePowerResidesWith ns1:QueenElizabethII .
+
+ns1:Dependency a owl:Class ;
+    rdfs:subClassOf ns1:GeopoliticalEntity .
+
+ns1:NewZealand a owl:NamedIndividual,
+        ns1:CommonwealthRealmMonarchy ;
+    rdfs:label "New Zealand"^^xsd:string ;
+    ns1:hasDependenciesOutsideRegion true ;
+    ns1:hasDependenciesWithinRegion true ;
+    ns1:hasHeadOfState ns1:QueenElizabethII ;
+    ns1:hasSovereign ns1:QueenElizabethII ;
+    ns1:locatedIn ns1:Oceania ;
+    ns1:memberOf ns1:TheCommonwealthOfNations,
+        ns1:TheCommonwealthRealms ;
+    ns1:recognizesNonSovereignConstituentMonarchies true ;
+    ns1:sharesMonarchWith ns1:Australia,
+        ns1:PapuaNewGuinea ;
+    ns1:supremePowerResidesWith ns1:QueenElizabethII .
+
+ns1:OceaniaMonarchy a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:locatedIn ;
+            owl:someValuesFrom ns1:Region ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasHeadOfState ;
+            owl:someValuesFrom ns1:HereditaryHead ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:supremePowerResidesWith ;
+            owl:someValuesFrom ns1:HereditaryHead ],
+        ns1:SelfGoverningState,
+        ns1:SovereignMonarchy .
+
+ns1:PapuaNewGuinea a owl:NamedIndividual,
+        ns1:CommonwealthRealmMonarchy ;
+    rdfs:label "Papua New Guinea"^^xsd:string ;
+    ns1:hasHeadOfState ns1:QueenElizabethII ;
+    ns1:hasSovereign ns1:QueenElizabethII ;
+    ns1:locatedIn ns1:Oceania ;
+    ns1:memberOf ns1:TheCommonwealthOfNations,
+        ns1:TheCommonwealthRealms ;
+    ns1:recognizesNonSovereignConstituentMonarchies true ;
+    ns1:sharesMonarchWith ns1:Australia,
+        ns1:NewZealand ;
+    ns1:supremePowerResidesWith ns1:QueenElizabethII .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:GeopoliticalEntity ;
+    rdfs:range ns1:Region .
+
+ns1:CommonwealthRealmMonarchy a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:memberOf ;
+            owl:someValuesFrom ns1:PoliticalGrouping ],
+        ns1:OceaniaMonarchy .
+
+ns1:TheCommonwealthRealms a owl:NamedIndividual,
+        ns1:PoliticalGrouping ;
+    rdfs:label "the Commonwealth realms"^^xsd:string .
+
+ns1:GeopoliticalEntity a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Oceania a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "Oceania"^^xsd:string ;
+    ns1:monarchyCount 6 ;
+    ns1:recognizedConstituentMonarchyCount 5 .
+
+ns1:PoliticalGrouping a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TheCommonwealthOfNations a owl:NamedIndividual,
+        ns1:PoliticalGrouping ;
+    rdfs:label "the Commonwealth of Nations"^^xsd:string .
+
+ns1:HereditaryHead a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf ns1:GeopoliticalEntity .
+
+ns1:Monarchy a owl:Class ;
+    rdfs:subClassOf ns1:State .
+
+ns1:Sovereign a owl:Class ;
+    rdfs:subClassOf ns1:HereditaryHead .
+
+ns1:QueenElizabethII a owl:NamedIndividual,
+        ns1:Sovereign ;
+    rdfs:label "Queen Elizabeth II"^^xsd:string ;
+    ns1:inheritsOfficeHereditarily true ;
+    ns1:isBoundByLawsAndCustoms true ;
+    ns1:remainsInOfficeUntilDeathOrAbdication true ;
+    ns1:sharedHeadOfStateStateCount 5 .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf ns1:GeopoliticalEntity .

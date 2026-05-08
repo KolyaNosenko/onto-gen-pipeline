@@ -1,0 +1,215 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Person a owl:Class .
+:Musician a owl:Class .
+:FineArtist a owl:Class .
+:SingerSongwriter a owl:Class .
+:Vocalist a owl:Class .
+:Voice a owl:Class .
+:Place a owl:Class .
+:City a owl:Class .
+:State a owl:Class .
+:Country a owl:Class .
+:RecordLabel a owl:Class .
+:Album a owl:Class .
+:StudioAlbum a owl:Class .
+:FullLengthAlbum a owl:Class .
+:ReleaseEvent a owl:Class .
+:Date a owl:Class .
+:MonthYear a owl:Class .
+:Year a owl:Class .
+:Genre a owl:Class .
+:MusicalStyle a owl:Class .
+:DescriptiveTerm a owl:Class .
+:VocalRange a owl:Class .
+:Acclaim a owl:Class .
+:Publication a owl:Class .
+:Description a owl:Class .
+:BirthEvent a owl:Class .
+:Nationality a owl:Class .
+:ActivityStart a owl:Class .
+
+:Musician rdfs:subClassOf :Person .
+:FineArtist rdfs:subClassOf :Person .
+:SingerSongwriter rdfs:subClassOf :Musician .
+:Vocalist rdfs:subClassOf :Person .
+:City rdfs:subClassOf :Place .
+:State rdfs:subClassOf :Place .
+:Country rdfs:subClassOf :Place .
+:StudioAlbum rdfs:subClassOf :Album .
+:FullLengthAlbum rdfs:subClassOf :Album .
+:ReleaseEvent rdfs:subClassOf owl:Thing .
+:MonthYear rdfs:subClassOf :Date .
+:Year rdfs:subClassOf :Date .
+:MusicalStyle rdfs:subClassOf :Genre .
+:Acclaim rdfs:subClassOf owl:Thing .
+:Publication rdfs:subClassOf owl:Thing .
+:Description rdfs:subClassOf owl:Thing .
+
+:hasBirthDate a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Date .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Nationality .
+
+:basedIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Place .
+
+:activeSince a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Year .
+
+:signedTo a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :RecordLabel .
+
+:releasedAlbum a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Album .
+
+:albumTitle a owl:DatatypeProperty ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:string .
+
+:albumOrder a owl:DatatypeProperty ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:string .
+
+:releasedIn a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :MonthYear .
+
+:primaryRole a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :MusicalStyle .
+
+:hasMusicStyle a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Genre .
+
+:musicRootedIn a owl:ObjectProperty ;
+    rdfs:domain :MusicWork ;
+    rdfs:range :Genre .
+
+:musicBringsInElement a owl:ObjectProperty ;
+    rdfs:domain :MusicWork ;
+    rdfs:range :Genre .
+
+:describedByTerm a owl:ObjectProperty ;
+    rdfs:domain :MusicWork ;
+    rdfs:range :DescriptiveTerm .
+
+:singingIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :VocalRange .
+
+:receivedAcclaimFor a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Acclaim .
+
+:describedBy a owl:ObjectProperty ;
+    rdfs:domain :Voice ;
+    rdfs:range :Description .
+
+:hasVoice a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Voice .
+
+:saidBy a owl:ObjectProperty ;
+    rdfs:domain :Description ;
+    rdfs:range :Publication .
+
+:MusicWork a owl:Class .
+
+:MarissaNadler a :Person , owl:NamedIndividual ;
+    rdfs:label "Marissa Nadler"^^xsd:string ;
+    :hasBirthDate :April51981 ;
+    :hasNationality :American ;
+    :basedIn :BostonMassachusetts ;
+    :activeSince :Year2000 ;
+    :signedTo :SacredBonesRecords , :BellaUnion ;
+    :releasedAlbum :Strangers ;
+    :primaryRole :SingerSongwriter ;
+    :hasMusicStyle :Country , :Folk , :Experimental , :BlackMetal ;
+    :singingIn :MezzoSoprano ;
+    :receivedAcclaimFor :VocalAcclaim ;
+    :hasVoice :MarissaNadlerVoice .
+
+:April51981 a :Date , owl:NamedIndividual ;
+    rdfs:label "April 5, 1981"^^xsd:string .
+
+:American a :Nationality , owl:NamedIndividual ;
+    rdfs:label "American"^^xsd:string .
+
+:BostonMassachusetts a :City , owl:NamedIndividual ;
+    rdfs:label "Boston, Massachusetts"^^xsd:string .
+
+:Boston a :City , owl:NamedIndividual ;
+    rdfs:label "Boston"^^xsd:string .
+
+:Massachusetts a :State , owl:NamedIndividual ;
+    rdfs:label "Massachusetts"^^xsd:string .
+
+:Year2000 a :Year , owl:NamedIndividual ;
+    rdfs:label "2000"^^xsd:string .
+
+:SacredBonesRecords a :RecordLabel , owl:NamedIndividual ;
+    rdfs:label "Sacred Bones Records"^^xsd:string .
+
+:BellaUnion a :RecordLabel , owl:NamedIndividual ;
+    rdfs:label "Bella Union"^^xsd:string .
+
+:Strangers a :StudioAlbum , :FullLengthAlbum , owl:NamedIndividual ;
+    rdfs:label "Strangers"^^xsd:string ;
+    :albumTitle "Strangers"^^xsd:string ;
+    :albumOrder "seventh full-length studio album"^^xsd:string ;
+    :releasedIn :May2016 .
+
+:May2016 a :MonthYear , owl:NamedIndividual ;
+    rdfs:label "May 2016"^^xsd:string .
+
+:Country a :Genre , owl:NamedIndividual ;
+    rdfs:label "country"^^xsd:string .
+
+:Folk a :Genre , owl:NamedIndividual ;
+    rdfs:label "folk"^^xsd:string .
+
+:Experimental a :Genre , owl:NamedIndividual ;
+    rdfs:label "experimental"^^xsd:string .
+
+:BlackMetal a :Genre , owl:NamedIndividual ;
+    rdfs:label "black metal"^^xsd:string .
+
+:DreamFolk a :DescriptiveTerm , owl:NamedIndividual ;
+    rdfs:label "dream folk"^^xsd:string .
+
+:MezzoSoprano a :VocalRange , owl:NamedIndividual ;
+    rdfs:label "mezzo-soprano"^^xsd:string .
+
+:VocalAcclaim a :Acclaim , owl:NamedIndividual ;
+    rdfs:label "acclaim for her vocals"^^xsd:string .
+
+:Pitchfork a :Publication , owl:NamedIndividual ;
+    rdfs:label "Pitchfork"^^xsd:string .
+
+:TheBostonGlobe a :Publication , owl:NamedIndividual ;
+    rdfs:label "The Boston Globe"^^xsd:string .
+
+:MarissaNadlerVoice a :Voice , owl:NamedIndividual ;
+    rdfs:label "her voice"^^xsd:string ;
+    :describedBy :PitchforkDescription , :BostonGlobeDescription .
+
+:PitchforkDescription a :Description , owl:NamedIndividual ;
+    rdfs:label "one \"you would follow straight into Hades\""^^xsd:string ;
+    :saidBy :Pitchfork .
+
+:BostonGlobeDescription a :Description , owl:NamedIndividual ;
+    rdfs:label "She has a voice that, in mythological times, could have lured men to their deaths at sea, an intoxicating soprano drenched in gauzy reverb that hits bell-clear heights, lingers, and tapers off like rings of smoke"^^xsd:string ;
+    :saidBy :TheBostonGlobe .

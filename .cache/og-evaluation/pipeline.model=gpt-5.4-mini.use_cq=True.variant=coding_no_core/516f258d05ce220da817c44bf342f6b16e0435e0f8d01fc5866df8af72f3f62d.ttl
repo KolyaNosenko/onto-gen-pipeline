@@ -1,0 +1,305 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:BowsherVSynar a owl:NamedIndividual,
+        ns1:BowsherVSynarCase ;
+    rdfs:label "Bowsher v. Synar"^^xsd:string ;
+    ns1:decidedBy ns1:SupremeCourt ;
+    ns1:inYear ns1:Year1986 ;
+    ns1:supportsRemovalPower ns1:President .
+
+ns1:MyersVUnitedStates a owl:NamedIndividual,
+        ns1:MyersVUnitedStatesCase ;
+    rdfs:label "Myers v. United States"^^xsd:string ;
+    ns1:decidedBy ns1:SupremeCourt ;
+    ns1:supportsRemovalPower ns1:President .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:UnitedStatesCountry ;
+    rdfs:label "United States"^^xsd:string .
+
+ns1:inYear a owl:ObjectProperty ;
+    rdfs:domain ns1:CourtCase ;
+    rdfs:range ns1:Year .
+
+ns1:AppointmentsClause a owl:NamedIndividual,
+        ns1:AppointmentsClauseProvision ;
+    rdfs:label "Appointments Clause"^^xsd:string ;
+    ns1:partOf ns1:Constitution .
+
+ns1:AttorneyGeneralOffice a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:appointedBy ;
+            owl:someValuesFrom ns1:PresidentOffice ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:appointedWithAdviceAndConsentOf ;
+            owl:someValuesFrom ns1:SenateBody ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:removedBy ;
+            owl:someValuesFrom ns1:PresidentOffice ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:underProcess ;
+            owl:someValuesFrom ns1:AppointmentsClauseProvision ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:headOf ;
+            owl:someValuesFrom ns1:JusticeDepartment ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:concernedWith ;
+            owl:someValuesFrom ns1:LegalAffair ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:chiefLawyerOf ;
+            owl:someValuesFrom ns1:Government ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasPowerToSeek ;
+            owl:someValuesFrom ns1:DeathPenaltyCase ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:nominatedBy ;
+            owl:someValuesFrom ns1:PresidentOffice ],
+        ns1:CivilOfficer,
+        ns1:ExecutiveBranchOfficial,
+        ns1:ExecutiveOffice,
+        ns1:RemovalTarget .
+
+ns1:BowsherVSynarCase a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:decidedBy ;
+            owl:someValuesFrom ns1:SupremeCourtInstitution ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:supportsRemovalPower ;
+            owl:someValuesFrom ns1:PresidentOffice ],
+        ns1:CourtCase .
+
+ns1:Bribery a owl:Class ;
+    rdfs:subClassOf ns1:ImpeachmentOffense .
+
+ns1:Congress a owl:NamedIndividual,
+        ns1:CongressBody ;
+    rdfs:label "Congress"^^xsd:string .
+
+ns1:Constitution a owl:NamedIndividual,
+        ns1:ConstitutionalDocument ;
+    rdfs:label "Constitution"^^xsd:string .
+
+ns1:ConstitutionalClause a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:DeathPenaltyCase a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Department a owl:Class ;
+    rdfs:subClassOf ns1:GovernmentBody .
+
+ns1:HighCrimesAndMisdemeanors a owl:Class ;
+    rdfs:subClassOf ns1:ImpeachmentOffense .
+
+ns1:LegalAffair a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MyersVUnitedStatesCase a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:decidedBy ;
+            owl:someValuesFrom ns1:SupremeCourtInstitution ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:supportsRemovalPower ;
+            owl:someValuesFrom ns1:PresidentOffice ],
+        ns1:CourtCase .
+
+ns1:OfficialEngagedInPurelyExecutiveFunctions a owl:Class ;
+    rdfs:subClassOf ns1:RemovalTarget .
+
+ns1:OfficialWhoseDutiesImmediatelyAffectPresidentAbility a owl:Class ;
+    rdfs:subClassOf ns1:RemovalTarget .
+
+ns1:Senate a owl:NamedIndividual,
+        ns1:SenateBody ;
+    rdfs:label "Senate"^^xsd:string .
+
+ns1:Treason a owl:Class ;
+    rdfs:subClassOf ns1:ImpeachmentOffense .
+
+ns1:UnitedStatesAttorneyGeneral a owl:NamedIndividual,
+        ns1:AttorneyGeneralOffice ;
+    rdfs:label "United States Attorney General ( A.G. )"^^xsd:string ;
+    ns1:appointedBy ns1:President ;
+    ns1:appointedWithAdviceAndConsentOf ns1:Senate ;
+    ns1:chiefLawyerOf ns1:UnitedStatesGovernment ;
+    ns1:headOf ns1:UnitedStatesDepartmentOfJustice ;
+    ns1:mayBeImpeachedBy ns1:Congress ;
+    ns1:nominatedBy ns1:President ;
+    ns1:removedBy ns1:President ;
+    ns1:underProcess ns1:AppointmentsClause .
+
+ns1:UnitedStatesCountry a owl:Class ;
+    rdfs:subClassOf ns1:Country .
+
+ns1:UnitedStatesDepartmentOfJustice a owl:NamedIndividual,
+        ns1:JusticeDepartment ;
+    rdfs:label "United States Department of Justice"^^xsd:string .
+
+ns1:UnitedStatesGovernment a owl:NamedIndividual,
+        ns1:Government ;
+    rdfs:label "United States government"^^xsd:string .
+
+ns1:Year1986 a owl:NamedIndividual,
+        ns1:Year ;
+    rdfs:label "1986"^^xsd:string .
+
+ns1:appointedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Office ;
+    rdfs:range owl:Thing .
+
+ns1:appointedWithAdviceAndConsentOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Office ;
+    rdfs:range ns1:LegislativeBody .
+
+ns1:chiefLawyerOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Office ;
+    rdfs:range ns1:Government .
+
+ns1:concernedWith a owl:ObjectProperty ;
+    rdfs:domain ns1:Office ;
+    rdfs:range owl:Thing .
+
+ns1:hasPowerToSeek a owl:ObjectProperty ;
+    rdfs:domain ns1:Office ;
+    rdfs:range owl:Thing .
+
+ns1:headOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Office ;
+    rdfs:range ns1:GovernmentBody .
+
+ns1:mayBeImpeachedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:CivilOfficer ;
+    rdfs:range ns1:LegislativeBody .
+
+ns1:nominatedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Office ;
+    rdfs:range owl:Thing .
+
+ns1:partOf a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:removedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Office ;
+    rdfs:range owl:Thing .
+
+ns1:underProcess a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:AppointmentsClauseProvision a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:partOf ;
+            owl:someValuesFrom ns1:ConstitutionalDocument ],
+        ns1:ConstitutionalClause .
+
+ns1:CongressBody a owl:Class ;
+    rdfs:subClassOf ns1:LegislativeBody .
+
+ns1:ConstitutionalDocument a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ExecutiveOffice a owl:Class ;
+    rdfs:subClassOf ns1:Office .
+
+ns1:JudicialBody a owl:Class ;
+    rdfs:subClassOf ns1:GovernmentBody .
+
+ns1:JusticeDepartment a owl:Class ;
+    rdfs:subClassOf ns1:Department .
+
+ns1:SenateBody a owl:Class ;
+    rdfs:subClassOf ns1:LegislativeBody .
+
+ns1:SupremeCourt a owl:NamedIndividual,
+        ns1:SupremeCourtInstitution ;
+    rdfs:label "Supreme Court"^^xsd:string .
+
+ns1:Year a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:decidedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:CourtCase ;
+    rdfs:range ns1:JudicialBody .
+
+ns1:supportsRemovalPower a owl:ObjectProperty ;
+    rdfs:domain ns1:CourtCase ;
+    rdfs:range owl:Thing .
+
+ns1:CivilOfficer a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:mayBeImpeachedBy ;
+            owl:someValuesFrom ns1:CongressBody ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:mayBeImpeachedFor ;
+            owl:someValuesFrom ns1:Treason ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:mayBeImpeachedFor ;
+            owl:someValuesFrom ns1:Bribery ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:mayBeImpeachedFor ;
+            owl:someValuesFrom ns1:HighCrimesAndMisdemeanors ],
+        owl:Thing .
+
+ns1:ExecutiveBranchOfficial a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Government a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SupremeCourtInstitution a owl:Class ;
+    rdfs:subClassOf ns1:JudicialBody .
+
+ns1:canRemove a owl:ObjectProperty ;
+    rdfs:domain ns1:PresidentOffice ;
+    rdfs:range ns1:RemovalTarget .
+
+ns1:mayBeImpeachedFor a owl:ObjectProperty ;
+    rdfs:domain ns1:CivilOfficer ;
+    rdfs:range ns1:ImpeachmentOffense .
+
+ns1:GovernmentBody a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ImpeachmentOffense a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:LegislativeBody a owl:Class ;
+    rdfs:subClassOf ns1:GovernmentBody .
+
+ns1:RemovalTarget a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CourtCase a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:President a owl:NamedIndividual,
+        ns1:PresidentOffice ;
+    rdfs:label "President"^^xsd:string ;
+    ns1:canRemove ns1:UnitedStatesAttorneyGeneral .
+
+ns1:PresidentOffice a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:canRemove ;
+            owl:someValuesFrom ns1:ExecutiveBranchOfficial ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:canRemove ;
+            owl:someValuesFrom ns1:OfficialEngagedInPurelyExecutiveFunctions ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:canRemove ;
+            owl:someValuesFrom ns1:OfficialWhoseDutiesImmediatelyAffectPresidentAbility ],
+        ns1:ExecutiveBranchOfficial,
+        ns1:ExecutiveOffice .
+
+ns1:Office a owl:Class ;
+    rdfs:subClassOf owl:Thing .

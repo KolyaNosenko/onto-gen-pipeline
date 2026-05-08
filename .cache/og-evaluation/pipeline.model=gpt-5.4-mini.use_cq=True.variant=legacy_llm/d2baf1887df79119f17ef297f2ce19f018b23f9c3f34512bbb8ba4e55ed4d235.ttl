@@ -1,0 +1,224 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Ontology a owl:Ontology .
+
+:Organization a owl:Class .
+:InternationalOrganization a owl:Class ;
+    rdfs:subClassOf :Organization .
+:IntergovernmentalOrganization a owl:Class ;
+    rdfs:subClassOf :InternationalOrganization .
+:State a owl:Class ;
+    rdfs:subClassOf :Organization .
+:Government a owl:Class ;
+    rdfs:subClassOf :Organization .
+:MemberState a owl:Class ;
+    rdfs:subClassOf :State .
+:Council a owl:Class ;
+    rdfs:subClassOf :Organization .
+:SecurityCouncil a owl:Class ;
+    rdfs:subClassOf :Council .
+:UnitedNationsSecurityCouncil a owl:Class ;
+    rdfs:subClassOf :SecurityCouncil .
+:LeagueOfNations a owl:Class ;
+    rdfs:subClassOf :InternationalOrganization .
+:UnitedNations a owl:Class ;
+    rdfs:subClassOf :InternationalOrganization .
+:Person a owl:Class .
+:Critic a owl:Class ;
+    rdfs:subClassOf :Person .
+:Supporter a owl:Class ;
+    rdfs:subClassOf :Person .
+:Official a owl:Class ;
+    rdfs:subClassOf :Person .
+:SecretaryGeneral a owl:Class ;
+    rdfs:subClassOf :Official .
+:Resolution a owl:Class .
+:DraftResolution a owl:Class ;
+    rdfs:subClassOf :Resolution .
+:SubstantiveResolution a owl:Class ;
+    rdfs:subClassOf :Resolution .
+:ProceduralVote a owl:Class .
+:VetoPower a owl:Class .
+:UnconditionalVeto a owl:Class ;
+    rdfs:subClassOf :VetoPower .
+:Veto a owl:Class .
+:Selection a owl:Class .
+:Adoption a owl:Class .
+:Abstention a owl:Class .
+:Absence a owl:Class .
+:MilitaryIntervention a owl:Class .
+:WarCrime a owl:Class .
+:CrimeAgainstHumanity a owl:Class .
+:InternationalInaction a owl:Class .
+:InternationalStability a owl:Class .
+:Safeguard a owl:Class .
+:Domination a owl:Class .
+:USDomination a owl:Class .
+:Ineffectiveness a owl:Class .
+:Cause a owl:Class .
+:Character a owl:Class .
+:Vote a owl:Class .
+:GovernmentalGroup a owl:Class .
+:FiveGovernments a owl:Class ;
+    rdfs:subClassOf :GovernmentalGroup .
+:Power a owl:Class .
+:ClosedDoorVote a owl:Class ;
+    rdfs:subClassOf :Vote .
+:ResolutionType a owl:Class .
+:SubstantiveResolutionType a owl:Class ;
+    rdfs:subClassOf :ResolutionType .
+:ProceduralVoteType a owl:Class ;
+    rdfs:subClassOf :Vote .
+:NamedQuantity a owl:Class .
+
+:hasVetoPower a owl:ObjectProperty .
+:vetoes a owl:ObjectProperty .
+:appliesTo a owl:ObjectProperty .
+:determinedBy a owl:ObjectProperty .
+:canBlockSelectionOf a owl:ObjectProperty .
+:requires a owl:ObjectProperty .
+:performedBy a owl:ObjectProperty .
+:hasCause a owl:ObjectProperty .
+:contributedTo a owl:ObjectProperty .
+:regardsAs a owl:ObjectProperty .
+:isCharacterizedAs a owl:ObjectProperty .
+:hasRoleInPreventing a owl:ObjectProperty .
+:isSafeguardAgainst a owl:ObjectProperty .
+:refersTo a owl:ObjectProperty .
+:possessedBy a owl:ObjectProperty .
+:of a owl:ObjectProperty .
+:from a owl:ObjectProperty .
+
+:hasVetoPower rdfs:domain :MemberState ;
+    rdfs:range :VetoPower .
+:vetoes rdfs:domain :PermanentMember ;
+    rdfs:range :SubstantiveResolution .
+:appliesTo rdfs:domain :VetoPower ;
+    rdfs:range :Vote .
+:determinedBy rdfs:domain :ProceduralVote ;
+    rdfs:range :PermanentMember .
+:canBlockSelectionOf rdfs:domain :PermanentMember ;
+    rdfs:range :SecretaryGeneral .
+:requires rdfs:domain :BlockingOfSelection ;
+    rdfs:range :Veto .
+:performedBy rdfs:domain :Vote ;
+    rdfs:range :Organization .
+:hasCause rdfs:domain :VetoPower ;
+    rdfs:range :Cause .
+:contributedTo rdfs:domain :Absence ;
+    rdfs:range :Ineffectiveness .
+:regardsAs rdfs:domain :Supporter ;
+    rdfs:range :Role .
+:isCharacterizedAs rdfs:domain :Critic ;
+    rdfs:range :Character .
+:hasRoleInPreventing rdfs:domain :VetoPower ;
+    rdfs:range :MilitaryIntervention .
+:isSafeguardAgainst rdfs:domain :VetoPower ;
+    rdfs:range :Domination .
+:refersTo rdfs:domain :VetoPower ;
+    rdfs:range :Power .
+:possessedBy rdfs:domain :UnconditionalVeto ;
+    rdfs:range :Government .
+:of rdfs:domain :Power ;
+    rdfs:range :Organization .
+:from rdfs:domain :Absence ;
+    rdfs:range :Organization .
+
+:PermanentMember a owl:Class ;
+    rdfs:subClassOf :MemberState ,
+        [ a owl:Restriction ;
+          owl:onProperty :vetoes ;
+          owl:someValuesFrom :SubstantiveResolution
+        ],
+        [ a owl:Restriction ;
+          owl:onProperty :canBlockSelectionOf ;
+          owl:someValuesFrom :SecretaryGeneral
+        ] .
+:VetoPower rdfs:subClassOf
+        [ a owl:Restriction ;
+          owl:onProperty :appliesTo ;
+          owl:allValuesFrom :Vote
+        ] .
+:UnconditionalVeto rdfs:subClassOf :VetoPower .
+:ProceduralVote rdfs:subClassOf
+        [ a owl:Restriction ;
+          owl:onProperty :determinedBy ;
+          owl:someValuesFrom :PermanentMember
+        ] .
+
+:UnitedNationsSecurityCouncilVetoPower a :VetoPower , owl:NamedIndividual ;
+    rdfs:label "United Nations Security Council veto power"^^xsd:string ;
+    :refersTo :VetoPower .
+
+:China a :PermanentMember , owl:NamedIndividual ;
+    rdfs:label "China"^^xsd:string ;
+    :hasVetoPower :UnitedNationsSecurityCouncilVetoPower .
+:France a :PermanentMember , owl:NamedIndividual ;
+    rdfs:label "France"^^xsd:string ;
+    :hasVetoPower :UnitedNationsSecurityCouncilVetoPower .
+:Russia a :PermanentMember , owl:NamedIndividual ;
+    rdfs:label "Russia"^^xsd:string ;
+    :hasVetoPower :UnitedNationsSecurityCouncilVetoPower .
+:UnitedKingdom a :PermanentMember , owl:NamedIndividual ;
+    rdfs:label "United Kingdom"^^xsd:string ;
+    :hasVetoPower :UnitedNationsSecurityCouncilVetoPower .
+:UnitedStates a :PermanentMember , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string ;
+    :hasVetoPower :UnitedNationsSecurityCouncilVetoPower .
+
+:UNSecurityCouncil a :UnitedNationsSecurityCouncil , owl:NamedIndividual ;
+    rdfs:label "UN Security Council"^^xsd:string .
+
+:Substantive a :SubstantiveResolutionType , owl:NamedIndividual ;
+    rdfs:label "substantive"^^xsd:string .
+:Procedural a :ProceduralVoteType , owl:NamedIndividual ;
+    rdfs:label "procedural"^^xsd:string .
+
+:SecretaryGeneral a :SecretaryGeneral , owl:NamedIndividual ;
+    rdfs:label "Secretary-General"^^xsd:string .
+
+:DraftResolution a :DraftResolution , owl:NamedIndividual ;
+    rdfs:label "draft resolution"^^xsd:string .
+
+:Abstention a :Abstention , owl:NamedIndividual ;
+    rdfs:label "abstention"^^xsd:string .
+:Absence a :Absence , owl:NamedIndividual ;
+    rdfs:label "absence"^^xsd:string .
+
+:ClosedDoors a :ClosedDoorVote , owl:NamedIndividual ;
+    rdfs:label "closed doors"^^xsd:string .
+
+:FiveGovernments a :FiveGovernments , owl:NamedIndividual ;
+    rdfs:label "five governments"^^xsd:string ;
+    :possessedBy :China , :France , :Russia , :UnitedKingdom , :UnitedStates .
+
+:Critics a :Critic , owl:NamedIndividual ;
+    rdfs:label "critics"^^xsd:string .
+:Supporters a :Supporter , owl:NamedIndividual ;
+    rdfs:label "supporters"^^xsd:string .
+
+:UnconditionalVeto a :UnconditionalVeto , owl:NamedIndividual ;
+    rdfs:label "unconditional veto"^^xsd:string ;
+    :possessedBy :FiveGovernments .
+
+:MostUndemocraticCharacter a :Character , owl:NamedIndividual ;
+    rdfs:label "the most undemocratic character of the UN"^^xsd:string .
+:InternationalInactionOnWarCrimesAndCrimesAgainstHumanity a :InternationalInaction , owl:NamedIndividual ;
+    rdfs:label "international inaction on war crimes and crimes against humanity"^^xsd:string .
+:InternationalStability a :InternationalStability , owl:NamedIndividual ;
+    rdfs:label "international stability"^^xsd:string .
+:MilitaryInterventions a :MilitaryIntervention , owl:NamedIndividual ;
+    rdfs:label "military interventions"^^xsd:string .
+:USDomination a :USDomination , owl:NamedIndividual ;
+    rdfs:label "U.S. domination"^^xsd:string .
+:IneffectivenessOfLeagueOfNations a :Ineffectiveness , owl:NamedIndividual ;
+    rdfs:label "ineffectiveness"^^xsd:string .
+
+:UnitedNationsIn1945 a :UnitedNations , owl:NamedIndividual ;
+    rdfs:label "the United Nations in 1945"^^xsd:string .
+:LeagueOfNations a :LeagueOfNations , owl:NamedIndividual ;
+    rdfs:label "League of Nations"^^xsd:string .

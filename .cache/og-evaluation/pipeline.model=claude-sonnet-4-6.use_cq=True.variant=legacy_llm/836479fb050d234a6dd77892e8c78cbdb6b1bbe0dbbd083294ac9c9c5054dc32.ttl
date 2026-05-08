@@ -1,0 +1,377 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Ontology declaration
+#################################################################
+
+: a owl:Ontology .
+
+#################################################################
+# Classes
+#################################################################
+
+:TelevisionSeries a owl:Class ;
+    rdfs:label "Television Series"^^xsd:string .
+
+:AnimatedTelevisionSeries a owl:Class ;
+    rdfs:subClassOf :TelevisionSeries ;
+    rdfs:label "Animated Television Series"^^xsd:string .
+
+:AmericanAnimatedTelevisionSeries a owl:Class ;
+    rdfs:subClassOf :AnimatedTelevisionSeries ;
+    rdfs:label "American Animated Television Series"^^xsd:string .
+
+:Season a owl:Class ;
+    rdfs:label "Season"^^xsd:string .
+
+:Episode a owl:Class ;
+    rdfs:label "Episode"^^xsd:string .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:Writer a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Writer"^^xsd:string .
+
+:Director a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Director"^^xsd:string .
+
+:SeriesCoCreator a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Series Co-Creator"^^xsd:string .
+
+:FictionalCharacter a owl:Class ;
+    rdfs:label "Fictional Character"^^xsd:string .
+
+:SchoolCounselor a owl:Class ;
+    rdfs:subClassOf :FictionalCharacter ;
+    rdfs:label "School Counselor"^^xsd:string .
+
+:TelevisionNetwork a owl:Class ;
+    rdfs:label "Television Network"^^xsd:string .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string .
+
+:Date a owl:Class ;
+    rdfs:label "Date"^^xsd:string .
+
+:EpisodeNumber a owl:Class ;
+    rdfs:label "Episode Number"^^xsd:string .
+
+:CriticalReception a owl:Class ;
+    rdfs:label "Critical Reception"^^xsd:string .
+
+:SocialTopic a owl:Class ;
+    rdfs:label "Social Topic"^^xsd:string .
+
+:Theme a owl:Class ;
+    rdfs:label "Theme"^^xsd:string .
+
+:Backstory a owl:Class ;
+    rdfs:label "Backstory"^^xsd:string .
+
+:Nationality a owl:Class ;
+    rdfs:label "Nationality"^^xsd:string .
+
+:AdoptionStatus a owl:Class ;
+    rdfs:label "Adoption Status"^^xsd:string .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:belongsToSeries a owl:ObjectProperty ;
+    rdfs:label "belongs to series"^^xsd:string ;
+    rdfs:domain :Season ;
+    rdfs:range :TelevisionSeries .
+
+:hasSeason a owl:ObjectProperty ;
+    rdfs:label "has season"^^xsd:string ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :Season .
+
+:hasEpisode a owl:ObjectProperty ;
+    rdfs:label "has episode"^^xsd:string ;
+    rdfs:domain :Season ;
+    rdfs:range :Episode .
+
+:isEpisodeOf a owl:ObjectProperty ;
+    rdfs:label "is episode of"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :Season .
+
+:isOverallEpisodeOf a owl:ObjectProperty ;
+    rdfs:label "is overall episode of"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :TelevisionSeries .
+
+:writtenBy a owl:ObjectProperty ;
+    rdfs:label "written by"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :Person .
+
+:directedBy a owl:ObjectProperty ;
+    rdfs:label "directed by"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :Person .
+
+:firstAiredOn a owl:ObjectProperty ;
+    rdfs:label "first aired on"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :Date .
+
+:airedOnNetwork a owl:ObjectProperty ;
+    rdfs:label "aired on network"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :TelevisionNetwork .
+
+:airedInCountry a owl:ObjectProperty ;
+    rdfs:label "aired in country"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :Country .
+
+:features a owl:ObjectProperty ;
+    rdfs:label "features"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :FictionalCharacter .
+
+:hasSiblingRelationship a owl:ObjectProperty ;
+    rdfs:label "has sibling relationship"^^xsd:string ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :FictionalCharacter .
+
+:isSiblingOf a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasSiblingRelationship ;
+    a owl:SymmetricProperty ;
+    rdfs:label "is sibling of"^^xsd:string ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :FictionalCharacter .
+
+:isYoungerBrotherOf a owl:ObjectProperty ;
+    rdfs:subPropertyOf :isSiblingOf ;
+    rdfs:label "is younger brother of"^^xsd:string ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :FictionalCharacter .
+
+:hasOlderBrother a owl:ObjectProperty ;
+    rdfs:label "has older brother"^^xsd:string ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :FictionalCharacter .
+
+:satirizes a owl:ObjectProperty ;
+    rdfs:label "satirizes"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :SocialTopic .
+
+:explores a owl:ObjectProperty ;
+    rdfs:label "explores"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :Theme .
+
+:hasBackstory a owl:ObjectProperty ;
+    rdfs:label "has backstory"^^xsd:string ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :Backstory .
+
+:introducedInEpisode a owl:ObjectProperty ;
+    rdfs:label "introduced in episode"^^xsd:string ;
+    rdfs:domain :Backstory ;
+    rdfs:range :Episode .
+
+:hasCriticalReception a owl:ObjectProperty ;
+    rdfs:label "has critical reception"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :CriticalReception .
+
+:coCreatedBy a owl:ObjectProperty ;
+    rdfs:label "co-created by"^^xsd:string ;
+    rdfs:domain :TelevisionSeries ;
+    rdfs:range :SeriesCoCreator .
+
+:hasRole a owl:ObjectProperty ;
+    rdfs:label "has role"^^xsd:string ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :Role .
+
+:Role a owl:Class ;
+    rdfs:label "Role"^^xsd:string .
+
+:PlotEvent a owl:Class ;
+    rdfs:label "Plot Event"^^xsd:string .
+
+:hasPlotEvent a owl:ObjectProperty ;
+    rdfs:label "has plot event"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range :PlotEvent .
+
+:involvedCharacter a owl:ObjectProperty ;
+    rdfs:label "involved character"^^xsd:string ;
+    rdfs:domain :PlotEvent ;
+    rdfs:range :FictionalCharacter .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:label "has nationality"^^xsd:string ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :Nationality .
+
+:hasAdoptionStatus a owl:ObjectProperty ;
+    rdfs:label "has adoption status"^^xsd:string ;
+    rdfs:domain :FictionalCharacter ;
+    rdfs:range :AdoptionStatus .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:episodeNumberInSeason a owl:DatatypeProperty ;
+    a owl:FunctionalProperty ;
+    rdfs:label "episode number in season"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range xsd:integer .
+
+:overallEpisodeNumber a owl:DatatypeProperty ;
+    a owl:FunctionalProperty ;
+    rdfs:label "overall episode number"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range xsd:integer .
+
+:seasonNumber a owl:DatatypeProperty ;
+    a owl:FunctionalProperty ;
+    rdfs:label "season number"^^xsd:string ;
+    rdfs:domain :Season ;
+    rdfs:range xsd:integer .
+
+:airDate a owl:DatatypeProperty ;
+    a owl:FunctionalProperty ;
+    rdfs:label "air date"^^xsd:string ;
+    rdfs:domain :Date ;
+    rdfs:range xsd:date .
+
+:receptionDescription a owl:DatatypeProperty ;
+    rdfs:label "reception description"^^xsd:string ;
+    rdfs:domain :CriticalReception ;
+    rdfs:range xsd:string .
+
+:title a owl:DatatypeProperty ;
+    a owl:FunctionalProperty ;
+    rdfs:label "title"^^xsd:string ;
+    rdfs:domain :Episode ;
+    rdfs:range xsd:string .
+
+:plotDescription a owl:DatatypeProperty ;
+    rdfs:label "plot description"^^xsd:string ;
+    rdfs:domain :PlotEvent ;
+    rdfs:range xsd:string .
+
+:backstoryDescription a owl:DatatypeProperty ;
+    rdfs:label "backstory description"^^xsd:string ;
+    rdfs:domain :Backstory ;
+    rdfs:range xsd:string .
+
+#################################################################
+# Named Individuals
+#################################################################
+
+:IkesWeeWee a :Episode , owl:NamedIndividual ;
+    rdfs:label "Ike's Wee Wee"^^xsd:string ;
+    :title "Ike's Wee Wee"^^xsd:string ;
+    :episodeNumberInSeason 4 ;
+    :overallEpisodeNumber 18 ;
+    :isEpisodeOf :SecondSeason ;
+    :isOverallEpisodeOf :SouthPark ;
+    :writtenBy :TreyParker ;
+    :directedBy :TreyParker ;
+    :firstAiredOn :May27_1998 ;
+    :airedOnNetwork :ComedyCentral ;
+    :airedInCountry :UnitedStates ;
+    :features :MrMackey ;
+    :features :Kyle ;
+    :features :Ike ;
+    :satirizes :AttitudesTowardsDrugUsers ;
+    :explores :FamilyAndBloodRelation ;
+    :hasPlotEvent :MrMackeyFired ;
+    :hasPlotEvent :MrMackeyTurnsToDrugs ;
+    :hasPlotEvent :BoysAttemptToSaveIke ;
+    :hasCriticalReception :PositiveReception .
+
+:SouthPark a :AmericanAnimatedTelevisionSeries , owl:NamedIndividual ;
+    rdfs:label "South Park"^^xsd:string ;
+    :hasSeason :SecondSeason ;
+    :coCreatedBy :TreyParker .
+
+:SecondSeason a :Season , owl:NamedIndividual ;
+    rdfs:label "second season"^^xsd:string ;
+    :seasonNumber 2 ;
+    :belongsToSeries :SouthPark ;
+    :hasEpisode :IkesWeeWee .
+
+:TreyParker a :SeriesCoCreator , owl:NamedIndividual ;
+    rdfs:label "Trey Parker"^^xsd:string .
+
+:MrMackey a :SchoolCounselor , owl:NamedIndividual ;
+    rdfs:label "Mr. Mackey"^^xsd:string .
+
+:Kyle a :FictionalCharacter , owl:NamedIndividual ;
+    rdfs:label "Kyle"^^xsd:string ;
+    :hasOlderBrother :Kyle .
+
+:Ike a :FictionalCharacter , owl:NamedIndividual ;
+    rdfs:label "Ike"^^xsd:string ;
+    :isYoungerBrotherOf :Kyle ;
+    :hasNationality :Canadian ;
+    :hasAdoptionStatus :Adopted ;
+    :hasBackstory :IkesBackstory .
+
+:ComedyCentral a :TelevisionNetwork , owl:NamedIndividual ;
+    rdfs:label "Comedy Central"^^xsd:string .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:May27_1998 a :Date , owl:NamedIndividual ;
+    rdfs:label "May 27, 1998"^^xsd:string ;
+    :airDate "1998-05-27"^^xsd:date .
+
+:AttitudesTowardsDrugUsers a :SocialTopic , owl:NamedIndividual ;
+    rdfs:label "certain attitudes towards drug users"^^xsd:string .
+
+:FamilyAndBloodRelation a :Theme , owl:NamedIndividual ;
+    rdfs:label "whether family can only mean those who are related by blood"^^xsd:string .
+
+:PositiveReception a :CriticalReception , owl:NamedIndividual ;
+    rdfs:label "positive responses from critics"^^xsd:string ;
+    :receptionDescription "Received positive responses from critics, who especially praised the episode for its touching moments."^^xsd:string .
+
+:IkesBackstory a :Backstory , owl:NamedIndividual ;
+    rdfs:label "Ike's backstory as an adopted Canadian child"^^xsd:string ;
+    :backstoryDescription "Ike's backstory as an adopted Canadian child."^^xsd:string ;
+    :introducedInEpisode :IkesWeeWee .
+
+:MrMackeyFired a :PlotEvent , owl:NamedIndividual ;
+    rdfs:label "Mr. Mackey is fired"^^xsd:string ;
+    :plotDescription "School counselor Mr. Mackey is fired."^^xsd:string ;
+    :involvedCharacter :MrMackey .
+
+:MrMackeyTurnsToDrugs a :PlotEvent , owl:NamedIndividual ;
+    rdfs:label "Mr. Mackey turns to drugs"^^xsd:string ;
+    :plotDescription "Mr. Mackey turns to drugs after being fired."^^xsd:string ;
+    :involvedCharacter :MrMackey .
+
+:BoysAttemptToSaveIke a :PlotEvent , owl:NamedIndividual ;
+    rdfs:label "the boys try to save Ike from his upcoming bris"^^xsd:string ;
+    :plotDescription "The boys misconstrue what circumcision entails, and try to save Kyle's younger brother Ike from his upcoming bris."^^xsd:string ;
+    :involvedCharacter :Ike ;
+    :involvedCharacter :Kyle .
+
+:Canadian a :Nationality , owl:NamedIndividual ;
+    rdfs:label "Canadian"^^xsd:string .
+
+:Adopted a :AdoptionStatus , owl:NamedIndividual ;
+    rdfs:label "adopted"^^xsd:string .

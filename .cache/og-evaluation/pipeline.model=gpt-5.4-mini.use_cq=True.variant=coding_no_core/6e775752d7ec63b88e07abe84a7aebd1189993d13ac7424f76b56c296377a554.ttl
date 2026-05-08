@@ -1,0 +1,291 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:AllanCunningham a owl:NamedIndividual,
+        ns1:Explorer ;
+    rdfs:label "Allan Cunningham"^^xsd:string ;
+    ns1:passedThrough ns1:Southwood .
+
+ns1:ClaySoil a owl:Class ;
+    rdfs:subClassOf ns1:Soil .
+
+ns1:CypressPine a owl:NamedIndividual,
+        ns1:PlantSpecies ;
+    rdfs:label "cypress pine"^^xsd:string ;
+    ns1:commonThroughout ns1:SemiAridLands ;
+    ns1:growsIn ns1:Southwood .
+
+ns1:FalseSandalwood a owl:NamedIndividual,
+        ns1:PlantSpecies ;
+    rdfs:label "false sandalwood"^^xsd:string ;
+    ns1:commonThroughout ns1:SemiAridLands ;
+    ns1:growsIn ns1:Southwood .
+
+ns1:PoplarBox a owl:NamedIndividual,
+        ns1:PlantSpecies ;
+    rdfs:label "poplar box"^^xsd:string ;
+    ns1:commonThroughout ns1:SemiAridLands ;
+    ns1:growsIn ns1:Southwood .
+
+ns1:ThomasMitchell a owl:NamedIndividual,
+        ns1:Explorer ;
+    rdfs:label "Thomas Mitchell"^^xsd:string ;
+    ns1:passedThrough ns1:Southwood .
+
+ns1:WesternTeatree a owl:NamedIndividual,
+        ns1:PlantSpecies ;
+    rdfs:label "western teatree"^^xsd:string ;
+    ns1:commonThroughout ns1:SemiAridLands ;
+    ns1:growsIn ns1:Southwood .
+
+ns1:Wildlife a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:WilgaBush a owl:NamedIndividual,
+        ns1:PlantSpecies ;
+    rdfs:label "wilga bush"^^xsd:string ;
+    ns1:commonThroughout ns1:SemiAridLands ;
+    ns1:growsIn ns1:Southwood .
+
+ns1:WongaPigeon a owl:NamedIndividual,
+        ns1:BirdSpecies ;
+    rdfs:label "wonga pigeon"^^xsd:string ;
+    ns1:nearInlandLimitOfRangeIn ns1:Southwood ;
+    ns1:seenIn ns1:Southwood .
+
+ns1:becameNationalParkIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range ns1:Year .
+
+ns1:birdSpeciesSeenMinimum a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range xsd:integer .
+
+ns1:birdSpeciesSeenMoreThan a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range xsd:boolean .
+
+ns1:commonThroughout a owl:ObjectProperty ;
+    rdfs:domain ns1:Species ;
+    rdfs:range ns1:Region .
+
+ns1:conservedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:ForestRemnant ;
+    rdfs:range ns1:NationalPark .
+
+ns1:distanceKmFromBrisbane a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:NationalPark ;
+    rdfs:range xsd:integer .
+
+ns1:formedByDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Gilgai ;
+    rdfs:range xsd:string .
+
+ns1:formerlyKnownAs a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:FormerName .
+
+ns1:growsIn a owl:ObjectProperty ;
+    rdfs:domain ns1:PlantSpecies ;
+    rdfs:range ns1:NationalPark .
+
+ns1:hasPart a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:locatedInCountry a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Country .
+
+ns1:locatedInState a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:AustralianState .
+
+ns1:locatedOn a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:Region .
+
+ns1:nearInlandLimitOfRangeIn a owl:ObjectProperty ;
+    rdfs:domain ns1:BirdSpecies ;
+    rdfs:range ns1:NationalPark .
+
+ns1:passedThrough a owl:ObjectProperty ;
+    rdfs:domain ns1:Explorer ;
+    rdfs:range ns1:Place .
+
+ns1:refugeForDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:ScrubbyForest ;
+    rdfs:range xsd:string .
+
+ns1:scatteredThrough a owl:ObjectProperty ;
+    rdfs:domain ns1:GeologicalFeature ;
+    rdfs:range ns1:NationalPark .
+
+ns1:seenIn a owl:ObjectProperty ;
+    rdfs:domain ns1:BirdSpecies ;
+    rdfs:range ns1:NationalPark .
+
+ns1:traditionalLandOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:IndigenousPeople .
+
+ns1:westOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Place .
+
+ns1:AnimalSpecies a owl:Class ;
+    rdfs:subClassOf ns1:Species .
+
+ns1:Australia a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Australia"^^xsd:string .
+
+ns1:BigambulPeople a owl:NamedIndividual,
+        ns1:IndigenousPeople ;
+    rdfs:label "Bigambul people"^^xsd:string .
+
+ns1:BrigalowBelahForestRemnants a owl:NamedIndividual,
+        ns1:ForestRemnant ;
+    rdfs:label "Brigalow-belah forest remnants"^^xsd:string ;
+    ns1:conservedIn ns1:Southwood ;
+    ns1:locatedOn ns1:WesternDarlingDowns .
+
+ns1:Brisbane a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Brisbane"^^xsd:string .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Depression a owl:Class ;
+    rdfs:subClassOf ns1:GeologicalFeature .
+
+ns1:Gilgais a owl:NamedIndividual,
+        ns1:Gilgai ;
+    rdfs:label "gilgais"^^xsd:string ;
+    ns1:formedByDescription "constant wetting and drying of the heavy clay soils"^^xsd:string ;
+    ns1:scatteredThrough ns1:Southwood .
+
+ns1:Park a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:PeopleGroup a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Queensland a owl:NamedIndividual,
+        ns1:AustralianState ;
+    rdfs:label "Queensland"^^xsd:string .
+
+ns1:Soil a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SouthwoodScrubbyForests a owl:NamedIndividual,
+        ns1:ScrubbyForest ;
+    rdfs:label "Southwood’s scrubby forests"^^xsd:string ;
+    ns1:refugeForDescription "wildlife"^^xsd:string .
+
+ns1:VegetationRemnant a owl:Class ;
+    rdfs:subClassOf ns1:VegetationType .
+
+ns1:WesternDarlingDowns a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "western Darling Downs"^^xsd:string .
+
+ns1:WildHorseParadise a owl:NamedIndividual,
+        ns1:FormerName ;
+    rdfs:label "\"Wild Horse Paradise\""^^xsd:string .
+
+ns1:Year1970 a owl:NamedIndividual,
+        ns1:Year ;
+    rdfs:label "1970"^^xsd:string .
+
+ns1:AustralianState a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:ForestRemnant a owl:Class ;
+    rdfs:subClassOf ns1:VegetationRemnant .
+
+ns1:FormerName a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:GeologicalFeature a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Gilgai a owl:Class ;
+    rdfs:subClassOf ns1:Depression .
+
+ns1:IndigenousPeople a owl:Class ;
+    rdfs:subClassOf ns1:PeopleGroup .
+
+ns1:ScrubbyForest a owl:Class ;
+    rdfs:subClassOf ns1:VegetationType .
+
+ns1:VegetationType a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Year a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:BirdSpecies a owl:Class ;
+    rdfs:subClassOf ns1:AnimalSpecies .
+
+ns1:Explorer a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Species a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:SemiAridLands a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "semi-arid lands"^^xsd:string .
+
+ns1:PlantSpecies a owl:Class ;
+    rdfs:subClassOf ns1:Species .
+
+ns1:NationalPark a owl:Class ;
+    rdfs:subClassOf ns1:Park .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Southwood a owl:NamedIndividual,
+        ns1:NationalPark ;
+    rdfs:label "Southwood"^^xsd:string ;
+    ns1:becameNationalParkIn ns1:Year1970 ;
+    ns1:birdSpeciesSeenMinimum 92 ;
+    ns1:birdSpeciesSeenMoreThan true ;
+    ns1:distanceKmFromBrisbane 288 ;
+    ns1:formerlyKnownAs ns1:WildHorseParadise ;
+    ns1:hasPart ns1:BrigalowBelahForestRemnants,
+        ns1:Gilgais,
+        ns1:SouthwoodScrubbyForests ;
+    ns1:locatedInCountry ns1:Australia ;
+    ns1:locatedInState ns1:Queensland ;
+    ns1:traditionalLandOf ns1:BigambulPeople ;
+    ns1:westOf ns1:Brisbane .

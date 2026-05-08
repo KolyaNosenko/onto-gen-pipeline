@@ -1,0 +1,181 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:birthDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:string .
+
+ns1:composedMusicFor a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Film .
+
+ns1:epCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range xsd:integer .
+
+ns1:formerSpouse a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Person .
+
+ns1:fromPlace a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Place .
+
+ns1:fullLengthAlbumCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range xsd:integer .
+
+ns1:grewUpIn a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:City .
+
+ns1:hadBandRole a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range xsd:string .
+
+ns1:hasCountryOfOrigin a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Film ;
+    rdfs:range ns1:Country .
+
+ns1:hasGenre a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Film ;
+    rdfs:range xsd:string .
+
+ns1:hasNationality a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Country .
+
+ns1:hasStageName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range xsd:string .
+
+ns1:knownFor a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range xsd:string .
+
+ns1:locatedIn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain ns1:Place ;
+    rdfs:range ns1:Place .
+
+ns1:musicComparedTo a owl:ObjectProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range ns1:Musician .
+
+ns1:previousMemberOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range ns1:Band .
+
+ns1:recordingMethod a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range xsd:string .
+
+ns1:recordsAt a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range xsd:string .
+
+ns1:soloCareerStartYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Musician ;
+    rdfs:range xsd:integer .
+
+ns1:AmandaBergman a owl:NamedIndividual,
+        ns1:Musician ;
+    rdfs:label "Amanda Bergman"^^xsd:string ;
+    ns1:composedMusicFor ns1:OnceAYear ;
+    ns1:formerSpouse ns1:KristianMatsson ;
+    ns1:hasStageName "Idiot Wind"^^xsd:string .
+
+ns1:BobDylan a owl:NamedIndividual,
+        ns1:Musician ;
+    rdfs:label "Bob Dylan"^^xsd:string .
+
+ns1:KristianMatsson a owl:NamedIndividual,
+        ns1:SingerSongwriter ;
+    rdfs:label "Kristian Matsson"^^xsd:string ;
+    ns1:birthDate "30 April 1983"^^xsd:string ;
+    ns1:composedMusicFor ns1:OnceAYear ;
+    ns1:epCount 2 ;
+    ns1:formerSpouse ns1:AmandaBergman ;
+    ns1:fromPlace ns1:Dalarna ;
+    ns1:fullLengthAlbumCount 4 ;
+    ns1:grewUpIn ns1:Leksand ;
+    ns1:hadBandRole "lead singer"^^xsd:string ;
+    ns1:hasNationality ns1:Sweden ;
+    ns1:hasStageName "The Tallest Man on Earth"^^xsd:string ;
+    ns1:knownFor "charismatic stage presence"^^xsd:string ;
+    ns1:musicComparedTo ns1:BobDylan ;
+    ns1:previousMemberOf ns1:Montezumas ;
+    ns1:recordingMethod "voice and guitar together on one track"^^xsd:string ;
+    ns1:recordsAt "home"^^xsd:string ;
+    ns1:soloCareerStartYear 2006 .
+
+ns1:Leksand a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Leksand"^^xsd:string ;
+    ns1:locatedIn ns1:Dalarna .
+
+ns1:Montezumas a owl:NamedIndividual,
+        ns1:Band ;
+    rdfs:label "Montezumas"^^xsd:string .
+
+ns1:Region a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:SingerSongwriter a owl:Class ;
+    rdfs:subClassOf ns1:Musician .
+
+ns1:Band a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Dalarna a owl:NamedIndividual,
+        ns1:Region ;
+    rdfs:label "Dalarna"^^xsd:string ;
+    ns1:locatedIn ns1:Sweden .
+
+ns1:OnceAYear a owl:NamedIndividual,
+        ns1:Film ;
+    rdfs:label "Once a Year"^^xsd:string ;
+    ns1:hasCountryOfOrigin ns1:Sweden ;
+    ns1:hasGenre "drama"^^xsd:string .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Sweden a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Sweden"^^xsd:string .
+
+ns1:Film a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Musician a owl:Class ;
+    rdfs:subClassOf ns1:Person .

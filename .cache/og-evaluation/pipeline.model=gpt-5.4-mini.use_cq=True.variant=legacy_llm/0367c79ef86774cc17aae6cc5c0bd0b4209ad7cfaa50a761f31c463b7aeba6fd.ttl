@@ -1,0 +1,183 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Episode a owl:Class .
+:TelevisionSeries a owl:Class .
+:Season a owl:Class .
+:EpisodeNumber a owl:Class .
+:AiringEvent a owl:Class .
+:Date a owl:Class .
+:TelevisionNetwork a owl:Class .
+:Country a owl:Class .
+:Person a owl:Class .
+:Writer a owl:Class ;
+    rdfs:subClassOf :Person .
+:Director a owl:Class ;
+    rdfs:subClassOf :Person .
+:Counselor a owl:Class ;
+    rdfs:subClassOf :Person .
+:Boys a owl:Class .
+:MaleChild a owl:Class ;
+    rdfs:subClassOf :Person .
+:FamilyRelation a owl:Class .
+:BloodRelation a owl:Class ;
+    rdfs:subClassOf :FamilyRelation .
+:Adoption a owl:Class .
+:AdoptedChild a owl:Class ;
+    rdfs:subClassOf :Person .
+:Backstory a owl:Class .
+:Theme a owl:Class .
+:Attitude a owl:Class .
+:DrugUse a owl:Class .
+:CriticReception a owl:Class .
+:Critic a owl:Class .
+:Praise a owl:Class .
+:TouchingMoments a owl:Class .
+:Misunderstanding a owl:Class .
+:Circumcision a owl:Class .
+:Bris a owl:Class .
+
+:partOfSeries a owl:ObjectProperty .
+:hasSeason a owl:ObjectProperty .
+:seasonEpisodeNumber a owl:DatatypeProperty .
+:overallEpisodeNumber a owl:DatatypeProperty .
+:firstAiredOn a owl:ObjectProperty .
+:firstAiredInCountry a owl:ObjectProperty .
+:firstAiredOnNetwork a owl:ObjectProperty .
+:writtenBy a owl:ObjectProperty .
+:directedBy a owl:ObjectProperty .
+:firedFrom a owl:ObjectProperty .
+:turnsTo a owl:ObjectProperty .
+:misconstrues a owl:ObjectProperty .
+:triesToSaveFrom a owl:ObjectProperty .
+:hasFamilyRelationTo a owl:ObjectProperty .
+:hasBackstory a owl:ObjectProperty .
+:exploresTheme a owl:ObjectProperty .
+:satirizesAttitudeTowards a owl:ObjectProperty .
+:receivedReception a owl:ObjectProperty .
+:praisedAspect a owl:ObjectProperty .
+:relatedByBlood a owl:ObjectProperty .
+
+:Episode rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :partOfSeries ;
+    owl:someValuesFrom :TelevisionSeries
+] , [
+    a owl:Restriction ;
+    owl:onProperty :hasSeason ;
+    owl:someValuesFrom :Season
+] , [
+    a owl:Restriction ;
+    owl:onProperty :writtenBy ;
+    owl:someValuesFrom :Writer
+] , [
+    a owl:Restriction ;
+    owl:onProperty :directedBy ;
+    owl:someValuesFrom :Director
+] , [
+    a owl:Restriction ;
+    owl:onProperty :firstAiredOn ;
+    owl:someValuesFrom :Date
+] , [
+    a owl:Restriction ;
+    owl:onProperty :firstAiredOnNetwork ;
+    owl:someValuesFrom :TelevisionNetwork
+] , [
+    a owl:Restriction ;
+    owl:onProperty :firstAiredInCountry ;
+    owl:someValuesFrom :Country
+] .
+
+:Season rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :partOfSeries ;
+    owl:someValuesFrom :TelevisionSeries
+] .
+
+:MrMackey a :Counselor , owl:NamedIndividual ;
+    rdfs:label "Mr. Mackey"^^xsd:string ;
+    :firedFrom :School ;
+    :turnsTo :Drugs .
+:School a owl:NamedIndividual ;
+    rdfs:label "school"^^xsd:string .
+:Drugs a :Attitude , owl:NamedIndividual ;
+    rdfs:label "drugs"^^xsd:string .
+
+:Kyle a :Person , owl:NamedIndividual ;
+    rdfs:label "Kyle"^^xsd:string .
+:Ike a :AdoptedChild , :MaleChild , owl:NamedIndividual ;
+    rdfs:label "Ike"^^xsd:string ;
+    :hasFamilyRelationTo :Kyle ;
+    :hasBackstory :IkeBackstory .
+:IkeBackstory a :Backstory , owl:NamedIndividual ;
+    rdfs:label "Ike's backstory"^^xsd:string ;
+    :relatedByBlood :CanadianChildhood .
+:CanadianChildhood a :Adoption , owl:NamedIndividual ;
+    rdfs:label "an adopted Canadian child"^^xsd:string .
+
+:SouthPark a :TelevisionSeries , owl:NamedIndividual ;
+    rdfs:label "South Park"^^xsd:string .
+
+:IkesWeeWee a :Episode , owl:NamedIndividual ;
+    rdfs:label "Ike's Wee Wee"^^xsd:string ;
+    :partOfSeries :SouthPark ;
+    :hasSeason :SecondSeason ;
+    :seasonEpisodeNumber "4"^^xsd:integer ;
+    :overallEpisodeNumber "18"^^xsd:integer ;
+    :firstAiredOn :May271998 ;
+    :firstAiredOnNetwork :ComedyCentral ;
+    :firstAiredInCountry :UnitedStates ;
+    :writtenBy :TreyParker ;
+    :directedBy :TreyParker ;
+    :receivedReception :PositiveResponses ;
+    :satirizesAttitudeTowards :DrugUsers ;
+    :exploresTheme :FamilyByBlood ;
+    :exploresTheme :AdoptedCanadianChildBackstory ;
+    :praisedAspect :TouchingMoments .
+
+:SecondSeason a :Season , owl:NamedIndividual ;
+    rdfs:label "the second season"^^xsd:string ;
+    :partOfSeries :SouthPark .
+
+:May271998 a :Date , owl:NamedIndividual ;
+    rdfs:label "May 27, 1998"^^xsd:string .
+
+:ComedyCentral a :TelevisionNetwork , owl:NamedIndividual ;
+    rdfs:label "Comedy Central"^^xsd:string .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "the United States"^^xsd:string .
+
+:TreyParker a :Writer , :Director , owl:NamedIndividual ;
+    rdfs:label "Trey Parker"^^xsd:string .
+
+:PositiveResponses a :CriticReception , owl:NamedIndividual ;
+    rdfs:label "positive responses from critics"^^xsd:string .
+
+:DrugUsers a :Attitude , owl:NamedIndividual ;
+    rdfs:label "certain attitudes towards drug users"^^xsd:string .
+
+:FamilyByBlood a :Theme , owl:NamedIndividual ;
+    rdfs:label "those who are related by blood"^^xsd:string .
+
+:AdoptedCanadianChildBackstory a :Backstory , owl:NamedIndividual ;
+    rdfs:label "an adopted Canadian child"^^xsd:string .
+
+:TouchingMoments a :Praise , owl:NamedIndividual ;
+    rdfs:label "its touching moments"^^xsd:string .
+
+:CircumcisionMisunderstanding a :Misunderstanding , owl:NamedIndividual ;
+    rdfs:label "what circumcision entails"^^xsd:string ;
+    :misconstrues :Circumcision .
+:Circumcision a :Circumcision , owl:NamedIndividual ;
+    rdfs:label "circumcision"^^xsd:string .
+:Bris a :Bris , owl:NamedIndividual ;
+    rdfs:label "his upcoming bris"^^xsd:string .
+
+:BoysGroup a :Boys , owl:NamedIndividual ;
+    rdfs:label "the boys"^^xsd:string ;
+    :misconstrues :CircumcisionMisunderstanding ;
+    :triesToSaveFrom :Bris .

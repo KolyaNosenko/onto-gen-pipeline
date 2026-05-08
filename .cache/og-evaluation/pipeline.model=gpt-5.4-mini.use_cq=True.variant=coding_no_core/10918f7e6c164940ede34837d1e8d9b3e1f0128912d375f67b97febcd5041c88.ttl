@@ -1,0 +1,222 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:FilmworksPlannedFilm a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:precedes ;
+            owl:someValuesFrom ns1:HomeDistribution ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasTheatricalReleaseAt ;
+            owl:someValuesFrom ns1:CinemaChain ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:OdeonCinemas ;
+            owl:onProperty ns1:hasTheatricalReleaseAt ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasRetailReleaseAt ;
+            owl:someValuesFrom ns1:RetailService ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:OdeonFoyerSales ;
+            owl:onProperty ns1:hasRetailReleaseAt ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasRentalReleaseAt ;
+            owl:someValuesFrom ns1:RentalService ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:OdeonDirect ;
+            owl:onProperty ns1:hasRentalReleaseAt ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:SkyMoviesByBroadband ;
+            owl:onProperty ns1:availableVia ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:SkyBoxOffice ;
+            owl:onProperty ns1:availableVia ],
+        ns1:Film .
+
+ns1:basedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:Territory .
+
+ns1:hasPartner a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:Collaboration ;
+    rdfs:range ns1:Organization .
+
+ns1:hasPremierePlatform a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:TelevisionPremiere ;
+    rdfs:range ns1:TelevisionChannel .
+
+ns1:plannedInitialFilmCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Collaboration ;
+    rdfs:range xsd:integer .
+
+ns1:providesService a owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:Service .
+
+ns1:retainsRights a owl:ObjectProperty ;
+    rdfs:domain ns1:Organization ;
+    rdfs:range ns1:TelevisionRights .
+
+ns1:targetsAudienceIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Collaboration ;
+    rdfs:range ns1:Territory .
+
+ns1:AllUKTvRights a owl:NamedIndividual,
+        ns1:TelevisionRights ;
+    rdfs:label "all UK TV rights"^^xsd:string .
+
+ns1:BritishSkyBroadcasting a owl:NamedIndividual,
+        ns1:BroadcastingCompany ;
+    rdfs:label "British Sky Broadcasting"^^xsd:string,
+        "SKY"^^xsd:string,
+        "Sky"^^xsd:string ;
+    ns1:hasPartner ns1:FilmworksVenture ;
+    ns1:providesService ns1:SkyBoxOffice,
+        ns1:SkyMovies,
+        ns1:SkyMoviesByBroadband ;
+    ns1:retainsRights ns1:AllUKTvRights .
+
+ns1:BroadcastingCompany a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Territory .
+
+ns1:DownloadService a owl:Class ;
+    rdfs:subClassOf ns1:Service .
+
+ns1:JointVenture a owl:Class ;
+    rdfs:subClassOf ns1:Collaboration .
+
+ns1:UKBasedFilmDistributor a owl:Class ;
+    rdfs:subClassOf ns1:FilmDistributor .
+
+ns1:UkTerritory a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "UK"^^xsd:string .
+
+ns1:precedes a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:signsUpTitleFrom a owl:ObjectProperty ;
+    rdfs:domain ns1:FilmDistributor ;
+    rdfs:range ns1:Filmmaker .
+
+ns1:FilmDistributor a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:Filmmaker a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:FilmworksVenture a [ a owl:Restriction ;
+            owl:onProperty ns1:signsUpTitleFrom ;
+            owl:someValuesFrom ns1:Filmmaker ],
+        owl:NamedIndividual,
+        ns1:JointVenture,
+        ns1:UKBasedFilmDistributor ;
+    rdfs:label "FILMWORKS"^^xsd:string,
+        "Odeon Sky Filmworks"^^xsd:string,
+        "Odeon and Sky Filmworks"^^xsd:string ;
+    ns1:hasPartner ns1:BritishSkyBroadcasting,
+        ns1:OdeonCinemas ;
+    ns1:plannedInitialFilmCount 6 ;
+    ns1:targetsAudienceIn ns1:UkTerritory .
+
+ns1:OdeonCinemas a owl:NamedIndividual,
+        ns1:CinemaChain ;
+    rdfs:label "ODEON"^^xsd:string,
+        "Odeon"^^xsd:string,
+        "Odeon Cinemas"^^xsd:string ;
+    ns1:hasPartner ns1:FilmworksVenture ;
+    ns1:providesService ns1:OdeonDirect,
+        ns1:OdeonFoyerSales .
+
+ns1:OdeonDirect a owl:NamedIndividual,
+        ns1:RentalService ;
+    rdfs:label "ODEON Direct"^^xsd:string ;
+    ns1:precedes ns1:UkTelevisionPremiere .
+
+ns1:OdeonFoyerSales a owl:NamedIndividual,
+        ns1:RetailService ;
+    rdfs:label "ODEON foyer sales"^^xsd:string ;
+    ns1:precedes ns1:UkTelevisionPremiere .
+
+ns1:SkyBoxOffice a owl:NamedIndividual,
+        ns1:Service ;
+    rdfs:label "Sky Box Office"^^xsd:string ;
+    ns1:precedes ns1:UkTelevisionPremiere .
+
+ns1:SkyMovies a owl:NamedIndividual,
+        ns1:TelevisionChannel ;
+    rdfs:label "Sky Movies"^^xsd:string .
+
+ns1:SkyMoviesByBroadband a owl:NamedIndividual,
+        ns1:DownloadService ;
+    rdfs:label "Sky Movies By Broadband"^^xsd:string ;
+    ns1:precedes ns1:UkTelevisionPremiere .
+
+ns1:TelevisionChannel a owl:Class ;
+    rdfs:subClassOf ns1:Service .
+
+ns1:TelevisionPremiere a owl:Class ;
+    rdfs:subClassOf ns1:HomeDistribution .
+
+ns1:TelevisionRights a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:availableVia a owl:ObjectProperty ;
+    rdfs:domain ns1:Film ;
+    rdfs:range ns1:Service .
+
+ns1:hasRentalReleaseAt a owl:ObjectProperty ;
+    rdfs:domain ns1:Film ;
+    rdfs:range ns1:RentalService .
+
+ns1:hasRetailReleaseAt a owl:ObjectProperty ;
+    rdfs:domain ns1:Film ;
+    rdfs:range ns1:RetailService .
+
+ns1:hasTheatricalReleaseAt a owl:ObjectProperty ;
+    rdfs:domain ns1:Film ;
+    rdfs:range ns1:CinemaChain .
+
+ns1:CinemaChain a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:HomeDistribution a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:RentalService a owl:Class ;
+    rdfs:subClassOf ns1:Service .
+
+ns1:RetailService a owl:Class ;
+    rdfs:subClassOf ns1:Service .
+
+ns1:Territory a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Collaboration a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:UkTelevisionPremiere a owl:NamedIndividual,
+        ns1:TelevisionPremiere ;
+    rdfs:label "UK Television Premiere"^^xsd:string ;
+    ns1:hasPremierePlatform ns1:SkyMovies .
+
+ns1:Film a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Service a owl:Class ;
+    rdfs:subClassOf ns1:HomeDistribution .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .

@@ -1,0 +1,239 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:ClassAOfficeSpace a owl:Class ;
+    rdfs:subClassOf ns1:OfficeSpace .
+
+ns1:expectedToRevitalize a owl:ObjectProperty ;
+    rdfs:domain ns1:Complex ;
+    rdfs:range ns1:Place .
+
+ns1:hasEstimatedDevelopmentCost a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Complex ;
+    rdfs:range xsd:string .
+
+ns1:hasExpectedImpactDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Complex ;
+    rdfs:range xsd:string .
+
+ns1:hasHeightRankInUnitedStates a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Building ;
+    rdfs:range xsd:integer .
+
+ns1:hasHotelComponent a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Building,
+        ns1:Complex ;
+    rdfs:range ns1:HotelComponent .
+
+ns1:hasPlannedHotelRoomCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Complex ;
+    rdfs:range xsd:integer .
+
+ns1:hasRoomAndSuiteCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:HotelComponent ;
+    rdfs:range xsd:integer .
+
+ns1:hasSurroundingAreaDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Complex ;
+    rdfs:range xsd:string .
+
+ns1:locatedIn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ns1:Place .
+
+ns1:partOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:surpassesHeightOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Building ;
+    rdfs:range ns1:Building .
+
+ns1:tallestIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Building ;
+    rdfs:range ns1:Place .
+
+ns1:tallestOutsideOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Building ;
+    rdfs:range ns1:City .
+
+ns1:tallestWestOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Building ;
+    rdfs:range ns1:River .
+
+ns1:Chicago a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Chicago"^^xsd:string .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:MississippiRiver a owl:NamedIndividual,
+        ns1:River ;
+    rdfs:label "Mississippi River"^^xsd:string .
+
+ns1:MixedUseComplex a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasComponent ;
+            owl:someValuesFrom ns1:HotelComponent ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasComponent ;
+            owl:someValuesFrom ns1:RetailSpace ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasComponent ;
+            owl:someValuesFrom ns1:ObservationDeck ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasComponent ;
+            owl:someValuesFrom ns1:ShoppingMall ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasComponent ;
+            owl:someValuesFrom ns1:OfficeSpace ],
+        ns1:Complex .
+
+ns1:NewYorkCity a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "New York City"^^xsd:string .
+
+ns1:ObservationDeck a owl:Class ;
+    rdfs:subClassOf ns1:FunctionalComponent .
+
+ns1:Philadelphia a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Philadelphia"^^xsd:string .
+
+ns1:RetailSpace a owl:Class ;
+    rdfs:subClassOf ns1:FunctionalComponent .
+
+ns1:ShoppingMall a owl:Class ;
+    rdfs:subClassOf ns1:FunctionalComponent .
+
+ns1:Skyscraper a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Tower a owl:Class ;
+    rdfs:subClassOf ns1:Building .
+
+ns1:USBankTower a owl:NamedIndividual,
+        ns1:Tower ;
+    rdfs:label "U.S. Bank Tower"^^xsd:string .
+
+ns1:WilshireGrandCenter a owl:NamedIndividual,
+        ns1:Skyscraper ;
+    rdfs:label "Wilshire Grand Center"^^xsd:string ;
+    ns1:hasHeightRankInUnitedStates 11 ;
+    ns1:hasHotelComponent ns1:InterContinental ;
+    ns1:locatedIn ns1:California,
+        ns1:DowntownLosAngeles,
+        ns1:FinancialDistrict,
+        ns1:LosAngeles,
+        ns1:UnitedStates ;
+    ns1:partOf ns1:WilshireGrandCenterComplex ;
+    ns1:surpassesHeightOf ns1:USBankTower ;
+    ns1:tallestIn ns1:California,
+        ns1:LosAngeles ;
+    ns1:tallestOutsideOf ns1:Chicago,
+        ns1:NewYorkCity,
+        ns1:Philadelphia ;
+    ns1:tallestWestOf ns1:MississippiRiver .
+
+ns1:BuiltEntity a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:District a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:FinancialDistrict a owl:NamedIndividual,
+        ns1:District ;
+    rdfs:label "Financial District"^^xsd:string ;
+    ns1:locatedIn ns1:California,
+        ns1:DowntownLosAngeles,
+        ns1:LosAngeles .
+
+ns1:OfficeSpace a owl:Class ;
+    rdfs:subClassOf ns1:FunctionalComponent .
+
+ns1:River a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:WilshireGrandCenterComplex a owl:NamedIndividual,
+        ns1:MixedUseComplex ;
+    rdfs:label "Wilshire Grand Center complex"^^xsd:string ;
+    ns1:expectedToRevitalize ns1:DowntownLosAngeles ;
+    ns1:hasComponent ns1:InterContinental ;
+    ns1:hasEstimatedDevelopmentCost "$ 1.2 billion"^^xsd:string ;
+    ns1:hasExpectedImpactDescription "revitalize downtown Los Angeles and the area surrounding the building"^^xsd:string ;
+    ns1:hasHotelComponent ns1:InterContinental ;
+    ns1:hasPlannedHotelRoomCount 900 ;
+    ns1:hasSurroundingAreaDescription "the area surrounding the building"^^xsd:string ;
+    ns1:locatedIn ns1:California,
+        ns1:DowntownLosAngeles,
+        ns1:FinancialDistrict,
+        ns1:LosAngeles,
+        ns1:UnitedStates .
+
+ns1:InterContinental a owl:NamedIndividual,
+        ns1:HotelComponent ;
+    rdfs:label "InterContinental"^^xsd:string ;
+    ns1:hasRoomAndSuiteCount 900 ;
+    ns1:partOf ns1:WilshireGrandCenter,
+        ns1:WilshireGrandCenterComplex .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "United States"^^xsd:string .
+
+ns1:DowntownLosAngeles a owl:NamedIndividual,
+        ns1:District ;
+    rdfs:label "Downtown Los Angeles"^^xsd:string ;
+    ns1:locatedIn ns1:California,
+        ns1:LosAngeles .
+
+ns1:HotelComponent a owl:Class ;
+    rdfs:subClassOf ns1:FunctionalComponent .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:LosAngeles a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Los Angeles"^^xsd:string ;
+    ns1:locatedIn ns1:California .
+
+ns1:hasComponent a owl:ObjectProperty ;
+    rdfs:domain ns1:Complex ;
+    rdfs:range ns1:FunctionalComponent .
+
+ns1:California a owl:NamedIndividual,
+        ns1:State ;
+    rdfs:label "California"^^xsd:string ;
+    ns1:locatedIn ns1:UnitedStates .
+
+ns1:FunctionalComponent a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Complex a owl:Class ;
+    rdfs:subClassOf ns1:BuiltEntity .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Building a owl:Class ;
+    rdfs:subClassOf ns1:BuiltEntity .

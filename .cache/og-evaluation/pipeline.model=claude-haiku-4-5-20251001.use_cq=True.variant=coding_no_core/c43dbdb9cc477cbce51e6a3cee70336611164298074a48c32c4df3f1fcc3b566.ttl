@@ -1,0 +1,145 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:AGRole a owl:NamedIndividual,
+        ns1:AttorneyGeneral ;
+    rdfs:label "United States Attorney General ( A.G. )"^^xsd:string ;
+    ns1:appointedWith ns1:Senate ;
+    ns1:canBeRemovedBy ns1:PresidentRole ;
+    ns1:chiefLawyerOf ns1:USGovernment ;
+    ns1:concernedWith "legal affairs"^^xsd:string ;
+    ns1:hasPowerToSeek "federal death penalty"^^xsd:string ;
+    ns1:headOf ns1:DOJ ;
+    ns1:impeachmentGrounds "bribery"^^xsd:string,
+        "high crimes and misdemeanors"^^xsd:string,
+        "treason"^^xsd:string ;
+    ns1:nominatedBy ns1:PresidentRole .
+
+ns1:BowsherVSynar a owl:NamedIndividual,
+        ns1:LegalCase ;
+    rdfs:label "Bowsher v. Synar"^^xsd:string ;
+    ns1:decidedIn ns1:SupremeCourt ;
+    ns1:removalRuleEstablished "President has power to remove officials engaged in purely executive functions or whose duties affect President's ability to fulfill constitutional responsibilities"^^xsd:string ;
+    ns1:yearDecided 1986 .
+
+ns1:Congress a owl:NamedIndividual,
+        ns1:GovernmentBody ;
+    rdfs:label "Congress"^^xsd:string .
+
+ns1:Constitution a owl:NamedIndividual,
+        ns1:Document ;
+    rdfs:label "Constitution"^^xsd:string .
+
+ns1:MyersVUnitedStates a owl:NamedIndividual,
+        ns1:LegalCase ;
+    rdfs:label "Myers v. United States"^^xsd:string ;
+    ns1:decidedIn ns1:SupremeCourt ;
+    ns1:removalRuleEstablished "President may remove executive officials without consent of Senate or any other entity"^^xsd:string .
+
+ns1:appointedWith a owl:ObjectProperty ;
+    rdfs:domain ns1:AttorneyGeneral ;
+    rdfs:range ns1:GovernmentBody .
+
+ns1:canBeRemovedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:ExecutiveOfficer ;
+    rdfs:range ns1:President .
+
+ns1:chiefLawyerOf a owl:ObjectProperty ;
+    rdfs:domain ns1:AttorneyGeneral ;
+    rdfs:range ns1:Government .
+
+ns1:concernedWith a owl:DatatypeProperty ;
+    rdfs:domain ns1:AttorneyGeneral ;
+    rdfs:range xsd:string .
+
+ns1:decidedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:LegalCase ;
+    rdfs:range ns1:Court .
+
+ns1:hasPowerToSeek a owl:DatatypeProperty ;
+    rdfs:domain ns1:AttorneyGeneral ;
+    rdfs:range xsd:string .
+
+ns1:headOf a owl:ObjectProperty ;
+    rdfs:domain ns1:AttorneyGeneral ;
+    rdfs:range ns1:Department .
+
+ns1:impeachmentGrounds a owl:DatatypeProperty ;
+    rdfs:domain ns1:CivilOfficer ;
+    rdfs:range xsd:string .
+
+ns1:nominatedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:AttorneyGeneral ;
+    rdfs:range ns1:President .
+
+ns1:removalRuleEstablished a owl:DatatypeProperty ;
+    rdfs:domain ns1:LegalCase ;
+    rdfs:range xsd:string .
+
+ns1:yearDecided a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:LegalCase ;
+    rdfs:range xsd:integer .
+
+ns1:DOJ a owl:NamedIndividual,
+        ns1:Department ;
+    rdfs:label "United States Department of Justice"^^xsd:string .
+
+ns1:Document a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Senate a owl:NamedIndividual,
+        ns1:GovernmentBody ;
+    rdfs:label "Senate"^^xsd:string .
+
+ns1:USGovernment a owl:NamedIndividual,
+        ns1:Government ;
+    rdfs:label "United States government"^^xsd:string .
+
+ns1:CivilOfficer a owl:Class ;
+    rdfs:subClassOf ns1:Officer .
+
+ns1:Court a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:Department a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:ExecutiveOfficer a owl:Class ;
+    rdfs:subClassOf ns1:Officer .
+
+ns1:Government a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:Officer a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PresidentRole a owl:NamedIndividual,
+        ns1:President ;
+    rdfs:label "President"^^xsd:string .
+
+ns1:SupremeCourt a owl:NamedIndividual,
+        ns1:Court ;
+    rdfs:label "Supreme Court"^^xsd:string .
+
+ns1:GovernmentBody a owl:Class ;
+    rdfs:subClassOf ns1:Organization .
+
+ns1:President a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:LegalCase a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:AttorneyGeneral a owl:Class ;
+    rdfs:subClassOf ns1:CivilOfficer,
+        ns1:ExecutiveOfficer .

@@ -1,0 +1,405 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### Ontology declaration
+: a owl:Ontology .
+
+###############################################################
+# CLASSES
+###############################################################
+
+:Album a owl:Class ;
+    rdfs:label "Album"^^xsd:string .
+
+:StudioAlbum a owl:Class ;
+    rdfs:subClassOf :Album ;
+    rdfs:label "Studio Album"^^xsd:string .
+
+:DebutAlbum a owl:Class ;
+    rdfs:subClassOf :StudioAlbum ;
+    rdfs:label "Debut Album"^^xsd:string .
+
+:Single a owl:Class ;
+    rdfs:label "Single"^^xsd:string .
+
+:MusicVideo a owl:Class ;
+    rdfs:label "Music Video"^^xsd:string .
+
+:LyricVideo a owl:Class ;
+    rdfs:subClassOf :MusicVideo ;
+    rdfs:label "Lyric Video"^^xsd:string .
+
+:OfficialVideo a owl:Class ;
+    rdfs:subClassOf :MusicVideo ;
+    rdfs:label "Official Video"^^xsd:string .
+
+:Song a owl:Class ;
+    rdfs:label "Song"^^xsd:string .
+
+:Band a owl:Class ;
+    rdfs:label "Band"^^xsd:string .
+
+:HeavyMetalBand a owl:Class ;
+    rdfs:subClassOf :Band ;
+    rdfs:label "Heavy Metal Band"^^xsd:string .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:Musician a owl:Class ;
+    rdfs:subClassOf :Person ;
+    rdfs:label "Musician"^^xsd:string .
+
+:BandMember a owl:Class ;
+    rdfs:subClassOf :Musician ;
+    rdfs:label "Band Member"^^xsd:string .
+
+:OriginalMember a owl:Class ;
+    rdfs:subClassOf :BandMember ;
+    rdfs:label "Original Member"^^xsd:string .
+
+:Vocalist a owl:Class ;
+    rdfs:subClassOf :BandMember ;
+    rdfs:label "Vocalist"^^xsd:string .
+
+:Guitarist a owl:Class ;
+    rdfs:subClassOf :BandMember ;
+    rdfs:label "Guitarist"^^xsd:string .
+
+:GuitaristVocalist a owl:Class ;
+    rdfs:subClassOf :Guitarist ;
+    rdfs:subClassOf :Vocalist ;
+    rdfs:label "Guitarist/Vocalist"^^xsd:string .
+
+:Bassist a owl:Class ;
+    rdfs:subClassOf :BandMember ;
+    rdfs:label "Bassist"^^xsd:string .
+
+:Drummer a owl:Class ;
+    rdfs:subClassOf :BandMember ;
+    rdfs:label "Drummer"^^xsd:string .
+
+:RecordLabel a owl:Class ;
+    rdfs:label "Record Label"^^xsd:string .
+
+:Instrument a owl:Class ;
+    rdfs:label "Instrument"^^xsd:string .
+
+:StringInstrument a owl:Class ;
+    rdfs:subClassOf :Instrument ;
+    rdfs:label "String Instrument"^^xsd:string .
+
+:WindInstrument a owl:Class ;
+    rdfs:subClassOf :Instrument ;
+    rdfs:label "Wind Instrument"^^xsd:string .
+
+:Date a owl:Class ;
+    rdfs:label "Date"^^xsd:string .
+
+:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string .
+
+:DiscographyPosition a owl:Class ;
+    rdfs:label "Discography Position"^^xsd:string .
+
+:MusicalStyle a owl:Class ;
+    rdfs:label "Musical Style"^^xsd:string .
+
+###############################################################
+# OBJECT PROPERTIES
+###############################################################
+
+:performedBy a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :Band ;
+    rdfs:label "performedBy"^^xsd:string .
+
+:releasedThrough a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :RecordLabel ;
+    rdfs:label "releasedThrough"^^xsd:string .
+
+:recordedDuring a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :TimeInterval ;
+    rdfs:label "recordedDuring"^^xsd:string .
+
+:releasedOn a owl:ObjectProperty ;
+    rdfs:label "releasedOn"^^xsd:string .
+
+:hasMember a owl:ObjectProperty ;
+    rdfs:domain :Band ;
+    rdfs:range :BandMember ;
+    rdfs:label "hasMember"^^xsd:string .
+
+:providesVocals a owl:ObjectProperty ;
+    rdfs:domain :BandMember ;
+    rdfs:range :Album ;
+    rdfs:label "providesVocals"^^xsd:string .
+
+:playsBass a owl:ObjectProperty ;
+    rdfs:domain :BandMember ;
+    rdfs:range :Album ;
+    rdfs:label "playsBass"^^xsd:string .
+
+:playsDrums a owl:ObjectProperty ;
+    rdfs:domain :BandMember ;
+    rdfs:range :Album ;
+    rdfs:label "playsDrums"^^xsd:string .
+
+:playsGuitar a owl:ObjectProperty ;
+    rdfs:domain :BandMember ;
+    rdfs:range :Album ;
+    rdfs:label "playsGuitar"^^xsd:string .
+
+:isOriginalMemberOf a owl:ObjectProperty ;
+    rdfs:domain :OriginalMember ;
+    rdfs:range :Band ;
+    rdfs:label "isOriginalMemberOf"^^xsd:string .
+
+:featuredOn a owl:ObjectProperty ;
+    rdfs:domain :BandMember ;
+    rdfs:range :Album ;
+    rdfs:label "featuredOn"^^xsd:string .
+
+:hasFirstSingle a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :Single ;
+    rdfs:label "hasFirstSingle"^^xsd:string .
+
+:promotesAlbum a owl:ObjectProperty ;
+    rdfs:domain :Single ;
+    rdfs:range :Album ;
+    rdfs:label "promotesAlbum"^^xsd:string .
+
+:basedOnSong a owl:ObjectProperty ;
+    rdfs:domain :Single ;
+    rdfs:range :Song ;
+    rdfs:label "basedOnSong"^^xsd:string .
+
+:hasAccompanyingVideo a owl:ObjectProperty ;
+    rdfs:domain :Single ;
+    rdfs:range :MusicVideo ;
+    rdfs:label "hasAccompanyingVideo"^^xsd:string .
+
+:precedingAlbum a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :Album ;
+    rdfs:label "precedingAlbum"^^xsd:string .
+
+:featuresInstrument a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :Instrument ;
+    rdfs:label "featuresInstrument"^^xsd:string .
+
+:lacksInstrument a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :Instrument ;
+    rdfs:label "lacksInstrument"^^xsd:string .
+
+:hasDiscographyPosition a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :DiscographyPosition ;
+    rdfs:label "hasDiscographyPosition"^^xsd:string .
+
+:hasMusicalStyle a owl:ObjectProperty ;
+    rdfs:domain :Album ;
+    rdfs:range :MusicalStyle ;
+    rdfs:label "hasMusicalStyle"^^xsd:string .
+
+:hasStartDate a owl:ObjectProperty ;
+    rdfs:domain :TimeInterval ;
+    rdfs:range :Date ;
+    rdfs:label "hasStartDate"^^xsd:string .
+
+:hasEndDate a owl:ObjectProperty ;
+    rdfs:domain :TimeInterval ;
+    rdfs:range :Date ;
+    rdfs:label "hasEndDate"^^xsd:string .
+
+###############################################################
+# DATA PROPERTIES
+###############################################################
+
+:albumTitle a owl:DatatypeProperty ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:string ;
+    rdfs:label "albumTitle"^^xsd:string .
+
+:releaseDate a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "releaseDate"^^xsd:string .
+
+:recordingStartDate a owl:DatatypeProperty ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:string ;
+    rdfs:label "recordingStartDate"^^xsd:string .
+
+:recordingEndDate a owl:DatatypeProperty ;
+    rdfs:domain :Album ;
+    rdfs:range xsd:string ;
+    rdfs:label "recordingEndDate"^^xsd:string .
+
+:discographyPositionNumber a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :DiscographyPosition ;
+    rdfs:range xsd:integer ;
+    rdfs:label "discographyPositionNumber"^^xsd:string .
+
+:styleDescription a owl:DatatypeProperty ;
+    rdfs:domain :MusicalStyle ;
+    rdfs:range xsd:string ;
+    rdfs:label "styleDescription"^^xsd:string .
+
+:songTitle a owl:DatatypeProperty ;
+    rdfs:domain :Song ;
+    rdfs:range xsd:string ;
+    rdfs:label "songTitle"^^xsd:string .
+
+:quotedStatement a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "quotedStatement"^^xsd:string .
+
+###############################################################
+# PROPERTY CHARACTERISTICS
+###############################################################
+
+:precedingAlbum a owl:AsymmetricProperty , owl:IrreflexiveProperty .
+
+###############################################################
+# CLASS RESTRICTIONS
+###############################################################
+
+:StudioAlbum rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :performedBy ;
+    owl:someValuesFrom :Band
+] .
+
+:Single rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :promotesAlbum ;
+    owl:someValuesFrom :Album
+] .
+
+:BandMember rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :featuredOn ;
+    owl:someValuesFrom :Album
+] .
+
+###############################################################
+# INDIVIDUALS
+###############################################################
+
+:IAm a :StudioAlbum , owl:NamedIndividual ;
+    rdfs:label "I Am"^^xsd:string ;
+    :albumTitle "I Am"^^xsd:string ;
+    :performedBy :BecomingTheArchetype ;
+    :releasedThrough :SolidStateRecords ;
+    :releaseDate "September 18, 2012"^^xsd:string ;
+    :recordingStartDate "May 21"^^xsd:string ;
+    :recordingEndDate "June 17"^^xsd:string ;
+    :hasDiscographyPosition :FifthStudioAlbumPosition ;
+    :hasFirstSingle :TheTimeBenderSingle ;
+    :precedingAlbum :CelestialCompletion ;
+    :lacksInstrument :Sitar ;
+    :lacksInstrument :Horn ;
+    :hasMusicalStyle :HeaviestAndMostTechnical .
+
+:CelestialCompletion a :StudioAlbum , owl:NamedIndividual ;
+    rdfs:label "Celestial Completion"^^xsd:string ;
+    :albumTitle "Celestial Completion"^^xsd:string ;
+    :performedBy :BecomingTheArchetype ;
+    :featuresInstrument :Sitar ;
+    :featuresInstrument :Horn .
+
+:BecomingTheArchetype a :HeavyMetalBand , owl:NamedIndividual ;
+    rdfs:label "Becoming the Archetype"^^xsd:string ;
+    :hasMember :SethHecox ;
+    :hasMember :ChrisMcCane ;
+    :hasMember :CodeyWatkins ;
+    :hasMember :ChrisHeaton .
+
+:SolidStateRecords a :RecordLabel , owl:NamedIndividual ;
+    rdfs:label "Solid State Records"^^xsd:string .
+
+:SethHecox a :GuitaristVocalist , :OriginalMember , owl:NamedIndividual ;
+    rdfs:label "Seth Hecox"^^xsd:string ;
+    :isOriginalMemberOf :BecomingTheArchetype ;
+    :featuredOn :IAm ;
+    :playsGuitar :IAm ;
+    :providesVocals :IAm ;
+    :quotedStatement "gone are the sitars and horns of Celestial Completion . Instead , we 've crafted an album full of the heaviest and most technical songs we 've ever written ."^^xsd:string .
+
+:ChrisMcCane a :Vocalist , owl:NamedIndividual ;
+    rdfs:label "Chris McCane"^^xsd:string ;
+    :providesVocals :IAm ;
+    :featuredOn :IAm .
+
+:CodeyWatkins a :Bassist , owl:NamedIndividual ;
+    rdfs:label "Codey Watkins"^^xsd:string ;
+    :playsBass :IAm ;
+    :featuredOn :IAm .
+
+:ChrisHeaton a :Drummer , owl:NamedIndividual ;
+    rdfs:label "Chris Heaton"^^xsd:string ;
+    :playsDrums :IAm ;
+    :featuredOn :IAm .
+
+:TheTimeBenderSingle a :Single , owl:NamedIndividual ;
+    rdfs:label "The Time Bender"^^xsd:string ;
+    :promotesAlbum :IAm ;
+    :basedOnSong :TheTimeBenderSong ;
+    :releaseDate "August 28, 2012"^^xsd:string ;
+    :hasAccompanyingVideo :TheTimeBenderLyricVideo ;
+    :hasAccompanyingVideo :TheTimeBenderOfficialVideo .
+
+:TheTimeBenderSong a :Song , owl:NamedIndividual ;
+    rdfs:label "The Time Bender"^^xsd:string ;
+    :songTitle "The Time Bender"^^xsd:string .
+
+:TheTimeBenderLyricVideo a :LyricVideo , owl:NamedIndividual ;
+    rdfs:label "lyric video"^^xsd:string .
+
+:TheTimeBenderOfficialVideo a :OfficialVideo , owl:NamedIndividual ;
+    rdfs:label "official video"^^xsd:string .
+
+:Sitar a :StringInstrument , owl:NamedIndividual ;
+    rdfs:label "sitars"^^xsd:string .
+
+:Horn a :WindInstrument , owl:NamedIndividual ;
+    rdfs:label "horns"^^xsd:string .
+
+:FifthStudioAlbumPosition a :DiscographyPosition , owl:NamedIndividual ;
+    rdfs:label "fifth studio album"^^xsd:string ;
+    :discographyPositionNumber 5 .
+
+:RecordingInterval a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "May 21 to June 17"^^xsd:string ;
+    :hasStartDate :May21 ;
+    :hasEndDate :June17 .
+
+:May21 a :Date , owl:NamedIndividual ;
+    rdfs:label "May 21"^^xsd:string .
+
+:June17 a :Date , owl:NamedIndividual ;
+    rdfs:label "June 17"^^xsd:string .
+
+:September18_2012 a :Date , owl:NamedIndividual ;
+    rdfs:label "September 18, 2012"^^xsd:string .
+
+:August28_2012 a :Date , owl:NamedIndividual ;
+    rdfs:label "August 28, 2012"^^xsd:string .
+
+:HeaviestAndMostTechnical a :MusicalStyle , owl:NamedIndividual ;
+    rdfs:label "heaviest and most technical"^^xsd:string ;
+    :styleDescription "the heaviest and most technical songs we've ever written"^^xsd:string .
+
+:IAm :recordedDuring :RecordingInterval ;
+    :releasedOn :September18_2012 .
+
+:TheTimeBenderSingle :releasedOn :August28_2012 .

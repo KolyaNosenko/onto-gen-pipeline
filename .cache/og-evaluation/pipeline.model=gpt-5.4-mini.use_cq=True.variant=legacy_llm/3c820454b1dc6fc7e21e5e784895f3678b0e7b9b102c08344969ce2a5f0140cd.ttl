@@ -1,0 +1,178 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Dam a owl:Class .
+:ArchDam a owl:Class ;
+    rdfs:subClassOf :Dam .
+:ConcreteArchDam a owl:Class ;
+    rdfs:subClassOf :ArchDam .
+:Reservoir a owl:Class .
+:River a owl:Class .
+:GeographicRegion a owl:Class .
+:Country a owl:Class ;
+    rdfs:subClassOf :GeographicRegion .
+:State a owl:Class ;
+    rdfs:subClassOf :GeographicRegion .
+:Organization a owl:Class .
+:GovernmentOrganization a owl:Class ;
+    rdfs:subClassOf :Organization .
+:Tribe a owl:Class ;
+    rdfs:subClassOf :Organization .
+:NativeAmericanTribe a owl:Class ;
+    rdfs:subClassOf :Tribe .
+:Project a owl:Class .
+:Negotiation a owl:Class .
+:Land a owl:Class .
+:Facility a owl:Class .
+:SharedFacility a owl:Class ;
+    rdfs:subClassOf :Facility .
+:Purpose a owl:Class .
+:RegulationPurpose a owl:Class ;
+    rdfs:subClassOf :Purpose .
+:IrrigationPurpose a owl:Class ;
+    rdfs:subClassOf :Purpose .
+:HydroelectricPowerGenerationPurpose a owl:Class ;
+    rdfs:subClassOf :Purpose .
+:RecreationPurpose a owl:Class ;
+    rdfs:subClassOf :Purpose .
+:ConstructionEvent a owl:Class .
+:AuthorizationEvent a owl:Class .
+:GroundbreakingEvent a owl:Class .
+:CompletionEvent a owl:Class .
+:TimeInterval a owl:Class .
+:Year a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+:Decade a owl:Class ;
+    rdfs:subClassOf :TimeInterval .
+:EcologicalDamage a owl:Class .
+:Controversy a owl:Class .
+:WaterAllocationControversy a owl:Class ;
+    rdfs:subClassOf :Controversy .
+:EcologicalImpact a owl:Class .
+:WaterAllocation a owl:Class .
+
+:locatedOnRiver a owl:ObjectProperty .
+:locatedInGeographicRegion a owl:ObjectProperty .
+:locatedInCountry a owl:ObjectProperty .
+:typeOfDam a owl:ObjectProperty .
+:servesPurpose a owl:ObjectProperty .
+:ownedBy a owl:ObjectProperty .
+:associatedReservoir a owl:ObjectProperty .
+:extendsInto a owl:ObjectProperty .
+:participantIn a owl:ObjectProperty .
+:involvesParty a owl:ObjectProperty .
+:livedOn a owl:ObjectProperty .
+:builtOnLandOf a owl:ObjectProperty .
+:originallyEnvisionedAs a owl:ObjectProperty .
+:benefitsParty a owl:ObjectProperty .
+:soldTo a owl:ObjectProperty .
+:authorizedIn a owl:ObjectProperty .
+:beganIn a owl:ObjectProperty .
+:completedIn a owl:ObjectProperty .
+:hadConstructionDuration a owl:ObjectProperty .
+:regulatesFlowOf a owl:ObjectProperty .
+:transformedInto a owl:ObjectProperty .
+:hasControversy a owl:ObjectProperty .
+:hasEcologicalDamage a owl:ObjectProperty .
+:hasEcologicalImpact a owl:ObjectProperty .
+:aboveAndBelow a owl:ObjectProperty .
+:sharesFacilityWith a owl:ObjectProperty .
+:allocationOf a owl:ObjectProperty .
+
+:YellowtailDam a :ConcreteArchDam , owl:NamedIndividual ;
+    rdfs:label "Yellowtail Dam"^^xsd:string ;
+    :locatedOnRiver :BighornRiver ;
+    :locatedInGeographicRegion :SouthCentralMontana ;
+    :locatedInCountry :UnitedStates ;
+    :servesPurpose :IrrigationPurpose , :HydroelectricPowerGenerationPurpose , :RecreationPurpose , :RegulationPurpose ;
+    :ownedBy :USBureauOfReclamation ;
+    :associatedReservoir :BighornLake ;
+    :authorizedIn :Year1944 ;
+    :beganIn :Year1961 ;
+    :completedIn :Year1967 ;
+    :hadConstructionDuration :SixYears ;
+    :regulatesFlowOf :BighornRiver ;
+    :transformedInto :PremierTroutStream ;
+    :hasControversy :WaterAllocationControversy1 ;
+    :hasEcologicalDamage :EcologicalDamage1 .
+
+:BighornRiver a :River , owl:NamedIndividual ;
+    rdfs:label "Bighorn River"^^xsd:string .
+
+:SouthCentralMontana a :GeographicRegion , owl:NamedIndividual ;
+    rdfs:label "south central Montana"^^xsd:string .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "the United States"^^xsd:string .
+
+:Mid1960sEra a :Decade , owl:NamedIndividual ;
+    rdfs:label "mid-1960s"^^xsd:string .
+
+:BighornLake a :Reservoir , owl:NamedIndividual ;
+    rdfs:label "Bighorn Lake"^^xsd:string ;
+    :ownedBy :USBureauOfReclamation ;
+    :extendsInto :Wyoming ;
+    :locatedInGeographicRegion :CrowIndianReservation .
+
+:USBureauOfReclamation a :GovernmentOrganization , owl:NamedIndividual ;
+    rdfs:label "U.S. Bureau of Reclamation"^^xsd:string .
+
+:FederalGovernment a :GovernmentOrganization , owl:NamedIndividual ;
+    rdfs:label "the federal government"^^xsd:string .
+
+:CrowNation a :NativeAmericanTribe , owl:NamedIndividual ;
+    rdfs:label "the Crow Nation"^^xsd:string ;
+    :livedOn :CrowIndianReservation .
+
+:CrowIndianReservation a :GeographicRegion , owl:NamedIndividual ;
+    rdfs:label "the surrounding Crow Indian Reservation"^^xsd:string .
+
+:Wyoming a :State , owl:NamedIndividual ;
+    rdfs:label "Wyoming"^^xsd:string .
+
+:Project1 a :Project , owl:NamedIndividual ;
+    rdfs:label "the project"^^xsd:string ;
+    :participantIn :Negotiation1 ;
+    :originallyEnvisionedAs :SharedFacility1 .
+
+:Negotiation1 a :Negotiation , owl:NamedIndividual ;
+    rdfs:label "negotiations"^^xsd:string ;
+    :involvesParty :FederalGovernment , :CrowNation .
+
+:SharedFacility1 a :SharedFacility , owl:NamedIndividual ;
+    rdfs:label "a shared facility"^^xsd:string ;
+    :benefitsParty :FederalGovernment , :CrowNation .
+
+:Year1944 a :Year , owl:NamedIndividual ;
+    rdfs:label "1944"^^xsd:string .
+:Year1961 a :Year , owl:NamedIndividual ;
+    rdfs:label "1961"^^xsd:string .
+:Year1967 a :Year , owl:NamedIndividual ;
+    rdfs:label "1967"^^xsd:string .
+:SixYears a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "six years"^^xsd:string .
+
+:Reclamation a :Organization , owl:NamedIndividual ;
+    rdfs:label "Reclamation"^^xsd:string ;
+    :soldTo :USBureauOfReclamation .
+
+:PremierTroutStream a :River , owl:NamedIndividual ;
+    rdfs:label "one of Montana's premier trout streams"^^xsd:string ;
+    :locatedInGeographicRegion :Montana .
+
+:Montana a :State , owl:NamedIndividual ;
+    rdfs:label "Montana"^^xsd:string .
+
+:WaterAllocationControversy1 a :WaterAllocationControversy , owl:NamedIndividual ;
+    rdfs:label "the allocation of water in the reservoir between Montana and Wyoming"^^xsd:string ;
+    :allocationOf :BighornLake .
+
+:EcologicalDamage1 a :EcologicalDamage , owl:NamedIndividual ;
+    rdfs:label "the ecological damage wrought on of river both above and below the dam"^^xsd:string .
+
+:authorize a owl:ObjectProperty .
+:groundbreakingAt a owl:ObjectProperty .
+:completedAfter a owl:ObjectProperty .

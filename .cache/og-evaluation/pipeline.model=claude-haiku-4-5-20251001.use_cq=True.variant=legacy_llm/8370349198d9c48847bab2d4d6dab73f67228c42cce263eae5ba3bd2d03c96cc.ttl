@@ -1,0 +1,209 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:Person a owl:Class .
+
+:Musician a owl:Class ;
+    rdfs:subClassOf :Person .
+
+:SingerSongwriter a owl:Class ;
+    rdfs:subClassOf :Musician .
+
+:StageName a owl:Class .
+
+:Place a owl:Class .
+
+:Country a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:Region a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:City a owl:Class ;
+    rdfs:subClassOf :Place .
+
+:MusicBand a owl:Class .
+
+:IndieBand a owl:Class ;
+    rdfs:subClassOf :MusicBand .
+
+:Album a owl:Class .
+
+:FullLengthAlbum a owl:Class ;
+    rdfs:subClassOf :Album .
+
+:EP a owl:Class ;
+    rdfs:subClassOf :Album .
+
+:RecordingLocation a owl:Class .
+
+:RecordingMethod a owl:Class .
+
+:Characteristic a owl:Class .
+
+:Film a owl:Class .
+
+:DramaFilm a owl:Class ;
+    rdfs:subClassOf :Film .
+
+:Date a owl:Class .
+
+:BirthDate a owl:Class ;
+    rdfs:subClassOf :Date .
+
+:Year a owl:Class .
+
+:Nationality a owl:Class .
+
+:Genre a owl:Class .
+
+# Object Properties
+:hasStageName a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :StageName .
+
+:bornIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Place .
+
+:grewUpIn a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Place .
+
+:hasNationality a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Nationality .
+
+:beganSoloCareerInYear a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :Year .
+
+:wasLeadSingerOf a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :MusicBand .
+
+:musicComparedTo a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :Musician .
+
+:hasReleasedAlbum a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :Album .
+
+:recordsAt a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :RecordingLocation .
+
+:usesRecordingMethod a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :RecordingMethod .
+
+:knownFor a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :Characteristic .
+
+:previouslyMarriedTo a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    a owl:SymmetricProperty .
+
+:wroteMusic a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :Film .
+
+:performsGenre a owl:ObjectProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range :Genre .
+
+# Data Properties
+:birthDate a owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:dateTime .
+
+:hasNumberOfFullLengthAlbums a owl:DatatypeProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range xsd:integer .
+
+:hasNumberOfEPs a owl:DatatypeProperty ;
+    rdfs:domain :Musician ;
+    rdfs:range xsd:integer .
+
+# Individuals - People
+:KristianMatsson a :SingerSongwriter , owl:NamedIndividual ;
+    rdfs:label "Kristian Matsson"^^xsd:string ;
+    :hasStageName :TheTallestManOnEarth ;
+    :bornIn :Dalarna ;
+    :birthDate "1983-04-30"^^xsd:dateTime ;
+    :grewUpIn :Leksand ;
+    :beganSoloCareerInYear :Year2006 ;
+    :wasLeadSingerOf :Montezumas ;
+    :musicComparedTo :BobDylan ;
+    :hasNumberOfFullLengthAlbums 4 ;
+    :hasNumberOfEPs 2 ;
+    :recordsAt :MatssonsHome ;
+    :usesRecordingMethod :VoiceAndGuitarTogether ;
+    :knownFor :CharismaticStagePresence ;
+    :previouslyMarriedTo :AmandaBergman ;
+    :wroteMusic :OnceAYear ;
+    :hasNationality :Swedish ;
+    :performsGenre :Folk .
+
+:BobDylan a :Musician , owl:NamedIndividual ;
+    rdfs:label "Bob Dylan"^^xsd:string .
+
+:AmandaBergman a :SingerSongwriter , owl:NamedIndividual ;
+    rdfs:label "Amanda Bergman"^^xsd:string ;
+    :hasStageName :IdiotWind ;
+    :wroteMusic :OnceAYear .
+
+# Individuals - Stage Names
+:TheTallestManOnEarth a :StageName , owl:NamedIndividual ;
+    rdfs:label "The Tallest Man on Earth"^^xsd:string .
+
+:IdiotWind a :StageName , owl:NamedIndividual ;
+    rdfs:label "Idiot Wind"^^xsd:string .
+
+# Individuals - Places
+:Dalarna a :Region , owl:NamedIndividual ;
+    rdfs:label "Dalarna"^^xsd:string .
+
+:Sweden a :Country , owl:NamedIndividual ;
+    rdfs:label "Sweden"^^xsd:string .
+
+:Leksand a :City , owl:NamedIndividual ;
+    rdfs:label "Leksand"^^xsd:string .
+
+:MatssonsHome a :RecordingLocation , owl:NamedIndividual ;
+    rdfs:label "his home"^^xsd:string .
+
+# Individuals - Bands
+:Montezumas a :IndieBand , owl:NamedIndividual ;
+    rdfs:label "Montezumas"^^xsd:string .
+
+# Individuals - Films
+:OnceAYear a :DramaFilm , owl:NamedIndividual ;
+    rdfs:label "Once a Year"^^xsd:string .
+
+# Individuals - Years
+:Year2006 a :Year , owl:NamedIndividual ;
+    rdfs:label "2006"^^xsd:string .
+
+# Individuals - Recording Methods
+:VoiceAndGuitarTogether a :RecordingMethod , owl:NamedIndividual ;
+    rdfs:label "records voice and guitar together on one track"^^xsd:string .
+
+# Individuals - Characteristics
+:CharismaticStagePresence a :Characteristic , owl:NamedIndividual ;
+    rdfs:label "charismatic stage presence"^^xsd:string .
+
+# Individuals - Nationality
+:Swedish a :Nationality , owl:NamedIndividual ;
+    rdfs:label "Swedish"^^xsd:string .
+
+# Individuals - Genre
+:Folk a :Genre , owl:NamedIndividual ;
+    rdfs:label "folk"^^xsd:string .

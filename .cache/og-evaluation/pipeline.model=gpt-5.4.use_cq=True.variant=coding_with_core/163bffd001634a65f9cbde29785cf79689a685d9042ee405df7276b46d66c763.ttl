@@ -1,0 +1,804 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:AbsenceOfUnitedStatesFromLeagueOfNations a owl:NamedIndividual,
+        ns1:OrganizationalAbsence ;
+    rdfs:label "absence of the United States from the League of Nations"^^xsd:string ;
+    ns1:contributedToIneffectivenessOf ns1:LeagueOfNations ;
+    ns1:performedBy ns1:UnitedStates ;
+    ns1:towardOrganization ns1:LeagueOfNations .
+
+ns1:Accomplishment a owl:Class ;
+    rdfs:label "Accomplishment"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty ns1:temporallyLocatedAt ;
+                    owl:someValuesFrom ns1:Atom ] ],
+        ns1:Event ;
+    owl:disjointWith ns1:Achievement .
+
+ns1:AmountOfMatter a owl:Class ;
+    rdfs:label "Amount of Matter"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointWith ns1:Feature,
+        ns1:PhysicalObject .
+
+ns1:MentalObject a owl:Class ;
+    rdfs:label "Mental Object"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:specificallyDependsOn ;
+            owl:someValuesFrom ns1:AgentivePhysicalObject ],
+        ns1:NonPhysicalObject ;
+    owl:disjointWith ns1:SocialObject .
+
+ns1:Process a owl:Class ;
+    rdfs:label "Process"^^xsd:string ;
+    rdfs:subClassOf ns1:Stative ;
+    owl:disjointWith ns1:State .
+
+ns1:SelectionOfSecretaryGeneral a owl:NamedIndividual,
+        ns1:SecretaryGeneralSelection ;
+    rdfs:label "selection of a Secretary - General"^^xsd:string ;
+    ns1:canBeBlockedBy ns1:China,
+        ns1:France,
+        ns1:Russia,
+        ns1:UnitedKingdom,
+        ns1:UnitedStates ;
+    ns1:carriedOutBy ns1:VoteTakenBehindClosedDoors ;
+    ns1:doesNotRequire ns1:FormalVetoInstance ;
+    ns1:selectsOffice ns1:SecretaryGeneralOfficeInstance .
+
+ns1:SocialAgent a owl:Class ;
+    rdfs:label "Social Agent"^^xsd:string ;
+    rdfs:subClassOf ns1:AgentiveSocialObject ;
+    owl:disjointWith ns1:Society .
+
+ns1:UnitedStatesRefusedToJoinTheUnitedNationsIn1945 a owl:NamedIndividual,
+        ns1:JoinRefusal ;
+    rdfs:label "United States refused to join the United Nations in 1945"^^xsd:string ;
+    ns1:motivatedBy ns1:UnitedNationsSecurityCouncilVetoPower ;
+    ns1:performedBy ns1:UnitedStates ;
+    ns1:temporallyLocatedAt ns1:Year1945 ;
+    ns1:towardOrganization ns1:UnitedNations .
+
+ns1:atomicPartOf a owl:ObjectProperty ;
+    rdfs:label "atomic part of"^^xsd:string ;
+    rdfs:domain ns1:Atom ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:criticizedAs a owl:ObjectProperty ;
+    rdfs:domain ns1:VetoPower ;
+    rdfs:range ns1:PoliticalAssessment .
+
+ns1:criticizedForCausingInactionOn a owl:ObjectProperty ;
+    rdfs:domain ns1:VetoPower ;
+    rdfs:range ns1:CrimeCategory .
+
+ns1:hasInstitutionalPower a owl:ObjectProperty ;
+    rdfs:domain ns1:SecurityCouncil ;
+    rdfs:range ns1:InstitutionalPower .
+
+ns1:seenAsCheckingAgainst a owl:ObjectProperty ;
+    rdfs:domain ns1:VetoPower ;
+    rdfs:range ns1:PoliticalOutcome .
+
+ns1:seenAsPromoting a owl:ObjectProperty ;
+    rdfs:domain ns1:VetoPower ;
+    rdfs:range ns1:PoliticalOutcome .
+
+ns1:seenAsSafeguardingAgainst a owl:ObjectProperty ;
+    rdfs:domain ns1:VetoPower ;
+    rdfs:range ns1:PoliticalOutcome .
+
+ns1:temporalPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "temporal part of"^^xsd:string ;
+    rdfs:domain ns1:Perdurant ;
+    rdfs:range ns1:Perdurant ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:Achievement a owl:Class ;
+    rdfs:label "Achievement"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:Atom ],
+        ns1:Event .
+
+ns1:ArbitrarySum a owl:Class ;
+    rdfs:label "Arbitrary Sum"^^xsd:string ;
+    rdfs:subClassOf ns1:Endurant .
+
+ns1:CalendarYear a owl:Class ;
+    rdfs:subClassOf ns1:TimeInterval .
+
+ns1:China a owl:NamedIndividual,
+        ns1:PermanentMemberState ;
+    rdfs:label "China"^^xsd:string ;
+    ns1:holdsPower ns1:UnitedNationsSecurityCouncilVetoPower ;
+    ns1:permanentMemberOf ns1:UnitedNationsSecurityCouncil .
+
+ns1:ConstantAtom a owl:Class ;
+    rdfs:label "Constant Atom"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty [ owl:inverseOf ns1:constantProperPartOf ] ;
+                    owl:someValuesFrom ns1:Particular ] ],
+        ns1:Endurant .
+
+ns1:CrimesAgainstHumanity a owl:NamedIndividual,
+        ns1:CrimeCategory ;
+    rdfs:label "crimes against humanity"^^xsd:string .
+
+ns1:Feature a owl:Class ;
+    rdfs:label "Feature"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointWith ns1:PhysicalObject .
+
+ns1:FormalVetoInstance a owl:NamedIndividual,
+        ns1:FormalVeto ;
+    rdfs:label "formal veto"^^xsd:string .
+
+ns1:France a owl:NamedIndividual,
+        ns1:PermanentMemberState ;
+    rdfs:label "France"^^xsd:string ;
+    ns1:holdsPower ns1:UnitedNationsSecurityCouncilVetoPower ;
+    ns1:permanentMemberOf ns1:UnitedNationsSecurityCouncil .
+
+ns1:InternationalStability a owl:NamedIndividual,
+        ns1:PoliticalOutcome ;
+    rdfs:label "international stability"^^xsd:string .
+
+ns1:MilitaryInterventions a owl:NamedIndividual,
+        ns1:PoliticalOutcome ;
+    rdfs:label "military interventions"^^xsd:string .
+
+ns1:MostUndemocraticCharacterOfUN a owl:NamedIndividual,
+        ns1:PoliticalAssessment ;
+    rdfs:label "the most undemocratic character of the UN"^^xsd:string .
+
+ns1:NonAgentivePhysicalObject a owl:Class ;
+    rdfs:label "Non-Agentive Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalObject .
+
+ns1:Office a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:PermanentMemberAbsence a owl:Class ;
+    rdfs:subClassOf ns1:CouncilMemberStatus .
+
+ns1:PermanentMemberAbstention a owl:Class ;
+    rdfs:subClassOf ns1:CouncilMemberStatus .
+
+ns1:Russia a owl:NamedIndividual,
+        ns1:PermanentMemberState ;
+    rdfs:label "Russia"^^xsd:string ;
+    ns1:holdsPower ns1:UnitedNationsSecurityCouncilVetoPower ;
+    ns1:permanentMemberOf ns1:UnitedNationsSecurityCouncil .
+
+ns1:SecretaryGeneralOfficeInstance a owl:NamedIndividual,
+        ns1:SecretaryGeneralOffice ;
+    rdfs:label "Secretary - General"^^xsd:string .
+
+ns1:SelectionProcess a owl:Class ;
+    rdfs:subClassOf ns1:Event .
+
+ns1:TemporalLocation a owl:Class ;
+    rdfs:label "Temporal Location"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:qualeOf ] ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:TemporalQuality .
+
+ns1:USDomination a owl:NamedIndividual,
+        ns1:PoliticalOutcome ;
+    rdfs:label "U.S. domination"^^xsd:string .
+
+ns1:UnitedKingdom a owl:NamedIndividual,
+        ns1:PermanentMemberState ;
+    rdfs:label "United Kingdom"^^xsd:string ;
+    ns1:holdsPower ns1:UnitedNationsSecurityCouncilVetoPower ;
+    ns1:permanentMemberOf ns1:UnitedNationsSecurityCouncil .
+
+ns1:VoteTakenBehindClosedDoors a owl:NamedIndividual,
+        ns1:BehindClosedDoorsVote ;
+    rdfs:label "the vote is taken behind closed doors"^^xsd:string .
+
+ns1:WarCrimes a owl:NamedIndividual,
+        ns1:CrimeCategory ;
+    rdfs:label "war crimes"^^xsd:string .
+
+ns1:Year1945 a owl:NamedIndividual,
+        ns1:CalendarYear ;
+    rdfs:label "1945"^^xsd:string .
+
+ns1:appliesTo a owl:ObjectProperty ;
+    rdfs:domain ns1:VetoPower ;
+    rdfs:range ns1:Resolution .
+
+ns1:canBeBlockedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:SecretaryGeneralSelection ;
+    rdfs:range ns1:PermanentMemberState .
+
+ns1:canBeVetoedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:SubstantiveResolution ;
+    rdfs:range ns1:PermanentMemberState .
+
+ns1:carriedOutBy a owl:ObjectProperty ;
+    rdfs:domain ns1:SecretaryGeneralSelection ;
+    rdfs:range ns1:BehindClosedDoorsVote .
+
+ns1:classificationDeterminedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:ProceduralVote ;
+    rdfs:range ns1:PermanentMemberState .
+
+ns1:constantAtomicPartOf a owl:ObjectProperty ;
+    rdfs:label "constant atomic part of"^^xsd:string ;
+    rdfs:domain ns1:ConstantAtom ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantPartOf .
+
+ns1:constantParticipantOf a owl:ObjectProperty ;
+    rdfs:label "constant participation of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Perdurant ;
+    rdfs:subPropertyOf [ owl:inverseOf ns1:specificallyDependsOn ] .
+
+ns1:contributedToIneffectivenessOf a owl:ObjectProperty ;
+    rdfs:domain ns1:OrganizationalAbsence ;
+    rdfs:range ns1:InternationalOrganization .
+
+ns1:doesNotApplyTo a owl:ObjectProperty ;
+    rdfs:domain ns1:VetoPower ;
+    rdfs:range ns1:Vote .
+
+ns1:doesNotRequire a owl:ObjectProperty ;
+    rdfs:domain ns1:SecretaryGeneralSelection ;
+    rdfs:range ns1:FormalVeto .
+
+ns1:holdsPower a owl:ObjectProperty ;
+    rdfs:domain ns1:PermanentMemberState ;
+    rdfs:range ns1:InstitutionalPower .
+
+ns1:motivatedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:JoinRefusal ;
+    rdfs:range ns1:InstitutionalPower .
+
+ns1:permanentMemberOf a owl:ObjectProperty ;
+    rdfs:domain ns1:PermanentMemberState ;
+    rdfs:range ns1:SecurityCouncil .
+
+ns1:properPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "proper part of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:partOf .
+
+ns1:selectsOffice a owl:ObjectProperty ;
+    rdfs:domain ns1:SecretaryGeneralSelection ;
+    rdfs:range ns1:SecretaryGeneralOffice .
+
+ns1:AgentivePhysicalObject a owl:Class ;
+    rdfs:label "Agentive Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalObject .
+
+ns1:DraftResolution a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:canBeAdoptedDespite ;
+            owl:someValuesFrom ns1:PermanentMemberAbstention ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:canBeAdoptedDespite ;
+            owl:someValuesFrom ns1:PermanentMemberAbsence ],
+        ns1:Resolution .
+
+ns1:LeagueOfNations a owl:NamedIndividual,
+        ns1:InternationalOrganization ;
+    rdfs:label "League of Nations"^^xsd:string .
+
+ns1:NonPhysicalObject a owl:Class ;
+    rdfs:label "Non-Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalEndurant .
+
+ns1:PoliticalAssessment a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:ProceduralVote a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:classificationDeterminedBy ;
+            owl:someValuesFrom ns1:PermanentMemberState ],
+        ns1:Vote .
+
+ns1:Resolution a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:SpaceRegion a owl:Class ;
+    rdfs:label "Space Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpatialLocation ;
+            owl:onProperty ns1:constantQualeOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpaceRegion ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:SpaceRegion ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:PhysicalRegion .
+
+ns1:SpatialLocation a owl:Class ;
+    rdfs:label "Spatial Location"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalQuality .
+
+ns1:SubstantiveResolution a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:canBeVetoedBy ;
+            owl:someValuesFrom ns1:PermanentMemberState ],
+        ns1:DraftResolution .
+
+ns1:UnconditionalVetoPower a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:appliesTo ;
+            owl:someValuesFrom ns1:SubstantiveResolution ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:doesNotApplyTo ;
+            owl:someValuesFrom ns1:ProceduralVote ],
+        ns1:VetoPower .
+
+ns1:UnitedNations a owl:NamedIndividual,
+        ns1:InternationalOrganization ;
+    rdfs:label "United Nations"^^xsd:string .
+
+ns1:canBeAdoptedDespite a owl:ObjectProperty ;
+    rdfs:domain ns1:DraftResolution ;
+    rdfs:range ns1:CouncilMemberStatus .
+
+ns1:constantProperPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant proper part of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantPartOf .
+
+ns1:constantlyOverlaps a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "constantly overlaps"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    owl:propertyChainAxiom ( [ owl:inverseOf ns1:constantPartOf ] ns1:constantPartOf ) .
+
+ns1:performedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:JoinRefusal,
+        ns1:OrganizationalAbsence ;
+    rdfs:range ns1:Country .
+
+ns1:qualeOf a owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "quale of"^^xsd:string ;
+    rdfs:domain ns1:TemporalRegion ;
+    rdfs:range ns1:TemporalQuality .
+
+ns1:towardOrganization a owl:ObjectProperty ;
+    rdfs:domain ns1:JoinRefusal,
+        ns1:OrganizationalAbsence ;
+    rdfs:range ns1:InternationalOrganization .
+
+ns1:AgentiveSocialObject a owl:Class ;
+    rdfs:label "Agentive Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:Atom a owl:Class ;
+    rdfs:label "Atom"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ],
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty [ owl:inverseOf ns1:properPartOf ] ;
+                    owl:someValuesFrom ns1:Particular ] ],
+        ns1:Particular .
+
+ns1:BehindClosedDoorsVote a owl:Class ;
+    rdfs:subClassOf ns1:Vote .
+
+ns1:CouncilMemberStatus a owl:Class ;
+    rdfs:subClassOf ns1:State .
+
+ns1:CrimeCategory a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:FormalVeto a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:Region a owl:Class ;
+    rdfs:label "Region"^^xsd:string ;
+    rdfs:subClassOf ns1:Abstract ;
+    owl:disjointUnionOf ( ns1:AbstractRegion ns1:PhysicalRegion ns1:TemporalRegion ) .
+
+ns1:SecretaryGeneralOffice a owl:Class ;
+    rdfs:subClassOf ns1:Office .
+
+ns1:SocialObject a owl:Class ;
+    rdfs:label "Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:NonPhysicalObject ;
+    owl:disjointUnionOf ( ns1:AgentiveSocialObject ns1:NonAgentiveSocialObject ) .
+
+ns1:Society a owl:Class ;
+    rdfs:label "Society"^^xsd:string ;
+    rdfs:subClassOf ns1:AgentiveSocialObject .
+
+ns1:Stative a owl:Class ;
+    rdfs:label "Stative"^^xsd:string ;
+    rdfs:subClassOf ns1:Perdurant .
+
+ns1:TemporalRegion a owl:Class ;
+    rdfs:label "Temporal Region"^^xsd:string ;
+    rdfs:subClassOf ns1:Region .
+
+ns1:UnitedStates a owl:NamedIndividual,
+        ns1:PermanentMemberState ;
+    rdfs:label "U.S."^^xsd:string,
+        "United States"^^xsd:string ;
+    ns1:holdsPower ns1:UnitedNationsSecurityCouncilVetoPower ;
+    ns1:permanentMemberOf ns1:UnitedNationsSecurityCouncil .
+
+ns1:Vote a owl:Class ;
+    rdfs:subClassOf ns1:Event .
+
+ns1:overlaps a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "overlaps"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    owl:propertyChainAxiom ( [ owl:inverseOf ns1:partOf ] ns1:partOf ),
+        ( [ owl:inverseOf ns1:presentAt ] ns1:temporallyLocatedAt ) .
+
+ns1:AbstractQuality a owl:Class ;
+    rdfs:label "Abstract Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty [ owl:inverseOf ns1:constantQualeOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Society .
+
+ns1:JoinRefusal a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:performedBy ;
+            owl:someValuesFrom ns1:Country ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:towardOrganization ;
+            owl:someValuesFrom ns1:InternationalOrganization ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:motivatedBy ;
+            owl:someValuesFrom ns1:InstitutionalPower ],
+        ns1:Event .
+
+ns1:OrganizationalAbsence a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:performedBy ;
+            owl:someValuesFrom ns1:Country ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:towardOrganization ;
+            owl:someValuesFrom ns1:InternationalOrganization ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:contributedToIneffectivenessOf ;
+            owl:someValuesFrom ns1:InternationalOrganization ],
+        ns1:State .
+
+ns1:PhysicalObject a owl:Class ;
+    rdfs:label "Physical Object"^^xsd:string ;
+    rdfs:subClassOf ns1:PhysicalEndurant ;
+    owl:disjointUnionOf ( ns1:AgentivePhysicalObject ns1:NonAgentivePhysicalObject ) .
+
+ns1:PhysicalRegion a owl:Class ;
+    rdfs:label "Physical Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalQuality ;
+            owl:onProperty ns1:constantQualeOf ],
+        ns1:Region .
+
+ns1:SecurityCouncil a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:partOf ;
+            owl:someValuesFrom ns1:InternationalOrganization ],
+        ns1:InternationalOrganization .
+
+ns1:State a owl:Class ;
+    rdfs:label "State"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:State ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Stative .
+
+ns1:TemporalQuality a owl:Class ;
+    rdfs:label "Temporal Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:qualeOf ] ;
+            owl:someValuesFrom ns1:Particular ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:AbstractRegion a owl:Class ;
+    rdfs:label "Abstract Region"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractQuality ;
+            owl:onProperty ns1:constantQualeOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractRegion ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Region .
+
+ns1:Event a owl:Class ;
+    rdfs:label "Event"^^xsd:string ;
+    rdfs:subClassOf ns1:Perdurant ;
+    owl:disjointWith ns1:Stative .
+
+ns1:InstitutionalPower a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:PhysicalQuality a owl:Class ;
+    rdfs:label "Physical Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalRegion ;
+            owl:onProperty [ owl:inverseOf ns1:constantQualeOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty ns1:directQualityOf ],
+        ns1:Quality .
+
+ns1:SecretaryGeneralSelection a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:selectsOffice ;
+            owl:someValuesFrom ns1:SecretaryGeneralOffice ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:canBeBlockedBy ;
+            owl:someValuesFrom ns1:PermanentMemberState ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:carriedOutBy ;
+            owl:someValuesFrom ns1:BehindClosedDoorsVote ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:doesNotRequire ;
+            owl:someValuesFrom ns1:FormalVeto ],
+        ns1:SelectionProcess .
+
+ns1:UnitedNationsSecurityCouncil a owl:NamedIndividual,
+        ns1:SecurityCouncil ;
+    rdfs:label "UN Security Council"^^xsd:string,
+        "United Nations Security Council"^^xsd:string ;
+    ns1:hasInstitutionalPower ns1:UnitedNationsSecurityCouncilVetoPower ;
+    ns1:partOf ns1:UnitedNations .
+
+ns1:constantQualeOf a owl:ObjectProperty ;
+    rdfs:label "constant quale of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:AbstractRegion ns1:PhysicalRegion ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:AbstractQuality ns1:PhysicalQuality ) ] .
+
+ns1:specificallyDependsOn a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "specifically depends on"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] .
+
+ns1:PoliticalOutcome a owl:Class ;
+    rdfs:subClassOf ns1:NonAgentiveSocialObject .
+
+ns1:temporallyLocatedAt a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "temporally located at"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range ns1:TimeInterval ;
+    rdfs:subPropertyOf ns1:presentAt .
+
+ns1:UnitedNationsSecurityCouncilVetoPower a owl:NamedIndividual,
+        ns1:UnconditionalVetoPower ;
+    rdfs:label "United Nations Security Council \" veto power \""^^xsd:string ;
+    ns1:criticizedAs ns1:MostUndemocraticCharacterOfUN ;
+    ns1:criticizedForCausingInactionOn ns1:CrimesAgainstHumanity,
+        ns1:WarCrimes ;
+    ns1:seenAsCheckingAgainst ns1:MilitaryInterventions ;
+    ns1:seenAsPromoting ns1:InternationalStability ;
+    ns1:seenAsSafeguardingAgainst ns1:USDomination .
+
+ns1:constantConstituentOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant constituent of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:NonPhysicalEndurant ns1:Perdurant ns1:PhysicalEndurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:NonPhysicalEndurant ns1:Perdurant ns1:PhysicalEndurant ) ] ;
+    rdfs:subPropertyOf [ owl:inverseOf ns1:specificallyDependsOn ] .
+
+ns1:constantPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "constant part of"^^xsd:string ;
+    rdfs:domain ns1:Endurant ;
+    rdfs:range ns1:Endurant ;
+    rdfs:subPropertyOf ns1:constantlyOverlaps .
+
+ns1:NonAgentiveSocialObject a owl:Class ;
+    rdfs:label "Non-Agentive Social Object"^^xsd:string ;
+    rdfs:subClassOf ns1:SocialObject .
+
+ns1:NonPhysicalEndurant a owl:Class ;
+    rdfs:label "Non-Physical Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:AbstractQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty ns1:constantlyOverlaps ;
+                    owl:someValuesFrom ns1:PhysicalEndurant ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantPartOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:NonPhysicalEndurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        ns1:Endurant .
+
+ns1:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:TimeInterval ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:TemporalRegion .
+
+ns1:VetoPower a owl:Class ;
+    rdfs:subClassOf ns1:InstitutionalPower .
+
+ns1:InternationalOrganization a owl:Class ;
+    rdfs:subClassOf ns1:Society .
+
+ns1:Particular a owl:Class ;
+    rdfs:label "Particular"^^xsd:string ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ns1:Abstract ns1:Endurant ns1:Perdurant ns1:Quality ) .
+
+ns1:Quality a owl:Class ;
+    rdfs:label "Quality"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:directQualityOf ;
+            owl:someValuesFrom ns1:Particular ],
+        ns1:Particular ;
+    owl:disjointUnionOf ( ns1:AbstractQuality ns1:PhysicalQuality ns1:TemporalQuality ) .
+
+ns1:PhysicalEndurant a owl:Class ;
+    rdfs:label "Physical Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ;
+            owl:someValuesFrom ns1:SpatialLocation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:PhysicalEndurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantPartOf ] ],
+        ns1:Endurant .
+
+ns1:directQualityOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "direct quality of"^^xsd:string ;
+    rdfs:domain ns1:Quality ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:specificallyDependsOn .
+
+ns1:presentAt a owl:ObjectProperty ;
+    rdfs:label "present at"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Endurant ns1:Perdurant ns1:Quality ) ] ;
+    rdfs:range ns1:TimeInterval ;
+    owl:propertyChainAxiom ( ns1:constantAtomicPartOf ns1:presentAt ),
+        ( ns1:constantConstituentOf ns1:presentAt ),
+        ( ns1:constantPartOf ns1:presentAt ),
+        ( ns1:constantParticipantOf ns1:presentAt ),
+        ( ns1:constantProperPartOf ns1:presentAt ),
+        ( ns1:directQualityOf ns1:presentAt ),
+        ( ns1:presentAt [ owl:inverseOf ns1:partOf ] ),
+        ( [ owl:inverseOf ns1:directQualityOf ] ns1:presentAt ),
+        ( [ owl:inverseOf ns1:partOf ] ns1:presentAt ),
+        ( [ owl:inverseOf ns1:specificallyDependsOn ] ns1:presentAt ) .
+
+ns1:Abstract a owl:Class ;
+    rdfs:label "Abstract"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty ns1:overlaps ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Abstract ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        ns1:Particular .
+
+ns1:PermanentMemberState a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:permanentMemberOf ;
+            owl:someValuesFrom ns1:SecurityCouncil ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:holdsPower ;
+            owl:someValuesFrom ns1:UnconditionalVetoPower ],
+        ns1:Country .
+
+ns1:Endurant a owl:Class ;
+    rdfs:label "Endurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:Particular ;
+    owl:disjointUnionOf ( ns1:ArbitrarySum ns1:NonPhysicalEndurant ns1:PhysicalEndurant ) .
+
+ns1:partOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "part of"^^xsd:string ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ns1:Abstract ns1:Perdurant ) ] ;
+    rdfs:subPropertyOf ns1:overlaps .
+
+ns1:Perdurant a owl:Class ;
+    rdfs:label "Perdurant"^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:overlaps ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:partOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty [ owl:inverseOf ns1:partOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty ns1:constantConstituentOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:Perdurant ;
+            owl:onProperty [ owl:inverseOf ns1:constantConstituentOf ] ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom ns1:TemporalQuality ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ],
+        [ a owl:Restriction ;
+            owl:onProperty [ owl:inverseOf ns1:directQualityOf ] ;
+            owl:someValuesFrom ns1:TemporalLocation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:temporallyLocatedAt ;
+            owl:someValuesFrom ns1:TimeInterval ],
+        ns1:Particular .

@@ -1,0 +1,180 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+:Organization a owl:Class .
+:NaturistOrganization a owl:Class ;
+    rdfs:subClassOf :Organization .
+:NudistResort a owl:Class .
+:NudistClub a owl:Class .
+:Business a owl:Class .
+:AffiliatedEntity a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+:Member a owl:Class .
+:Country a owl:Class .
+:GeographicRegion a owl:Class .
+:Setting a owl:Class .
+:NudeBeach a owl:Class ;
+    rdfs:subClassOf :Setting .
+:PublicLand a owl:Class ;
+    rdfs:subClassOf :Setting .
+:Home a owl:Class ;
+    rdfs:subClassOf :Setting .
+:PrivateBackyard a owl:Class ;
+    rdfs:subClassOf :Setting .
+:Campground a owl:Class .
+:Benefit a owl:Class .
+:MembershipFee a owl:Class .
+:PoliticalActivity a owl:Class .
+:Campaigning a owl:Class ;
+    rdfs:subClassOf :PoliticalActivity .
+:Lobbying a owl:Class ;
+    rdfs:subClassOf :PoliticalActivity .
+:Year a owl:Class .
+:Quantity a owl:Class .
+
+# Object Properties
+:foundedIn a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Year .
+:previouslyNamedAs a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range rdfs:Literal .
+:affiliateCount a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Quantity .
+:memberCount a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Quantity .
+:serves a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Member .
+:operatesIn a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Country .
+:affiliatedWith a owl:ObjectProperty ;
+    rdfs:domain :AffiliatedEntity ;
+    rdfs:range :Organization .
+:promoteBenefit a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Benefit .
+:protectRightsIn a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :Setting .
+:useFeeFor a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :PoliticalActivity .
+:engageIn a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :PoliticalActivity .
+:targetCountry a owl:ObjectProperty ;
+    rdfs:domain :PoliticalActivity ;
+    rdfs:range :Country .
+:isLargestIn a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :GeographicRegion .
+:isLongestEstablished a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :GeographicRegion .
+:serveRegion a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :GeographicRegion .
+:hasAffiliatedEntity a owl:ObjectProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range :AffiliatedEntity .
+
+# Data Properties
+:label a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string .
+:foundingYear a owl:DatatypeProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range xsd:gYear .
+:membershipCount a owl:DatatypeProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range xsd:integer .
+:affiliatedCount a owl:DatatypeProperty ;
+    rdfs:domain :Organization ;
+    rdfs:range xsd:integer .
+:numericValue a owl:DatatypeProperty ;
+    rdfs:domain :Quantity ;
+    rdfs:range xsd:integer .
+
+# Individuals
+:AANR a :NaturistOrganization , owl:NamedIndividual ;
+    rdfs:label "American Association for Nude Recreation"^^xsd:string ;
+    :foundingYear "1931"^^xsd:gYear ;
+    :membershipCount 30000 ;
+    :affiliatedCount 200 ;
+    :previouslyNamedAs "American Sunbathing Association"^^xsd:string ;
+    :operatesIn :UnitedStates, :Canada, :Mexico, :FrenchWestIndies, :VirginIslands, :StMartin ;
+    :isLargestIn :NorthAmerica ;
+    :isLongestEstablished :NorthAmerica ;
+    :serveRegion :NorthAmerica ;
+    :promoteBenefit :WholesomeNudeFamilyRecreation ;
+    :protectRightsIn :SanctionedNudeBeaches, :PublicLandsForNudism, :Homes, :PrivateBackyards, :AANRAffiliatedClubs, :Campgrounds, :Resorts ;
+    :engageIn :CampaigningActivity, :LobbyingActivity ;
+    :useFeeFor :CampaigningActivity, :LobbyingActivity .
+
+:AmericanSunbathingAssociation a :Organization , owl:NamedIndividual ;
+    rdfs:label "American Sunbathing Association"^^xsd:string .
+
+:UnitedStates a :Country , owl:NamedIndividual ;
+    rdfs:label "United States"^^xsd:string .
+
+:Canada a :Country , owl:NamedIndividual ;
+    rdfs:label "Canada"^^xsd:string .
+
+:Mexico a :Country , owl:NamedIndividual ;
+    rdfs:label "Mexico"^^xsd:string .
+
+:FrenchWestIndies a :GeographicRegion , owl:NamedIndividual ;
+    rdfs:label "French West Indies"^^xsd:string .
+
+:VirginIslands a :GeographicRegion , owl:NamedIndividual ;
+    rdfs:label "Virgin Islands"^^xsd:string .
+
+:StMartin a :GeographicRegion , owl:NamedIndividual ;
+    rdfs:label "St. Martin"^^xsd:string .
+
+:NorthAmerica a :GeographicRegion , owl:NamedIndividual ;
+    rdfs:label "North America"^^xsd:string .
+
+:SanctionedNudeBeaches a :NudeBeach , owl:NamedIndividual ;
+    rdfs:label "sanctioned nude beaches"^^xsd:string .
+
+:PublicLandsForNudism a :PublicLand , owl:NamedIndividual ;
+    rdfs:label "public lands set aside for that use"^^xsd:string .
+
+:Homes a :Home , owl:NamedIndividual ;
+    rdfs:label "homes"^^xsd:string .
+
+:PrivateBackyards a :PrivateBackyard , owl:NamedIndividual ;
+    rdfs:label "private backyards"^^xsd:string .
+
+:AANRAffiliatedClubs a :NudistClub , owl:NamedIndividual ;
+    rdfs:label "AANR-affiliated clubs"^^xsd:string ;
+    :affiliatedWith :AANR .
+
+:Campgrounds a :Campground , owl:NamedIndividual ;
+    rdfs:label "campgrounds"^^xsd:string .
+
+:Resorts a :NudistResort , owl:NamedIndividual ;
+    rdfs:label "resorts"^^xsd:string .
+
+:WholesomeNudeFamilyRecreation a :Benefit , owl:NamedIndividual ;
+    rdfs:label "wholesome nude family recreation"^^xsd:string .
+
+:CampaigningActivity a :Campaigning , owl:NamedIndividual ;
+    rdfs:label "campaigning"^^xsd:string ;
+    :targetCountry :UnitedStates, :Canada .
+
+:LobbyingActivity a :Lobbying , owl:NamedIndividual ;
+    rdfs:label "lobbying"^^xsd:string ;
+    :targetCountry :UnitedStates, :Canada .
+
+:Year1931 a :Year , owl:NamedIndividual ;
+    rdfs:label "1931"^^xsd:string .

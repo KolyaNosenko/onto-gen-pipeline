@@ -1,0 +1,190 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Street a owl:Class .
+:MajorStreet a owl:Class .
+:City a owl:Class .
+:State a owl:Class .
+:Country a owl:Class .
+:Survey a owl:Class .
+:Grid a owl:Class .
+:Address a owl:Class .
+:Person a owl:Class .
+:MilitaryOfficer a owl:Class .
+:Governor a owl:Class .
+:SettlerGroup a owl:Class .
+:Settlement a owl:Class .
+:Location a owl:Class .
+:StreetEnd a owl:Class .
+:Nickname a owl:Class .
+:TimeInterval a owl:Class .
+:Feature a owl:Class .
+:HeritageBuilding a owl:Class .
+:StreetTree a owl:Class .
+:ShoppingBoutique a owl:Class .
+:SidewalkCafe a owl:Class .
+:Block a owl:Class .
+:FinancialCenter a owl:Class .
+:Century a owl:Class .
+:Bank a owl:Class .
+:InsuranceCompany a owl:Class .
+:OfficeBlock a owl:Class .
+:Skyscraper a owl:Class .
+:NamedEnd a owl:Class .
+
+:MajorStreet rdfs:subClassOf :Street .
+:MilitaryOfficer rdfs:subClassOf :Person .
+:Governor rdfs:subClassOf :Person .
+:SettlerGroup rdfs:subClassOf :Person .
+:HeritageBuilding rdfs:subClassOf :Feature .
+:StreetTree rdfs:subClassOf :Feature .
+:ShoppingBoutique rdfs:subClassOf :Feature .
+:SidewalkCafe rdfs:subClassOf :Feature .
+:Bank rdfs:subClassOf :Feature .
+:InsuranceCompany rdfs:subClassOf :Feature .
+:OfficeBlock rdfs:subClassOf :Feature .
+:Skyscraper rdfs:subClassOf :Feature .
+:NamedEnd rdfs:subClassOf :StreetEnd .
+
+:locatedIn a owl:ObjectProperty .
+:partOfSurvey a owl:ObjectProperty .
+:laidOutIn a owl:ObjectProperty .
+:becameAddressIn a owl:ObjectProperty .
+:namedAfter a owl:ObjectProperty .
+:led a owl:ObjectProperty .
+:established a owl:ObjectProperty .
+:atLocation a owl:ObjectProperty .
+:knownAs a owl:ObjectProperty .
+:hasEnd a owl:ObjectProperty .
+:sinceTime a owl:ObjectProperty .
+:dueTo a owl:ObjectProperty .
+:hasFeature a owl:ObjectProperty .
+:becameFinancialHeartOf a owl:ObjectProperty .
+:preferredHomeOf a owl:ObjectProperty .
+:foundAlong a owl:ObjectProperty .
+:centredAround a owl:ObjectProperty .
+:inCentury a owl:ObjectProperty .
+:hasBlock a owl:ObjectProperty .
+
+:hasEnd rdfs:domain :Street ; rdfs:range :StreetEnd .
+:knownAs rdfs:domain :StreetEnd ; rdfs:range :Nickname .
+:locatedIn rdfs:domain :Street ; rdfs:range :Location .
+:partOfSurvey rdfs:domain :Street ; rdfs:range :Survey .
+:laidOutIn rdfs:domain :Street ; rdfs:range :Survey .
+:namedAfter rdfs:domain :Street ; rdfs:range :Person .
+:led rdfs:domain :Person ; rdfs:range :SettlerGroup .
+:established rdfs:domain :Person ; rdfs:range :Settlement .
+:atLocation rdfs:domain :Settlement ; rdfs:range :Location .
+:sinceTime rdfs:domain :StreetEnd ; rdfs:range :TimeInterval .
+:dueTo rdfs:domain :StreetEnd ; rdfs:range :Feature .
+:hasFeature rdfs:domain :StreetEnd ; rdfs:range :Feature .
+:becameFinancialHeartOf rdfs:domain :Block ; rdfs:range :City .
+:preferredHomeOf rdfs:domain :Block ; rdfs:range owl:Thing .
+:foundAlong rdfs:domain :Feature ; rdfs:range :Street .
+:centredAround rdfs:domain :Block ; rdfs:range :Street .
+:inCentury rdfs:domain :FinancialCenter ; rdfs:range :Century .
+:hasBlock rdfs:domain :Street ; rdfs:range :Block .
+
+:CollinsStreet a :MajorStreet , owl:NamedIndividual ;
+    rdfs:label "Collins Street"^^xsd:string ;
+    :locatedIn :Melbourne ;
+    :partOfSurvey :HoddleGrid ;
+    :laidOutIn :HoddleGrid ;
+    :namedAfter :DavidCollins ;
+    :hasEnd :EasternEnd ;
+    :hasBlock :QueenStreetBlocks ;
+    :becameAddressIn :Melbourne .
+
+:Melbourne a :City , owl:NamedIndividual ;
+    rdfs:label "Melbourne"^^xsd:string ;
+    :locatedIn :Victoria .
+
+:Victoria a :State , owl:NamedIndividual ;
+    rdfs:label "Victoria"^^xsd:string ;
+    :locatedIn :Australia .
+
+:Australia a :Country , owl:NamedIndividual ;
+    rdfs:label "Australia"^^xsd:string .
+
+:HoddleGrid a :Survey , :Grid , owl:NamedIndividual ;
+    rdfs:label "the original 1837 Hoddle Grid"^^xsd:string .
+
+:DavidCollins a :MilitaryOfficer , :Governor , owl:NamedIndividual ;
+    rdfs:label "Lieutenant - Governor David Collins"^^xsd:string ;
+    :led :SettlersIn1803 ;
+    :established :ShortLivedSettlement ;
+    :atLocation :Sorrento ;
+    :inCentury :NineteenthCentury .
+
+:SettlersIn1803 a :SettlerGroup , owl:NamedIndividual ;
+    rdfs:label "a group of settlers"^^xsd:string .
+
+:ShortLivedSettlement a :Settlement , owl:NamedIndividual ;
+    rdfs:label "a short - lived settlement"^^xsd:string ;
+    :atLocation :Sorrento .
+
+:Sorrento a :Location , owl:NamedIndividual ;
+    rdfs:label "Sorrento"^^xsd:string .
+
+:EasternEnd a :StreetEnd , :NamedEnd , owl:NamedIndividual ;
+    rdfs:label "the eastern end of Collins Street"^^xsd:string ;
+    :knownAs :ParisEnd ;
+    :sinceTime :The1950s ;
+    :dueTo :HeritageBuildings, :OldStreetTrees, :HighEndShoppingBoutiques, :FirstSidewalkCafes ;
+    :hasFeature :HeritageBuildings, :OldStreetTrees, :HighEndShoppingBoutiques, :FirstSidewalkCafes .
+
+:ParisEnd a :Nickname , owl:NamedIndividual ;
+    rdfs:label "the ' Paris End '"^^xsd:string .
+
+:The1950s a :TimeInterval , owl:NamedIndividual ;
+    rdfs:label "the 1950s"^^xsd:string .
+
+:HeritageBuildings a :HeritageBuilding , owl:NamedIndividual ;
+    rdfs:label "numerous heritage buildings"^^xsd:string ;
+    :foundAlong :CollinsStreet .
+
+:OldStreetTrees a :StreetTree , owl:NamedIndividual ;
+    rdfs:label "old street trees"^^xsd:string ;
+    :foundAlong :CollinsStreet .
+
+:HighEndShoppingBoutiques a :ShoppingBoutique , owl:NamedIndividual ;
+    rdfs:label "high - end shopping boutiques"^^xsd:string ;
+    :foundAlong :CollinsStreet .
+
+:FirstSidewalkCafes a :SidewalkCafe , owl:NamedIndividual ;
+    rdfs:label "the first sidewalk cafes in the city"^^xsd:string ;
+    :foundAlong :CollinsStreet .
+
+:QueenStreetBlocks a :Block , owl:NamedIndividual ;
+    rdfs:label "Blocks further west centred around Queen Street"^^xsd:string ;
+    :centredAround :QueenStreet ;
+    :becameFinancialHeartOf :Melbourne ;
+    :inCentury :NineteenthCentury ;
+    :preferredHomeOf :MajorBanks, :InsuranceCompanies ;
+    :foundAlong :CollinsStreet .
+
+:QueenStreet a :Street , owl:NamedIndividual ;
+    rdfs:label "Queen Street"^^xsd:string ;
+    :locatedIn :Melbourne .
+
+:NineteenthCentury a :Century , owl:NamedIndividual ;
+    rdfs:label "the 19th century"^^xsd:string .
+
+:MajorBanks a :Bank , owl:NamedIndividual ;
+    rdfs:label "major banks"^^xsd:string ;
+    :foundAlong :CollinsStreet .
+
+:InsuranceCompanies a :InsuranceCompany , owl:NamedIndividual ;
+    rdfs:label "insurance companies"^^xsd:string ;
+    :foundAlong :CollinsStreet .
+
+:OfficeBlocks a :OfficeBlock , owl:NamedIndividual ;
+    rdfs:label "most prestigious office blocks"^^xsd:string ;
+    :foundAlong :CollinsStreet .
+
+:Skyscrapers a :Skyscraper , owl:NamedIndividual ;
+    rdfs:label "skyscrapers"^^xsd:string ;
+    :foundAlong :CollinsStreet .

@@ -1,0 +1,205 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:CitizenInfantry a owl:NamedIndividual,
+        ns1:Infantry ;
+    rdfs:label "citizen-infantry"^^xsd:string ;
+    ns1:targetedAgainst ns1:ForeignInvasions,
+        ns1:ItalianCondottieri .
+
+ns1:Florence a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Florence"^^xsd:string .
+
+ns1:MilitaryReformsOfFlorentineRepublic a owl:NamedIndividual,
+        ns1:MilitaryReform ;
+    rdfs:label "military reforms of the Florentine Republic"^^xsd:string ;
+    ns1:emulates ns1:RomanLegions ;
+    ns1:establishedSystem ns1:ReadinessSystemForCitizenArmy ;
+    ns1:initiatedBy ns1:NiccoloMachiavelli ;
+    ns1:modeledAfter ns1:RomanMilitarySystem ;
+    ns1:motivatedBy ns1:RepublicanSpirit ;
+    ns1:occurredDuring ns1:TimeInterval14981512 ;
+    ns1:year 1506 .
+
+ns1:RepublicOfFlorence a owl:NamedIndividual,
+        ns1:Republic ;
+    rdfs:label "Republic of Florence"^^xsd:string ;
+    ns1:existedDuring ns1:TimeInterval14981512 ;
+    ns1:ledBy ns1:GirolamoSavonarola .
+
+ns1:Rome a owl:NamedIndividual,
+        ns1:City ;
+    rdfs:label "Rome"^^xsd:string .
+
+ns1:emulates a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range ns1:MilitaryUnit .
+
+ns1:endYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TimeInterval ;
+    rdfs:range xsd:integer .
+
+ns1:establishedSystem a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range ns1:System .
+
+ns1:existedDuring a owl:ObjectProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range ns1:TimeInterval .
+
+ns1:initiatedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range ns1:Person .
+
+ns1:ledBy a owl:ObjectProperty ;
+    rdfs:domain ns1:State ;
+    rdfs:range ns1:Person .
+
+ns1:maintainsReadinessOf a owl:ObjectProperty ;
+    rdfs:domain ns1:ReadinessSystem ;
+    rdfs:range ns1:MilitaryUnit .
+
+ns1:modeledAfter a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range ns1:MilitarySystem .
+
+ns1:motivatedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range ns1:Ideology .
+
+ns1:occurredDuring a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range ns1:TimeInterval .
+
+ns1:size a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Army ;
+    rdfs:range xsd:integer .
+
+ns1:startYear a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:TimeInterval ;
+    rdfs:range xsd:integer .
+
+ns1:targetedAgainst a owl:ObjectProperty ;
+    rdfs:domain ns1:MilitaryUnit ;
+    rdfs:range ns1:Threat .
+
+ns1:year a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:MilitaryReform ;
+    rdfs:range xsd:integer .
+
+ns1:CitizenArmy a owl:NamedIndividual,
+        ns1:Army ;
+    rdfs:label "citizen army"^^xsd:string ;
+    ns1:size 20000 ;
+    ns1:targetedAgainst ns1:ForeignInvasions,
+        ns1:ItalianCondottieri .
+
+ns1:GirolamoSavonarola a owl:NamedIndividual,
+        ns1:Priest ;
+    rdfs:label "Girolamo Savonarola"^^xsd:string .
+
+ns1:Infantry a owl:Class ;
+    rdfs:subClassOf ns1:MilitaryUnit .
+
+ns1:Invasion a owl:Class ;
+    rdfs:subClassOf ns1:Threat .
+
+ns1:Legions a owl:Class ;
+    rdfs:subClassOf ns1:MilitaryUnit .
+
+ns1:MilitaryGroup a owl:Class ;
+    rdfs:subClassOf ns1:MilitaryUnit .
+
+ns1:NiccoloMachiavelli a owl:NamedIndividual,
+        ns1:Politician ;
+    rdfs:label "Niccolò Machiavelli"^^xsd:string .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Politician a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:Priest a owl:Class ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:ReadinessSystemForCitizenArmy a owl:NamedIndividual,
+        ns1:ReadinessSystem ;
+    rdfs:label "readiness system for citizen army"^^xsd:string ;
+    ns1:maintainsReadinessOf ns1:CitizenArmy .
+
+ns1:Republic a owl:Class ;
+    rdfs:subClassOf ns1:State .
+
+ns1:RepublicanSpirit a owl:NamedIndividual,
+        ns1:Ideology ;
+    rdfs:label "republican spirit"^^xsd:string .
+
+ns1:RomanLegions a owl:NamedIndividual,
+        ns1:Legions ;
+    rdfs:label "Roman legions"^^xsd:string .
+
+ns1:RomanMilitarySystem a owl:NamedIndividual,
+        ns1:MilitarySystem ;
+    rdfs:label "Roman military system"^^xsd:string .
+
+ns1:Army a owl:Class ;
+    rdfs:subClassOf ns1:MilitaryUnit .
+
+ns1:City a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:ForeignInvasions a owl:NamedIndividual,
+        ns1:Invasion ;
+    rdfs:label "foreign invasions"^^xsd:string .
+
+ns1:Ideology a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ItalianCondottieri a owl:NamedIndividual,
+        ns1:MilitaryGroup ;
+    rdfs:label "Italian Condottieri"^^xsd:string .
+
+ns1:MilitarySystem a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:ReadinessSystem a owl:Class ;
+    rdfs:subClassOf ns1:System .
+
+ns1:System a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Threat a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TimeInterval14981512 a owl:NamedIndividual,
+        ns1:TimeInterval ;
+    rdfs:label "1498-1512"^^xsd:string ;
+    ns1:endYear 1512 ;
+    ns1:startYear 1498 .
+
+ns1:State a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TimeInterval a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MilitaryUnit a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MilitaryReform a owl:Class ;
+    rdfs:subClassOf owl:Thing .

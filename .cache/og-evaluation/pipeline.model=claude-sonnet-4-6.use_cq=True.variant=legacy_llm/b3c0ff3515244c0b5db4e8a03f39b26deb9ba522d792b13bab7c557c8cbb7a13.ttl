@@ -1,0 +1,382 @@
+@prefix : <http://www.example.org/test#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Ontology declaration
+#################################################################
+
+: a owl:Ontology .
+
+#################################################################
+# Classes
+#################################################################
+
+:Town a owl:Class ;
+    rdfs:label "Town"^^xsd:string ;
+    rdfs:subClassOf :Settlement .
+
+:Settlement a owl:Class ;
+    rdfs:label "Settlement"^^xsd:string ;
+    rdfs:subClassOf :Place .
+
+:Place a owl:Class ;
+    rdfs:label "Place"^^xsd:string .
+
+:Region a owl:Class ;
+    rdfs:label "Region"^^xsd:string ;
+    rdfs:subClassOf :Place .
+
+:State a owl:Class ;
+    rdfs:label "State"^^xsd:string ;
+    rdfs:subClassOf :Place .
+
+:Country a owl:Class ;
+    rdfs:label "Country"^^xsd:string ;
+    rdfs:subClassOf :Place .
+
+:LocalGovernmentArea a owl:Class ;
+    rdfs:label "Local Government Area"^^xsd:string ;
+    rdfs:subClassOf :Place .
+
+:City a owl:Class ;
+    rdfs:label "City"^^xsd:string ;
+    rdfs:subClassOf :LocalGovernmentArea .
+
+:District a owl:Class ;
+    rdfs:label "District"^^xsd:string ;
+    rdfs:subClassOf :Place .
+
+:Highway a owl:Class ;
+    rdfs:label "Highway"^^xsd:string ;
+    rdfs:subClassOf :TransportInfrastructure .
+
+:TransportInfrastructure a owl:Class ;
+    rdfs:label "Transport Infrastructure"^^xsd:string .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string .
+
+:PostMaster a owl:Class ;
+    rdfs:label "Post Master"^^xsd:string ;
+    rdfs:subClassOf :Person .
+
+:Property a owl:Class ;
+    rdfs:label "Property"^^xsd:string ;
+    rdfs:subClassOf :Place .
+
+:CommercialCentre a owl:Class ;
+    rdfs:label "Commercial Centre"^^xsd:string ;
+    rdfs:subClassOf :Place .
+
+:Century a owl:Class ;
+    rdfs:label "Century"^^xsd:string ;
+    rdfs:subClassOf :TimeInterval .
+
+:TimeInterval a owl:Class ;
+    rdfs:label "Time Interval"^^xsd:string .
+
+:FoundingYear a owl:Class ;
+    rdfs:label "Founding Year"^^xsd:string ;
+    rdfs:subClassOf :TimeInterval .
+
+:Population a owl:Class ;
+    rdfs:label "Population"^^xsd:string .
+
+:Industry a owl:Class ;
+    rdfs:label "Industry"^^xsd:string .
+
+:TourismIndustry a owl:Class ;
+    rdfs:label "Tourism Industry"^^xsd:string ;
+    rdfs:subClassOf :Industry .
+
+:BusinessType a owl:Class ;
+    rdfs:label "Business Type"^^xsd:string .
+
+:BoutiqueStore a owl:Class ;
+    rdfs:label "Boutique Store"^^xsd:string ;
+    rdfs:subClassOf :BusinessType .
+
+:Cafe a owl:Class ;
+    rdfs:label "Cafe"^^xsd:string ;
+    rdfs:subClassOf :BusinessType .
+
+:BedAndBreakfast a owl:Class ;
+    rdfs:label "Bed and Breakfast"^^xsd:string ;
+    rdfs:subClassOf :BusinessType .
+
+:HousingEstate a owl:Class ;
+    rdfs:label "Housing Estate"^^xsd:string ;
+    rdfs:subClassOf :Development .
+
+:Development a owl:Class ;
+    rdfs:label "Development"^^xsd:string .
+
+:ResurgenceFactor a owl:Class ;
+    rdfs:label "Resurgence Factor"^^xsd:string .
+
+:Seachange a owl:Class ;
+    rdfs:label "Seachange"^^xsd:string ;
+    rdfs:subClassOf :ResurgenceFactor .
+
+:InfluxOfResidents a owl:Class ;
+    rdfs:label "Influx of Residents"^^xsd:string ;
+    rdfs:subClassOf :ResurgenceFactor .
+
+:StoppingPlace a owl:Class ;
+    rdfs:label "Stopping Place"^^xsd:string ;
+    rdfs:subClassOf :Place .
+
+:Traveller a owl:Class ;
+    rdfs:label "Traveller"^^xsd:string ;
+    rdfs:subClassOf :Person .
+
+:RegionalRole a owl:Class ;
+    rdfs:label "Regional Role"^^xsd:string .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:locatedInRegion a owl:ObjectProperty ;
+    rdfs:label "located in region"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Region .
+
+:locatedInState a owl:ObjectProperty ;
+    rdfs:label "located in state"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :State .
+
+:locatedInCountry a owl:ObjectProperty ;
+    rdfs:label "located in country"^^xsd:string ;
+    rdfs:domain :Place ;
+    rdfs:range :Country .
+
+:withinLocalGovArea a owl:ObjectProperty ;
+    rdfs:label "within local government area"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :LocalGovernmentArea .
+
+:foundedInYear a owl:ObjectProperty ;
+    rdfs:label "founded in year"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :FoundingYear .
+
+:namedAfterProperty a owl:ObjectProperty ;
+    rdfs:label "named after property"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :Property .
+
+:namedAfterPerson a owl:ObjectProperty ;
+    rdfs:label "named after person"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :Person .
+
+:ownedBy a owl:ObjectProperty ;
+    rdfs:label "owned by"^^xsd:string ;
+    rdfs:domain :Property ;
+    rdfs:range :Person .
+
+:hasOccupation a owl:ObjectProperty ;
+    rdfs:label "has occupation"^^xsd:string ;
+    rdfs:domain :Person ;
+    rdfs:range :Person .
+
+:hadRegionalRoleDuring a owl:ObjectProperty ;
+    rdfs:label "had regional role during"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :Century .
+
+:hasRegionalRole a owl:ObjectProperty ;
+    rdfs:label "has regional role"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :RegionalRole .
+
+:hasPopulation a owl:ObjectProperty ;
+    rdfs:label "has population"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :Population ;
+    a owl:FunctionalProperty .
+
+:isCommercialCentreOf a owl:ObjectProperty ;
+    rdfs:label "is commercial centre of"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :District .
+
+:hasMainCommercialCentre a owl:ObjectProperty ;
+    rdfs:label "has main commercial centre"^^xsd:string ;
+    rdfs:domain :District ;
+    rdfs:range :Settlement .
+
+:hasHighwayRunningThrough a owl:ObjectProperty ;
+    rdfs:label "has highway running through"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :Highway .
+
+:isStoppingPlaceFor a owl:ObjectProperty ;
+    rdfs:label "is stopping place for"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :Traveller .
+
+:travellerUsesHighway a owl:ObjectProperty ;
+    rdfs:label "traveller uses highway"^^xsd:string ;
+    rdfs:domain :Traveller ;
+    rdfs:range :Highway .
+
+:influencedByFactor a owl:ObjectProperty ;
+    rdfs:label "influenced by factor"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :ResurgenceFactor .
+
+:influencedByIndustry a owl:ObjectProperty ;
+    rdfs:label "influenced by industry"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :Industry .
+
+:hasNewBusinessType a owl:ObjectProperty ;
+    rdfs:label "has new business type"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :BusinessType .
+
+:hasDevelopmentOnFringes a owl:ObjectProperty ;
+    rdfs:label "has development on fringes"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :Development .
+
+:residentSeeks a owl:ObjectProperty ;
+    rdfs:label "resident seeks"^^xsd:string ;
+    rdfs:domain :Person ;
+    rdfs:range :Seachange .
+
+:partOfDistrict a owl:ObjectProperty ;
+    rdfs:label "part of district"^^xsd:string ;
+    rdfs:domain :Settlement ;
+    rdfs:range :District .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:populationCount a owl:DatatypeProperty ;
+    rdfs:label "population count"^^xsd:string ;
+    rdfs:domain :Population ;
+    rdfs:range xsd:integer ;
+    a owl:FunctionalProperty .
+
+:foundingYearValue a owl:DatatypeProperty ;
+    rdfs:label "founding year value"^^xsd:string ;
+    rdfs:domain :FoundingYear ;
+    rdfs:range xsd:gYear ;
+    a owl:FunctionalProperty .
+
+:centuryLabel a owl:DatatypeProperty ;
+    rdfs:label "century label"^^xsd:string ;
+    rdfs:domain :Century ;
+    rdfs:range xsd:string .
+
+#################################################################
+# Named Individuals
+#################################################################
+
+:Milton a :Town , owl:NamedIndividual ;
+    rdfs:label "Milton"^^xsd:string ;
+    :locatedInRegion :SouthCoastRegion ;
+    :locatedInState :NewSouthWales ;
+    :locatedInCountry :Australia ;
+    :withinLocalGovArea :CityOfShoalhaven ;
+    :foundedInYear :Year1860 ;
+    :namedAfterProperty :GeorgeKnightProperty ;
+    :namedAfterPerson :GeorgeKnight ;
+    :hadRegionalRoleDuring :NineteenthCentury ;
+    :hasRegionalRole :ImportantRegionalCentre ;
+    :hasPopulation :MiltonPopulation ;
+    :isCommercialCentreOf :MiltonUlladullaDistrict ;
+    :hasHighwayRunningThrough :PrincesHighway ;
+    :isStoppingPlaceFor :Travellers ;
+    :influencedByIndustry :LocalTourismIndustry ;
+    :influencedByFactor :InfluxOfResidentsEvent ;
+    :influencedByFactor :SeachangeFactor ;
+    :hasNewBusinessType :BoutiqueStores ;
+    :hasNewBusinessType :Cafes ;
+    :hasNewBusinessType :BedAndBreakfastBusinesses ;
+    :hasDevelopmentOnFringes :NewHousingEstates ;
+    :partOfDistrict :MiltonUlladullaDistrict .
+
+:SouthCoastRegion a :Region , owl:NamedIndividual ;
+    rdfs:label "South Coast"^^xsd:string ;
+    :locatedInState :NewSouthWales .
+
+:NewSouthWales a :State , owl:NamedIndividual ;
+    rdfs:label "New South Wales"^^xsd:string ;
+    :locatedInCountry :Australia .
+
+:Australia a :Country , owl:NamedIndividual ;
+    rdfs:label "Australia"^^xsd:string .
+
+:CityOfShoalhaven a :City , owl:NamedIndividual ;
+    rdfs:label "City of Shoalhaven"^^xsd:string ;
+    :locatedInState :NewSouthWales .
+
+:Year1860 a :FoundingYear , owl:NamedIndividual ;
+    rdfs:label "1860"^^xsd:string ;
+    :foundingYearValue "1860"^^xsd:gYear .
+
+:GeorgeKnight a :PostMaster , owl:NamedIndividual ;
+    rdfs:label "George Knight"^^xsd:string ;
+    :ownedBy :GeorgeKnightProperty .
+
+:GeorgeKnightProperty a :Property , owl:NamedIndividual ;
+    rdfs:label "property of post master George Knight"^^xsd:string ;
+    :ownedBy :GeorgeKnight .
+
+:NineteenthCentury a :Century , owl:NamedIndividual ;
+    rdfs:label "19th Century"^^xsd:string ;
+    :centuryLabel "19th Century"^^xsd:string .
+
+:MiltonPopulation a :Population , owl:NamedIndividual ;
+    rdfs:label "1,663"^^xsd:string ;
+    :populationCount 1663 .
+
+:MiltonUlladullaDistrict a :District , owl:NamedIndividual ;
+    rdfs:label "Milton-Ulladulla district"^^xsd:string ;
+    :hasMainCommercialCentre :Milton ;
+    :hasMainCommercialCentre :Ulladulla .
+
+:Ulladulla a :Town , owl:NamedIndividual ;
+    rdfs:label "Ulladulla"^^xsd:string ;
+    :isCommercialCentreOf :MiltonUlladullaDistrict ;
+    :partOfDistrict :MiltonUlladullaDistrict .
+
+:PrincesHighway a :Highway , owl:NamedIndividual ;
+    rdfs:label "Princes Highway"^^xsd:string .
+
+:LocalTourismIndustry a :TourismIndustry , owl:NamedIndividual ;
+    rdfs:label "local tourism industry"^^xsd:string .
+
+:InfluxOfResidentsEvent a :InfluxOfResidents , owl:NamedIndividual ;
+    rdfs:label "influx of residents"^^xsd:string .
+
+:SeachangeFactor a :Seachange , owl:NamedIndividual ;
+    rdfs:label "seachange"^^xsd:string .
+
+:NewHousingEstates a :HousingEstate , owl:NamedIndividual ;
+    rdfs:label "new housing estates"^^xsd:string .
+
+:BoutiqueStores a :BoutiqueStore , owl:NamedIndividual ;
+    rdfs:label "boutique stores"^^xsd:string .
+
+:Cafes a :Cafe , owl:NamedIndividual ;
+    rdfs:label "cafes"^^xsd:string .
+
+:BedAndBreakfastBusinesses a :BedAndBreakfast , owl:NamedIndividual ;
+    rdfs:label "bed and breakfast type businesses"^^xsd:string .
+
+:Travellers a :Traveller , owl:NamedIndividual ;
+    rdfs:label "travellers"^^xsd:string ;
+    :travellerUsesHighway :PrincesHighway .
+
+:ImportantRegionalCentre a :RegionalRole , owl:NamedIndividual ;
+    rdfs:label "important regional centre"^^xsd:string .

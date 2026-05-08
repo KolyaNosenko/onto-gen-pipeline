@@ -1,0 +1,471 @@
+@prefix ns1: <https://og.example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://anonymous> a owl:Ontology .
+
+<https://og.example.org/ontology> a owl:Ontology .
+
+ns1:Brain a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:NobelPrize2014 a [ a owl:Restriction ;
+            owl:onProperty ns1:forDiscovery ;
+            owl:someValuesFrom ns1:GridCellDiscovery ],
+        owl:NamedIndividual,
+        ns1:NobelPrize ;
+    rdfs:label "2014 Nobel Prize in Physiology or Medicine"^^xsd:string ;
+    ns1:awardYear ns1:Year2014 ;
+    ns1:awardedTo ns1:EdvardMoser,
+        ns1:JohnOKeefe,
+        ns1:MarianneFyhn,
+        ns1:MayBrittMoser,
+        ns1:SturlaMolden,
+        ns1:TorkelHafting .
+
+ns1:PlaceField a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:TypicalGridCellStudy a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:recordsIn ;
+            owl:someValuesFrom ns1:DorsomedialEntorhinalCortex ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:hasSubject ;
+            owl:someValuesFrom ns1:Rat ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:usesInstrument ;
+            owl:someValuesFrom ns1:Electrode ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:takesPlaceIn ;
+            owl:someValuesFrom ns1:OpenArena ],
+        ns1:ExperimentalStudy .
+
+ns1:awardYear a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain ns1:Prize ;
+    rdfs:range ns1:Year .
+
+ns1:awardedTo a owl:ObjectProperty ;
+    rdfs:domain ns1:Prize ;
+    rdfs:range ns1:Person .
+
+ns1:sharedWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Person .
+
+ns1:studentOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Person ;
+    rdfs:range ns1:Person .
+
+ns1:yearValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:Year ;
+    rdfs:range xsd:integer .
+
+ns1:CentreForTheBiologyOfMemory a owl:NamedIndividual,
+        ns1:Organization ;
+    rdfs:label "CBM"^^xsd:string,
+        "Centre for the Biology of Memory ( CBM )"^^xsd:string .
+
+ns1:CerebralCortex a owl:Class ;
+    rdfs:subClassOf ns1:BrainRegion .
+
+ns1:ContinuouslyUpdatedPositionAndDirectionInformation a owl:Class ;
+    rdfs:subClassOf ns1:PositionAndDirectionInformation .
+
+ns1:Country a owl:Class ;
+    rdfs:subClassOf ns1:Place .
+
+ns1:Direction a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:DorsomedialEntorhinalCortex a owl:Class ;
+    rdfs:subClassOf ns1:EntorhinalCortex .
+
+ns1:Dot a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:buildsUpToForm ;
+            owl:someValuesFrom ns1:Cluster ],
+        owl:Thing .
+
+ns1:DynamicSelfPositionComputationMechanism a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:basedOn ;
+            owl:someValuesFrom ns1:ContinuouslyUpdatedPositionAndDirectionInformation ],
+        ns1:Mechanism .
+
+ns1:EntorhinalCortex a owl:Class ;
+    rdfs:subClassOf ns1:BrainRegion .
+
+ns1:EqualDistanceNeighbourArrangement a owl:Class ;
+    rdfs:subClassOf ns1:FiringFieldArrangement .
+
+ns1:EquilateralTriangleGrid a owl:Class ;
+    rdfs:subClassOf ns1:GridPattern .
+
+ns1:EuclideanSpaceHypothesis a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:about ;
+            owl:someValuesFrom ns1:EuclideanSpace ],
+        ns1:Hypothesis .
+
+ns1:GridCellDiscovery a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:suggests ;
+            owl:someValuesFrom ns1:DynamicSelfPositionComputationMechanism ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:CentreForTheBiologyOfMemory ;
+            owl:onProperty ns1:discoveredAt ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:Year2005 ;
+            owl:onProperty ns1:discoveredInYear ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:Norway ;
+            owl:onProperty ns1:discoveredAt ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:TorkelHafting ;
+            owl:onProperty ns1:discoveredBy ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:SturlaMolden ;
+            owl:onProperty ns1:discoveredBy ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:EdvardMoser ;
+            owl:onProperty ns1:discoveredBy ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:MarianneFyhn ;
+            owl:onProperty ns1:discoveredBy ],
+        [ a owl:Restriction ;
+            owl:hasValue ns1:MayBrittMoser ;
+            owl:onProperty ns1:discoveredBy ],
+        ns1:Discovery .
+
+ns1:Hippocampus a owl:Class ;
+    rdfs:subClassOf ns1:BrainRegion .
+
+ns1:Hypothesis a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:IrregularSpatialFiringPattern a owl:Class ;
+    rdfs:subClassOf ns1:SpatialFiringPattern .
+
+ns1:JohnOKeefe a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "John O'Keefe"^^xsd:string .
+
+ns1:NobelPrize a owl:Class ;
+    rdfs:subClassOf ns1:Prize .
+
+ns1:Norway a owl:NamedIndividual,
+        ns1:Country ;
+    rdfs:label "Norway"^^xsd:string .
+
+ns1:PositionAndDirectionInformation a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:about ;
+            owl:someValuesFrom ns1:Position ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:about ;
+            owl:someValuesFrom ns1:Direction ],
+        ns1:Information .
+
+ns1:RegularTrianglePattern a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:ledTo ;
+            owl:someValuesFrom ns1:EuclideanSpaceHypothesis ],
+        ns1:SpatialFiringPattern .
+
+ns1:Representation a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Space a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Year2005 a owl:NamedIndividual,
+        ns1:Year ;
+    rdfs:label "2005"^^xsd:string ;
+    ns1:yearValue 2005 .
+
+ns1:Year2014 a owl:NamedIndividual,
+        ns1:Year ;
+    rdfs:label "2014"^^xsd:string ;
+    ns1:yearValue 2014 .
+
+ns1:allowsUnderstandingOf a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:PositionInSpace .
+
+ns1:basedOn a owl:ObjectProperty ;
+    rdfs:domain ns1:Mechanism ;
+    rdfs:range ns1:Information .
+
+ns1:buildsUpToForm a owl:ObjectProperty ;
+    rdfs:domain ns1:Dot ;
+    rdfs:range ns1:Cluster .
+
+ns1:capableOfRecordingActivityOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Electrode ;
+    rdfs:range ns1:Neuron .
+
+ns1:constitutes a owl:ObjectProperty ;
+    rdfs:domain ns1:Cell ;
+    rdfs:range ns1:PositioningSystem .
+
+ns1:discoveredInYear a owl:ObjectProperty ;
+    rdfs:domain ns1:Discovery ;
+    rdfs:range ns1:Year .
+
+ns1:emits a owl:ObjectProperty ;
+    rdfs:domain ns1:Neuron ;
+    rdfs:range ns1:ActionPotential .
+
+ns1:encodes a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:CognitiveRepresentation .
+
+ns1:forDiscovery a owl:ObjectProperty ;
+    rdfs:domain ns1:Prize ;
+    rdfs:range ns1:Discovery .
+
+ns1:formsVerticesOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Cluster ;
+    rdfs:range ns1:GridPattern .
+
+ns1:foundInBrainOf a owl:ObjectProperty ;
+    rdfs:domain ns1:Cell ;
+    rdfs:range ns1:Species .
+
+ns1:hasFiringFieldArrangement a owl:ObjectProperty ;
+    rdfs:domain ns1:GridCell ;
+    rdfs:range ns1:FiringFieldArrangement .
+
+ns1:hasSubject a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:Species .
+
+ns1:hasTypicalPlaceFieldCount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain ns1:PlaceCell ;
+    rdfs:range xsd:integer .
+
+ns1:implantedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Electrode ;
+    rdfs:range ns1:BrainRegion .
+
+ns1:ledTo a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:locatedIn a owl:ObjectProperty ;
+    rdfs:domain ns1:PlaceCell ;
+    rdfs:range ns1:BrainRegion .
+
+ns1:movesFreelyIn a owl:ObjectProperty ;
+    rdfs:domain ns1:Rat ;
+    rdfs:range ns1:Arena .
+
+ns1:recordsIn a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:BrainRegion .
+
+ns1:showsSpatialFiring a owl:ObjectProperty ;
+    rdfs:domain ns1:Cell ;
+    rdfs:range ns1:SpatialFiringPattern .
+
+ns1:suggests a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:takesPlaceIn a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:Arena .
+
+ns1:usesInstrument a owl:ObjectProperty ;
+    rdfs:domain ns1:ExperimentalStudy ;
+    rdfs:range ns1:Electrode .
+
+ns1:ActionPotential a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:CognitiveRepresentation a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:about ;
+            owl:someValuesFrom ns1:EuclideanSpace ],
+        ns1:Representation .
+
+ns1:EuclideanSpace a owl:Class ;
+    rdfs:subClassOf ns1:Space .
+
+ns1:FiringFieldArrangement a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:GridPattern a owl:Class ;
+    rdfs:subClassOf ns1:Pattern .
+
+ns1:Information a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MarianneFyhn a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Marianne Fyhn"^^xsd:string ;
+    ns1:studentOf ns1:EdvardMoser,
+        ns1:MayBrittMoser .
+
+ns1:Mechanism a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:OpenArena a owl:Class ;
+    rdfs:subClassOf ns1:Arena .
+
+ns1:Organization a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Place a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PlaceCell a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:distinguishedBy ;
+            owl:someValuesFrom ns1:IrregularSpatialFiringPattern ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:locatedIn ;
+            owl:someValuesFrom ns1:Hippocampus ],
+        [ a owl:Restriction ;
+            owl:hasValue 1 ;
+            owl:onProperty ns1:hasTypicalPlaceFieldCount ],
+        ns1:SpatialFiringCell .
+
+ns1:Position a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:PositionInSpace a owl:Class ;
+    rdfs:subClassOf ns1:Position .
+
+ns1:PositioningSystem a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Rat a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:movesFreelyIn ;
+            owl:someValuesFrom ns1:OpenArena ],
+        ns1:Species .
+
+ns1:SpatialFiringCell a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:showsSpatialFiring ;
+            owl:someValuesFrom ns1:SpatialFiringPattern ],
+        ns1:Neuron .
+
+ns1:SturlaMolden a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Sturla Molden"^^xsd:string ;
+    ns1:studentOf ns1:EdvardMoser,
+        ns1:MayBrittMoser .
+
+ns1:TorkelHafting a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Torkel Hafting"^^xsd:string ;
+    ns1:studentOf ns1:EdvardMoser,
+        ns1:MayBrittMoser .
+
+ns1:discoveredAt a owl:ObjectProperty ;
+    rdfs:domain ns1:Discovery ;
+    rdfs:range ns1:Organization,
+        ns1:Place .
+
+ns1:distinguishedBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Cell ;
+    rdfs:range ns1:Pattern .
+
+ns1:Arena a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Cluster a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:formsVerticesOf ;
+            owl:someValuesFrom ns1:EquilateralTriangleGrid ],
+        owl:Thing .
+
+ns1:GridCell a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:hasFiringFieldArrangement ;
+            owl:someValuesFrom ns1:EqualDistanceNeighbourArrangement ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:allowsUnderstandingOf ;
+            owl:someValuesFrom ns1:PositionInSpace ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:distinguishedBy ;
+            owl:someValuesFrom ns1:RegularTrianglePattern ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:encodes ;
+            owl:someValuesFrom ns1:CognitiveRepresentation ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:constitutes ;
+            owl:someValuesFrom ns1:PositioningSystem ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:foundInBrainOf ;
+            owl:someValuesFrom ns1:Species ],
+        ns1:SpatialFiringCell .
+
+ns1:Pattern a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Electrode a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:implantedIn ;
+            owl:someValuesFrom ns1:CerebralCortex ],
+        [ a owl:Restriction ;
+            owl:onProperty ns1:capableOfRecordingActivityOf ;
+            owl:someValuesFrom ns1:Neuron ],
+        owl:Thing .
+
+ns1:Neuron a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ns1:emits ;
+            owl:someValuesFrom ns1:ActionPotential ],
+        ns1:Cell .
+
+ns1:Prize a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:SpatialFiringPattern a owl:Class ;
+    rdfs:subClassOf ns1:Pattern .
+
+ns1:Species a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:about a owl:ObjectProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range owl:Thing .
+
+ns1:Cell a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Discovery a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:EdvardMoser a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "Edvard Moser"^^xsd:string .
+
+ns1:ExperimentalStudy a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:MayBrittMoser a owl:NamedIndividual,
+        ns1:Person ;
+    rdfs:label "May - Britt Moser"^^xsd:string .
+
+ns1:Year a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:discoveredBy a owl:ObjectProperty ;
+    rdfs:domain ns1:Discovery ;
+    rdfs:range ns1:Person .
+
+ns1:BrainRegion a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+ns1:Person a owl:Class ;
+    rdfs:subClassOf owl:Thing .
